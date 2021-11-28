@@ -1,6 +1,12 @@
 # coffe
 
-## Project setup
+## Клонируем себе репозиторий черезе команду 
+
+git clone git@github.com:cofeGB/cofeGB.git (если у вас есть SSH)
+или 
+git clone https://github.com/cofeGB/cofeGB.git
+
+### Подключение зависимойстей и запуск проекта
 ```
 npm install
 ```
