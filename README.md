@@ -16,15 +16,4 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### После успешного запуска создаем у себя новую ветку и работаем в ней так же в нее пушим все изминения и делаем риквест с main веткой. После 1 одобрения можно будет замержить все правки. Если у вас много commit-ов желательно squosh-ить все в 1 commit но можно и без этого.
