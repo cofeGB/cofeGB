@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -16,16 +17,18 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-eslint": "^4.5.15",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-prettier-vue": "^3.1.0",
     "eslint-plugin-vue": "^6.2.2",
-    "prettier": "^2.2.1",
+    "prettier": "^2.5.0",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.4",
@@ -39,13 +42,59 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "plugin:prettier/recommended",
       "eslint:recommended",
       "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ],
+      "linebreak-style": 0,
+      "no-console": 0,
+      "no-debugger": 0,
+      "prefer-destructuring": 0,
+      "no-underscore-dangle": 0,
+      "no-prototype-builtins": 0,
+      "no-param-reassign": 0,
+      "no-sequences": 0,
+      "no-empty": [
+        "error",
+        {
+          "allowEmptyCatch": true
+        }
+      ],
+      "consistent-return": 0,
+      "no-else-return": 0,
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ],
+      "camelcase": 0,
+      "valid-typeof": [
+        "error",
+        {
+          "requireStringLiterals": false
+        }
+      ],
+      "no-bitwise": 0,
+      "no-restricted-globals": "warn",
+      "no-restricted-properties": "warn",
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
