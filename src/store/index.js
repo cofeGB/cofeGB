@@ -847,7 +847,230 @@ export default new Vuex.Store({
         },
       },
     },
-    barConstructor: {},
+    foodConstructorPatern: {
+      title: '',
+      quantity: 0,
+      price: 0,
+      weight: 0,
+      calorie: 0,
+      proteins: {
+        in: 0,
+        fromNorma: 0,
+      },
+      fat: {
+        in: 0,
+        fromNorma: 0,
+      },
+      carbohydrates: {
+        in: 0,
+        fromNorma: 0,
+      },
+      warning: [],
+      composition: {
+        text: '',
+      },
+      description: '',
+      bread: {
+        title: 'Белый',
+        type: 'wigth',
+        quantity: 1,
+        price: 30,
+      },
+      sauce: {
+        title: 'Майонез',
+        type: 'mayonnaise',
+        quantity: 1,
+        price: 30,
+      },
+      salad: {
+        title: 'Лоло Россо',
+        type: 'loloRosso',
+        quantity: 1,
+        price: 20,
+      },
+      salami: {
+        type: 'salcico',
+        title: 'Салями Сальсичон',
+        quantity: 1,
+        price: 50,
+      },
+      cheese: {
+        type: 'adam',
+        title: 'Эдам',
+        quantity: 1,
+        price: 30,
+      },
+    },
+    barConstructor: {
+      coffe: {
+        latte: {
+          title: 'Латте',
+          quantity: 1,
+          price: 180,
+          coffe: 8,
+          milck: 250,
+        },
+        latteMakiato: {
+          title: 'Латте-Макиато',
+          quantity: 1,
+          price: 180,
+          coffe: 8,
+          milck: 250,
+        },
+        cappuccino: {
+          title: 'Капучино',
+          quantity: 1,
+          price: 150,
+          coffe: 8,
+          milck: 200,
+        },
+        espresso: {
+          title: 'Эспресо',
+          quantity: 1,
+          price: 90,
+          coffe: 8,
+        },
+        americano: {
+          title: 'Американо',
+          quantity: 1,
+          price: 90,
+          coffe: 8,
+        },
+        bembelbee: {
+          title: 'Бамблби',
+          quantity: 1,
+          price: 180,
+          coffe: 8,
+          orangeFrash: 200,
+          syrup: 20,
+        },
+        cream: {
+          cow: {
+            title: 'Сливки',
+            quantity: 1,
+            price: 30,
+            mil: 50,
+          },
+          vegetable: {
+            title: 'Сливки ростительные',
+            quantity: 1,
+            price: 80,
+            mil: 50,
+          },
+        },
+        milck: {
+          cow: {
+            title: 'Молоко',
+            quantity: 1,
+            price: 50,
+            mil: 150,
+          },
+          vegetable: {
+            title: 'Альтернативное молоко',
+            quantity: 1,
+            price: 100,
+            mil: 150,
+          },
+        },
+        marshmallows: {
+          title: 'Маршмелоу',
+          quantity: 1,
+          price: 30,
+          weight: 10,
+        },
+      },
+      tea: {
+        baleck: {
+          title: 'Черный',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+        },
+        green: {
+          title: 'Зеленый',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+        },
+        wigth: {
+          title: 'Белый',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+        },
+        match: {
+          title: 'Матча',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          milck: 250,
+        },
+        grass: {
+          mint: {
+            title: 'Мята',
+            quantity: 1,
+            price: 10,
+            weight: 1,
+          },
+          thyme: {
+            title: 'Чабрец',
+            quantity: 1,
+            price: 10,
+            weight: 1,
+          },
+        },
+        fruits: {
+          orange: {
+            title: 'Апельсин',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+          },
+          apple: {
+            title: 'Яблоко',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+          },
+          pear: {
+            title: 'Груша',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+          },
+        },
+      },
+      syrup: {
+        title: ['Карамель', 'Ваниль', 'Лесной орех', 'Попкорн'],
+        quantity: 1,
+        price: 20,
+        mil: 20,
+      },
+    },
+    barConstructorPatern: {
+      coffe: {
+        coffe: {
+          type: 'espresso',
+          quantity: 1,
+          price: 20,
+        },
+        syrup: {
+          title: 'Карамель',
+          quantity: 1,
+          price: 20,
+        },
+      },
+      tea: {
+        tea: {
+          title: 'Черный',
+          quantity: 1,
+          price: 180,
+        },
+      },
+    },
   },
   mutations: {},
   actions: {},
@@ -857,6 +1080,12 @@ export default new Vuex.Store({
     },
     BAR_CONSTRUCTOR: state => {
       return state.barConstructor;
+    },
+    FOOD_CONSTRUCTOR_PATERN: state => {
+      return state.foodConstructorPatern;
+    },
+    BAR_CONSTRUCTOR_PATERN: state => {
+      return state.barConstructorPatern;
     },
     ACCESS: state => {
       return state.access;
