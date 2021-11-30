@@ -48,6 +48,8 @@ export default new Vuex.Store({
     foodConstructor: {
       bread: {
         black: {
+          title: 'Черный',
+          quantity: 1,
           price: 30,
           piece: 3,
           weight: 100,
@@ -75,6 +77,8 @@ export default new Vuex.Store({
             'Калорийность на 100гр. 274 кКал. Жиры — 4.53 г. Белки — 10,67 г. Углеводы — 47,54 г. В 100 г белого пшеничного хлеба содержатся 14% суточной нормы белка, жиров — 5% и углеводов — 15%.',
         },
         wigth: {
+          title: 'Белый',
+          quantity: 1,
           price: 30,
           piece: 3,
           weight: 100,
@@ -102,6 +106,8 @@ export default new Vuex.Store({
             'Калорийность на 100гр. — 210 кКал. Жиры — 1 г. Белки — 6.5 г. Углеводы — 43 г. В 100 г черного хлеба содержатся 6.37% суточной нормы белка, жиров — 1.33% и углеводов — 27.56%.',
         },
         wholegrain: {
+          title: 'Зерновой',
+          quantity: 1,
           price: 50,
           piece: 3,
           weight: 100,
@@ -128,6 +134,8 @@ export default new Vuex.Store({
       },
       salad: {
         loloRosso: {
+          title: 'Лоло Россо',
+          quantity: 1,
           price: 20,
           piece: false,
           weight: 20,
@@ -149,6 +157,8 @@ export default new Vuex.Store({
             'Калорийность на 20гр. — 3.2 кКал. Жиры — 0 г. Белки — 0.3 г. Углеводы — 0.4 г. В 20 г. салата Лоло Россо содержатся 0.33% суточной нормы белка, жиров — 0% и углеводов — 0.29%.',
         },
         loloBiondo: {
+          title: 'Лоло Биондо',
+          quantity: 1,
           price: 20,
           piece: false,
           weight: 20,
@@ -170,6 +180,8 @@ export default new Vuex.Store({
             'Калорийность на 20гр. — 3.4 кКал. Жиры — 0 г. Белки — 0.3 г. Углеводы — 0.4 г. В 20 г. салата Лоло Биондо содержатся 0.33% суточной нормы белка, жиров — 0% и углеводов — 0.29%.',
         },
         lettuce: {
+          title: 'Латук',
+          quantity: 1,
           price: 20,
           piece: false,
           weight: 20,
@@ -191,6 +203,8 @@ export default new Vuex.Store({
             'Калорийность на 20гр. — 3.2 кКал. Жиры — 0 г. Белки — 0.3 г. Углеводы — 0.4 г. В 20 г. салата Латук содержатся 0.33% суточной нормы белка, жиров — 0% и углеводов — 0.29%.',
         },
         rucola: {
+          title: 'Рукола',
+          quantity: 1,
           price: 20,
           piece: false,
           weight: 20,
@@ -214,6 +228,8 @@ export default new Vuex.Store({
       },
       sauce: {
         mayonnaise: {
+          title: 'Майонез',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 50,
@@ -241,6 +257,8 @@ export default new Vuex.Store({
             'Калорийность на 314.5 гр. — 5 кКал. Жиры — 33.5 г. Белки — 1.4 г. Углеводы — 1.9 г. В 50 г. Майонеза содержатся 1.52% суточной нормы белка, жиров — 50% и углеводов — 1.36%.',
         },
         ketchup: {
+          title: 'Кетчуп',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 50,
@@ -268,6 +286,8 @@ export default new Vuex.Store({
             'Калорийность на 50.5 гр. — 5 кКал. Жиры — 0.1 г. Белки — 0.5 г. Углеводы — 13.6 г. В 50 г. Кетчупа содержатся 0.54% суточной нормы белка, жиров — 0.15% и углеводов — 9.71%.',
         },
         mustard: {
+          title: 'Горчица',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 50,
@@ -295,6 +315,8 @@ export default new Vuex.Store({
             'Калорийность на 71.5 гр. — 5 кКал. Жиры — 2.7 г. Белки — 5 г. Углеводы — 6.4 г. В 50 г. Кетчупа содержатся 5.43% суточной нормы белка, жиров — 4.03% и углеводов — 4.57%.',
         },
         сesar: {
+          title: 'Цезарь',
+          quantity: 1,
           price: 50,
           piece: false,
           weight: 50,
@@ -322,6 +344,8 @@ export default new Vuex.Store({
             'Калорийность на 220 гр. — 0.5 кКал. Жиры — 21.5 г. Белки — 5 г. Углеводы — 6 г. В 50 г. Соус Цезарь содержатся 0.54% суточной нормы белка, жиров — 32.09% и углеводов — 4.29%.',
         },
         bbq: {
+          title: 'BBQ',
+          quantity: 1,
           price: 50,
           piece: false,
           weight: 50,
@@ -351,6 +375,8 @@ export default new Vuex.Store({
       },
       tomato: {
         simple: {
+          title: 'Томаты',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 30,
@@ -375,6 +401,8 @@ export default new Vuex.Store({
             'Калорийность на 30 гр. — 7.2 кКал. Жиры — 0.1 г. Белки — 0.3 г. Углеводы — 1.1 г. В 50 г. Томатах свежих содержатся 0.33% суточной нормы белка, жиров — 0.15% и углеводов — 0.79%.',
         },
         cherry: {
+          title: 'Черри',
+          quantity: 1,
           price: 50,
           piece: false,
           weight: 30,
@@ -401,6 +429,8 @@ export default new Vuex.Store({
       },
       cucumber: {
         fresh: {
+          title: 'Огурец свежий',
+          quantity: 1,
           price: 20,
           piece: false,
           weight: 30,
@@ -425,6 +455,8 @@ export default new Vuex.Store({
             'Калорийность на 30 гр. — 4.2 кКал. Жиры — 0 г. Белки — 0.2 г. Углеводы — 0.8 г. В 50 г. В свежих огурцах содержатся 0.22% суточной нормы белка, жиров — 0% и углеводов — 0.57%.',
         },
         marinated: {
+          title: 'Огурец бочковой',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 30,
@@ -454,6 +486,8 @@ export default new Vuex.Store({
       },
       olives: {
         black: {
+          title: 'Маслины',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 20,
@@ -481,6 +515,8 @@ export default new Vuex.Store({
             'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В маслинах содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
         },
         wigth: {
+          title: 'Оливки',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 20,
@@ -508,6 +544,8 @@ export default new Vuex.Store({
             'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
         },
         chupadedos: {
+          title: 'Оливки Сhupadedos',
+          quantity: 1,
           price: 60,
           piece: false,
           weight: 20,
@@ -537,6 +575,8 @@ export default new Vuex.Store({
       },
       onion: {
         fresh: {
+          title: 'Лук',
+          quantity: 1,
           price: 10,
           piece: false,
           weight: 10,
@@ -566,6 +606,8 @@ export default new Vuex.Store({
       },
       salami: {
         salcico: {
+          title: 'Салями Сальсичон',
+          quantity: 1,
           price: 50,
           piece: false,
           weight: 30,
@@ -593,6 +635,8 @@ export default new Vuex.Store({
             'Калорийность на 30 гр. — 109.8 кКал. Жиры — 10.2 г. Белки — 5.1 г. Углеводы — 0.3 г. В 50 г. В белом луке содержатся 5.54% суточной нормы белка, жиров — 15.22% и углеводов — 0.21%.',
         },
         peperoni: {
+          title: 'Салями Пеперони',
+          quantity: 1,
           price: 60,
           piece: false,
           weight: 30,
@@ -622,6 +666,8 @@ export default new Vuex.Store({
       },
       chickenBreast: {
         smoked: {
+          title: 'Капченая куриная грудка',
+          quantity: 1,
           price: 50,
           piece: false,
           weight: 30,
@@ -649,6 +695,8 @@ export default new Vuex.Store({
             'Калорийность на 30 гр. — 39 кКал. Жиры — 1.8 г. Белки — 6 г. Углеводы — 0 г. В 50 г. В копченой куриной грудке содержатся 6.52% суточной нормы белка, жиров — 2.69% и углеводов — 0%.',
         },
         baked: {
+          title: 'Запеченая куриная грудка',
+          quantity: 1,
           price: 40,
           piece: false,
           weight: 30,
@@ -678,6 +726,8 @@ export default new Vuex.Store({
       },
       beef: {
         roastBeef: {
+          title: 'Ростбиф',
+          quantity: 1,
           price: 80,
           piece: false,
           weight: 30,
@@ -707,6 +757,8 @@ export default new Vuex.Store({
       },
       pork: {
         hum: {
+          title: 'Ветчина',
+          quantity: 1,
           price: 60,
           piece: false,
           weight: 30,
@@ -736,6 +788,8 @@ export default new Vuex.Store({
       },
       cheese: {
         adam: {
+          title: 'Эдам',
+          quantity: 1,
           price: 30,
           piece: false,
           weight: 20,
@@ -763,6 +817,8 @@ export default new Vuex.Store({
             'Калорийность на 20 гр. — 52.4 кКал. Жиры — 4.6 г. Белки — 2.7 г. Углеводы — 0 г. В 50 г. В сыре Эдам содержатся 2.93% суточной нормы белка, жиров — 6.87% и углеводов — 0%.',
         },
         bree: {
+          title: 'Бри',
+          quantity: 1,
           price: 80,
           piece: false,
           weight: 20,
