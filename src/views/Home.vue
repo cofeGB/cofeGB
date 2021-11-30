@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    {{ FOOD_CONSTRUCTOR }}
+  </div>
 </template>
 
 <script>
