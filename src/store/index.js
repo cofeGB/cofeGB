@@ -1081,6 +1081,12 @@ export default new Vuex.Store({
     BAR_CONSTRUCTOR: state => {
       return state.barConstructor;
     },
+    FOOD_CONSTRUCTOR_PATERN: state => {
+      return state.foodConstructorPatern;
+    },
+    BAR_CONSTRUCTOR_PATERN: state => {
+      return state.barConstructorPatern;
+    },
     ACCESS: state => {
       return state.access;
     },
