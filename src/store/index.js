@@ -43,8 +43,599 @@ export default new Vuex.Store({
         createAccount: false,
       },
     },
-    menu: {},
-    barMenu: {},
+    menu: {
+      starters: [
+        {
+          title: 'Оливки Chupadedos',
+          quantity: 0,
+          price: 100,
+          weight: 100,
+          calorie: 29,
+          proteins: {
+            in: 0.2,
+            fromNorma: 0.22,
+          },
+          fat: {
+            in: 3.1,
+            fromNorma: 4.63,
+          },
+          carbohydrates: {
+            in: 0.7,
+            fromNorma: 0.35,
+          },
+          warning: {
+            text: 'Содержит алергены',
+            icon: 'allergens',
+          },
+          composition: [
+            {
+              title: 'Оливки',
+            },
+          ],
+          description:
+            'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках Чупадедос содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
+        },
+        {
+          title: 'Оливки',
+          quantity: 0,
+          price: 100,
+          weight: 100,
+          calorie: 29,
+          proteins: {
+            in: 0.2,
+            fromNorma: 0.22,
+          },
+          fat: {
+            in: 3.1,
+            fromNorma: 4.63,
+          },
+          carbohydrates: {
+            in: 0.7,
+            fromNorma: 0.35,
+          },
+          warning: {
+            text: 'Содержит алергены',
+            icon: 'allergens',
+          },
+          composition: [
+            {
+              title: 'Оливки',
+            },
+          ],
+          description:
+            'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
+        },
+      ],
+      sandwich: [
+        {
+          title: 'Стандарт',
+          quantity: 0,
+          price: 200,
+          weight: 200,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: [],
+          description: '',
+          composition: [
+            {
+              title: 'Белый хлеб',
+              type: 'white',
+              quantity: 1,
+              price: 30,
+            },
+            {
+              title: 'Майонез',
+              type: 'mayonnaise',
+              quantity: 1,
+              price: 30,
+            },
+            {
+              title: 'Лоло Россо',
+              type: 'loloRosso',
+              quantity: 1,
+              price: 20,
+            },
+            {
+              type: 'salcico',
+              title: 'Салями Сальсичон',
+              quantity: 1,
+              price: 50,
+            },
+            {
+              type: 'adam',
+              title: 'Сыр эдам',
+              quantity: 1,
+              price: 30,
+            },
+          ],
+        },
+        {
+          title: 'Стандарт Большой',
+          quantity: 0,
+          price: 300,
+          weight: 300,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: [],
+          composition: [
+            {
+              title: 'Белый хлеб',
+              type: 'white',
+              quantity: 1,
+              price: 30,
+            },
+            {
+              title: 'Майонез',
+              type: 'mayonnaise',
+              quantity: 1,
+              price: 30,
+            },
+            {
+              title: 'Лоло Россо',
+              type: 'loloRosso',
+              quantity: 1,
+              price: 20,
+            },
+            {
+              type: 'salcico',
+              title: 'Салями Сальсичон',
+              quantity: 1,
+              price: 50,
+            },
+            {
+              type: 'adam',
+              title: 'Сыр эдам',
+              quantity: 1,
+              price: 30,
+            },
+          ],
+          description: '',
+        },
+      ],
+      salad: [],
+      desserts: [],
+    },
+    barMenu: {
+      coffee: [
+        {
+          title: 'Латте',
+          quantity: 1,
+          price: 180,
+          coffe: 8,
+          milk: 250,
+          calorie: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: {
+            text: 'Содержит лактозу',
+            icon: 'lactose',
+          },
+        },
+        {
+          title: 'Латте-Макиато',
+          quantity: 1,
+          price: 180,
+          coffe: 8,
+          milk: 250,
+          calorie: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: {
+            text: 'Содержит лактозу',
+            icon: 'lactose',
+          },
+        },
+        {
+          title: 'Капучино',
+          quantity: 1,
+          price: 150,
+          coffe: 8,
+          milk: 200,
+          calorie: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 200,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: {
+            text: 'Содержит лактозу',
+            icon: 'lactose',
+          },
+        },
+        {
+          title: 'Эспресо',
+          quantity: 1,
+          price: 90,
+          coffe: 8,
+          calorie: 24,
+          composition: [
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 0.7,
+            fromNorma: 1.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 0.4,
+          },
+          carbohydrates: {
+            in: 7.5,
+            fromNorma: 0.3,
+          },
+          warning: false,
+        },
+        {
+          title: 'Американо',
+          quantity: 1,
+          price: 90,
+          coffe: 8,
+          calorie: 24,
+          composition: [
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 0.7,
+            fromNorma: 1.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 0.4,
+          },
+          carbohydrates: {
+            in: 7.5,
+            fromNorma: 0.3,
+          },
+          warning: false,
+        },
+      ],
+      tea: {
+        black: {
+          title: 'Черный чай',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+          calorie: 4,
+          composition: [
+            {
+              title: 'Черный чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: false,
+        },
+        green: {
+          title: 'Зеленый чай',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+          calorie: 4,
+          composition: [
+            {
+              title: 'Зеленый чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: false,
+        },
+        white: {
+          title: 'Белый чай',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          mil: 250,
+          calorie: 4,
+          composition: [
+            {
+              title: 'Белый чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: false,
+        },
+        match: {
+          title: 'Чай матча',
+          quantity: 1,
+          price: 180,
+          tea: 2,
+          milk: 250,
+          calorie: 4,
+          composition: [
+            {
+              title: 'Матча',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+          ],
+          proteins: {
+            in: 10.7,
+            fromNorma: 14.2,
+          },
+          fat: {
+            in: 4.5,
+            fromNorma: 5.4,
+          },
+          carbohydrates: {
+            in: 47.5,
+            fromNorma: 15.3,
+          },
+          warning: {
+            text: 'Содержит лактозу',
+            icon: 'lactose',
+          },
+        },
+        mint: {
+          title: 'Чай из мяты',
+          quantity: 1,
+          price: 10,
+          weight: 1,
+          calorie: 0,
+          composition: [
+            {
+              title: 'Мята',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+        thyme: {
+          title: 'Чай из чабреца',
+          quantity: 1,
+          price: 10,
+          weight: 1,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          composition: [
+            {
+              title: 'Чабрец',
+              type: '',
+              quantity: 1,
+              price: 10,
+            },
+          ],
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+        fruits: {
+          orange: {
+            title: 'Апельсин',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calorie: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+          apple: {
+            title: 'Яблоко',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calorie: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+          pear: {
+            title: 'Груша',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calorie: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+        },
+      },
+    },
     foodConstructor: {
       bread: {
         black: {
