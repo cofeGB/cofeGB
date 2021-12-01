@@ -43,6 +43,29 @@ export default new Vuex.Store({
         createAccount: false,
       },
     },
+    foodNavMenu: [
+      {
+        id: 'SANDWICHES',
+        title: 'Сэндвичи',
+      },
+      {
+        id: 'SNACKS',
+        title: 'Закуски',
+      },
+      {
+        id: 'SALADS',
+        title: 'Салаты',
+      },
+      {
+        id: 'DESSERTS',
+        title: 'Десерты',
+      },
+      {
+        id: 'DRINKS',
+        title: 'Напитки',
+      },
+    ],
+    foodNavMenuSelection: 'SANDWICHES',
     menu: {},
     barMenu: {},
     foodConstructor: {
@@ -1072,8 +1095,16 @@ export default new Vuex.Store({
       },
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_FOOD_NAV_MENU_SELECTION: (state, payload) => {
+      state.foodNavMenuSelection = payload.id;
+    },
+  },
+  actions: {
+    SET_FOOD_NAV_MENU_SELECTION: ({ commit }, payload) => {
+      commit('SET_FOOD_NAV_MENU_SELECTION', payload);
+    },
+  },
   getters: {
     FOOD_CONSTRUCTOR: state => {
       return state.foodConstructor;
@@ -1095,6 +1126,12 @@ export default new Vuex.Store({
     },
     BAR_MENU: state => {
       return state.barMenu;
+    },
+    FOOD_NAV_MENU: state => {
+      return state.foodNavMenu;
+    },
+    FOOD_NAV_MENU_SELECTION: state => {
+      return state.foodNavMenuSelection;
     },
   },
 });
