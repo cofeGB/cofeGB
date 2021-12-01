@@ -76,7 +76,7 @@ export default new Vuex.Store({
           description:
             'Калорийность на 100гр. 274 кКал. Жиры — 4.53 г. Белки — 10,67 г. Углеводы — 47,54 г. В 100 г белого пшеничного хлеба содержатся 14% суточной нормы белка, жиров — 5% и углеводов — 15%.',
         },
-        wigth: {
+        white: {
           title: 'Белый',
           quantity: 1,
           price: 30,
@@ -514,7 +514,7 @@ export default new Vuex.Store({
           description:
             'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В маслинах содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
         },
-        wigth: {
+        white: {
           title: 'Оливки',
           quantity: 1,
           price: 30,
@@ -872,7 +872,7 @@ export default new Vuex.Store({
       description: '',
       bread: {
         title: 'Белый',
-        type: 'wigth',
+        type: 'white',
         quantity: 1,
         price: 30,
       },
@@ -994,7 +994,7 @@ export default new Vuex.Store({
           tea: 2,
           mil: 250,
         },
-        wigth: {
+        white: {
           title: 'Белый',
           quantity: 1,
           price: 180,
