@@ -390,8 +390,8 @@ export default new Vuex.Store({
           warning: false,
         },
       ],
-      tea: {
-        black: {
+      tea: [
+        {
           title: 'Черный чай',
           quantity: 1,
           price: 180,
@@ -420,7 +420,7 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        green: {
+        {
           title: 'Зеленый чай',
           quantity: 1,
           price: 180,
@@ -449,7 +449,7 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        white: {
+        {
           title: 'Белый чай',
           quantity: 1,
           price: 180,
@@ -478,7 +478,7 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        match: {
+        {
           title: 'Чай матча',
           quantity: 1,
           price: 180,
@@ -516,7 +516,7 @@ export default new Vuex.Store({
             icon: 'lactose',
           },
         },
-        mint: {
+        {
           title: 'Чай из мяты',
           quantity: 1,
           price: 10,
@@ -544,7 +544,7 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        thyme: {
+        {
           title: 'Чай из чабреца',
           quantity: 1,
           price: 10,
@@ -572,69 +572,72 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        fruits: {
-          orange: {
-            title: 'Апельсин',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+    ],
+    teaOption: {
+      fruits: [
+        {
+          title: 'Апельсин',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
           },
-          apple: {
-            title: 'Яблоко',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          fat: {
+            in: 0,
+            fromNorma: 0,
           },
-          pear: {
-            title: 'Груша',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
           },
+          warning: false,
         },
-      },
+        {
+          title: 'Яблоко',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+        {
+          title: 'Груша',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+      ],
+        
+    },
     },
     foodConstructor: {
       bread: {
