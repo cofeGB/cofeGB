@@ -81,19 +81,16 @@ export default {
 
   &__title
     font-family: Playfair Display
-    font-style: normal
     font-weight: 900
     font-size: 16px
   &__composition
     font-family: Open Sans
-    font-style: normal
     font-weight: 300
     font-size: 12px
     line-height: 16px
   &__cpfc
     color: #87817F
     font-family: Open Sans
-    font-style: normal
     font-weight: 600
     font-size: 12px
     line-height: 16px
@@ -101,7 +98,6 @@ export default {
       font-weight: 300
   &__price
     font-family: Open Sans
-    font-style: normal
     font-weight: 600
     font-size: 24px
     line-height: 34px

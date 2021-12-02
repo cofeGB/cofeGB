@@ -2,7 +2,7 @@
   <div class="menu">
     <h1 class="brandName">СoffeeBonk</h1>
     <div class="hr"></div>
-    <h3 class="menuTitle">Блюда</h3>
+    <h3 class="menuTitle">Закуски</h3>
     <menuList :list="menuSection" />
     <h3 class="menuTitle">Напитки</h3>
     <menuList :list="barMenuSection" />
@@ -49,6 +49,7 @@ export default {
 .menuTitle
   color: white
   font-family: Open Sans
+  font-weight: 400
   font-size: 36px
   line-height: 49px
   text-transform: uppercase
