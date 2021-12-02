@@ -66,6 +66,7 @@ export default new Vuex.Store({
       },
     ],
     foodNavMenuSelection: 'SANDWICHES',
+    navMenuVisible: true,
     menu: {
       starters: [
         {
@@ -1578,10 +1579,16 @@ export default new Vuex.Store({
     SET_FOOD_NAV_MENU_SELECTION: (state, payload) => {
       state.foodNavMenuSelection = payload.id;
     },
+    SHOW_NAV_MENU: (state, payload) => {
+      state.navMenuVisible = !!payload;
+    },
   },
   actions: {
     SET_FOOD_NAV_MENU_SELECTION: ({ commit }, payload) => {
       commit('SET_FOOD_NAV_MENU_SELECTION', payload);
+    },
+    SHOW_NAV_MENU: ({ commit }, payload) => {
+      commit('SHOW_NAV_MENU', payload);
     },
   },
   getters: {
@@ -1611,6 +1618,9 @@ export default new Vuex.Store({
     },
     FOOD_NAV_MENU_SELECTION: state => {
       return state.foodNavMenuSelection;
+    },
+    NAV_MENU_VISIBLE: state => {
+      return state.navMenuVisible;
     },
   },
 });

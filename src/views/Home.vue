@@ -1,7 +1,6 @@
 <template>
   <div>
-    <v-app-bar-nav-icon @click.stop="showNavMenu = !showNavMenu"></v-app-bar-nav-icon>
-    <CofNavMenu v-model="showNavMenu" />
+    <CofNavMenu />
     {{ FOOD_CONSTRUCTOR }}
   </div>
 </template>

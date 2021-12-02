@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="value" left absolute>
+    <v-navigation-drawer v-model="show" left permanent>
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
           <v-list-item v-for="item in foodNavMenu" :key="item.id" @click="foodMenuClick(item.id)">
@@ -34,38 +34,38 @@
  * SET_FOOD_NAV_MENU_SELECTION, устанавливающий в сторе значение
  * foodNavMenuSelection.
  * foodNavMenuSelection доступно чтением геттера FOOD_NAV_MENU_SELECTION.
+ * Показ меню производится экшеном стора SHOW_NAV_MENU с аргументом типа Boolean.
+ * Состояние отображения меню в state.navMenuVisible стора.
+ * Временно меню зафиксировано и не прячется.
  */
+import store from '../store/index';
+
 export default {
   name: 'CofNavMenu',
-  props: {
-    value: Boolean,
-  },
   data: () => ({
-    show: false,
+    show: store.state.navMenuVisible,
     group: null,
   }),
   methods: {
     foodMenuClick(id) {
-      this.$store.dispatch('SET_FOOD_NAV_MENU_SELECTION', { id });
-      console.log(id);
+      store.dispatch('SET_FOOD_NAV_MENU_SELECTION', { id });
+      // console.log(id);
+    },
+  },
+  computed: {
+    foodNavMenu() {
+      return store.getters.FOOD_NAV_MENU;
+    },
+    navMenuVisible() {
+      return store.getters.NAV_MENU_VISIBLE;
     },
   },
   watch: {
     group() {
       this.show = false;
     },
-    value() {
-      this.show = this.value;
-    },
-    show() {
-      if (this.show != this.value) {
-        this.$emit('input', this.show);
-      }
-    },
-  },
-  computed: {
-    foodNavMenu() {
-      return this.$store.getters.FOOD_NAV_MENU;
+    navMenuVisible(val) {
+      this.show = val;
     },
   },
 };
