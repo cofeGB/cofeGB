@@ -20,3 +20,6 @@ export default {
   },
 };
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&family=Playfair+Display:wght@400;600;900&display=swap');
+</style>

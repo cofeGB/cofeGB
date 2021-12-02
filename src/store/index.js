@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    quickOrder: [],
     access: {
       DEV: {
         site: true,
@@ -1671,9 +1672,27 @@ export default new Vuex.Store({
       },
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_QUICK_ORDER(state, data) {
+      state.quickOrder = data;
+    },
+  },
+  actions: {
+    addDish({ state, commit }, dish) {
+      let order = [...state.quickOrder];
+      let find = order.find(d => d.title == dish.title);
+      if (find) {
+        find.amount += 1;
+      } else {
+        order.push({ title: dish.title, price: dish.price, amount: 1 });
+      }
+      commit('SET_QUICK_ORDER', order);
+    },
+  },
   getters: {
+    QUICK_ORDER: state => {
+      return state.quickOrder;
+    },
     FOOD_CONSTRUCTOR: state => {
       return state.foodConstructor;
     },
