@@ -6,6 +6,79 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     quickOrder: [],
+    demobasket: {
+      dish: [
+        {
+          title: 'Блюдо с очень длинным название что бы проверить верстку',
+          price: 99999,
+          quantity: 99,
+          path: '1',
+        },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '2' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '3' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '4' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '5' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '6' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '7' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '8' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '9' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '10' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '11' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '12' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '13' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '14' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '15' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '16' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '17' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '18' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '19' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '20' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '21' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '22' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '23' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '24' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '25' },
+      ],
+      total: {
+        totalPrice: 99999,
+        loyalty: {
+          stock: {
+            title: 'Акции',
+            items: [
+              {
+                title: 'Кофе в свой стакан',
+                sale: 15,
+                saving: 43,
+                path: '/about',
+              },
+              {
+                title: 'Кофе в свой стакан',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+            ],
+          },
+          discounts: {
+            title: 'Скидки',
+            items: [
+              {
+                title: 'День рождения',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+              {
+                title: 'Годовщина',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+            ],
+          },
+        },
+      },
+    },
     access: {
       DEV: {
         site: true,
@@ -44,6 +117,30 @@ export default new Vuex.Store({
         createAccount: false,
       },
     },
+    foodNavMenu: [
+      {
+        id: 'SANDWICHES',
+        title: 'Сэндвичи',
+      },
+      {
+        id: 'SNACKS',
+        title: 'Закуски',
+      },
+      {
+        id: 'SALADS',
+        title: 'Салаты',
+      },
+      {
+        id: 'DESSERTS',
+        title: 'Десерты',
+      },
+      {
+        id: 'DRINKS',
+        title: 'Напитки',
+      },
+    ],
+    foodNavMenuSelection: 'SANDWICHES',
+    navMenuVisible: false,
     menu: {
       starters: [
         {
@@ -82,6 +179,7 @@ export default new Vuex.Store({
           price: 100,
           weight: 100,
           calories: 29,
+
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -676,7 +774,7 @@ export default new Vuex.Store({
           description:
             'Калорийность на 100гр. 274 кКал. Жиры — 4.53 г. Белки — 10,67 г. Углеводы — 47,54 г. В 100 г белого пшеничного хлеба содержатся 14% суточной нормы белка, жиров — 5% и углеводов — 15%.',
         },
-        wigth: {
+        white: {
           title: 'Белый',
           quantity: 1,
           price: 30,
@@ -1114,7 +1212,7 @@ export default new Vuex.Store({
           description:
             'Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В маслинах содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%.',
         },
-        wigth: {
+        white: {
           title: 'Оливки',
           quantity: 1,
           price: 30,
@@ -1472,7 +1570,7 @@ export default new Vuex.Store({
       description: '',
       bread: {
         title: 'Белый',
-        type: 'wigth',
+        type: 'white',
         quantity: 1,
         price: 30,
       },
@@ -1594,7 +1692,7 @@ export default new Vuex.Store({
           tea: 2,
           mil: 250,
         },
-        wigth: {
+        white: {
           title: 'Белый',
           quantity: 1,
           price: 180,
@@ -1676,6 +1774,12 @@ export default new Vuex.Store({
     SET_QUICK_ORDER(state, data) {
       state.quickOrder = data;
     },
+    SET_FOOD_NAV_MENU_SELECTION: (state, payload) => {
+      state.foodNavMenuSelection = payload.id;
+    },
+    SHOW_NAV_MENU: (state, payload) => {
+      state.navMenuVisible = !!payload;
+    },
   },
   actions: {
     addDish({ state, commit }, payload) {
@@ -1691,6 +1795,12 @@ export default new Vuex.Store({
         order.push({ title: payload.dish.title, price: payload.dish.price, amount: 1 });
       }
       commit('SET_QUICK_ORDER', order);
+    },
+    SET_FOOD_NAV_MENU_SELECTION: ({ commit }, payload) => {
+      commit('SET_FOOD_NAV_MENU_SELECTION', payload);
+    },
+    SHOW_NAV_MENU: ({ commit }, payload) => {
+      commit('SHOW_NAV_MENU', payload);
     },
   },
   getters: {
@@ -1717,6 +1827,15 @@ export default new Vuex.Store({
     },
     BAR_MENU: state => {
       return state.barMenu;
+    },
+    FOOD_NAV_MENU: state => {
+      return state.foodNavMenu;
+    },
+    FOOD_NAV_MENU_SELECTION: state => {
+      return state.foodNavMenuSelection;
+    },
+    NAV_MENU_VISIBLE: state => {
+      return state.navMenuVisible;
     },
   },
 });

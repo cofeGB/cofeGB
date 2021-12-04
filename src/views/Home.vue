@@ -8,8 +8,12 @@
 import { mapGetters } from 'vuex';
 export default {
   name: 'Home',
+  data: () => ({
+    showNavMenu: false,
+  }),
   computed: {
     ...mapGetters(['FOOD_CONSTRUCTOR']),
   },
+  components: {},
 };
 </script>
