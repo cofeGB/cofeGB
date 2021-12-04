@@ -1777,6 +1777,20 @@ export default new Vuex.Store({
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
     },
+    addDish({ state, commit }, payload) {
+      let order = [...state.quickOrder];
+      let find = order.find(d => d.title == payload.dish.title);
+      if (find) {
+        find.amount += payload.inc;
+        // if (find.amount == 0) {
+        //   order = order.find(d => d.title != payload.dish.title);
+        //   order = order ? order : [];
+        // }
+      } else {
+        order.push({ title: payload.dish.title, price: payload.dish.price, amount: 1 });
+      }
+      commit('SET_QUICK_ORDER', order);
+    },
   },
   getters: {
     FOOD_CONSTRUCTOR: state => {

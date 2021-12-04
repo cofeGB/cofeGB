@@ -1,12 +1,15 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <p class="menuItem__title">{{ item.title }}</p>
-      <div class="menuItem__composition">
-        <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
-          {{ ingridient.title }},
-        </span>
-      </div>
+      <router-link :to="{ path: `/menu/${item.id}`, component: Dish }">
+        <!--  параметры? -->
+        <p class="menuItem__title">{{ item.title }}</p>
+        <div class="menuItem__composition">
+          <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
+            {{ ingridient.title }},
+          </span>
+        </div>
+      </router-link>
       <div class="menuItem__cpfc">
         <div>
           <span>{{ item.calories }}</span>
@@ -31,18 +34,24 @@
       </div>
       <div class="menuItem__price">
         {{ item.price }} &#x20bd;
-        <button @click="onClick">
+        <button @click="onClick(1)">
           <i class="fas fa-plus-circle btn-plus"></i>
+        </button>
+        <button v-if="amount > 0" @click="onClick(-1)">
+          <i class="fas fa-minus-circle btn-plus"></i>
         </button>
       </div>
     </div>
-    <div class="menuItem__img">
-      <div class="contaier">
-        <div class="triangle"></div>
-        <img :src="img" alt="photo" />
-        <p v-if="amount > 0" class="menuItem__quantity">x {{ amount }}</p>
+    <router-link :to="{ path: `/menu/${item.id}`, component: Dish }">
+      <!--  параметры? -->
+      <div class="menuItem__img">
+        <div class="contaier">
+          <div class="triangle"></div>
+          <img :src="img" alt="photo" />
+          <p v-if="amount > 0" class="menuItem__quantity">x {{ amount }}</p>
+        </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -64,16 +73,13 @@ export default {
     ...mapGetters(['QUICK_ORDER']),
     amount() {
       let find = this.QUICK_ORDER.find(el => el.title === this.item.title);
-      if (find) {
-        return find.amount;
-      }
-      return 0;
+      return find ? find.amount : 0;
     },
   },
   methods: {
     ...mapActions(['addDish']),
-    onClick() {
-      this.$store.dispatch('addDish', this.item);
+    onClick(inc) {
+      this.$store.dispatch('addDish', { dish: this.item, inc });
     },
   },
 };
