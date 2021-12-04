@@ -147,7 +147,7 @@ export default new Vuex.Store({
           quantity: 0,
           price: 100,
           weight: 100,
-          calorie: 29,
+          calories: 29,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -175,7 +175,7 @@ export default new Vuex.Store({
           quantity: 0,
           price: 100,
           weight: 100,
-          calorie: 29,
+          calories: 29,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -205,7 +205,7 @@ export default new Vuex.Store({
           quantity: 0,
           price: 200,
           weight: 200,
-          calorie: 0,
+          calories: 0,
           proteins: {
             in: 0,
             fromNorma: 0,
@@ -259,7 +259,7 @@ export default new Vuex.Store({
           quantity: 0,
           price: 300,
           weight: 300,
-          calorie: 0,
+          calories: 0,
           proteins: {
             in: 0,
             fromNorma: 0,
@@ -319,8 +319,22 @@ export default new Vuex.Store({
           quantity: 1,
           price: 180,
           coffe: 8,
-          milck: 250,
-          calorie: 274,
+          milk: 250,
+          calories: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -343,8 +357,22 @@ export default new Vuex.Store({
           quantity: 1,
           price: 180,
           coffe: 8,
-          milck: 250,
-          calorie: 274,
+          milk: 250,
+          calories: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -367,8 +395,22 @@ export default new Vuex.Store({
           quantity: 1,
           price: 150,
           coffe: 8,
-          milck: 200,
-          calorie: 274,
+          milk: 200,
+          calories: 274,
+          composition: [
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 200,
+              price: 50,
+            },
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -391,7 +433,15 @@ export default new Vuex.Store({
           quantity: 1,
           price: 90,
           coffe: 8,
-          calorie: 24,
+          calories: 24,
+          composition: [
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 0.7,
             fromNorma: 1.2,
@@ -411,7 +461,15 @@ export default new Vuex.Store({
           quantity: 1,
           price: 90,
           coffe: 8,
-          calorie: 24,
+          calories: 24,
+          composition: [
+            {
+              title: 'Кофе',
+              type: '',
+              quantity: 8,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 0.7,
             fromNorma: 1.2,
@@ -434,7 +492,15 @@ export default new Vuex.Store({
           price: 180,
           tea: 2,
           mil: 250,
-          calorie: 4,
+          calories: 4,
+          composition: [
+            {
+              title: 'Черный чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -455,7 +521,15 @@ export default new Vuex.Store({
           price: 180,
           tea: 2,
           mil: 250,
-          calorie: 4,
+          calories: 4,
+          composition: [
+            {
+              title: 'Зеленый чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -476,7 +550,15 @@ export default new Vuex.Store({
           price: 180,
           tea: 2,
           mil: 250,
-          calorie: 4,
+          calories: 4,
+          composition: [
+            {
+              title: 'Белый чай',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -496,8 +578,22 @@ export default new Vuex.Store({
           quantity: 1,
           price: 180,
           tea: 2,
-          milck: 250,
-          calorie: 4,
+          milk: 250,
+          calories: 4,
+          composition: [
+            {
+              title: 'Матча',
+              type: '',
+              quantity: 2,
+              price: 0,
+            },
+            {
+              title: 'Молоко',
+              type: '',
+              quantity: 250,
+              price: 50,
+            },
+          ],
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -515,20 +611,50 @@ export default new Vuex.Store({
             icon: 'lactose',
           },
         },
-        grass: {
-          mint: {
-            title: 'Мята',
-            quantity: 1,
-            price: 10,
-            weight: 1,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
+        {
+          title: 'Чай из мяты',
+          quantity: 1,
+          price: 10,
+          weight: 1,
+          calories: 0,
+          composition: [
+            {
+              title: 'Мята',
+              type: '',
+              quantity: 2,
+              price: 0,
             },
-            fat: {
-              in: 0,
-              fromNorma: 0,
+          ],
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+        {
+          title: 'Чай из чабреца',
+          quantity: 1,
+          price: 10,
+          weight: 1,
+          calories: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          composition: [
+            {
+              title: 'Чабрец',
+              type: '',
+              quantity: 1,
+              price: 10,
             },
             carbohydrates: {
               in: 0,
@@ -557,72 +683,77 @@ export default new Vuex.Store({
             warning: false,
           },
         },
-    ],
-    teaOption: {
-      fruits: [
-        {
-          title: 'Апельсин',
-          quantity: 1,
-          price: 30,
-          weight: 50,
-          calorie: 0,
-          proteins: {
-            in: 0,
-            fromNorma: 0,
-          },
-          fat: {
-            in: 0,
-            fromNorma: 0,
-          },
-          carbohydrates: {
-            in: 0,
-            fromNorma: 0,
-          },
-          warning: false,
-        },
-        {
-          title: 'Яблоко',
-          quantity: 1,
-          price: 30,
-          weight: 50,
-          calorie: 0,
-          proteins: {
-            in: 0,
-            fromNorma: 0,
-          },
-          fat: {
-            in: 0,
-            fromNorma: 0,
-          },
-          carbohydrates: {
-            in: 0,
-            fromNorma: 0,
-          },
-          warning: false,
-        },
-        {
-          title: 'Груша',
-          quantity: 1,
-          price: 30,
-          weight: 50,
-          calorie: 0,
-          proteins: {
-            in: 0,
-            fromNorma: 0,
-          },
-          fat: {
-            in: 0,
-            fromNorma: 0,
-          },
-          carbohydrates: {
-            in: 0,
-            fromNorma: 0,
-          },
-          warning: false,
-        },
       ],
-        
-    },
+      option: {
+        fruits: [
+          {
+            title: 'Апельсин',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calories: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+          {
+            title: 'Яблоко',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calories: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+          {
+            title: 'Груша',
+            quantity: 1,
+            price: 30,
+            weight: 50,
+            calories: 0,
+            proteins: {
+              in: 0,
+              fromNorma: 0,
+            },
+            fat: {
+              in: 0,
+              fromNorma: 0,
+            },
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
+          },
+        ],
+        sugar: {
+          title: 'Сахар',
+          quantity: 10,
+          price: 30,
+          calories: 0,
+        },
+      },
     },
     foodConstructor: {
       bread: {
@@ -632,7 +763,7 @@ export default new Vuex.Store({
           price: 30,
           piece: 3,
           weight: 100,
-          calorie: 274,
+          calories: 274,
           proteins: {
             in: 10.7,
             fromNorma: 14.2,
@@ -661,7 +792,7 @@ export default new Vuex.Store({
           price: 30,
           piece: 3,
           weight: 100,
-          calorie: 210,
+          calories: 210,
           proteins: {
             in: 6.5,
             fromNorma: 8.6,
@@ -690,7 +821,7 @@ export default new Vuex.Store({
           price: 50,
           piece: 3,
           weight: 100,
-          calorie: 255,
+          calories: 255,
           warning: false,
           proteins: {
             in: 8,
@@ -718,7 +849,7 @@ export default new Vuex.Store({
           price: 20,
           piece: false,
           weight: 20,
-          calorie: 3.2,
+          calories: 3.2,
           warning: false,
           proteins: {
             in: 0.3,
@@ -741,7 +872,7 @@ export default new Vuex.Store({
           price: 20,
           piece: false,
           weight: 20,
-          calorie: 3.4,
+          calories: 3.4,
           warning: false,
           proteins: {
             in: 0.3,
@@ -764,7 +895,7 @@ export default new Vuex.Store({
           price: 20,
           piece: false,
           weight: 20,
-          calorie: 3.2,
+          calories: 3.2,
           warning: false,
           proteins: {
             in: 0.3,
@@ -787,7 +918,7 @@ export default new Vuex.Store({
           price: 20,
           piece: false,
           weight: 20,
-          calorie: 5,
+          calories: 5,
           warning: false,
           proteins: {
             in: 0.3,
@@ -812,7 +943,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 50,
-          calorie: 314.5,
+          calories: 314.5,
           proteins: {
             in: 1.4,
             fromNorma: 1.52,
@@ -841,7 +972,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 50,
-          calorie: 50.5,
+          calories: 50.5,
           proteins: {
             in: 0.5,
             fromNorma: 0.54,
@@ -870,7 +1001,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 50,
-          calorie: 71.5,
+          calories: 71.5,
           proteins: {
             in: 5,
             fromNorma: 5.43,
@@ -899,7 +1030,7 @@ export default new Vuex.Store({
           price: 50,
           piece: false,
           weight: 50,
-          calorie: 220,
+          calories: 220,
           proteins: {
             in: 0.5,
             fromNorma: 0.54,
@@ -928,7 +1059,7 @@ export default new Vuex.Store({
           price: 50,
           piece: false,
           weight: 50,
-          calorie: 60,
+          calories: 60,
           proteins: {
             in: 0.8,
             fromNorma: 0.87,
@@ -959,7 +1090,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 30,
-          calorie: 7.2,
+          calories: 7.2,
           proteins: {
             in: 0.3,
             fromNorma: 0.33,
@@ -985,7 +1116,7 @@ export default new Vuex.Store({
           price: 50,
           piece: false,
           weight: 30,
-          calorie: 4.5,
+          calories: 4.5,
           proteins: {
             in: 0.3,
             fromNorma: 0.33,
@@ -1013,7 +1144,7 @@ export default new Vuex.Store({
           price: 20,
           piece: false,
           weight: 30,
-          calorie: 4.2,
+          calories: 4.2,
           warning: false,
           proteins: {
             in: 0.2,
@@ -1039,7 +1170,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 30,
-          calorie: 3.3,
+          calories: 3.3,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -1070,7 +1201,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 20,
-          calorie: 29,
+          calories: 29,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -1099,7 +1230,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 20,
-          calorie: 29,
+          calories: 29,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -1128,7 +1259,7 @@ export default new Vuex.Store({
           price: 60,
           piece: false,
           weight: 20,
-          calorie: 29,
+          calories: 29,
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -1159,7 +1290,7 @@ export default new Vuex.Store({
           price: 10,
           piece: false,
           weight: 10,
-          calorie: 4.1,
+          calories: 4.1,
           proteins: {
             in: 0.1,
             fromNorma: 0.11,
@@ -1190,7 +1321,7 @@ export default new Vuex.Store({
           price: 50,
           piece: false,
           weight: 30,
-          calorie: 109.8,
+          calories: 109.8,
           proteins: {
             in: 5.1,
             fromNorma: 5.54,
@@ -1219,7 +1350,7 @@ export default new Vuex.Store({
           price: 60,
           piece: false,
           weight: 30,
-          calorie: 13.88,
+          calories: 13.88,
           proteins: {
             in: 5.78,
             fromNorma: 7.7,
@@ -1250,7 +1381,7 @@ export default new Vuex.Store({
           price: 50,
           piece: false,
           weight: 30,
-          calorie: 39,
+          calories: 39,
           proteins: {
             in: 6,
             fromNorma: 6.52,
@@ -1279,7 +1410,7 @@ export default new Vuex.Store({
           price: 40,
           piece: false,
           weight: 30,
-          calorie: 33.9,
+          calories: 33.9,
           proteins: {
             in: 7.1,
             fromNorma: 7.72,
@@ -1310,7 +1441,7 @@ export default new Vuex.Store({
           price: 80,
           piece: false,
           weight: 30,
-          calorie: 55,
+          calories: 55,
           proteins: {
             in: 5.7,
             fromNorma: 6.2,
@@ -1341,7 +1472,7 @@ export default new Vuex.Store({
           price: 60,
           piece: false,
           weight: 30,
-          calorie: 99,
+          calories: 99,
           proteins: {
             in: 1.8,
             fromNorma: 1.96,
@@ -1372,7 +1503,7 @@ export default new Vuex.Store({
           price: 30,
           piece: false,
           weight: 20,
-          calorie: 52.4,
+          calories: 52.4,
           proteins: {
             in: 2.7,
             fromNorma: 2.93,
@@ -1401,7 +1532,7 @@ export default new Vuex.Store({
           price: 80,
           piece: false,
           weight: 20,
-          calorie: 52.4,
+          calories: 52.4,
           proteins: {
             in: 2.7,
             fromNorma: 2.93,
@@ -1431,7 +1562,7 @@ export default new Vuex.Store({
       quantity: 0,
       price: 0,
       weight: 0,
-      calorie: 0,
+      calories: 0,
       proteins: {
         in: 0,
         fromNorma: 0,

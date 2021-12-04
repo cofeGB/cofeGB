@@ -1,7 +1,9 @@
 <template>
-  <div class="cofMenu">
-    <p class="cofMenu-placehold" v-if="list.length === 0">Ничего не найдено</p>
-    <menu-item v-for="item of list" :item="item" :key="item.id_product" :img="imgUrl"></menu-item>
+  <div>
+    <p class="menu-placehold" v-if="list.length === 0">Ничего не найдено</p>
+    <div class="menuList">
+      <menu-item v-for="item of list" :item="item" :key="item.id_product" :img="imgUrl"></menu-item>
+    </div>
   </div>
 </template>
 
@@ -15,8 +17,16 @@ export default {
   },
   data() {
     return {
-      imgUrl: 'https://placehold.it/200x150',
+      imgUrl: require('../../assets/img/image2.jpg'),
     };
   },
 };
 </script>
+
+<style lang="sass" scoped>
+.menuList
+  padding: 32px
+  display: grid
+  grid-template-columns: repeat(4, 260px)
+  grid-gap: 32px
+</style>
