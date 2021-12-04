@@ -1,0 +1,193 @@
+<template>
+  <v-container>
+    <v-text-field
+      v-model="user.userpthone"
+      class="my-2"
+      loading="false"
+      label="Ваш номер телефона"
+      hide-details="auto"
+      clearable
+      outlined
+      dense
+      :rules="rules"
+    ></v-text-field>
+
+    <v-text-field
+      v-model="user.userName"
+      class="my-2"
+      loading="false"
+      label="Ваше имя"
+      hide-details="auto"
+      clearable
+      outlined
+      dense
+    ></v-text-field>
+
+    <tooltip
+      right
+      :disabled="disabled"
+      content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+    >
+      <v-checkbox
+        v-model="user.backCall"
+        hide-details="auto"
+        color="primary"
+        label="Не звонить для проверки заказа"
+        class="ma-0"
+      ></v-checkbox>
+    </tooltip>
+
+    <v-row>
+      <v-col cols="12">
+        <v-text-field
+          v-model="user.address.strit"
+          class="my-2"
+          loading="false"
+          label="Введите ваш адрес"
+          hide-details="auto"
+          clearable
+          outlined
+          dense
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-text-field
+          v-model="user.address.ofis"
+          loading="false"
+          label="Кв.\Офис"
+          hide-details="auto"
+          clearable
+          outlined
+          dense
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-text-field
+          v-model="user.address.home"
+          loading="false"
+          label="Подъезд"
+          hide-details="auto"
+          clearable
+          outlined
+          dense
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-text-field
+          v-model="user.address.flore"
+          loading="false"
+          label="Этаж"
+          hide-details="auto"
+          clearable
+          outlined
+          dense
+        ></v-text-field>
+      </v-col>
+    </v-row>
+
+    <v-subheader class="body-1 pl-0">Оплата курьеру:</v-subheader>
+
+    <v-radio-group v-model="user.payment" row class="ma-0 pa-0" :messages="false">
+      <v-radio
+        hide-details="auto"
+        color="primary"
+        v-for="n in payment"
+        :key="n.value"
+        :label="n.title"
+        :value="n.value"
+        class="mx-auto my-0"
+      ></v-radio>
+    </v-radio-group>
+
+    <v-textarea
+      hide-details="auto"
+      :messages="none"
+      label="Text"
+      no-resize
+      rows="5"
+      outlined
+      clearable
+      dense
+      :value="user.massage"
+    ></v-textarea>
+
+    <tooltip
+      top
+      :disabled="disabled"
+      content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+    >
+      <v-checkbox v-model="user.backCall" hide-details="auto" color="primary" class="ma-0">
+        <template v-slot:label>
+          <div>
+            Соглашаюсь с
+            <a target="_blank" href="https://vuetifyjs.com" @click.stop v-on="on">
+              Политикой обработки персональных данных и Соглашением об условиях доставки.
+            </a>
+          </div>
+        </template>
+      </v-checkbox>
+    </tooltip>
+
+    <v-btn text outlined class="title btn-buy">Заказать</v-btn>
+  </v-container>
+</template>
+
+<script>
+export default {
+  props: {
+    tooltipDisabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      user: {
+        userpthone: null,
+        userName: '',
+        backCall: '',
+        address: {
+          strit: '',
+          home: '',
+          ofis: '',
+          flore: '',
+        },
+        massage: '',
+        payment: 'online',
+      },
+      payment: [
+        {
+          value: 'online',
+          title: 'Онлайн',
+        },
+        {
+          value: 'courier',
+          title: 'Курьеру',
+        },
+      ],
+      rules: [
+        value => !!value || 'Нужно заполнить.',
+        value => (value && value.length === 11) || 'Нужно заполнить.',
+        value => (value && !isNaN(value)) || 'Введити числа.',
+      ],
+    };
+  },
+  computed: {
+    disabled() {
+      return this.tooltipDisabled;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.btn-buy {
+  background: rgba(172, 166, 166, 0.363);
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  &:hover {
+    background: #25dcd1;
+  }
+}
+</style>

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Delivery from '../views/Delivery.vue';
 import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
+import dish from '../components/dish.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/menu',
     name: 'Menu',
     component: Menu,
+  },
+  {
+    path: '/menu/:id',
+    name: 'dish',
+    component: dish,
   },
 ];
 
