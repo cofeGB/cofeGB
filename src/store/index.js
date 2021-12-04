@@ -1678,13 +1678,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    addDish({ state, commit }, dish) {
+    addDish({ state, commit }, payload) {
       let order = [...state.quickOrder];
-      let find = order.find(d => d.title == dish.title);
+      let find = order.find(d => d.title == payload.dish.title);
       if (find) {
-        find.amount += 1;
+        find.amount += payload.inc;
+        // if (find.amount == 0) {
+        //   order = order.find(d => d.title != payload.dish.title);
+        //   order = order ? order : [];
+        // }
       } else {
-        order.push({ title: dish.title, price: dish.price, amount: 1 });
+        order.push({ title: payload.dish.title, price: payload.dish.price, amount: 1 });
       }
       commit('SET_QUICK_ORDER', order);
     },
