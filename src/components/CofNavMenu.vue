@@ -29,37 +29,48 @@
           />
         </svg>
       </div>
-      <v-list nav dense class="d-flex flex-column" height="100%">
-        <v-list-item class="menu__title">
-          <v-list-item-content>
-            <v-list-item-title>
-              <b class="menu__title_text">Меню</b>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-          <v-list-item v-for="item in foodNavMenu" :key="item.id" @click="foodMenuClick(item.id)">
+      <div class="menu__container d-flex flex-column">
+        <v-list nav dense>
+          <v-list-item class="menu__title">
+            <v-list-item-content>
+              <v-list-item-title>
+                <b class="menu__title_text">Меню</b>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <!-- <v-list-item-group v-model="group"> -->
+          <v-list-item
+            v-for="item in foodNavMenu"
+            :key="item.id"
+            @click="foodMenuClick(item.id)"
+            :class="{ menu__item_active: foodNavMenuSelected == item.id }"
+          >
             <v-list-item-title
               ><b class="menu__item_text">{{ item.title }}</b>
             </v-list-item-title>
           </v-list-item>
-          <v-spacer></v-spacer>
-        </v-list-item-group>
-        <v-list-item-group class="mt-auto">
-          <v-list-item disabled>
-            <v-list-item-title><b class="menu__item_text">Доставка и оплата</b></v-list-item-title>
-          </v-list-item>
-          <v-list-item disabled>
-            <v-list-item-title><b class="menu__item_text">Контакты</b></v-list-item-title>
-          </v-list-item>
-          <v-list-item disabled>
-            <v-list-item-title><b class="menu__item_text">Акции</b></v-list-item-title>
-          </v-list-item>
-          <v-list-item disabled>
-            <v-list-item-title><b class="menu__item_text">О нас</b></v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
+        </v-list>
+        <!-- <v-spacer></v-spacer> -->
+        <v-list nav dense class="mt-auto">
+          <!-- </v-list-item-group> -->
+          <v-list-item-group>
+            <v-list-item disabled>
+              <v-list-item-title
+                ><b class="menu__item_text">Доставка и оплата</b></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item disabled>
+              <v-list-item-title><b class="menu__item_text">Контакты</b></v-list-item-title>
+            </v-list-item>
+            <v-list-item disabled>
+              <v-list-item-title><b class="menu__item_text">Акции</b></v-list-item-title>
+            </v-list-item>
+            <v-list-item disabled>
+              <v-list-item-title><b class="menu__item_text">О нас</b></v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </div>
     </v-navigation-drawer>
   </div>
 </template>
@@ -117,6 +128,9 @@ export default {
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';
     },
+    foodNavMenuSelected() {
+      return store.getters.FOOD_NAV_MENU_SELECTION;
+    },
   },
   watch: {
     group() {
@@ -138,8 +152,11 @@ export default {
 
 .menu {
   padding-left: 80px;
-  padding-top: 36px;
+  padding-top: 25px;
   background: rgba(48, 24, 13, 0.5);
+  &__container {
+    height: 100%;
+  }
   &__logo {
     position: absolute;
     left: 24px;
@@ -164,10 +181,26 @@ export default {
     font-size: 24px;
     line-height: 33px;
     color: #ffffff;
+    &:hover {
+      color: rgba(37, 220, 209, 1);
+    }
   }
-}
-
-.v-list--nav {
-  padding: 0;
+  .v-list-item {
+    padding-top: 12px;
+    padding-right: 8px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+  }
+  &__item_active {
+    border-radius: 0;
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    background: none;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+  .v-list--nav {
+    padding: 0;
+  }
 }
 </style>
