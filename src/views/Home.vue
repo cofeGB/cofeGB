@@ -1,6 +1,5 @@
 <template>
   <div>
-    <CofNavMenu />
     {{ FOOD_CONSTRUCTOR }}
   </div>
 </template>
@@ -15,8 +14,6 @@ export default {
   computed: {
     ...mapGetters(['FOOD_CONSTRUCTOR']),
   },
-  components: {
-    CofNavMenu: () => import('../components/CofNavMenu.vue'),
-  },
+  components: {},
 };
 </script>

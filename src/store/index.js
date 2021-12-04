@@ -139,7 +139,7 @@ export default new Vuex.Store({
       },
     ],
     foodNavMenuSelection: 'SANDWICHES',
-    navMenuVisible: true,
+    navMenuVisible: false,
     menu: {
       starters: [
         {

@@ -5,6 +5,7 @@
       <router-view />
     </v-main>
     <CofDelivery />
+    <CofNavMenu />
     <Footeer />
   </v-app>
 </template>
@@ -20,6 +21,7 @@ export default {
     Header,
     Footeer,
     CofDelivery,
+    CofNavMenu: () => import('./components/CofNavMenu.vue'),
   },
 };
 </script>
