@@ -611,7 +611,7 @@ export default new Vuex.Store({
             icon: 'lactose',
           },
         },
-        {
+        mintTea: {
           title: 'Чай из мяты',
           quantity: 1,
           price: 10,
@@ -639,7 +639,7 @@ export default new Vuex.Store({
           },
           warning: false,
         },
-        {
+        thyme: {
           title: 'Чай из чабреца',
           quantity: 1,
           price: 10,
@@ -656,102 +656,82 @@ export default new Vuex.Store({
               quantity: 1,
               price: 10,
             },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
-          },
-          thyme: {
-            title: 'Чабрец',
-            quantity: 1,
-            price: 10,
-            weight: 1,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          ],
+          warning: false,
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
           },
         },
-      ],
-      option: {
-        fruits: [
-          {
-            title: 'Апельсин',
-            quantity: 1,
+        option: {
+          fruits: [
+            {
+              title: 'Апельсин',
+              quantity: 1,
+              price: 30,
+              weight: 50,
+              calories: 0,
+              proteins: {
+                in: 0,
+                fromNorma: 0,
+              },
+              fat: {
+                in: 0,
+                fromNorma: 0,
+              },
+              carbohydrates: {
+                in: 0,
+                fromNorma: 0,
+              },
+              warning: false,
+            },
+            {
+              title: 'Яблоко',
+              quantity: 1,
+              price: 30,
+              weight: 50,
+              calories: 0,
+              proteins: {
+                in: 0,
+                fromNorma: 0,
+              },
+              fat: {
+                in: 0,
+                fromNorma: 0,
+              },
+              carbohydrates: {
+                in: 0,
+                fromNorma: 0,
+              },
+              warning: false,
+            },
+            {
+              title: 'Груша',
+              quantity: 1,
+              price: 30,
+              weight: 50,
+              calories: 0,
+              proteins: {
+                in: 0,
+                fromNorma: 0,
+              },
+              fat: {
+                in: 0,
+                fromNorma: 0,
+              },
+              carbohydrates: {
+                in: 0,
+                fromNorma: 0,
+              },
+              warning: false,
+            },
+          ],
+          sugar: {
+            title: 'Сахар',
+            quantity: 10,
             price: 30,
-            weight: 50,
             calories: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
           },
-          {
-            title: 'Яблоко',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calories: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
-          },
-          {
-            title: 'Груша',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calories: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
-          },
-        ],
-        sugar: {
-          title: 'Сахар',
-          quantity: 10,
-          price: 30,
-          calories: 0,
         },
       },
     },

@@ -7,24 +7,28 @@
           {{ ingridient.title }},
         </span>
       </div>
-      <table class="menuItem__cpfc">
-        <thead>
-          <tr>
-            <td>{{ item.calories }}</td>
-            <td>{{ item.proteins.in }}</td>
-            <td>{{ item.fat.in }}</td>
-            <td>{{ item.carbohydrates.in }}</td>
-          </tr>
-        </thead>
-        <tbody class="menuItem__cpfc-body">
-          <tr>
-            <td>ккал</td>
-            <td>белки</td>
-            <td>жиры</td>
-            <td>углеводы</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="menuItem__cpfc">
+        <div>
+          <span>{{ item.calories }}</span>
+          <br />
+          <span class="menuItem__cpfc-body">ккал</span>
+        </div>
+        <div>
+          <span>{{ item.proteins.in }}</span>
+          <br />
+          <span class="menuItem__cpfc-body">белки</span>
+        </div>
+        <div>
+          <span>{{ item.fat.in }}</span>
+          <br />
+          <span class="menuItem__cpfc-body">жиры</span>
+        </div>
+        <div>
+          <span>{{ item.carbohydrates.in }}</span>
+          <br />
+          <span class="menuItem__cpfc-body">углеводы</span>
+        </div>
+      </div>
       <div class="menuItem__price">
         {{ item.price }} &#x20bd;
         <button @click="onClick">
@@ -43,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'menuItem',
   props: {
@@ -55,15 +60,20 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      amount: 0,
-    };
+  computed: {
+    ...mapGetters(['QUICK_ORDER']),
+    amount() {
+      let find = this.QUICK_ORDER.find(el => el.title === this.item.title);
+      if (find) {
+        return find.amount;
+      }
+      return 0;
+    },
   },
   methods: {
+    ...mapActions(['addDish']),
     onClick() {
-      console.log('click', this.amount);
-      this.amount += 1;
+      this.$store.dispatch('addDish', this.item);
     },
   },
 };
@@ -84,11 +94,15 @@ export default {
     font-weight: 900
     font-size: 16px
   &__composition
+    padding-top: 6px
     font-family: Open Sans
     font-weight: 300
     font-size: 12px
     line-height: 16px
   &__cpfc
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    margin: 22px 0
     color: #87817F
     font-family: Open Sans
     font-weight: 600
@@ -104,6 +118,8 @@ export default {
   &__img
     position: absolute
     bottom: -7px
+    width: 100%
+    padding: 0
   &__quantity
     border: 3px solid #FFFFFF
     box-sizing: border-box
@@ -132,4 +148,7 @@ export default {
   color: #25DCD1
 .contaier
   position: relative
+  width: 100%
+img
+  width: 100%
 </style>
