@@ -1,7 +1,7 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <router-link :to="{ path: `/menu/${item.id}`, component: Dish }">
+      <router-link :to="{ path: `/menu/${item.id}`, component: 'Dish' }">
         <!--  параметры? -->
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
@@ -42,7 +42,7 @@
         </button>
       </div>
     </div>
-    <router-link :to="{ path: `/menu/${item.id}`, component: Dish }">
+    <router-link :to="{ path: `/menu/${item.id}`, component: 'Dish' }">
       <!--  параметры? -->
       <div class="menuItem__img">
         <div class="contaier">
