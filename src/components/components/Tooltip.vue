@@ -1,20 +1,20 @@
 <template>
   <v-tooltip
-    :bottom="!!bottom || !(top || left || right)"
+    :bottom="bottom"
     :top="top"
     :left="left"
     :right="right"
-    class="tooltip"
-    :content-class="contentClass || ''"
+    :content-class="contentClass"
     :disabled="disabled"
     v-bind="$attrs"
+    class="d-none d-md-flex"
   >
     <template v-slot:activator="{ on, attrs }">
-      <span v-bind="attrs" v-on="on">
+      <span v-bind="attrs" v-on="on" :class="activatorClass">
         <slot></slot>
       </span>
     </template>
-    <span>{{ content }}</span>
+    <span class="text-body-1">{{ content }}</span>
   </v-tooltip>
 </template>
 
@@ -23,12 +23,22 @@ export default {
   name: 'coftooltip',
   props: {
     content: String,
-    top: { type: [Boolean, String] },
+    top: {
+      type: [Boolean, String],
+      default: false,
+    },
+    right: {
+      type: [Boolean, String],
+      default: false,
+    },
     bottom: {
       type: [Boolean, String],
+      default: true,
     },
-    left: [Boolean, String],
-    right: [Boolean, String],
+    left: {
+      type: [Boolean, String],
+      default: false,
+    },
     classes: {
       type: String,
       default: '',
@@ -36,6 +46,10 @@ export default {
     contentClass: {
       type: String,
       default: 'tooltip',
+    },
+    activatorClass: {
+      type: String,
+      default: '',
     },
     disabled: {
       type: [Boolean, String],

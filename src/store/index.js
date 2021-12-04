@@ -5,6 +5,79 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    demobasket: {
+      dish: [
+        {
+          title: 'Блюдо с очень длинным название что бы проверить верстку',
+          price: 99999,
+          quantity: 99,
+          path: '1',
+        },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '2' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '3' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '4' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '5' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '6' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '7' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '8' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '9' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '10' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '11' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '12' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '13' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '14' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '15' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '16' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '17' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '18' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '19' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '20' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '21' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '22' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '23' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '24' },
+        { title: 'Обычное блюдо из 4 слов', quantity: 1, price: 147, path: '25' },
+      ],
+      total: {
+        totalPrice: 99999,
+        loyalty: {
+          stock: {
+            title: 'Акции',
+            items: [
+              {
+                title: 'Кофе в свой стакан',
+                sale: 15,
+                saving: 43,
+                path: '/about',
+              },
+              {
+                title: 'Кофе в свой стакан',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+            ],
+          },
+          discounts: {
+            title: 'Скидки',
+            items: [
+              {
+                title: 'День рождения',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+              {
+                title: 'Годовщина',
+                sale: 15,
+                saving: 43,
+                path: null,
+              },
+            ],
+          },
+        },
+      },
+    },
     access: {
       DEV: {
         site: true,
