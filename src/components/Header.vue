@@ -8,12 +8,19 @@
     <!-- <v-btn text to="menu"> Menu </v-btn> -->
     <!-- <v-btn text to="about"> About </v-btn> -->
     <!-- <v-btn text to="delivery"> Delivery </v-btn> -->
+    <v-btn @click="openOrder"> Заказ </v-btn>
   </v-app-bar>
 </template>
 
 <script>
+import { eventBus } from '@/main';
 export default {
   name: 'Header',
+  methods: {
+    openOrder() {
+      eventBus.$emit('openOrder');
+    },
+  },
 };
 </script>
 
