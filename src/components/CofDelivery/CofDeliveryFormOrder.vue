@@ -87,7 +87,7 @@
 
     <v-subheader class="body-1 pl-0">Оплата курьеру:</v-subheader>
 
-    <v-radio-group v-model="user.payment" row class="ma-0 pa-0" :messages="false">
+    <v-radio-group v-model="user.payment" row class="ma-0 pa-0">
       <v-radio
         hide-details="auto"
         color="primary"
@@ -101,7 +101,6 @@
 
     <v-textarea
       hide-details="auto"
-      :messages="none"
       label="Text"
       no-resize
       rows="5"
@@ -112,7 +111,7 @@
     ></v-textarea>
 
     <tooltip
-      top
+      right
       :disabled="disabled"
       content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
     >
@@ -120,7 +119,7 @@
         <template v-slot:label>
           <div>
             Соглашаюсь с
-            <a target="_blank" href="https://vuetifyjs.com" @click.stop v-on="on">
+            <a target="_blank" href="https://vuetifyjs.com" @click.stop>
               Политикой обработки персональных данных и Соглашением об условиях доставки.
             </a>
           </div>
