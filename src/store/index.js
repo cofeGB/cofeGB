@@ -557,69 +557,72 @@ export default new Vuex.Store({
             warning: false,
           },
         },
-        fruits: {
-          orange: {
-            title: 'Апельсин',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+    ],
+    teaOption: {
+      fruits: [
+        {
+          title: 'Апельсин',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
           },
-          apple: {
-            title: 'Яблоко',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          fat: {
+            in: 0,
+            fromNorma: 0,
           },
-          pear: {
-            title: 'Груша',
-            quantity: 1,
-            price: 30,
-            weight: 50,
-            calorie: 0,
-            proteins: {
-              in: 0,
-              fromNorma: 0,
-            },
-            fat: {
-              in: 0,
-              fromNorma: 0,
-            },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
           },
+          warning: false,
         },
-      },
+        {
+          title: 'Яблоко',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+        {
+          title: 'Груша',
+          quantity: 1,
+          price: 30,
+          weight: 50,
+          calorie: 0,
+          proteins: {
+            in: 0,
+            fromNorma: 0,
+          },
+          fat: {
+            in: 0,
+            fromNorma: 0,
+          },
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
+          },
+          warning: false,
+        },
+      ],
+        
+    },
     },
     foodConstructor: {
       bread: {
