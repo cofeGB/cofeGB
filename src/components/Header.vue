@@ -16,7 +16,25 @@
 import { eventBus } from '@/main';
 export default {
   name: 'Header',
+  data() {
+    return {
+      vis: null,
+    };
+  },
+  created() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   methods: {
+    handleResize() {
+      this.vis = true;
+      if (window.innerWidth > 1400) {
+        this.vis = false;
+      }
+    },
     openOrder() {
       eventBus.$emit('openOrder');
     },
