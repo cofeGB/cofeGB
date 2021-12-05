@@ -267,7 +267,8 @@ export default new Vuex.Store({
             fromNorma: 0,
           },
           warning: [],
-          description: 'Стандартный',
+          description:
+            'Стандартный вкусный бутерброд, про который надо придумать описание подлиннее, потому что короткое описание некрасиво смотрится',
           composition: [
             {
               title: 'Белый хлеб',

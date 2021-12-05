@@ -1,11 +1,206 @@
 <template>
-  <div>{{ $route.query }}</div>
+  <div class="container">
+    <div class="dish__image">
+      <img :src="img" alt="photo" />
+      <button class="dish__btn close__btn">&times;</button>
+      <div class="dish__img-info">
+        <div class="dish__img-info_text">
+          <span class="dish__text">{{ menuItem.title }}</span>
+          <div class="dish__text-align">
+            <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
+            <button @click="onClick(1)" class="dish__btn add__btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dish__main">
+      <div class="dish__main_composition">
+        <div>
+          <h4>Состав</h4>
+          <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
+            {{ ingridient.title }},
+          </span>
+        </div>
+        <div class="dish__main_cpfc">
+          <div>
+            <span>{{ menuItem.calories }}</span>
+            <br />
+            <span>ккал</span>
+          </div>
+          <div>
+            <span>{{ menuItem.proteins.in }}</span>
+            <br />
+            <span>белки</span>
+          </div>
+          <div>
+            <span>{{ menuItem.fat.in }}</span>
+            <br />
+            <span>жиры</span>
+          </div>
+          <div>
+            <span>{{ menuItem.carbohydrates.in }}</span>
+            <br />
+            <span>углеводы</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish__main_description">
+        <h4>Описание</h4>
+        <p>{{ menuItem.description }}</p>
+      </div>
+    </div>
+    <hr />
+    <div class="dish__constructor">
+      <p>Здесь конструктор?</p>
+    </div>
+    <button @click="onClick(1)" v-if="quantity === 0">
+      <div class="dish__btn cart__btn">
+        <span>В КОРЗИНУ</span>
+        <span>{{ menuItem.price }} &#x20bd;</span>
+      </div>
+    </button>
+    <div class="dish__btn cart__btn" v-else>
+      <button @click="onClick(-1)">
+        <i class="fas fa-minus"></i>
+      </button>
+      <span>&times; {{ quantity }}</span>
+      <button @click="onClick(1)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'dish',
+  props: {
+    item: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      img: require('../assets/img/26.jpg'),
+      nameSection: 'sandwich',
+    };
+  },
+  methods: {
+    ...mapGetters(['ADD_DISH']),
+    onClick(inc) {
+      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc });
+    },
+  },
+  computed: {
+    ...mapGetters(['MENU', 'BAR_MENU', 'QUICK_ORDER']),
+    menuItem() {
+      return this.MENU[this.nameSection].find(el => el.guid === this.$route.params['id']);
+    },
+    quantity() {
+      let find = this.QUICK_ORDER.find(el => el.title === this.menuItem.title);
+      return find ? find.quantity : 0;
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  max-width: 1167px;
+  background-color: white;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dish__text {
+  font-family: Playfair Display;
+  font-style: normal;
+  letter-spacing: 0em;
+}
+.dish__text-mrg {
+  margin-right: 8px;
+}
+.dish__text-align {
+  display: flex;
+  align-items: center;
+}
+img {
+  width: 100%;
+}
+hr {
+  width: 100%;
+}
+.dish__image {
+  margin-bottom: 32px;
+  position: relative;
+}
+.dish__img-info {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dish__img-info_text {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: 400;
+  font-size: 33px;
+}
+.dish__btn {
+  background-color: #25dcd1;
+  border: 1px solid #23c9be;
+}
+.close__btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  border-radius: 20px;
+  text-align: center;
+}
+.add__btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.dish__main {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.dish__main_composition {
+  padding-right: 16px;
+  width: 50%;
+}
+.dish__main_description {
+  padding-left: 16px;
+  width: 50%;
+}
+.dish__main_cpfc {
+  display: flex;
+  justify-content: space-between;
+  margin: 32px 0;
+}
+.dish__constructor {
+  margin: 32px 0;
+}
+.cart__btn {
+  width: 270px;
+  height: 60px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 500;
+}
+</style>

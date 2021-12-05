@@ -1,7 +1,7 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <router-link :to="{ path: `/menu/${item.id}`, component: 'Dish' }">
+      <router-link :to="{ path: `/menu/${item.guid}`, component: 'dish' }">
         <!--  параметры? -->
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
