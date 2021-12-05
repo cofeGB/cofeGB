@@ -1,16 +1,17 @@
 <template>
   <v-navigation-drawer
-    app
+    absolute
     dark
     right
     class="order"
+    floating
+    clipped
     v-model="drawer"
-    :width="mini ? 250 : 350"
+    :width="mini ? 300 : 350"
     :class="{ mini: mini }"
   >
-    <CofDeliveryHeader :basket="basket" :tooltip-disabled="tooltipDisabled" />
     <CofDeliveryShoppingList
-      :basket="basket"
+      v-if="QUICK_ORDER"
       :mini="mini"
       :drawer="drawer"
       :tooltip-disabled="tooltipDisabled"
@@ -20,14 +21,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { eventBus } from '@/main';
-import CofDeliveryHeader from './CofDeliveryHeader';
 import CofDeliveryShoppingList from './CofDeliveryShoppingList';
 import CofDeliveryFormOrder from './CofDeliveryFormOrder';
 
 export default {
   components: {
-    CofDeliveryHeader,
     CofDeliveryShoppingList,
     CofDeliveryFormOrder,
   },
@@ -42,12 +42,9 @@ export default {
     };
   },
   computed: {
-    basket() {
-      return this.$store.state.demobasket;
-    },
+    ...mapGetters(['QUICK_ORDER']),
   },
   created() {
-    this.list = this.basket.dish;
     eventBus.$on('openOrder', () => {
       this.drawer = !this.drawer;
     });
@@ -62,7 +59,7 @@ export default {
     handleResize() {
       this.window.width = window.innerWidth;
       this.mini = true;
-      if (window.innerWidth > 1400) {
+      if (window.innerWidth > 1800) {
         this.drawer = true;
         this.mini = false;
       }
@@ -76,7 +73,9 @@ export default {
 
 <style lang="scss" scoped>
 .order {
+  height: 100%;
   background: rgba(48, 24, 13, 0.5) !important;
+  padding-top: 80px;
   .mini & {
     background: rgba(48, 24, 13, 0.9);
   }

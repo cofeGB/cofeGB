@@ -1,133 +1,147 @@
 <template>
   <v-container>
-    <v-text-field
-      v-model="user.userpthone"
-      class="my-2"
-      loading="false"
-      label="Ваш номер телефона"
-      hide-details="auto"
-      clearable
-      outlined
-      dense
-      :rules="rules"
-    ></v-text-field>
-
-    <v-text-field
-      v-model="user.userName"
-      class="my-2"
-      loading="false"
-      label="Ваше имя"
-      hide-details="auto"
-      clearable
-      outlined
-      dense
-    ></v-text-field>
-
-    <tooltip
-      right
-      :disabled="disabled"
-      content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
-    >
-      <v-checkbox
-        v-model="user.backCall"
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field
+        v-model="user.userpthone"
+        class="my-2"
+        loading="false"
+        label="Ваш номер телефона"
         hide-details="auto"
-        color="primary"
-        label="Не звонить для проверки заказа"
-        class="ma-0"
-      ></v-checkbox>
-    </tooltip>
+        clearable
+        outlined
+        dense
+        :rules="rules"
+      ></v-text-field>
 
-    <v-row>
-      <v-col cols="12">
-        <v-text-field
-          v-model="user.address.strit"
-          class="my-2"
-          loading="false"
-          label="Введите ваш адрес"
-          hide-details="auto"
-          clearable
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12" lg="4" sm12 class="pt-0">
-        <v-text-field
-          v-model="user.address.ofis"
-          loading="false"
-          label="Кв.\Офис"
-          hide-details="auto"
-          clearable
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12" lg="4" sm12 class="pt-0">
-        <v-text-field
-          v-model="user.address.home"
-          loading="false"
-          label="Подъезд"
-          hide-details="auto"
-          clearable
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12" lg="4" sm12 class="pt-0">
-        <v-text-field
-          v-model="user.address.flore"
-          loading="false"
-          label="Этаж"
-          hide-details="auto"
-          clearable
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-    </v-row>
-
-    <v-subheader class="body-1 pl-0">Оплата курьеру:</v-subheader>
-
-    <v-radio-group v-model="user.payment" row class="ma-0 pa-0">
-      <v-radio
+      <v-text-field
+        v-model="user.userName"
+        class="my-2"
+        loading="false"
+        label="Ваше имя"
         hide-details="auto"
-        color="primary"
-        v-for="n in payment"
-        :key="n.value"
-        :label="n.title"
-        :value="n.value"
-        class="mx-auto my-0"
-      ></v-radio>
-    </v-radio-group>
+        clearable
+        outlined
+        dense
+      ></v-text-field>
 
-    <v-textarea
-      hide-details="auto"
-      label="Text"
-      no-resize
-      rows="5"
-      outlined
-      clearable
-      dense
-      :value="user.massage"
-    ></v-textarea>
+      <tooltip
+        right
+        :disabled="disabled"
+        content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+      >
+        <v-checkbox
+          v-model="user.backCall"
+          hide-details="auto"
+          color="primary"
+          label="Не звонить для проверки заказа"
+          class="ma-0"
+        ></v-checkbox>
+      </tooltip>
 
-    <tooltip
-      right
-      :disabled="disabled"
-      content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
-    >
-      <v-checkbox v-model="user.backCall" hide-details="auto" color="primary" class="ma-0">
-        <template v-slot:label>
-          <div>
-            Соглашаюсь с
-            <a target="_blank" href="https://vuetifyjs.com" @click.stop>
-              Политикой обработки персональных данных и Соглашением об условиях доставки.
-            </a>
-          </div>
-        </template>
-      </v-checkbox>
-    </tooltip>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            v-model="user.address.strit"
+            class="my-2"
+            loading="false"
+            label="Введите ваш адрес"
+            hide-details="auto"
+            clearable
+            outlined
+            dense
+            :rules="rules"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" lg="4" sm12 class="pt-0">
+          <v-text-field
+            v-model="user.address.ofis"
+            loading="false"
+            label="Кв.\Офис"
+            hide-details="auto"
+            clearable
+            outlined
+            dense
+            :rules="rules"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" lg="4" sm12 class="pt-0">
+          <v-text-field
+            v-model="user.address.home"
+            loading="false"
+            label="Подъезд"
+            hide-details="auto"
+            clearable
+            outlined
+            dense
+            :rules="rules"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" lg="4" sm12 class="pt-0">
+          <v-text-field
+            v-model="user.address.flore"
+            loading="false"
+            label="Этаж"
+            hide-details="auto"
+            clearable
+            outlined
+            dense
+            :rules="rules"
+          ></v-text-field>
+        </v-col>
+      </v-row>
 
-    <v-btn text outlined class="title btn-buy">Заказать</v-btn>
+      <v-subheader class="body-1 pl-0">Оплата курьеру:</v-subheader>
+
+      <v-radio-group v-model="user.payment" row class="ma-0 pa-0">
+        <v-radio
+          hide-details="auto"
+          color="primary"
+          v-for="n in payment"
+          :key="n.value"
+          :label="n.title"
+          :value="n.value"
+          class="mx-auto my-0"
+          :rules="rules"
+        ></v-radio>
+      </v-radio-group>
+
+      <v-textarea
+        hide-details="auto"
+        label="Text"
+        no-resize
+        rows="5"
+        outlined
+        clearable
+        dense
+        :value="user.massage"
+      ></v-textarea>
+
+      <tooltip
+        right
+        :disabled="disabled"
+        content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+      >
+        <v-checkbox
+          v-model="user.agree"
+          required
+          :rules="[v => !!v || 'Доставка не осуществляеться без согласия!']"
+          hide-details="auto"
+          color="primary"
+          class="ma-0"
+        >
+          <template v-slot:label>
+            <div>
+              Соглашаюсь с
+              <a target="_blank" href="https://vuetifyjs.com" @click.stop>
+                Политикой обработки персональных данных и Соглашением об условиях доставки.
+              </a>
+            </div>
+          </template>
+        </v-checkbox>
+      </tooltip>
+
+      <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
+    </v-form>
   </v-container>
 </template>
 
@@ -141,10 +155,11 @@ export default {
   },
   data() {
     return {
+      valid: true,
       user: {
         userpthone: null,
         userName: '',
-        backCall: '',
+        backCall: true,
         address: {
           strit: '',
           home: '',
@@ -153,6 +168,7 @@ export default {
         },
         massage: '',
         payment: 'online',
+        agree: false,
       },
       payment: [
         {
@@ -167,13 +183,18 @@ export default {
       rules: [
         value => !!value || 'Нужно заполнить.',
         value => (value && value.length === 11) || 'Нужно заполнить.',
-        value => (value && !isNaN(value)) || 'Введити числа.',
       ],
+      agreRules: value => !!value,
     };
   },
   computed: {
     disabled() {
       return this.tooltipDisabled;
+    },
+  },
+  methods: {
+    buyOrder() {
+      this.$refs.form.validate();
     },
   },
 };

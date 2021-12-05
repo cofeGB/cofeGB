@@ -37,7 +37,7 @@
         <button @click="onClick(1)">
           <i class="fas fa-plus-circle btn-plus"></i>
         </button>
-        <button v-if="amount > 0" @click="onClick(-1)">
+        <button v-if="quantity > 0" @click="onClick(-1)">
           <i class="fas fa-minus-circle btn-plus"></i>
         </button>
       </div>
@@ -48,7 +48,7 @@
         <div class="contaier">
           <div class="triangle"></div>
           <img :src="img" alt="photo" />
-          <p v-if="amount > 0" class="menuItem__quantity">x {{ amount }}</p>
+          <p v-if="quantity > 0" class="menuItem__quantity">x {{ quantity }}</p>
         </div>
       </div>
     </router-link>
@@ -71,15 +71,15 @@ export default {
   },
   computed: {
     ...mapGetters(['QUICK_ORDER']),
-    amount() {
+    quantity() {
       let find = this.QUICK_ORDER.find(el => el.title === this.item.title);
-      return find ? find.amount : 0;
+      return find ? find.quantity : 0;
     },
   },
   methods: {
-    ...mapActions(['addDish']),
+    ...mapActions(['ADD_DISH']),
     onClick(inc) {
-      this.$store.dispatch('addDish', { dish: this.item, inc });
+      this.$store.dispatch('ADD_DISH', { dish: this.item, inc });
     },
   },
 };

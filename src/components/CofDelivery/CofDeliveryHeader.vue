@@ -1,8 +1,8 @@
 <template>
-  <v-list-item class="py-4 justify-center">
+  <v-list-item class="justify-center order-logo" @click="$emit('openOrder')" :ripple="false">
     <Title size="30px">Ваш заказ</Title>
     <tooltip
-      :content="basket.dish.length ? 'У вас есть заказ' : 'Корзина пуста'"
+      :content="QUICK_ORDER.length ? 'У вас есть заказ' : 'Корзина пуста'"
       :disabled="disabled"
     >
       <div class="basket">
@@ -12,26 +12,25 @@
             fill="white"
           />
         </svg>
-        <div class="count" :style="basket.dish.length ? 'background: #25dcd1' : ''"></div>
+        <div class="count" :style="QUICK_ORDER.length ? 'background: #25dcd1' : ''"></div>
       </div>
     </tooltip>
   </v-list-item>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'delivery-header',
+
   props: {
-    basket: {
-      type: Object,
-      default: () => {},
+    tooltipDisabled: {
+      type: Boolean,
+      default: false,
     },
   },
-  tooltipDisabled: {
-    type: Boolean,
-    default: false,
-  },
   computed: {
+    ...mapGetters(['QUICK_ORDER']),
     disabled() {
       return this.tooltipDisabled;
     },
@@ -40,6 +39,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.order-logo {
+  max-width: fit-content !important;
+  color: #fff !important;
+  margin-top: 20px;
+}
 .basket {
   display: block;
   position: relative;

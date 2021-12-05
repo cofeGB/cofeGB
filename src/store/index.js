@@ -6,6 +6,47 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     quickOrder: [],
+    total: {
+      totalPrice: 0,
+      loyalty: [],
+    },
+    loyalty: [
+      {
+        title: 'Кофе в свой стакан',
+        guid: 'h124fd3bstfy',
+        sale: 15,
+        saving: 43,
+        path: '/about',
+      },
+      {
+        title: 'Кофе в свой стакан',
+        guid: '054ldstfydaw',
+        sale: 15,
+        saving: 43,
+        path: '/menu',
+      },
+      {
+        title: 'День рождения',
+        guid: 'hsyfgebstfy',
+        sale: 15,
+        saving: 43,
+        path: '/menu',
+      },
+      {
+        title: 'Годовщина',
+        guid: '12syfgewefy',
+        sale: 15,
+        saving: 43,
+        path: null,
+      },
+      {
+        title: 'Первый быстрый заказ',
+        guid: '12syf235аыy',
+        sale: 15,
+        saving: 43,
+        path: '/',
+      },
+    ],
     demobasket: {
       dish: [
         {
@@ -208,6 +249,7 @@ export default new Vuex.Store({
       sandwich: [
         {
           title: 'Стандарт',
+          guid: 'jsnfh239rfj9r843rh47fdvew324',
           quantity: 0,
           price: 200,
           weight: 200,
@@ -225,7 +267,7 @@ export default new Vuex.Store({
             fromNorma: 0,
           },
           warning: [],
-          description: '',
+          description: 'Стандартный',
           composition: [
             {
               title: 'Белый хлеб',
@@ -261,23 +303,24 @@ export default new Vuex.Store({
         },
         {
           title: 'Стандарт Большой',
+          guid: 'jsnfh39d8f74u3hfhvjhvsdfdsfsfdvew324',
           quantity: 0,
           price: 300,
           weight: 300,
           calories: 0,
           proteins: {
-            in: 0,
-            fromNorma: 0,
+            in: 10,
+            fromNorma: 0.5,
           },
           fat: {
-            in: 0,
-            fromNorma: 0,
+            in: 20,
+            fromNorma: 30,
           },
           carbohydrates: {
-            in: 0,
-            fromNorma: 0,
+            in: 0.2,
+            fromNorma: 0.01,
           },
-          warning: [],
+          warning: null,
           composition: [
             {
               title: 'Белый хлеб',
@@ -310,7 +353,7 @@ export default new Vuex.Store({
               price: 30,
             },
           ],
-          description: '',
+          description: 'Большой большой большой бутер',
         },
       ],
       salad: [],
@@ -320,6 +363,7 @@ export default new Vuex.Store({
       coffee: [
         {
           title: 'Латте',
+          guid: 'jsnfh239rfвфцауа43кdvew324',
           quantity: 1,
           price: 180,
           coffe: 8,
@@ -355,9 +399,23 @@ export default new Vuex.Store({
             text: 'Содержит лактозу',
             icon: 'lactose',
           },
+          loyalty: {
+            stock: {
+              title: 'Акции',
+              items: [
+                {
+                  title: 'Кофе в свой стакан',
+                  sale: 15,
+                  saving: 43,
+                  path: '/about',
+                },
+              ],
+            },
+          },
         },
         {
           title: 'Латте-Макиато',
+          guid: 'jsnfh239rfj9adawd32er2w324',
           quantity: 1,
           price: 180,
           coffe: 8,
@@ -396,6 +454,7 @@ export default new Vuex.Store({
         },
         {
           title: 'Капучино',
+          guid: 'jsnfh239rawd32r3f34t47fdvew324',
           quantity: 1,
           price: 150,
           coffe: 8,
@@ -434,6 +493,7 @@ export default new Vuex.Store({
         },
         {
           title: 'Эспресо',
+          guid: 'jad32r843rh47fdvew324',
           quantity: 1,
           price: 90,
           coffe: 8,
@@ -462,6 +522,7 @@ export default new Vuex.Store({
         },
         {
           title: 'Американо',
+          guid: 'jsnfh239rfergr43534ew324',
           quantity: 1,
           price: 90,
           coffe: 8,
@@ -492,7 +553,8 @@ export default new Vuex.Store({
       tea: [
         {
           title: 'Черный чай',
-          quantity: 1,
+          guid: '2134f435sdcjsnfdawvew324',
+          quantity: 0,
           price: 180,
           tea: 2,
           mil: 250,
@@ -521,7 +583,8 @@ export default new Vuex.Store({
         },
         {
           title: 'Зеленый чай',
-          quantity: 1,
+          guid: 'jsnfh239rfj9r84dadwd32342tr2r',
+          quantity: 0,
           price: 180,
           tea: 2,
           mil: 250,
@@ -550,7 +613,8 @@ export default new Vuex.Store({
         },
         {
           title: 'Белый чай',
-          quantity: 1,
+          guid: 'jsnfawdwad9r843rh47fdvew324',
+          quantity: 0,
           price: 180,
           tea: 2,
           mil: 250,
@@ -579,7 +643,8 @@ export default new Vuex.Store({
         },
         {
           title: 'Чай матча',
-          quantity: 1,
+          guid: 'jsnfh239rfj9dawdawdvew324',
+          quantity: 0,
           price: 180,
           tea: 2,
           milk: 250,
@@ -617,7 +682,8 @@ export default new Vuex.Store({
         },
         {
           title: 'Чай из мяты',
-          quantity: 1,
+          guid: 'jsnfhadwdwar843rh47fdvew324',
+          quantity: 0,
           price: 10,
           weight: 1,
           calories: 0,
@@ -645,7 +711,8 @@ export default new Vuex.Store({
         },
         {
           title: 'Чай из чабреца',
-          quantity: 1,
+          guid: 'jsnfh239rfj9r84adadwadw324',
+          quantity: 0,
           price: 10,
           weight: 1,
           calories: 0,
@@ -1771,6 +1838,11 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    DELETE_ALL_IN_ORDER(state) {
+      state.quickOrder = [];
+      state.total.totalPrice = 0;
+      state.total.loyalty = [];
+    },
     SET_QUICK_ORDER(state, data) {
       state.quickOrder = data;
     },
@@ -1780,21 +1852,48 @@ export default new Vuex.Store({
     SHOW_NAV_MENU: (state, payload) => {
       state.navMenuVisible = !!payload;
     },
+    SET_LOYALTY(state, data) {
+      state.quickOrder.loyalty.push(data);
+    },
+    GET_TOTAL_SUM(state, total) {
+      state.total.totalPrice = total;
+    },
   },
   actions: {
-    addDish({ state, commit }, payload) {
-      let order = [...state.quickOrder];
-      let find = order.find(d => d.title == payload.dish.title);
-      if (find) {
-        find.amount += payload.inc;
-        // if (find.amount == 0) {
-        //   order = order.find(d => d.title != payload.dish.title);
-        //   order = order ? order : [];
-        // }
-      } else {
-        order.push({ title: payload.dish.title, price: payload.dish.price, amount: 1 });
+    GET_TOTAL_SUM({ commit, state }) {
+      const basket = state.quickOrder;
+      let total = 0;
+      basket.forEach(el => {
+        total = total + el.price * el.quantity;
+        return total;
+      });
+      commit('GET_TOTAL_SUM', total);
+    },
+    DELETE_ALL_IN_ORDER_ACTION({ commit }) {
+      commit('DELETE_ALL_IN_ORDER');
+    },
+    ADD_LOYALTY({ commit, state }, payload) {
+      const exist = state.quickOrder.loyalty.find(el => el.guid === payload);
+      if (exist) {
+        commit('SET_LOYALTY', exist);
       }
+    },
+    ADD_DISH({ state, commit, dispatch }, payload) {
+      let order = [...state.quickOrder];
+      let find = order.find(d => d.guid == payload.dish.guid);
+      if (find) {
+        find.quantity += payload.inc;
+      } else {
+        payload.dish.quantity += payload.inc;
+        order.push(payload.dish);
+      }
+      order.forEach((o, idx) => {
+        if (o.quantity === 0) {
+          order.splice(idx, 1);
+        }
+      });
       commit('SET_QUICK_ORDER', order);
+      dispatch('GET_TOTAL_SUM');
     },
     SET_FOOD_NAV_MENU_SELECTION: ({ commit }, payload) => {
       commit('SET_FOOD_NAV_MENU_SELECTION', payload);
@@ -1804,6 +1903,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    TOTAL_SUM: state => {
+      return state.total;
+    },
     QUICK_ORDER: state => {
       return state.quickOrder;
     },

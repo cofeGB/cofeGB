@@ -1,24 +1,32 @@
 <template>
-  <v-app-bar app color="primary">
-    <v-btn @click="$store.dispatch('SHOW_NAV_MENU', !$store.state.navMenuVisible)"> Menu </v-btn>
-    <!-- <v-btn to="home"> Home </v-btn> -->
+  <v-app-bar app flat class="header">
+    <v-btn
+      v-if="vis"
+      @click="$store.dispatch('SHOW_NAV_MENU', !$store.state.navMenuVisible)"
+      color="primary"
+      class="header-btn"
+    >
+      Меню
+    </v-btn>
 
     <v-spacer></v-spacer>
 
-    <!-- <v-btn text to="menu"> Menu </v-btn> -->
-    <!-- <v-btn text to="about"> About </v-btn> -->
-    <!-- <v-btn text to="delivery"> Delivery </v-btn> -->
-    <v-btn @click="openOrder"> Заказ </v-btn>
+    <CofDeliveryHeader :tooltip-disabled="tooltipDisabled" @openOrder="openOrder" />
   </v-app-bar>
 </template>
 
 <script>
 import { eventBus } from '@/main';
+import CofDeliveryHeader from './CofDelivery/CofDeliveryHeader';
 export default {
   name: 'Header',
+  components: {
+    CofDeliveryHeader,
+  },
   data() {
     return {
       vis: null,
+      tooltipDisabled: null,
     };
   },
   created() {
@@ -31,8 +39,11 @@ export default {
   methods: {
     handleResize() {
       this.vis = true;
-      if (window.innerWidth > 1400) {
+      if (window.innerWidth > 1800) {
         this.vis = false;
+      }
+      if (window.innerWidth < 1010) {
+        this.tooltipDisabled = true;
       }
     },
     openOrder() {
@@ -42,4 +53,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.header {
+  background: none !important;
+  &-btn {
+    color: #000 !important;
+  }
+}
+</style>

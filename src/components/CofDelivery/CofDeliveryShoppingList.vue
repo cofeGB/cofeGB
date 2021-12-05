@@ -2,7 +2,13 @@
   <Card class="mx-2 card">
     <template #content>
       <div class="pa-2 order-menu">
-        <div v-for="(el, idx) in list" :key="idx" class="d-flex align-center order-list">
+        <div v-if="!QUICK_ORDER.length">В списке пусто</div>
+        <div
+          v-else
+          v-for="(el, idx) in QUICK_ORDER"
+          :key="idx"
+          class="d-flex align-center order-list"
+        >
           <Menu
             :offsetX="true"
             :left="true"
@@ -27,7 +33,7 @@
                   fab
                   small
                   color="error"
-                  @click="quantity(idx, 'all')"
+                  @click="DELETE_ALL_IN_ORDER_ACTION"
                 >
                   <tooltip content="Удалить все?" :disabled="disabled">
                     <v-icon color="primary"> mdi-delete-alert-outline </v-icon>
@@ -38,7 +44,7 @@
                   fab
                   small
                   :color="el.quantity === 1 ? 'error' : 'primary'"
-                  @click="quantity(idx, '-')"
+                  @click="onClick(el, -1)"
                 >
                   <tooltip v-if="el.quantity === 1" content="Удалить ?" :disabled="disabled">
                     <v-icon color="primary"> mdi-delete-alert-outline </v-icon>
@@ -49,7 +55,7 @@
                 </v-btn>
                 {{ el.quantity }}
                 <tooltip content="Плюс одна позиция" :disabled="disabled">
-                  <v-btn class="btn mx-1" fab small color="primary" @click="quantity(idx, '+')"
+                  <v-btn class="btn mx-1" fab small color="primary" @click="onClick(el, 1)"
                     >+</v-btn
                   >
                 </tooltip>
@@ -88,13 +94,14 @@
           <tooltip content="Подробнее про общий счет" :activatorClass="'w100'" :disabled="disabled">
             <div class="d-flex order-list total pt-2 w-100">
               <span class="ellipsis"> Всего к оплате </span>
-              <span class="price"> {{ basket.total.totalPrice }} &#x20bd; </span>
+              <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
             </div>
           </tooltip>
         </template>
         <template #content>
           <div class="stockMenu pa-2" :class="miniCOMPUTED ? 'mini' : ''">
-            <div class="loyalty" v-for="(loyal, idx) in basket.total.loyalty" :key="idx">
+            <span v-if="!TOTAL_SUM.loyalty.length" class="body-1">Нет доступных акций</span>
+            <div v-else class="loyalty" v-for="(loyal, idx) in TOTAL_SUM.loyalty" :key="idx">
               <span class="title primary-text">{{ loyal.title }}</span>
               <v-list color="transparent" class="stockMenu-list">
                 <v-list-item
@@ -132,6 +139,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   props: {
     basket: {
@@ -155,16 +163,13 @@ export default {
     return {
       contentClick: false,
       stopRouter: false,
-      list: [],
       window: {
         width: 0,
       },
     };
   },
-  created() {
-    this.list = this.basket.dish;
-  },
   computed: {
+    ...mapGetters(['QUICK_ORDER', 'TOTAL_SUM']),
     disabled() {
       return this.tooltipDisabled;
     },
@@ -173,37 +178,13 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION']),
     goToElement(el) {
       this.contentClick = true;
       this.$router.replace({ path: `/menu/:${el.path}`, query: el });
     },
-    clearBasket(idx) {
-      if (this.list[idx].quantity === 1) {
-        this.list.splice(idx, 1);
-        return;
-      }
-    },
-    quantity(idx, operation) {
-      this.contentClick = false;
-      switch (operation) {
-        case '-':
-          if (this.list[idx].quantity === 1) {
-            this.list.splice(idx, 1);
-            this.contentClick = true;
-            return;
-          }
-          this.list[idx].quantity -= 1;
-          break;
-        case '+':
-          this.list[idx].quantity += 1;
-          break;
-        case 'all':
-          this.list.splice(idx, 1);
-          this.contentClick = true;
-          break;
-        default:
-          break;
-      }
+    onClick(el, inc) {
+      this.$store.dispatch('ADD_DISH', { dish: el, inc });
     },
   },
 };
@@ -213,7 +194,7 @@ export default {
 .order {
   background: rgba(48, 24, 13, 0.5) !important;
   &-menu {
-    height: 150px !important;
+    max-height: 150px !important;
     overflow-x: auto;
   }
   &-list {

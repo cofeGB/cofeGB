@@ -1,5 +1,5 @@
 <template>
-  <v-app app>
+  <v-app app class="app">
     <Header />
     <v-main>
       <router-view />
@@ -56,5 +56,10 @@ export default {
 }
 .primary-text {
   color: #25dcd1;
+}
+#app {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('assets/img/backgroundImage.png');
+  background-attachment: fixed;
 }
 </style>
