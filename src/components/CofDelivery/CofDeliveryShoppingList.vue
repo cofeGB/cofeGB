@@ -87,11 +87,10 @@
         :origin="'right top'"
         :transition="'fab-transition'"
         :contentClass="miniCOMPUTED ? 'mini' : ''"
-        :activatorClass="'w100'"
         @input="clearBasket(idx)"
       >
         <template #activator>
-          <tooltip content="Подробнее про общий счет" :activatorClass="'w100'" :disabled="disabled">
+          <tooltip content="Подробнее про общий счет" :disabled="disabled">
             <div class="d-flex order-list total pt-2 w-100">
               <span class="ellipsis"> Всего к оплате </span>
               <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
@@ -112,7 +111,6 @@
                 >
                   <tooltip
                     :disabled="disabled"
-                    :activatorClass="'w100'"
                     :content="`Перейти на страницу ${loyal.title.toLowerCase()}`"
                   >
                     <v-list-item-content>

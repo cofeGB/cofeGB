@@ -1,8 +1,14 @@
 <template>
   <div>
     <p class="menu-placehold" v-if="list.length === 0">Ничего не найдено</p>
-    <div class="menuList">
-      <menu-item v-for="item of list" :item="item" :key="item.id_product" :img="imgUrl"></menu-item>
+    <div class="menuList px-3">
+      <menu-item
+        v-for="item of list"
+        class="ma-2"
+        :item="item"
+        :key="item.id_product"
+        :img="imgUrl"
+      ></menu-item>
     </div>
   </div>
 </template>
@@ -23,10 +29,14 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
-.menuList
-  padding: 32px
-  display: grid
-  grid-template-columns: repeat(4, 260px)
-  grid-gap: 32px
+<style lang="scss" scoped>
+.menuList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: 580px) {
+    justify-content: center;
+  }
+}
 </style>

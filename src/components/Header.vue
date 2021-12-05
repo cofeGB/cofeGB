@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app flat class="header">
+  <v-app-bar app flat class="header" clipped-right clipped-left>
     <v-btn
       v-if="vis"
       @click="$store.dispatch('SHOW_NAV_MENU', !$store.state.navMenuVisible)"
@@ -39,7 +39,7 @@ export default {
   methods: {
     handleResize() {
       this.vis = true;
-      if (window.innerWidth > 1800) {
+      if (window.innerWidth > 1265) {
         this.vis = false;
       }
       if (window.innerWidth < 1010) {
@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  background: none !important;
+  background: rgba(48, 24, 13, 0.5) !important;
   &-btn {
     color: #000 !important;
   }

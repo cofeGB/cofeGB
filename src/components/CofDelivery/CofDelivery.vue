@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    absolute
+    app
     dark
     right
     class="order"
@@ -75,7 +75,7 @@ export default {
 .order {
   height: 100%;
   background: rgba(48, 24, 13, 0.5) !important;
-  padding-top: 80px;
+  padding-top: 10px;
   .mini & {
     background: rgba(48, 24, 13, 0.9);
   }

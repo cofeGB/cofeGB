@@ -89,7 +89,7 @@ export default {
 .menuItem
   position: relative
   height: 400px
-  width: 260px
+  max-width: 260px
   background-color: white
   &__desc
     padding: 20px

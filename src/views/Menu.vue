@@ -35,22 +35,28 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
-.brandName
-  font-family: Playfair Display
-  font-weight: bold
-  font-size: 64px
-  line-height: 85px
-  color: white
-  text-align: center
-.menu
-  background-size: cover
-.menuTitle
-  color: white
-  font-family: Open Sans
-  font-weight: 400
-  font-size: 36px
-  line-height: 49px
-  text-transform: uppercase
-  text-align: center
+<style lang="scss" scoped>
+.brandName {
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 85px;
+  color: white;
+  text-align: center;
+  @media (max-width: 450px) {
+    font-size: 54px;
+  }
+}
+.menu {
+  background-size: cover;
+}
+.menuTitle {
+  color: white;
+  font-family: Open Sans;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 49px;
+  text-transform: uppercase;
+  text-align: center;
+}
 </style>

@@ -42,7 +42,6 @@ export default {
 .order-logo {
   max-width: fit-content !important;
   color: #fff !important;
-  margin-top: 20px;
 }
 .basket {
   display: block;

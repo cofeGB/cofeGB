@@ -85,7 +85,6 @@
             clearable
             outlined
             dense
-            :rules="rules"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -101,7 +100,7 @@
           :label="n.title"
           :value="n.value"
           class="mx-auto my-0"
-          :rules="rules"
+          :rules="[v => !!v || 'Доставка не осуществляеться без оплаты!']"
         ></v-radio>
       </v-radio-group>
 

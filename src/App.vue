@@ -1,5 +1,5 @@
 <template>
-  <v-app app class="app">
+  <v-app app>
     <Header />
     <v-main>
       <router-view />
@@ -28,6 +28,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&family=Playfair+Display:wght@400;600;900&display=swap');
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 8px;
@@ -50,9 +51,6 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.w100 {
-  width: 100% !important;
 }
 .primary-text {
   color: #25dcd1;
