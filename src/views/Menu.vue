@@ -35,6 +35,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
 .brandName {
   font-family: Playfair Display;
@@ -59,4 +60,5 @@ export default {
   text-transform: uppercase;
   text-align: center;
 }
+
 </style>

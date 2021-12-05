@@ -220,7 +220,6 @@ export default new Vuex.Store({
           price: 100,
           weight: 100,
           calories: 29,
-
           proteins: {
             in: 0.2,
             fromNorma: 0.22,
@@ -776,11 +775,11 @@ export default new Vuex.Store({
               in: 0,
               fromNorma: 0,
             },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
-            },
-            warning: false,
+          ],
+          warning: false,
+          carbohydrates: {
+            in: 0,
+            fromNorma: 0,
           },
           {
             title: 'Груша',
@@ -792,15 +791,52 @@ export default new Vuex.Store({
               in: 0,
               fromNorma: 0,
             },
-            fat: {
-              in: 0,
-              fromNorma: 0,
+            {
+              title: 'Яблоко',
+              quantity: 1,
+              price: 30,
+              weight: 50,
+              calories: 0,
+              proteins: {
+                in: 0,
+                fromNorma: 0,
+              },
+              fat: {
+                in: 0,
+                fromNorma: 0,
+              },
+              carbohydrates: {
+                in: 0,
+                fromNorma: 0,
+              },
+              warning: false,
             },
-            carbohydrates: {
-              in: 0,
-              fromNorma: 0,
+            {
+              title: 'Груша',
+              quantity: 1,
+              price: 30,
+              weight: 50,
+              calories: 0,
+              proteins: {
+                in: 0,
+                fromNorma: 0,
+              },
+              fat: {
+                in: 0,
+                fromNorma: 0,
+              },
+              carbohydrates: {
+                in: 0,
+                fromNorma: 0,
+              },
+              warning: false,
             },
-            warning: false,
+          ],
+          sugar: {
+            title: 'Сахар',
+            quantity: 10,
+            price: 30,
+            calories: 0,
           },
         ],
         sugar: {
@@ -1901,6 +1937,20 @@ export default new Vuex.Store({
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
+    },
+    addDish({ state, commit }, payload) {
+      let order = [...state.quickOrder];
+      let find = order.find(d => d.title == payload.dish.title);
+      if (find) {
+        find.amount += payload.inc;
+        // if (find.amount == 0) {
+        //   order = order.find(d => d.title != payload.dish.title);
+        //   order = order ? order : [];
+        // }
+      } else {
+        order.push({ title: payload.dish.title, price: payload.dish.price, amount: 1 });
+      }
+      commit('SET_QUICK_ORDER', order);
     },
   },
   getters: {
