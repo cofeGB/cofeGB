@@ -1,63 +1,64 @@
 <template>
   <div class="container">
-    <div class="dish__image">
-      <img :src="img" alt="photo" />
-      <button class="dish__btn close__btn">&times;</button>
-      <div class="dish__img-info">
-        <div class="dish__img-info_text">
-          <span class="dish__text">{{ menuItem.title }}</span>
-          <div class="dish__text-align">
-            <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
-            <button @click="onClick(1)" class="dish__btn add__btn">+</button>
+    <div v-if="ITEM">
+      <div class="dish__image">
+        <img :src="img" alt="photo" />
+        <button class="dish__btn close__btn">&times;</button>
+        <div class="dish__img-info">
+          <div class="dish__img-info_text">
+            <span class="dish__text">{{ ITEM.title }}</span>
+            <div class="dish__text-align">
+              <span class="dish__text dish__text-mrg">{{ ITEM.price }} &#x20bd;</span>
+              <button @click="onClick(1)" class="dish__btn add__btn">+</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="dish__main">
-      <div class="dish__main_composition">
-        <div>
-          <h4>Состав</h4>
-          <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
-            {{ ingridient.title }},
-          </span>
-        </div>
-        <div class="dish__main_cpfc">
-          <div v-for="(i, index) of item.calories" :key="index">
-            <span>{{ i.procents }}</span>
-            <br />
-            <span>{{ i.title }}</span>
+      <div class="dish__main">
+        <div class="dish__main_composition">
+          <div>
+            <h4>Состав</h4>
+            <span v-for="ingridient of ITEM.composition" :item="item" :key="ingridient.title">
+              {{ ingridient.title }},
+            </span>
+          </div>
+          <div class="dish__main_cpfc">
+            <div v-for="(i, index) of ITEM.calories" :key="index">
+              <p>{{ i.procents }}</p>
+              <p>{{ i.title }}</p>
+            </div>
           </div>
         </div>
+        <div class="dish__main_description">
+          <h4>Описание</h4>
+          <p>{{ ITEM.description }}</p>
+        </div>
       </div>
-      <div class="dish__main_description">
-        <h4>Описание</h4>
-        <p>{{ menuItem.description }}</p>
+      <hr />
+      <div class="dish__constructor">
+        <p>Здесь конструктор?</p>
       </div>
-    </div>
-    <hr />
-    <div class="dish__constructor">
-      <p>Здесь конструктор?</p>
-    </div>
-    <button @click="onClick(1)" v-if="quantity === 0">
-      <div class="dish__btn cart__btn">
-        <span>В КОРЗИНУ</span>
-        <span>{{ menuItem.price }} &#x20bd;</span>
-      </div>
-    </button>
-    <div class="dish__btn cart__btn" v-else>
-      <button @click="onClick(-1)">
-        <i class="fas fa-minus"></i>
+      <button @click="onClick(1)" v-if="quantity === 0">
+        <div class="dish__btn cart__btn">
+          <span>В КОРЗИНУ</span>
+          <span>{{ ITEM.price }} &#x20bd;</span>
+        </div>
       </button>
-      <span>&times; {{ quantity }}</span>
-      <button @click="onClick(1)">
-        <i class="fas fa-plus"></i>
-      </button>
+      <div class="dish__btn cart__btn" v-else>
+        <button @click="onClick(-1)">
+          <i class="fas fa-minus"></i>
+        </button>
+        <span>&times; {{ quantity }}</span>
+        <button @click="onClick(1)">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'dish',
   props: {
@@ -73,20 +74,20 @@ export default {
     };
   },
   methods: {
-    ...mapGetters(['ADD_DISH']),
+    ...mapActions(['ADD_DISH', 'GET_ITEM']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc });
+      this.$store.dispatch('ADD_DISH', { dish: this.ITEM, inc });
     },
   },
   computed: {
-    ...mapGetters(['MENU', 'BAR_MENU', 'QUICK_ORDER']),
-    menuItem() {
-      return this.MENU.find(el => el.guid === this.$route.params['id']);
-    },
+    ...mapGetters(['MENU', 'QUICK_ORDER', 'ITEM']),
     quantity() {
-      let find = this.QUICK_ORDER.find(el => el.title === this.menuItem.title);
+      let find = this.QUICK_ORDER.find(el => el.title === this.ITEM.title);
       return find ? find.quantity : 0;
     },
+  },
+  mounted() {
+    this.GET_ITEM(this.$route.params.id);
   },
 };
 </script>
