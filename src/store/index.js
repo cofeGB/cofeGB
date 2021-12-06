@@ -51,7 +51,6 @@ export default new Vuex.Store({
       },
     },
     foodNavMenu: [],
-    foodNavMenuSelection: 'SANDWICHES',
     navMenuVisible: false,
     section: [],
     categories: [],
@@ -87,9 +86,6 @@ export default new Vuex.Store({
     FOOD_NAV_MENU: state => {
       return state.foodNavMenu;
     },
-    FOOD_NAV_MENU_SELECTION: state => {
-      return state.foodNavMenuSelection;
-    },
     NAV_MENU_VISIBLE: state => {
       return state.navMenuVisible;
     },
@@ -111,9 +107,6 @@ export default new Vuex.Store({
     },
     SET_QUICK_ORDER(state, data) {
       state.quickOrder = data;
-    },
-    SET_FOOD_NAV_MENU_SELECTION: (state, payload) => {
-      state.foodNavMenuSelection = payload.id;
     },
     SHOW_NAV_MENU: (state, payload) => {
       state.navMenuVisible = !!payload;
@@ -180,9 +173,6 @@ export default new Vuex.Store({
       });
       commit('SET_QUICK_ORDER', order);
       dispatch('GET_TOTAL_SUM');
-    },
-    SET_FOOD_NAV_MENU_SELECTION: ({ commit }, payload) => {
-      commit('SET_FOOD_NAV_MENU_SELECTION', payload);
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
