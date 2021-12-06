@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Кофе в свой стакан",
+    "guid": "h124fd3bstfy",
+    "sale": 15,
+    "path": "/stock"
+  },
+  {
+    "title": "День рождения",
+    "guid": "hsyfgebstfy",
+    "sale": 15,
+    "path": "/stock"
+  },
+  {
+    "title": "Годовщина",
+    "guid": "12syfgewefy",
+    "sale": 15,
+    "path": "/stock"
+  },
+  {
+    "title": "Первый быстрый заказ",
+    "guid": "12syf235аыy",
+    "sale": 15,
+    "path": "/stock"
+  }
+]

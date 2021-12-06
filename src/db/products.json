@@ -1,0 +1,24 @@
+[
+  {
+    "title": "",
+    "guid": "",
+    "weight": 0,
+    "weightPack": 0,
+    "protein": 0,
+    "fats": 0,
+    "carbohydrates": 0,
+    "calories": 0,
+    "price": 0,
+    "priceByKg": 0,
+    "dataRelice": "",
+    "dataLive": "",
+    "dateBuy": "",
+    "dateCreate": "",
+    "category": "",
+    "provider": "",
+    "warnMsg": "",
+    "warnIcon": "",
+    "composition": "",
+    "warn": false
+  }
+]
