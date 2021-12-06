@@ -1,0 +1,26 @@
+[
+  {
+    "guid":"",
+    "title": "Закуски",
+    "icon": "starters",
+    "query": "starters"
+  },
+  {
+    "guid":"",
+    "title": "Сендвичи",
+    "icon": "sandwich",
+    "query": "sandwich"
+  },
+  {
+    "guid":"",
+    "title": "Салаты",
+    "icon": "salad",
+    "query": "salad"
+  },
+  {
+    "guid":"",
+    "title": "Десерты",
+    "icon": "desserts",
+    "query": "desserts"
+  }
+]
