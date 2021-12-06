@@ -31,7 +31,7 @@ app.get('/api/categories', (req, res) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
-      res.send(JSON.parse(data).filter((el) => el.category === req.params.category));
+      res.send(data);
     }
   });
 });
