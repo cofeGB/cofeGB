@@ -34,6 +34,11 @@ const routes = [
     name: 'dish',
     component: dish,
   },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: About,
+  },
 ];
 
 const router = new VueRouter({
