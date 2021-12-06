@@ -80,7 +80,6 @@ export default {
     ...mapActions(['ADD_DISH']),
     onClick(inc) {
       this.$store.dispatch('ADD_DISH', { dish: this.item, inc });
-
     },
   },
 };
