@@ -266,8 +266,7 @@ export default new Vuex.Store({
             fromNorma: 0,
           },
           warning: [],
-          description:
-            'Стандартный вкусный бутерброд, про который надо придумать описание подлиннее, потому что короткое описание некрасиво смотрится',
+          description: 'Стандартный',
           composition: [
             {
               title: 'Белый хлеб',
@@ -354,94 +353,6 @@ export default new Vuex.Store({
             },
           ],
           description: 'Большой большой большой бутер',
-          composition: {
-            text: '',
-          },
-          description: '',
-          bread: {
-            title: 'Белый',
-            type: 'white',
-            quantity: 1,
-            price: 30,
-          },
-          sauce: {
-            title: 'Майонез',
-            type: 'mayonnaise',
-            quantity: 1,
-            price: 30,
-          },
-          salad: {
-            title: 'Лоло Россо',
-            type: 'loloRosso',
-            quantity: 1,
-            price: 20,
-          },
-          salami: {
-            type: 'salcico',
-            title: 'Салями Сальсичон',
-            quantity: 1,
-            price: 50,
-          },
-          cheese: {
-            type: 'adam',
-            title: 'Эдам',
-            quantity: 1,
-            price: 30,
-          },
-        },
-        {
-          title: 'Стандарт Большой',
-          quantity: 0,
-          price: 300,
-          weight: 300,
-          calorie: 0,
-          proteins: {
-            in: 0,
-            fromNorma: 0,
-          },
-          fat: {
-            in: 0,
-            fromNorma: 0,
-          },
-          carbohydrates: {
-            in: 0,
-            fromNorma: 0,
-          },
-          warning: [],
-          composition: {
-            text: '',
-          },
-          description: '',
-          bread: {
-            title: 'Белый',
-            type: 'white',
-            quantity: 1,
-            price: 30,
-          },
-          sauce: {
-            title: 'Майонез',
-            type: 'mayonnaise',
-            quantity: 1,
-            price: 30,
-          },
-          salad: {
-            title: 'Лоло Россо',
-            type: 'loloRosso',
-            quantity: 1,
-            price: 20,
-          },
-          salami: {
-            type: 'salcico',
-            title: 'Салями Сальсичон',
-            quantity: 1,
-            price: 50,
-          },
-          cheese: {
-            type: 'adam',
-            title: 'Эдам',
-            quantity: 1,
-            price: 30,
-          },
         },
       ],
       salad: [],
@@ -863,11 +774,11 @@ export default new Vuex.Store({
               in: 0,
               fromNorma: 0,
             },
-          ],
-          warning: false,
-          carbohydrates: {
-            in: 0,
-            fromNorma: 0,
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
+            },
+            warning: false,
           },
           {
             title: 'Груша',
@@ -879,52 +790,15 @@ export default new Vuex.Store({
               in: 0,
               fromNorma: 0,
             },
-            {
-              title: 'Яблоко',
-              quantity: 1,
-              price: 30,
-              weight: 50,
-              calories: 0,
-              proteins: {
-                in: 0,
-                fromNorma: 0,
-              },
-              fat: {
-                in: 0,
-                fromNorma: 0,
-              },
-              carbohydrates: {
-                in: 0,
-                fromNorma: 0,
-              },
-              warning: false,
+            fat: {
+              in: 0,
+              fromNorma: 0,
             },
-            {
-              title: 'Груша',
-              quantity: 1,
-              price: 30,
-              weight: 50,
-              calories: 0,
-              proteins: {
-                in: 0,
-                fromNorma: 0,
-              },
-              fat: {
-                in: 0,
-                fromNorma: 0,
-              },
-              carbohydrates: {
-                in: 0,
-                fromNorma: 0,
-              },
-              warning: false,
+            carbohydrates: {
+              in: 0,
+              fromNorma: 0,
             },
-          ],
-          sugar: {
-            title: 'Сахар',
-            quantity: 10,
-            price: 30,
-            calories: 0,
+            warning: false,
           },
         ],
         sugar: {
