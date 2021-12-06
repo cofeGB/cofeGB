@@ -55,9 +55,13 @@ export default new Vuex.Store({
     navMenuVisible: false,
     section: [],
     categories: [],
+    item: {},
   },
   getters: {
-    GET_CATEGORIES: state => {
+    ITEM: state => {
+      return state.item;
+    },
+    CATEGORIES: state => {
       return state.categories;
     },
     TOTAL_SUM: state => {
@@ -95,6 +99,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    SET_ITEM(state, data) {
+      state.item = data;
+    },
     SET_CATEGORIES(state, data) {
       state.categories = data;
     },
@@ -129,6 +136,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    GET_ITEM({ commit, state }, guid) {
+      console.log(state.section);
+      commit(
+        'SET_ITEM',
+        state.section.find(el => el.guid == guid)
+      );
+    },
     async GET_MENU({ commit }, category) {
       const { data: section } = await axios.get(`http://localhost:3000/api/menu/${category}`);
       commit('SET_MENU', section);
@@ -142,7 +156,7 @@ export default new Vuex.Store({
       commit('INIT_LOYALTY', loyalty);
     },
     async GET_CATEGORIES({ commit }) {
-      const { data: categories } = await axios.get(`http://localhost:3000/api/loyalty/`);
+      const { data: categories } = await axios.get(`http://localhost:3000/api/categories/`);
       commit('SET_CATEGORIES', categories);
     },
 

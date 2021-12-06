@@ -2,7 +2,7 @@
   <div class="menu">
     <h1 class="brandName">СoffeeBonk</h1>
     <div class="hr"></div>
-    <h3 class="menuTitle">{{ category }}</h3>
+    <h3 v-if="category" class="menuTitle">{{ category.title }}</h3>
     <menuList :list="MENU" />
   </div>
 </template>
@@ -16,20 +16,13 @@ export default {
     menuList,
   },
   computed: {
-    ...mapGetters(['MENU']), // , 'CATEGORIES']),
-    // menuSection() {
-    //   return this.MENU.filter(item => item.category == this.category);
-    // },
-  },
-  data() {
-    return {
-      category: this.$route.params.category,
-      nameCategory: this.MENU, //.find(item => item.query == this.category),
-      // nameCategory: this.CATEGORIES.find(item => item.query == this.category),
-    };
+    ...mapGetters(['MENU', 'CATEGORIES']),
+    category() {
+      return this.CATEGORIES.find(c => c.query == this.$route.params.category);
+    },
   },
   methods: {
-    ...mapActions(['GET_MENU']),
+    ...mapActions(['GET_MENU', 'GET_CATEGORIES']),
   },
   created() {
     this.GET_MENU(this.$route.params.category);
