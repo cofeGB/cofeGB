@@ -23,10 +23,10 @@
         </div>
         <div class="dish__main_cpfc">
           <div v-for="(i, index) of item.calories" :key="index">
-          <span>{{ i.procents }}</span>
-          <br />
-          <span>{{ i.title }}</span>
-        </div>
+            <span>{{ i.procents }}</span>
+            <br />
+            <span>{{ i.title }}</span>
+          </div>
         </div>
       </div>
       <div class="dish__main_description">
