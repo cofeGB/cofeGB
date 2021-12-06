@@ -25,12 +25,12 @@ const routes = [
     component: Delivery,
   },
   {
-    path: '/menu',
+    path: '/menu/:category',
     name: 'Menu',
     component: Menu,
   },
   {
-    path: '/menu/:id',
+    path: '/dish/:id',
     name: 'dish',
     component: dish,
   },

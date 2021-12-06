@@ -14,6 +14,7 @@
 import Header from '@/components/Header.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -22,6 +23,14 @@ export default {
     Footeer,
     CofDelivery,
     CofNavMenu: () => import('./components/CofNavMenu.vue'),
+  },
+  methods: {
+    ...mapActions(['GET_NAV_MENU', 'GET_LOYALTY', 'GET_CATEGORIES']),
+  },
+  created() {
+    this.GET_NAV_MENU();
+    this.GET_LOYALTY();
+    this.GET_CATEGORIES();
   },
 };
 </script>

@@ -1,0 +1,33 @@
+[
+  {
+    "list": [
+      {
+        "guid": "vdsvv31568b4fdx",
+        "title": "",
+        "price": 100,
+        "quantity": 2
+      }
+    ],
+    "guid": "xhgc44545fvhbj",
+    "user": {
+      "phone": "",
+      "addres": ""
+    },
+    "total": 200,
+    "timeTo": "",
+    "timeConfirmation": "",
+    "createAcount": false
+  },
+  {
+    "list": [],
+    "guid": "fcvhkjbknl53",
+    "user": {
+      "phone": "",
+      "addres": ""
+    },
+    "total": 0,
+    "timeTo": "",
+    "timeConfirmation": "",
+    "createAcount": false
+  }
+]

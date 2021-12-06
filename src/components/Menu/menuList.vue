@@ -6,7 +6,7 @@
         v-for="item of list"
         class="ma-2"
         :item="item"
-        :key="item.id_product"
+        :key="item.guid"
         :img="imgUrl"
       ></menu-item>
     </div>
