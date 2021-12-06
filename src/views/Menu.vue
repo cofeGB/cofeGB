@@ -2,15 +2,13 @@
   <div class="menu">
     <h1 class="brandName">СoffeeBonk</h1>
     <div class="hr"></div>
-    <h3 class="menuTitle">Закуски</h3>
-    <menuList :list="menuSection" />
-    <h3 class="menuTitle">Напитки</h3>
-    <menuList :list="barMenuSection" />
+    <h3 class="menuTitle">{{ category }}</h3>
+    <menuList :list="MENU" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import menuList from '../components/Menu/menuList.vue';
 export default {
   name: 'Menu',
@@ -18,19 +16,23 @@ export default {
     menuList,
   },
   computed: {
-    ...mapGetters(['MENU', 'BAR_MENU']),
-    menuSection() {
-      return this.MENU[this.nameSection];
-    },
-    barMenuSection() {
-      return this.BAR_MENU[this.nameBarSection];
-    },
+    ...mapGetters(['MENU']), // , 'CATEGORIES']),
+    // menuSection() {
+    //   return this.MENU.filter(item => item.category == this.category);
+    // },
   },
   data() {
     return {
-      nameSection: 'sandwich',
-      nameBarSection: 'coffee',
+      category: this.$route.params.category,
+      nameCategory: this.MENU, //.find(item => item.query == this.category),
+      // nameCategory: this.CATEGORIES.find(item => item.query == this.category),
     };
+  },
+  methods: {
+    ...mapActions(['GET_MENU']),
+  },
+  created() {
+    this.GET_MENU(this.$route.params.category);
   },
 };
 </script>
