@@ -38,37 +38,34 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- <v-list-item-group v-model="group"> -->
-          <v-list-item
+          <router-link
+            class="menu__item_link"
             v-for="item in foodNavMenu"
             :key="item.id"
-            @click="foodMenuClick(item.id)"
-            :class="{ menu__item_active: foodNavMenuSelected == item.id }"
+            :to="{ path: `/menu-by-category/${item.id}`, component: 'Menu' }"
           >
-            <v-list-item-title
-              ><b class="menu__item_text">{{ item.title }}</b>
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-        <!-- <v-spacer></v-spacer> -->
-        <v-list nav dense class="mt-auto">
-          <!-- </v-list-item-group> -->
-          <v-list-item-group>
-            <v-list-item disabled>
+            <v-list-item
+              :class="{ menu__item_active: $route.path == `/menu-by-category/${item.id}` }"
+            >
               <v-list-item-title
-                ><b class="menu__item_text">Доставка и оплата</b></v-list-item-title
-              >
+                ><b class="menu__item_text">{{ item.title }}</b>
+              </v-list-item-title>
             </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">Контакты</b></v-list-item-title>
+          </router-link>
+        </v-list>
+        <v-list nav dense class="mt-auto">
+          <router-link
+            class="menu__item_link"
+            v-for="(item, index) in infoNavMenu"
+            :key="index"
+            :to="{ path: item.route }"
+          >
+            <v-list-item :class="{ menu__item_active: $route.path == item.route }">
+              <v-list-item-title
+                ><b class="menu__item_text">{{ item.title }}</b>
+              </v-list-item-title>
             </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">Акции</b></v-list-item-title>
-            </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">О нас</b></v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
+          </router-link>
         </v-list>
       </div>
     </v-navigation-drawer>
@@ -77,24 +74,37 @@
 
 <script>
 /**
- * Навигационное меню состоит из двух частей: продуктовой и собственно
- * навигационной.
- * Наполнение продуктового меню происходит из геттера FOOD_NAV_MENU стора.
- * При клике по пункту продуктового меню в сторе вызывается экшен
- * SET_FOOD_NAV_MENU_SELECTION, устанавливающий в сторе значение
- * foodNavMenuSelection.
- * foodNavMenuSelection доступно чтением геттера FOOD_NAV_MENU_SELECTION.
- * Показ меню производится экшеном стора SHOW_NAV_MENU с аргументом типа Boolean.
- * Состояние отображения меню в state.navMenuVisible стора.
- * Временно меню зафиксировано и не прячется.
+ * Меню использует роуты.
+ * Для еды '/menu-by-category/:id'.
+ * Для других страниц из INFO_NAV_MENU[n].route.
  */
 import store from '../store/index';
+
+const INFO_NAV_MENU = [
+  {
+    title: 'Доставка и оплата',
+    route: '/delivery-payments',
+  },
+  {
+    title: 'Контакты',
+    route: '/contacts',
+  },
+  {
+    title: 'Акции',
+    route: '/promo',
+  },
+  {
+    title: 'О нас',
+    route: '/about',
+  },
+];
 
 export default {
   name: 'CofNavMenu',
   data: () => ({
     show: store.state.navMenuVisible,
     group: null,
+    infoNavMenu: INFO_NAV_MENU,
   }),
   methods: {
     foodMenuClick(id) {
@@ -174,6 +184,9 @@ export default {
     line-height: 64px;
     color: #ffffff;
   }
+  &__item_link {
+    text-decoration: none;
+  }
   &__item_text {
     font-family: 'Open Sans';
     font-style: normal;
@@ -181,6 +194,7 @@ export default {
     font-size: 24px;
     line-height: 33px;
     color: #ffffff;
+
     &:hover {
       color: rgba(37, 220, 209, 1);
     }

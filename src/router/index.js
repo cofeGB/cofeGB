@@ -30,9 +30,19 @@ const routes = [
     component: Menu,
   },
   {
+    path: '/menu-by-category/:id',
+    name: 'MenuByCategory',
+    component: Menu,
+  },
+  {
     path: '/menu/:id',
     name: 'dish',
     component: dish,
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: About,
   },
 ];
 

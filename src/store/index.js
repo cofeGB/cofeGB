@@ -160,24 +160,16 @@ export default new Vuex.Store({
     },
     foodNavMenu: [
       {
-        id: 'SANDWICHES',
+        id: 'sandwich',
         title: 'Сэндвичи',
       },
       {
-        id: 'SNACKS',
-        title: 'Закуски',
-      },
-      {
-        id: 'SALADS',
+        id: 'salad',
         title: 'Салаты',
       },
       {
-        id: 'DESSERTS',
+        id: 'desserts',
         title: 'Десерты',
-      },
-      {
-        id: 'DRINKS',
-        title: 'Напитки',
       },
     ],
     foodNavMenuSelection: 'SANDWICHES',
