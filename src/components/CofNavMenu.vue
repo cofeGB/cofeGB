@@ -42,10 +42,10 @@
             class="menu__item_link"
             v-for="item in foodNavMenu"
             :key="item.id"
-            :to="{ path: `/menu-by-category/${item.id}`, component: 'Menu' }"
+            :to="{ path: `${item.route}/${item.query}`, component: 'Menu' }"
           >
             <v-list-item
-              :class="{ menu__item_active: $route.path == `/menu-by-category/${item.id}` }"
+              :class="{ menu__item_active: $route.path == `${item.route}/${item.query}` }"
             >
               <v-list-item-title
                 ><b class="menu__item_text">{{ item.title }}</b>
@@ -106,12 +106,7 @@ export default {
     group: null,
     infoNavMenu: INFO_NAV_MENU,
   }),
-  methods: {
-    foodMenuClick(id) {
-      store.dispatch('SET_FOOD_NAV_MENU_SELECTION', { id });
-      // console.log(id);
-    },
-  },
+  methods: {},
   computed: {
     foodNavMenu() {
       return store.getters.FOOD_NAV_MENU;
@@ -137,9 +132,6 @@ export default {
     },
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';
-    },
-    foodNavMenuSelected() {
-      return store.getters.FOOD_NAV_MENU_SELECTION;
     },
   },
   watch: {

@@ -1,8 +1,7 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <router-link :to="{ path: `/menu/${item.guid}`, component: 'dish' }">
-        <!--  параметры? -->
+      <router-link :to="{ path: `/dish/${item.guid}`, component: 'dish' }">
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
           <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
@@ -11,25 +10,10 @@
         </div>
       </router-link>
       <div class="menuItem__cpfc">
-        <div>
-          <span>{{ item.calories }}</span>
+        <div v-for="(i, index) of item.calories" :key="index">
+          <span>{{ i.procents }}</span>
           <br />
-          <span class="menuItem__cpfc-body">ккал</span>
-        </div>
-        <div>
-          <span>{{ item.proteins.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">белки</span>
-        </div>
-        <div>
-          <span>{{ item.fat.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">жиры</span>
-        </div>
-        <div>
-          <span>{{ item.carbohydrates.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">углеводы</span>
+          <span class="menuItem__cpfc-body">{{ i.title }}</span>
         </div>
       </div>
       <div class="menuItem__price">
@@ -42,8 +26,7 @@
         </button>
       </div>
     </div>
-    <router-link :to="{ path: `/menu/${item.id}`, component: 'Dish' }">
-      <!--  параметры? -->
+    <router-link :to="{ path: `/dish/${item.guid}`, component: 'dish' }">
       <div class="menuItem__img">
         <div class="contaier">
           <div class="triangle"></div>
