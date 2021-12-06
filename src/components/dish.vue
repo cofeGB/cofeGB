@@ -22,26 +22,11 @@
           </span>
         </div>
         <div class="dish__main_cpfc">
-          <div>
-            <span>{{ menuItem.calories }}</span>
-            <br />
-            <span>ккал</span>
-          </div>
-          <div>
-            <span>{{ menuItem.proteins.in }}</span>
-            <br />
-            <span>белки</span>
-          </div>
-          <div>
-            <span>{{ menuItem.fat.in }}</span>
-            <br />
-            <span>жиры</span>
-          </div>
-          <div>
-            <span>{{ menuItem.carbohydrates.in }}</span>
-            <br />
-            <span>углеводы</span>
-          </div>
+          <div v-for="(i, index) of item.calories" :key="index">
+          <span>{{ i.procents }}</span>
+          <br />
+          <span>{{ i.title }}</span>
+        </div>
         </div>
       </div>
       <div class="dish__main_description">
@@ -96,7 +81,7 @@ export default {
   computed: {
     ...mapGetters(['MENU', 'BAR_MENU', 'QUICK_ORDER']),
     menuItem() {
-      return this.MENU[this.nameSection].find(el => el.guid === this.$route.params['id']);
+      return this.MENU.find(el => el.guid === this.$route.params['id']);
     },
     quantity() {
       let find = this.QUICK_ORDER.find(el => el.title === this.menuItem.title);
