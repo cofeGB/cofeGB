@@ -55,6 +55,11 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      numberOrder: '',
+    };
+  },
   computed: {
     ...mapGetters(['QUICK_ORDER']),
     quantity() {
@@ -63,10 +68,23 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['ADD_DISH']),
+    ...mapActions(['ADD_DISH', 'GET_ORDER_LIST']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.item, inc });
+      if (!localStorage.numberOrder) {
+        const today = new Date();
+        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+      }
+      this.item.quantity = this.quantity;
+      this.$store.dispatch('ADD_DISH', { dish: this.item, inc, numberOrder: this.numberOrder });
+      this.GET_ORDER_LIST(this.numberOrder);
     },
+  },
+  mounted() {
+    if (localStorage.numberOrder) {
+      this.numberOrder = localStorage.numberOrder;
+      this.GET_ORDER_LIST(this.numberOrder);
+    }
   },
 };
 </script>

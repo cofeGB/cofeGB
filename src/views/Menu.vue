@@ -25,6 +25,7 @@ export default {
     ...mapActions(['GET_MENU', 'GET_CATEGORIES']),
   },
   created() {
+    // this.GET_CATEGORIES()
     this.GET_MENU(this.$route.params.category);
   },
 };
