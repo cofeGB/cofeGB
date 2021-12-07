@@ -10,7 +10,14 @@
     </v-btn>
 
     <v-spacer></v-spacer>
-
+    <v-img
+      class="d-inline-block text-center bordered"
+      height="90"
+      width="100"
+      contain
+      :src="require('../assets/img/logo.png')"
+    ></v-img>
+    <v-spacer></v-spacer>
     <CofDeliveryHeader :tooltip-disabled="tooltipDisabled" @openOrder="openOrder" />
   </v-app-bar>
 </template>
