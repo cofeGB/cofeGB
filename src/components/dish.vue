@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <div v-if="ITEM">
+    <div v-if="menuItem">
       <div class="dish__image">
         <img :src="img" alt="photo" />
         <button class="dish__btn close__btn">&times;</button>
         <div class="dish__img-info">
           <div class="dish__img-info_text">
-            <span class="dish__text">{{ ITEM.title }}</span>
+            <span class="dish__text">{{ menuItem.title }}</span>
             <div class="dish__text-align">
-              <span class="dish__text dish__text-mrg">{{ ITEM.price }} &#x20bd;</span>
+              <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
               <button @click="onClick(1)" class="dish__btn add__btn">+</button>
             </div>
           </div>
@@ -18,12 +18,12 @@
         <div class="dish__main_composition">
           <div>
             <h4>Состав</h4>
-            <span v-for="ingridient of ITEM.composition" :item="item" :key="ingridient.title">
+            <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
               {{ ingridient.title }},
             </span>
           </div>
           <div class="dish__main_cpfc">
-            <div v-for="(i, index) of ITEM.calories" :key="index">
+            <div v-for="(i, index) of menuItem.calories" :key="index">
               <p>{{ i.procents }}</p>
               <p>{{ i.title }}</p>
             </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="dish__main_description">
           <h4>Описание</h4>
-          <p>{{ ITEM.description }}</p>
+          <p>{{ menuItem.description }}</p>
         </div>
       </div>
       <hr />
@@ -41,7 +41,7 @@
       <button @click="onClick(1)" v-if="quantity === 0">
         <div class="dish__btn cart__btn">
           <span>В КОРЗИНУ</span>
-          <span>{{ ITEM.price }} &#x20bd;</span>
+          <span>{{ menuItem.price }} &#x20bd;</span>
         </div>
       </button>
       <div class="dish__btn cart__btn" v-else>
@@ -74,20 +74,23 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['ADD_DISH', 'GET_ITEM']),
+    ...mapActions(['ADD_DISH', 'GET_MENU']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.ITEM, inc });
+      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc });
     },
   },
   computed: {
-    ...mapGetters(['MENU', 'QUICK_ORDER', 'ITEM']),
+    ...mapGetters(['MENU', 'QUICK_ORDER']),
+    menuItem() {
+      return this.MENU.find(el => el.guid == this.$route.params.id);
+    },
     quantity() {
-      let find = this.QUICK_ORDER.find(el => el.title === this.ITEM.title);
+      let find = this.QUICK_ORDER.find(el => el.guid === this.menuItem.guid);
       return find ? find.quantity : 0;
     },
   },
   mounted() {
-    this.GET_ITEM(this.$route.params.id);
+    this.GET_MENU(this.$route.params.category);
   },
 };
 </script>
