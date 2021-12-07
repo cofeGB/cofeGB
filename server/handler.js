@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const order = require('./order');
 
 const actions = {
@@ -7,16 +8,15 @@ const actions = {
   del: order.del,
 };
 
-const handler = (req, res, action, file) => {
+function reWriteFile(req, res, action, file) {
   fs.readFile(file, 'utf-8', (err, data) => {
     if (err) {
-      res.sendStatus(404, JSON.stringify({result: 0, text: err}));
+      console.log(err);
+      res.status(404);
     } else {
-      let orders = JSON.parse(data);
-      const order = orders.find(o => o.guid === req.params.guid); //объект заказа
+      const order = JSON.parse(data);
       const newOrder = actions[action](order, req);
-      orders = orders.splice(order.list.indexOf(order), 1);
-      fs.writeFile(file, orders.push(newOrder), (err) => {
+      fs.writeFile(file, newOrder, (err) => {
         if (err) {
           res.send('{"result": 0}');
         } else {
@@ -25,6 +25,25 @@ const handler = (req, res, action, file) => {
       })
     }
   });
+}
+
+function createFile(file) {
+  fs.readFile(path.resolve('server/db/orderPattern.json'), 'utf-8', (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      fs.writeFileSync(file, data);
+    }
+  })
+}
+
+const handler = (req, res, action, file) => {
+  if (fs.existsSync(file)) {
+    reWriteFile(req, res, action, file);
+  } else {
+    createFile(file)
+    reWriteFile(req, res, action, file);
+  }
 };
 
 module.exports = handler;

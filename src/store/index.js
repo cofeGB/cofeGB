@@ -139,15 +139,6 @@ export default new Vuex.Store({
       commit('SET_CATEGORIES', categories);
     },
 
-    GET_TOTAL_SUM({ commit, state }) {
-      const basket = state.quickOrder;
-      let total = 0;
-      basket.forEach(el => {
-        total = total + el.price * el.quantity;
-        return total;
-      });
-      commit('GET_TOTAL_SUM', total);
-    },
     DELETE_ALL_IN_ORDER_ACTION({ commit }) {
       commit('DELETE_ALL_IN_ORDER');
     },
@@ -157,22 +148,43 @@ export default new Vuex.Store({
         commit('SET_LOYALTY', exist);
       }
     },
-    ADD_DISH({ state, commit, dispatch }, payload) {
-      let order = [...state.quickOrder];
-      let find = order.find(d => d.guid == payload.dish.guid);
-      if (find) {
-        find.quantity += payload.inc;
-      } else {
-        payload.dish.quantity += payload.inc;
-        order.push(payload.dish);
+
+    async GET_ORDER_LIST({ commit }, numberOrder) {
+      const { data: order } = await axios.get(`http://localhost:3000/api/order/${numberOrder}`);
+      commit('SET_QUICK_ORDER', order.list);
+      commit('GET_TOTAL_SUM', order.total);
+      // commit('SET_AMOUNT', cartList.amount);
+    },
+
+    ADD_DISH({ dispatch }, payload) {
+      if (!payload.dish.quantity) {
+        axios.post(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
+          dish: payload.dish,
+          quantity: 1,
+        });
       }
-      order.forEach((o, idx) => {
-        if (o.quantity === 0) {
-          order.splice(idx, 1);
+
+      if (payload.dish.quantity > 1) {
+        axios.put(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
+          dish: payload.dish,
+          inc: payload.inc,
+        });
+      }
+      if (payload.dish.quantity == 1) {
+        if (payload.inc < 0) {
+          axios.delete(
+            `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+            payload.dish
+          );
         }
-      });
-      commit('SET_QUICK_ORDER', order);
-      dispatch('GET_TOTAL_SUM');
+        if (payload.inc > 0) {
+          axios.put(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
+            dish: payload.dish,
+            inc: payload.inc,
+          });
+        }
+      }
+      dispatch('GET_ORDER_LIST', payload.numberOrder);
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
