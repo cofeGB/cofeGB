@@ -1,7 +1,9 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <router-link :to="{ path: `/dish/${item.guid}`, component: 'dish' }">
+      <router-link
+        :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+      >
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
           <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
@@ -25,7 +27,9 @@
         </button>
       </div>
     </div>
-    <router-link :to="{ path: `/dish/${item.guid}`, component: 'dish' }">
+    <router-link
+      :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+    >
       <div class="menuItem__img">
         <div class="contaier">
           <div class="triangle"></div>
@@ -54,7 +58,7 @@ export default {
   computed: {
     ...mapGetters(['QUICK_ORDER']),
     quantity() {
-      let find = this.QUICK_ORDER.find(el => el.title === this.item.title);
+      let find = this.QUICK_ORDER.find(el => el.guid === this.item.guid);
       return find ? find.quantity : 0;
     },
   },

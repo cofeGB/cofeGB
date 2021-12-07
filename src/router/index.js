@@ -30,7 +30,7 @@ const routes = [
     component: Menu,
   },
   {
-    path: '/dish/:id',
+    path: '/menu/:category/:id',
     name: 'dish',
     component: dish,
   },
