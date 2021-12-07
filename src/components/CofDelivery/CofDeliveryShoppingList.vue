@@ -86,6 +86,7 @@
         :maxW="'300px'"
         :origin="'right top'"
         :transition="'fab-transition'"
+        :activator-class="'w100'"
         :contentClass="miniCOMPUTED ? 'mini' : ''"
         @input="clearBasket(idx)"
       >
