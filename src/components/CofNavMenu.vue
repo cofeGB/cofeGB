@@ -41,12 +41,10 @@
           <router-link
             class="menu__item_link"
             v-for="item in foodNavMenu"
-            :key="item.id"
-            :to="{ path: `${item.route}/${item.query}`, component: 'Menu' }"
+            :key="item.path"
+            :to="{ path: item.path }"
           >
-            <v-list-item
-              :class="{ menu__item_active: $route.path == `${item.route}/${item.query}` }"
-            >
+            <v-list-item :class="{ menu__item_active: $route.path == item.path }">
               <v-list-item-title
                 ><b class="menu__item_text">{{ item.title }}</b>
               </v-list-item-title>
@@ -58,9 +56,9 @@
             class="menu__item_link"
             v-for="(item, index) in infoNavMenu"
             :key="index"
-            :to="{ path: item.route }"
+            :to="{ path: item.path }"
           >
-            <v-list-item :class="{ menu__item_active: $route.path == item.route }">
+            <v-list-item :class="{ menu__item_active: $route.path == item.path }">
               <v-list-item-title
                 ><b class="menu__item_text">{{ item.title }}</b>
               </v-list-item-title>
@@ -83,19 +81,19 @@ import store from '../store/index';
 const INFO_NAV_MENU = [
   {
     title: 'Доставка и оплата',
-    route: '/delivery-payments',
+    path: '/delivery-payments',
   },
   {
     title: 'Контакты',
-    route: '/contacts',
+    path: '/contacts',
   },
   {
     title: 'Акции',
-    route: '/promo',
+    path: '/promo',
   },
   {
     title: 'О нас',
-    route: '/about',
+    path: '/about',
   },
 ];
 
@@ -109,7 +107,10 @@ export default {
   methods: {},
   computed: {
     foodNavMenu() {
-      return store.getters.FOOD_NAV_MENU;
+      return store.getters.FOOD_NAV_MENU.map(item => ({
+        title: item.title,
+        path: `/menu/${item.query}`,
+      }));
     },
     navMenuVisible() {
       return store.getters.NAV_MENU_VISIBLE;
