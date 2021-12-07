@@ -69,4 +69,8 @@ export default {
     url('assets/img/backgroundImage.png');
   background-attachment: fixed;
 }
+
+.w100 {
+  width: 100%;
+}
 </style>
