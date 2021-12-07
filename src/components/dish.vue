@@ -14,24 +14,21 @@
           </div>
         </div>
       </div>
-      <div class="dish__main">
-        <div class="dish__main_composition">
-          <div>
-            <h4>Состав</h4>
-            <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
-              {{ ingridient.title }},
-            </span>
-          </div>
-          <div class="dish__main_cpfc">
-            <div v-for="(i, index) of menuItem.calories" :key="index">
-              <p>{{ i.procents }}</p>
-              <p>{{ i.title }}</p>
-            </div>
-          </div>
+    </div>
+    <div class="dish__main">
+      <div class="dish__main_composition">
+        <div>
+          <h4>Состав</h4>
+          <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
+            {{ ingridient.title }},
+          </span>
         </div>
-        <div class="dish__main_description">
-          <h4>Описание</h4>
-          <p>{{ menuItem.description }}</p>
+        <div class="dish__main_cpfc">
+          <div v-for="(i, index) of item.calories" :key="index">
+            <span>{{ i.procents }}</span>
+            <br />
+            <span>{{ i.title }}</span>
+          </div>
         </div>
       </div>
       <hr />
