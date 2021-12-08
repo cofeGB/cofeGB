@@ -1,10 +1,10 @@
 <template>
-  <v-list-item class="justify-center order-logo" @click="$emit('openOrder')" :ripple="false">
-    <Title size="30px">Ваш заказ</Title>
-    <tooltip
-      :content="QUICK_ORDER.length ? 'У вас есть заказ' : 'Корзина пуста'"
-      :disabled="disabled"
-    >
+  <tooltip
+    :content="QUICK_ORDER.length ? 'У вас есть заказ' : 'Корзина пуста'"
+    :disabled="disabled"
+  >
+    <v-btn class="order-logo" text @click="$emit('openOrder')" :ripple="false">
+      <Title v-if="!tooltipDisabled" size="25px">Ваш заказ</Title>
       <div class="basket">
         <svg viewBox="0 0 63 49" fill="none" xmlns="http://www.w3.org/2000/svg" class="basket-svg">
           <path
@@ -14,8 +14,8 @@
         </svg>
         <div class="count" :style="QUICK_ORDER.length ? 'background: #25dcd1' : ''"></div>
       </div>
-    </tooltip>
-  </v-list-item>
+    </v-btn>
+  </tooltip>
 </template>
 
 <script>
@@ -40,7 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 .order-logo {
-  max-width: fit-content !important;
+  display: flex;
+  align-items: center;
+  // max-width: fit-content !important;
   color: #fff !important;
 }
 .basket {
@@ -49,14 +51,14 @@ export default {
   .count {
     position: absolute;
     display: block;
-    top: 10px;
-    right: 7px;
-    width: 10px;
-    height: 10px;
+    top: 6px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
   }
   &-svg {
-    height: 50px;
+    height: 30px;
   }
 }
 </style>

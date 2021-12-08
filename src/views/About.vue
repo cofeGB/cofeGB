@@ -8,7 +8,14 @@
       <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
         <v-card class="d-flex flex-column justify-center align-center" width="500">
           <v-avatar class="ma-3" size="300" tile>
-            <v-img :src="item.src"></v-img>
+            <v-img
+              :src="require('../assets/img/employee/' + item.src)"
+              position="center center"
+              height="250px"
+              width="350px"
+              alt="logo"
+              contain
+            />
           </v-avatar>
           <v-card-title class="text-h5">
             {{ item.post }}
