@@ -79,16 +79,26 @@
       </div>
     </template>
     <template #actions>
-      <tooltip
-        content="Окончательный счет с учетом акций и скидок"
-        :disabled="disabled"
-        :activatorClass="'w100'"
-      >
-        <div class="d-flex order-list total pt-2">
-          <span class="ellipsis"> Всего к оплате </span>
-          <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
-        </div>
-      </tooltip>
+      <div class="w100">
+        <tooltip
+          content="Окончательный счет с учетом акций и скидок"
+          :disabled="disabled"
+          :activatorClass="'w100'"
+        >
+          <div class="d-flex order-list total pt-2">
+            <span class="ellipsis"> Всего к оплате </span>
+            <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
+          </div>
+        </tooltip>
+        <v-btn
+          v-if="TOTAL_SUM.totalPrice"
+          outlined
+          color="error"
+          class="title btn-buy w100 mt-2"
+          @click="DELETE_ALL_IN_ORDER_ACTION"
+          >Очистить корзину</v-btn
+        >
+      </div>
       <!-- <Menu
         :offsetX="true"
         :left="true"
