@@ -164,6 +164,7 @@ export default new Vuex.Store({
     },
 
     ADD_DISH({ dispatch }, payload) {
+      console.log(payload.dish.quantity);
       if (!payload.dish.quantity) {
         axios.post(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
           dish: payload.dish,
