@@ -6,6 +6,7 @@
     class="order"
     floating
     clipped
+    temporary
     v-model="drawer"
     :width="mini ? 300 : 350"
     :class="{ mini: mini }"
@@ -60,7 +61,6 @@ export default {
       this.window.width = window.innerWidth;
       this.mini = true;
       if (window.innerWidth > 1800) {
-        this.drawer = true;
         this.mini = false;
       }
       if (window.innerWidth < 1010) {
