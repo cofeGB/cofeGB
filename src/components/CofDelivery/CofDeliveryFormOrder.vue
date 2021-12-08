@@ -27,7 +27,7 @@
       <tooltip
         right
         :disabled="disabled"
-        content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+        content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
       >
         <v-checkbox
           v-model="user.backCall"
@@ -89,7 +89,7 @@
         </v-col>
       </v-row>
 
-      <v-subheader class="body-1 pl-0">Оплата курьеру:</v-subheader>
+      <v-subheader class="body-1 pl-0">Оплата:</v-subheader>
 
       <v-radio-group v-model="user.payment" row class="ma-0 pa-0">
         <v-radio
@@ -100,7 +100,7 @@
           :label="n.title"
           :value="n.value"
           class="mx-auto my-0"
-          :rules="[v => !!v || 'Доставка не осуществляеться без оплаты!']"
+          :rules="[v => !!v || 'Доставка не осуществляется без оплаты!']"
         ></v-radio>
       </v-radio-group>
 
@@ -118,12 +118,12 @@
       <tooltip
         right
         :disabled="disabled"
-        content="Если вы уверены в своем заказе и указанном адрисе вы можете отказать от обратного звона с уточнением от нашего оператора."
+        content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
       >
         <v-checkbox
           v-model="user.agree"
           required
-          :rules="[v => !!v || 'Доставка не осуществляеться без согласия!']"
+          :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
           hide-details="auto"
           color="primary"
           class="ma-0"
@@ -132,7 +132,7 @@
             <div>
               Соглашаюсь с
               <a target="_blank" href="https://vuetifyjs.com" @click.stop>
-                Политикой обработки персональных данных и Соглашением об условиях доставки.
+                Политикой обработки персональных данных и условиями доставки.
               </a>
             </div>
           </template>
@@ -180,8 +180,8 @@ export default {
         },
       ],
       rules: [
-        value => !!value || 'Нужно заполнить.',
-        value => (value && value.length === 11) || 'Нужно заполнить.',
+        value => !!value || 'Необходио заполнить.',
+        value => (value && value.length === 11) || 'Необходио заполнить.',
       ],
       agreRules: value => !!value,
     };
