@@ -106,9 +106,9 @@ export default {
       this.numberOrder = localStorage.numberOrder;
       this.GET_ORDER_LIST(this.numberOrder);
     }
-    // if (this.MENU.length == 0) {
-    this.GET_MENU(this.$route.params.category);
-    // }
+    if (this.MENU.length == 0) {
+      this.GET_MENU(this.$route.params.category);
+    }
   },
 };
 </script>
