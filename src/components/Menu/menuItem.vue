@@ -74,10 +74,10 @@ export default {
         const today = new Date();
         const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
         localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+        this.numberOrder = localStorage.numberOrder;
       }
       this.item.quantity = this.quantity;
       this.$store.dispatch('ADD_DISH', { dish: this.item, inc, numberOrder: this.numberOrder });
-      this.GET_ORDER_LIST(this.numberOrder);
     },
   },
   mounted() {
