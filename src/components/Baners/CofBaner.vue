@@ -18,7 +18,7 @@ export default {
       items: [
         {
           src: 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_760,q_75,w_1900/https://assets.simpleviewinc.com/simpleview/image/upload/crm/wichita/Coffee-Placeholder-Visit-Wichita-Header_F987B6B9-5056-A36A-07BC5B735902EB4E-f987b51a5056a36_f987b71c-5056-a36a-07799e7a0fda9778.jpg',
-          to: 'menu/starters',
+          to: '/menu/starters',
           text: 'Рекламный текс',
           style: 'red',
           class: 'red',

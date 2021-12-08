@@ -49,7 +49,7 @@
             clearable
             outlined
             dense
-            :rules="rules"
+            :rules="[v => !!v || 'Доставка не осуществляется без адреса!']"
           ></v-text-field>
         </v-col>
         <v-col cols="12" lg="4" sm12 class="pt-0">
@@ -61,7 +61,6 @@
             clearable
             outlined
             dense
-            :rules="rules"
           ></v-text-field>
         </v-col>
         <v-col cols="12" lg="4" sm12 class="pt-0">
@@ -73,7 +72,6 @@
             clearable
             outlined
             dense
-            :rules="rules"
           ></v-text-field>
         </v-col>
         <v-col cols="12" lg="4" sm12 class="pt-0">
@@ -140,9 +138,9 @@
       </tooltip>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
-      <v-btn outlined color="primary" class="title btn-buy" @click="openBasket"
-        >Открыть корзину</v-btn
-      >
+      <v-btn absolute left bottom color="primary" class="title btn-basket" @click="openBasket">
+        Открыть корзину
+      </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -157,7 +155,6 @@ export default {
   },
   data() {
     return {
-      basket: false,
       valid: true,
       user: {
         userpthone: null,
@@ -207,10 +204,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-buy {
-  background: rgba(172, 166, 166, 0.363);
-  width: 100%;
-  height: 50px;
-  margin-top: 20px;
+.btn {
+  &-buy {
+    background: rgba(172, 166, 166, 0.363);
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+  }
+  &-basket {
+    width: calc(100% - 25px);
+  }
 }
 </style>
