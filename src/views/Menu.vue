@@ -3,7 +3,14 @@
     <h1 class="brandName">СoffeeBonk</h1>
     <div class="hr"></div>
     <h3 v-if="category" class="menuTitle">{{ category.title }}</h3>
-    <menuList :list="MENU" />
+    <v-progress-circular
+      v-if="showPreloader"
+      :size="70"
+      :width="7"
+      color="white"
+      indeterminate
+    ></v-progress-circular>
+    <menuList v-else :list="MENU" />
   </div>
 </template>
 
@@ -15,6 +22,11 @@ export default {
   components: {
     menuList,
   },
+  data() {
+    return {
+      showPreloader: true,
+    };
+  },
   computed: {
     ...mapGetters(['MENU', 'CATEGORIES']),
     category() {
@@ -25,13 +37,22 @@ export default {
     ...mapActions(['GET_MENU', 'GET_CATEGORIES']),
   },
   created() {
-    // this.GET_CATEGORIES()
     this.GET_MENU(this.$route.params.category);
+  },
+  mounted() {
+    if (this.MENU.length == 0) {
+      setTimeout(() => {
+        this.showPreloader = false;
+      }, 2000);
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.v-progress-circular {
+  margin: 1rem;
+}
 .brandName {
   font-family: Playfair Display;
   font-weight: bold;
