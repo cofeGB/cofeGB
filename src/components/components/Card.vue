@@ -20,7 +20,7 @@
       </v-list-item-avatar>
     </v-list-item>
 
-    <v-card-actions>
+    <v-card-actions :class="actionsClass">
       <slot name="actions" />
     </v-card-actions>
   </v-card>
@@ -31,6 +31,10 @@ export default {
   name: 'Card',
   props: {
     avatarcolor: {
+      type: String,
+      default: '',
+    },
+    actionsClass: {
       type: String,
       default: '',
     },
@@ -64,7 +68,7 @@ export default {
     },
     classes: {
       type: String,
-      default: '',
+      default: 'card',
     },
     elevation: {
       type: [String, Number],
