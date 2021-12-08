@@ -27,12 +27,19 @@ function reWriteFile(req, res, action, file) {
   });
 }
 
-function createFile(file) {
+function createFile(req, res, action, file) {
   fs.readFile(path.resolve('server/db/orderPattern.json'), 'utf-8', (err, data) => {
     if (err) {
       console.log(err);
     } else {
-      fs.writeFileSync(file, data);
+      fs.writeFile(file, data, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('successfully file created')
+          reWriteFile(req, res, action, file);
+        }
+      });
     }
   })
 }
@@ -41,8 +48,7 @@ const handler = (req, res, action, file) => {
   if (fs.existsSync(file)) {
     reWriteFile(req, res, action, file);
   } else {
-    createFile(file)
-    reWriteFile(req, res, action, file);
+    createFile(req, res, action, file);
   }
 };
 

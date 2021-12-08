@@ -156,36 +156,48 @@ export default new Vuex.Store({
       // commit('SET_AMOUNT', cartList.amount);
     },
 
-    ADD_DISH({ dispatch }, payload) {
-      console.log(payload.dish.quantity);
+    async ADD_DISH({ dispatch }, payload) {
+      // console.log(payload.dish.quantity);
       if (!payload.dish.quantity) {
-        axios.post(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
-          dish: payload.dish,
-          quantity: 1,
-        });
+        await axios.post(
+          `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+          {
+            dish: payload.dish,
+            quantity: 1,
+          }
+        );
+        dispatch('GET_ORDER_LIST', payload.numberOrder);
       }
 
       if (payload.dish.quantity > 1) {
-        axios.put(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
-          dish: payload.dish,
-          inc: payload.inc,
-        });
+        await axios.put(
+          `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+          {
+            dish: payload.dish,
+            inc: payload.inc,
+          }
+        );
+        dispatch('GET_ORDER_LIST', payload.numberOrder);
       }
       if (payload.dish.quantity == 1) {
         if (payload.inc < 0) {
-          axios.delete(
+          await axios.delete(
             `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
             payload.dish
           );
+          dispatch('GET_ORDER_LIST', payload.numberOrder);
         }
         if (payload.inc > 0) {
-          axios.put(`http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`, {
-            dish: payload.dish,
-            inc: payload.inc,
-          });
+          await axios.put(
+            `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+            {
+              dish: payload.dish,
+              inc: payload.inc,
+            }
+          );
+          dispatch('GET_ORDER_LIST', payload.numberOrder);
         }
       }
-      dispatch('GET_ORDER_LIST', payload.numberOrder);
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
