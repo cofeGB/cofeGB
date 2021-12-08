@@ -48,6 +48,11 @@ export default {
       this.showPreloader = false;
     }
   },
+  watch: {
+    '$route.params.category': function () {
+      this.GET_MENU(this.$route.params.category);
+    },
+  },
 };
 </script>
 
