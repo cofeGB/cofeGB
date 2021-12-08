@@ -6,6 +6,7 @@ import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
 import dish from '../components/dish.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 
 Vue.use(VueRouter);
 
@@ -42,8 +43,8 @@ const routes = [
   },
   {
     path: '*',
-    name: 'NotFound',
-    component: About,
+    name: 'PageNotFound',
+    component: PageNotFound,
   },
 ];
 
