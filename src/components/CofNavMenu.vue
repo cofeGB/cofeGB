@@ -140,10 +140,21 @@ export default {
       this.show = false;
     },
     navMenuVisible(val) {
-      this.show = val;
+      // console.log('S2C');
+      if (this.show != val) {
+        this.show = val;
+      }
     },
     permanent(val) {
       store.dispatch('SHOW_NAV_MENU', val);
+    },
+    show(val) {
+      // console.log('C2S');
+      if (!val) {
+        if (store.getters.NAV_MENU_VISIBLE) {
+          store.dispatch('SHOW_NAV_MENU', false);
+        }
+      }
     },
   },
 };
