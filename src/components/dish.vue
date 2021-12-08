@@ -24,32 +24,36 @@
           </span>
         </div>
         <div class="dish__main_cpfc">
-          <div v-for="(i, index) of item.calories" :key="index">
+          <div v-for="(i, index) of menuItem.calories" :key="index">
             <span>{{ i.procents }}</span>
             <br />
             <span>{{ i.title }}</span>
           </div>
         </div>
       </div>
-      <hr />
-      <div class="dish__constructor">
-        <p>Здесь конструктор?</p>
+      <div class="dish__main_description">
+        <h4>Описание:</h4>
+        <span>{{ menuItem.description }}</span>
       </div>
-      <button @click="onClick(1)" v-if="quantity === 0">
-        <div class="dish__btn cart__btn">
-          <span>В КОРЗИНУ</span>
-          <span>{{ menuItem.price }} &#x20bd;</span>
-        </div>
+    </div>
+    <hr />
+    <div class="dish__constructor">
+      <p>Здесь конструктор?</p>
+    </div>
+    <button @click="onClick(1)" v-if="quantity === 0">
+      <div class="dish__btn cart__btn">
+        <span>В КОРЗИНУ</span>
+        <span>{{ menuItem.price }} &#x20bd;</span>
+      </div>
+    </button>
+    <div class="dish__btn cart__btn" v-else>
+      <button @click="onClick(-1)">
+        <i class="fas fa-minus"></i>
       </button>
-      <div class="dish__btn cart__btn" v-else>
-        <button @click="onClick(-1)">
-          <i class="fas fa-minus"></i>
-        </button>
-        <span>&times; {{ quantity }}</span>
-        <button @click="onClick(1)">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
+      <span>&times; {{ quantity }}</span>
+      <button @click="onClick(1)">
+        <i class="fas fa-plus"></i>
+      </button>
     </div>
   </div>
 </template>
