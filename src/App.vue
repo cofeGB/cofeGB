@@ -1,11 +1,13 @@
 <template>
   <v-app app>
     <Header />
+    <CofBaner v-if="advertisement" @closeAdvertisement="closeAdvertisement" />
     <v-main>
       <router-view />
     </v-main>
     <CofDelivery />
     <CofNavMenu />
+    <CofBasket />
     <Footeer />
   </v-app>
 </template>
@@ -14,6 +16,8 @@
 import Header from '@/components/Header.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
+import CofBasket from '@/components/CofBasket/CofBasket.vue';
+import CofBaner from '@/components/Baners/CofBaner.vue';
 import { mapActions } from 'vuex';
 
 export default {
@@ -22,10 +26,20 @@ export default {
     Header,
     Footeer,
     CofDelivery,
+    CofBasket,
+    CofBaner,
     CofNavMenu: () => import('./components/CofNavMenu.vue'),
+  },
+  data() {
+    return {
+      advertisement: true,
+    };
   },
   methods: {
     ...mapActions(['GET_NAV_MENU', 'GET_LOYALTY', 'GET_CATEGORIES']),
+    closeAdvertisement() {
+      this.advertisement = false;
+    },
   },
   created() {
     this.GET_NAV_MENU();

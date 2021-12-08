@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    modal: false,
     quickOrder: [],
     total: {
       totalPrice: 0,
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     categories: [],
   },
   getters: {
+    MODAL: state => {
+      return state.modal;
+    },
     CATEGORIES: state => {
       return state.categories;
     },
@@ -91,6 +95,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    OPEN_CLOSE_MODAL(state) {
+      state.modal = !state.modal;
+    },
     SET_CATEGORIES(state, data) {
       state.categories = data;
     },
@@ -138,7 +145,18 @@ export default new Vuex.Store({
       const { data: categories } = await axios.get(`http://localhost:3000/api/categories/`);
       commit('SET_CATEGORIES', categories);
     },
-
+    OPEN_CLOSE_MODAL({ commit }) {
+      commit('OPEN_CLOSE_MODAL');
+    },
+    GET_TOTAL_SUM({ commit, state }) {
+      const basket = state.quickOrder;
+      let total = 0;
+      basket.forEach(el => {
+        total = total + el.price * el.quantity;
+        return total;
+      });
+      commit('GET_TOTAL_SUM', total);
+    },
     DELETE_ALL_IN_ORDER_ACTION({ commit }) {
       commit('DELETE_ALL_IN_ORDER');
     },
