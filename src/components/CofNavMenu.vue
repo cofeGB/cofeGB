@@ -81,7 +81,7 @@ import store from '../store/index';
 const INFO_NAV_MENU = [
   {
     title: 'Доставка и оплата',
-    path: '/delivery-payments',
+    path: '/delivery',
   },
   {
     title: 'Контакты',
