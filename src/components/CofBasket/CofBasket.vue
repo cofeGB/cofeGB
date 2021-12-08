@@ -2,12 +2,12 @@
   <Modal :activator="basket" @close="close">
     <template #content>
       <v-flex class="classes">
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="close">
+        <v-toolbar color="primary">
+          <v-spacer></v-spacer>
+          <v-toolbar-title class="mr-3">Корзина</v-toolbar-title>
+          <v-btn icon @click="close">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title>Корзина</v-toolbar-title>
-          <v-spacer></v-spacer>
         </v-toolbar>
       </v-flex>
     </template>
@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .classes {
-  background: rgba($color: #000000, $alpha: 0.9) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
   height: 100vh !important;
 }
 </style>
