@@ -138,9 +138,7 @@
       </tooltip>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
-      <v-btn absolute left bottom color="primary" class="title btn-basket" @click="openBasket">
-        Открыть корзину
-      </v-btn>
+      <v-btn color="primary" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -210,9 +208,6 @@ export default {
     width: 100%;
     height: 50px;
     margin-top: 20px;
-  }
-  &-basket {
-    width: calc(100% - 25px);
   }
 }
 </style>
