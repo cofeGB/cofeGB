@@ -44,12 +44,16 @@ export default {
   text-transform: uppercase;
 }
 .menuList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 32px;
 
   @media (max-width: 580px) {
-    justify-content: center;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
   }
 }
 </style>

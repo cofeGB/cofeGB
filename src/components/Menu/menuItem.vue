@@ -95,6 +95,7 @@ export default {
   height: 400px
   max-width: 260px
   background-color: white
+  justify-self: center
   &__desc
     padding: 20px
     color: #564742
@@ -153,7 +154,7 @@ export default {
   width: 0
   height: 0
   border-top: 40px solid white
-  border-right: 260px solid transparent
+  border-right: 240px solid transparent
 .btn-plus
   color: #25DCD1
 .contaier
@@ -161,4 +162,12 @@ export default {
   width: 100%
 img
   width: 100%
+
+@media (max-width: 580px)
+  .menuItem
+    height: 350px
+    max-width: 220px
+  .triangle
+    border-top: 35px solid white
+    border-right: 200px solid transparent
 </style>
