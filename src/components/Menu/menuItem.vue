@@ -55,6 +55,11 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      numberOrder: '',
+    };
+  },
   computed: {
     ...mapGetters(['QUICK_ORDER']),
     quantity() {
@@ -63,10 +68,23 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['ADD_DISH']),
+    ...mapActions(['ADD_DISH', 'GET_ORDER_LIST']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.item, inc });
+      if (!localStorage.numberOrder) {
+        const today = new Date();
+        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+        this.numberOrder = localStorage.numberOrder;
+      }
+      this.item.quantity = this.quantity;
+      this.$store.dispatch('ADD_DISH', { dish: this.item, inc, numberOrder: this.numberOrder });
     },
+  },
+  mounted() {
+    if (localStorage.numberOrder) {
+      this.numberOrder = localStorage.numberOrder;
+      this.GET_ORDER_LIST(this.numberOrder);
+    }
   },
 };
 </script>
@@ -77,6 +95,7 @@ export default {
   height: 400px
   max-width: 260px
   background-color: white
+  justify-self: center
   &__desc
     padding: 20px
     color: #564742
@@ -135,7 +154,7 @@ export default {
   width: 0
   height: 0
   border-top: 40px solid white
-  border-right: 260px solid transparent
+  border-right: 240px solid transparent
 .btn-plus
   color: #25DCD1
 .contaier
@@ -143,4 +162,12 @@ export default {
   width: 100%
 img
   width: 100%
+
+@media (max-width: 580px)
+  .menuItem
+    height: 350px
+    max-width: 220px
+  .triangle
+    border-top: 35px solid white
+    border-right: 200px solid transparent
 </style>

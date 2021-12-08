@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const fs = require('fs');
 
 const { server } = require('http');
@@ -15,10 +16,10 @@ app.use(function(req, res, next){
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 });
-app.use('/api/orders', ordersRouter);
+app.use('/api/order', ordersRouter);
 
 app.get('/api/menu/:category', (req, res) => {
-  fs.readFile('./server/db/menu.json', 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('server/db/menu.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -27,7 +28,7 @@ app.get('/api/menu/:category', (req, res) => {
   });
 });
 app.get('/api/categories', (req, res) => {
-  fs.readFile('./server/db/categories.json', 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('server/db/categories.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -36,22 +37,21 @@ app.get('/api/categories', (req, res) => {
   });
 });
 
-app.get('/api/menu', (req, res) => {
-  fs.readFile('./server/db/menu.json', 'utf-8', (err, data) => {
-    if (err) {
-      res.send(JSON.stringify({ result: 0, text: err }));
-    } else {
-      res.send(data);
-    }
-  });
-});
+// app.get('/api/menu', (req, res) => {
+//   fs.readFile(path.resolve('server/db/menu.json'), 'utf-8', (err, data) => {
+//     if (err) {
+//       res.send(JSON.stringify({ result: 0, text: err }));
+//     } else {
+//       res.send(data);
+//     }
+//   });
+// });
 
 app.get('/api/navMenu', (req, res) => {
-  fs.readFile('./server/db/navMenu.json', 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('server/db/navMenu.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
-      // res.sendStatus(404, JSON.stringify({result: 0, text: err}));
-    } else {
+     } else {
       res.send(data);
     }
   });

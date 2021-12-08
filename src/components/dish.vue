@@ -68,12 +68,20 @@ export default {
     return {
       img: require('../assets/img/26.jpg'),
       nameSection: 'sandwich',
+      numberOrder: '',
     };
   },
   methods: {
-    ...mapActions(['ADD_DISH', 'GET_MENU']),
+    ...mapActions(['ADD_DISH', 'GET_MENU', 'GET_ORDER_LIST']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc });
+      if (!localStorage.numberOrder) {
+        const today = new Date();
+        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+      }
+      this.menuItem.quantity = this.quantity;
+      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc, numberOrder: this.numberOrder });
+      this.GET_ORDER_LIST(this.numberOrder);
     },
   },
   computed: {
@@ -87,7 +95,13 @@ export default {
     },
   },
   mounted() {
-    this.GET_MENU(this.$route.params.category);
+    if (localStorage.numberOrder) {
+      this.numberOrder = localStorage.numberOrder;
+      this.GET_ORDER_LIST(this.numberOrder);
+    }
+    if (this.MENU.length == 0) {
+      this.GET_MENU(this.$route.params.category);
+    }
   },
 };
 </script>
