@@ -140,6 +140,9 @@
       </tooltip>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
+      <v-btn outlined color="primary" class="title btn-buy" @click="openBasket"
+        >Открыть корзину</v-btn
+      >
     </v-form>
   </v-container>
 </template>
@@ -154,6 +157,7 @@ export default {
   },
   data() {
     return {
+      basket: false,
       valid: true,
       user: {
         userpthone: null,
@@ -192,6 +196,9 @@ export default {
     },
   },
   methods: {
+    openBasket() {
+      this.$store.dispatch('OPEN_CLOSE_MODAL');
+    },
     buyOrder() {
       this.$refs.form.validate();
     },
@@ -205,8 +212,5 @@ export default {
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  &:hover {
-    background: #25dcd1;
-  }
 }
 </style>
