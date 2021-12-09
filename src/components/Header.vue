@@ -1,25 +1,29 @@
 <template>
-  <v-app-bar app flat class="header" clipped-right clipped-left>
+  <div class="header">
     <v-btn
       v-if="vis"
       @click="$store.dispatch('SHOW_NAV_MENU', !$store.state.navMenuVisible)"
       color="primary"
-      class="header-btn"
+      class="header--btn"
     >
       Меню
     </v-btn>
 
-    <v-spacer></v-spacer>
+    <!-- <v-spacer></v-spacer> -->
     <v-img
-      class="d-inline-block text-center bordered"
+      class="d-inline-block text-center bordered header--img"
       height="90"
       width="100"
       contain
       :src="require('../assets/img/logo.png')"
     ></v-img>
-    <v-spacer></v-spacer>
-    <CofDeliveryHeader :tooltip-disabled="tooltipDisabled" @openOrder="openOrder" />
-  </v-app-bar>
+    <!-- <v-spacer></v-spacer> -->
+    <CofDeliveryHeader
+      :tooltip-disabled="tooltipDisabled"
+      @openOrder="openOrder"
+      class="header--cart"
+    />
+  </div>
 </template>
 
 <script>
@@ -63,8 +67,20 @@ export default {
 <style lang="scss" scoped>
 .header {
   background: rgba(48, 24, 13, 0.5) !important;
-  &-btn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  &--btn {
     color: #000 !important;
+    grid-column: 1 / 2;
+  }
+  &--img {
+    grid-column: 2 / 3;
+    justify-self: center;
+  }
+  &--cart {
+    grid-column: 3 / 4;
+    justify-self: end;
   }
 }
 </style>

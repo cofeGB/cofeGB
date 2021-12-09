@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
-    <h1 class="brandName">СoffeeBonk</h1>
+    <!-- <h1 class="brandName">СoffeeBonk</h1> -->
+    <h1 class="brandName">{{ globalName }}</h1>
     <div class="hr"></div>
     <h3 v-if="category" class="menuTitle">{{ category.title }}</h3>
     <div class="preloader" v-show="showPreloader">
@@ -13,6 +14,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import menuList from '../components/Menu/menuList.vue';
+import store from '../store/index';
+
 export default {
   name: 'Menu',
   components: {
@@ -21,6 +24,7 @@ export default {
   data() {
     return {
       showPreloader: true,
+      globalName: store.state.globalConst.brandName,
     };
   },
   computed: {
@@ -57,17 +61,17 @@ export default {
 .v-progress-circular {
   margin: 1rem;
 }
-.brandName {
-  font-family: Playfair Display;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 85px;
-  color: white;
-  text-align: center;
-  @media (max-width: 450px) {
-    font-size: 54px;
-  }
-}
+// .brandName {
+//   font-family: Playfair Display;
+//   font-weight: bold;
+//   font-size: 64px;
+//   line-height: 85px;
+//   color: white;
+//   text-align: center;
+//   @media (max-width: 450px) {
+//     font-size: 54px;
+//   }
+// }
 .menu {
   background-size: cover;
 }
