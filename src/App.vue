@@ -25,12 +25,20 @@ export default {
     CofNavMenu: () => import('./components/CofNavMenu.vue'),
   },
   methods: {
-    ...mapActions(['GET_NAV_MENU', 'GET_LOYALTY', 'GET_CATEGORIES']),
+    ...mapActions([
+      'GET_GLOBAL_CONST',
+      'GET_NAV_MENU',
+      'GET_LOYALTY',
+      'GET_CATEGORIES',
+      'GET_EMPLOYEE',
+    ]),
   },
   created() {
+    this.GET_GLOBAL_CONST();
     this.GET_NAV_MENU();
     this.GET_LOYALTY();
     this.GET_CATEGORIES();
+    this.GET_EMPLOYEE();
   },
 };
 </script>
@@ -68,6 +76,22 @@ export default {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('assets/img/backgroundImage.png');
   background-attachment: fixed;
+}
+
+.brandName {
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 85px;
+  color: white;
+  text-align: center;
+  @media (max-width: 450px) {
+    font-size: 54px;
+  }
+}
+
+.container {
+  padding-top: 0;
 }
 
 .w100 {

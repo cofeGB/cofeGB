@@ -3,28 +3,28 @@
     "src": "https://source.unsplash.com/random?people&1",
     "post": "Директор",
     "name": "Иванов Иван",
-    "rating": 5
+    "rating": 4.4
   },
   {
     "src": "https://source.unsplash.com/random?people&2",
     "post": "Администратор",
     "name": "Ольгина Ольга",
-    "rating": 5
+    "rating": 4.8
   },
   {
     "src": "https://source.unsplash.com/random?people&3",
     "post": "Шеф-повар",
     "name": "Константинов Константин",
-    "rating": 5
+    "rating": 4
   },
   {
     "src": "https://source.unsplash.com/random?people&4",
     "post": "Бариста",
     "name": "Петров Петр",
-    "rating": 5
+    "rating": 3.7
   },
   {
-    "src": "https://source.unsplash.com/random?people&4",
+    "src": "https://source.unsplash.com/random?people&5",
     "post": "Официант",
     "name": "Светина Светлана",
     "rating": 5

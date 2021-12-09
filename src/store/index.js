@@ -6,6 +6,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    globalName: 'СoffeeBonk',
+    globalConst: {},
+    employee: [],
     quickOrder: [],
     total: {
       totalPrice: 0,
@@ -59,6 +62,12 @@ export default new Vuex.Store({
     CATEGORIES: state => {
       return state.categories;
     },
+    GLOBAL_CONST: state => {
+      return state.globalConst;
+    },
+    EMPLOYEE: state => {
+      return state.employee;
+    },
     TOTAL_SUM: state => {
       return state.total;
     },
@@ -93,6 +102,12 @@ export default new Vuex.Store({
   mutations: {
     SET_CATEGORIES(state, data) {
       state.categories = data;
+    },
+    SET_GLOBAL_CONST(state, data) {
+      state.globalConst = data;
+    },
+    SET_EMPLOYEE(state, data) {
+      state.employee = data;
     },
     SET_MENU(state, data) {
       state.section = data;
@@ -137,6 +152,14 @@ export default new Vuex.Store({
     async GET_CATEGORIES({ commit }) {
       const { data: categories } = await axios.get(`http://localhost:3000/api/categories/`);
       commit('SET_CATEGORIES', categories);
+    },
+    async GET_EMPLOYEE({ commit }) {
+      const { data: employee } = await axios.get(`http://localhost:3000/api/employee/`);
+      commit('SET_EMPLOYEE', employee);
+    },
+    async GET_GLOBAL_CONST({ commit }) {
+      const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
+      commit('SET_GLOBAL_CONST', globalConst);
     },
 
     DELETE_ALL_IN_ORDER_ACTION({ commit }) {
