@@ -36,6 +36,24 @@ app.get('/api/categories', (req, res) => {
     }
   });
 });
+app.get('/api/employee', (req, res) => {
+  fs.readFile(path.resolve('server/db/employee.json'), 'utf-8', (err, data) => {
+    if (err) {
+      res.send(JSON.stringify({ result: 0, text: err }));
+    } else {
+      res.send(data);
+    }
+  });
+});
+app.get('/api/globalConst', (req, res) => {
+  fs.readFile(path.resolve('server/db/globalConst.json'), 'utf-8', (err, data) => {
+    if (err) {
+      res.send(JSON.stringify({ result: 0, text: err }));
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 // app.get('/api/menu', (req, res) => {
 //   fs.readFile(path.resolve('server/db/menu.json'), 'utf-8', (err, data) => {
