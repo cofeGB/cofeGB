@@ -42,6 +42,11 @@ const routes = [
     component: dish,
   },
   {
+    path: '/private/order-desk',
+    name: 'PrivateOrderDesk',
+    component: () => import('../views/PrivOrderDesk.vue'),
+  },
+  {
     path: '*',
     name: 'PageNotFound',
     component: PageNotFound,
