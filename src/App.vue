@@ -106,6 +106,8 @@ export default {
 
 .container {
   padding-top: 0;
+#card {
+  border: 1px solid white !important;
 }
 
 .w100 {

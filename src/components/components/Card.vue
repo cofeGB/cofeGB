@@ -7,20 +7,10 @@
     :class="classes"
     :color="color"
     :elevation="elevation"
+    id="card"
   >
     <slot name="content" />
-    <v-list-item v-if="title || subtitle">
-      <v-list-item-content>
-        <v-list-item-title class="mb-1"> {{ title }} </v-list-item-title>
-        <v-list-item-subtitle>{{ subtitle }}</v-list-item-subtitle>
-      </v-list-item-content>
-
-      <v-list-item-avatar v-if="avatarcolor" :size="avatarsize" :color="avatarcolor">
-        <slot name="avatar" />
-      </v-list-item-avatar>
-    </v-list-item>
-
-    <v-card-actions :class="actionsClass">
+    <v-card-actions v-if="action" :class="action">
       <slot name="actions" />
     </v-card-actions>
   </v-card>
@@ -30,13 +20,9 @@
 export default {
   name: 'Card',
   props: {
-    avatarcolor: {
-      type: String,
-      default: '',
-    },
-    actionsClass: {
-      type: String,
-      default: '',
+    action: {
+      type: Boolean,
+      default: false,
     },
     outlined: {
       type: [Boolean, String],
@@ -81,5 +67,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
