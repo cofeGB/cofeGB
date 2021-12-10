@@ -4,19 +4,17 @@
     <h1 class="brandName">{{ globalName }}</h1>
     <div class="text-center text-h4 mx-auto">Кофе для Вашей бодрости, настроения и здоровья!</div>
     <div class="text-center text-h3 ma-7">Наша команда</div>
-    <v-carousel show-arrows-on-hover hide-delimiters class="d-flex justify-center">
+    <v-carousel cycle show-arrows-on-hover hide-delimiters class="d-flex justify-center">
       <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
-        <v-card class="d-flex flex-column justify-center align-center" width="500">
-          <v-avatar class="ma-3" size="300" tile>
-            <v-img
-              :src="require('../assets/img/employee/' + item.src)"
-              position="center center"
-              height="250px"
-              width="350px"
-              alt="logo"
-              contain
-            />
-          </v-avatar>
+        <v-card class="d-flex flex-column justify-center align-center pa-3" width="500">
+          <v-img
+            :src="require(`../assets/${item.src}`)"
+            position="center center"
+            height="320px"
+            width="320px"
+            alt="logo"
+            contain
+          ></v-img>
           <v-card-title class="text-h5">
             {{ item.post }}
           </v-card-title>
@@ -53,4 +51,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.v-image__image {
+  top: 5px;
+  // background-color: #ddd
+  border: 1px solid #ddd;
+}
+</style>
