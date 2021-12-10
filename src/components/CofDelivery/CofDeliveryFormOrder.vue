@@ -155,7 +155,6 @@ export default {
   },
   data() {
     return {
-      basket: false,
       valid: true,
       user: {
         userPhone: null,
