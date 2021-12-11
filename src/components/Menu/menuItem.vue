@@ -42,6 +42,7 @@
 </template>
 
 <script>
+const md5 = require('md5');
 import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'menuItem',
@@ -71,13 +72,20 @@ export default {
     ...mapActions(['ADD_DISH', 'GET_ORDER_LIST']),
     onClick(inc) {
       if (!localStorage.numberOrder) {
+        const guid = md5(Math.floor(Math.random() * 1000)).substr(0, 6);
         const today = new Date();
         const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+        localStorage.numberOrder = `${date}-${guid}`;
+        localStorage.guid = guid;
         this.numberOrder = localStorage.numberOrder;
       }
       this.item.quantity = this.quantity;
-      this.$store.dispatch('ADD_DISH', { dish: this.item, inc, numberOrder: this.numberOrder });
+      this.$store.dispatch('ADD_DISH', {
+        dish: this.item,
+        inc,
+        numberOrder: localStorage.numberOrder,
+        guid: localStorage.guid,
+      });
     },
   },
   mounted() {

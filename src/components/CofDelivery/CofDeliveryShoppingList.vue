@@ -95,7 +95,7 @@
           outlined
           color="error"
           class="title btn-buy w100 mt-2"
-          @click="DELETE_ALL_IN_ORDER_ACTION"
+          @click="clearBasket()"
           >Очистить корзину</v-btn
         >
       </div>
@@ -201,8 +201,11 @@ export default {
       this.contentClick = true;
       this.$router.replace({ path: `/menu/:${el.path}`, query: el });
     },
+    clearBasket() {
+      this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
+    },
     onClick(el, inc) {
-      this.$store.dispatch('ADD_DISH', { dish: el, inc });
+      this.ADD_DISH({ dish: el, inc });
     },
   },
 };

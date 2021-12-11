@@ -2,7 +2,7 @@
   <v-container>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="user.userpthone"
+        v-model="user.userPhone"
         class="my-2"
         loading="false"
         label="Ваш номер телефона"
@@ -54,7 +54,7 @@
         </v-col>
         <v-col cols="12" lg="4" sm12 class="pt-0">
           <v-text-field
-            v-model="user.address.ofis"
+            v-model="user.address.ofice"
             loading="false"
             label="Кв.\Офис"
             hide-details="auto"
@@ -156,16 +156,16 @@ export default {
       basket: false,
       valid: true,
       user: {
-        userpthone: null,
+        userPhone: null,
         userName: '',
         backCall: true,
         address: {
           strit: '',
           home: '',
-          ofis: '',
+          ofice: '',
           flore: '',
         },
-        massage: '',
+        message: '',
         payment: 'online',
         agree: false,
       },
@@ -197,6 +197,10 @@ export default {
     },
     buyOrder() {
       this.$refs.form.validate();
+      this.$store.dispatch('POST_ORDER', {
+        user: this.user,
+        numberOrder: localStorage.numberOrder,
+      });
     },
   },
 };

@@ -1,12 +1,17 @@
 {
     "list": [],
-    "guid": "93f087c8",
+    "guid": "",
     "user": {
         "phone": "",
-        "addres": ""
+        "addres": {},
+        "name": "",
+        "createAcount": false
     },
     "total": 0,
     "timeTo": "",
     "timeConfirmation": "",
-    "createAcount": false
+    "userMessage": "",
+    "paymentMethod": "",
+    "backCall": true,
+    "status": "pending"
 }
