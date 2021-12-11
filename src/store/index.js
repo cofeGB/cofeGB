@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { getRandomPrivOrderArray } from '../mockdata/priv-order';
 
 Vue.use(Vuex);
 
@@ -58,6 +59,14 @@ export default new Vuex.Store({
     navMenuVisible: false,
     section: [],
     categories: [],
+    /** @type {PrivOrder[]} */
+    pendingOrders: getRandomPrivOrderArray(10),
+
+    /** @type {PrivOrder[]} */
+    cookingOrders: [],
+
+    /** @type {PrivOrder[]} */
+    closedOrders: [],
   },
   getters: {
     MODAL: state => {
@@ -101,6 +110,15 @@ export default new Vuex.Store({
     },
     NAV_MENU_VISIBLE: state => {
       return state.navMenuVisible;
+    },
+    PENDING_ORDERS: state => {
+      return state.pendingOrders;
+    },
+    COOKING_ORDERS: state => {
+      return state.cookingOrders;
+    },
+    CLOSED_ORDERS: state => {
+      return state.closedOrders;
     },
   },
   mutations: {

@@ -85,3 +85,18 @@ export function getRandomPrivOrder() {
   };
   return order;
 }
+
+/**
+ * @param {number} count - count of orders to create
+ * @returns {PrivOrder[]}
+ */
+export function getRandomPrivOrderArray(count) {
+  /** @const {PrivOrder[]} */
+  const orders = [];
+
+  for (let i = 0; i < count; i++) {
+    orders.push(getRandomPrivOrder());
+  }
+
+  return orders;
+}
