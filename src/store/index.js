@@ -112,13 +112,13 @@ export default new Vuex.Store({
       return state.navMenuVisible;
     },
     PENDING_ORDERS: state => {
-      return state.pendingOrders;
+      return state.pendingOrders || [];
     },
     COOKING_ORDERS: state => {
-      return state.cookingOrders;
+      return state.cookingOrders || [];
     },
     CLOSED_ORDERS: state => {
-      return state.closedOrders;
+      return state.closedOrders || [];
     },
   },
   mutations: {

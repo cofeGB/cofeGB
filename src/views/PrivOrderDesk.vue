@@ -1,17 +1,17 @@
 <template>
   <v-container fluid>
     <v-row align="center" dense>
-      <v-col cols="6">
+      <v-col cols="6" align-self="start">
         <v-card>
           <v-card-title class="justify-center"> Заказ </v-card-title>
         </v-card>
-        <PrivOrderList type="pending" />
+        <PrivOrderList orderType="pending" />
       </v-col>
-      <v-col cols="6">
+      <v-col cols="6" align-self="start">
         <v-card>
           <v-card-title class="justify-center"> В работе </v-card-title>
         </v-card>
-        <PrivOrderList type="coocking" />
+        <PrivOrderList orderType="cooking" />
       </v-col>
     </v-row>
   </v-container>
