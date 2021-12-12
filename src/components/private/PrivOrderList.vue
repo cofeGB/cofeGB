@@ -1,7 +1,17 @@
 <template>
-  <div>
-    <PrivOrderCard v-for="order in orders" :key="order.id" :order="order" />
-  </div>
+  <v-card
+    class="d-flex flex-row align-content-start justify-start flex-wrap"
+    color="grey lighten-2"
+    flat
+    tile
+  >
+    <PrivOrderCard
+      class="flex-grow-1 ma-8px"
+      v-for="order in orders"
+      :key="order.id"
+      :order="order"
+    />
+  </v-card>
 </template>
 
 <script>

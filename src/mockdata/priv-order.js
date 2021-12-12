@@ -16,7 +16,7 @@
  * @property {string} creationDateUTC - 'Sat, 11 Dec 2021 08:36:34 GMT'
  * @property {string} id
  * @property {Dish[]} dishList
- * @property {OrderStatus} status
+ * @property {OrderStatus} state
  */
 
 /**
@@ -42,7 +42,7 @@ const usedDishIds = [];
  */
 function getUniqueId(usedIds) {
   /** @type {string} */
-  const nextId = usedIds.length > 0 ? `${+usedIds[usedIds.length - 1].id + 1}` : '1';
+  const nextId = usedIds.length > 0 ? `${+usedIds[usedIds.length - 1] + 1}` : '1';
   usedIds.push(nextId);
   return nextId;
 }
@@ -81,7 +81,7 @@ export function getRandomPrivOrder() {
     creationDateUTC: getOrderCreationDate(),
     id: `Z${getUniqueId(usedOrderIds)}`,
     dishList,
-    status: 'pending',
+    state: 'pending',
   };
   return order;
 }
