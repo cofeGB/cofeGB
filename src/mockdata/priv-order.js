@@ -13,7 +13,7 @@
 
 /**
  * @typedef {Object} PrivOrder
- * @property {string} creationDateUTC - 'Sat, 11 Dec 2021 08:36:34 GMT'
+ * @property {Date} creationDate
  * @property {string} id
  * @property {Dish[]} dishList
  * @property {OrderStatus} state
@@ -23,11 +23,11 @@
  * @returns {string}
  */
 function getOrderCreationDate() {
-  const timeVariationMaxMs = 1000 * 60;
+  const timeVariationMaxMs = 1000 * 60 * 60;
   const randomDateMs = Date.now() + Math.round(timeVariationMaxMs * Math.random());
   const randomDate = new Date(randomDateMs);
-  const randomDateUTCString = randomDate.toUTCString();
-  return randomDateUTCString;
+  // const randomDateUTCString = randomDate.toUTCString();
+  return randomDate;
 }
 
 /** @type {string[]} */
@@ -52,12 +52,12 @@ function getUniqueId(usedIds) {
  */
 function getRandomDish() {
   /** @type {string} */
-  const id = `D${getUniqueId(usedDishIds)}`;
+  const id = `${getUniqueId(usedDishIds)}`;
 
   /** @type {Dish} */
   const dish = {
     title: `Dish ${id} title`,
-    id: `D${getUniqueId(usedDishIds)}`,
+    id: `${id}`,
     description: `Dish ${id} description atem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet`,
   };
   return dish;
@@ -78,8 +78,8 @@ export function getRandomPrivOrder() {
 
   /** @type {PrivOrder} */
   const order = {
-    creationDateUTC: getOrderCreationDate(),
-    id: `Z${getUniqueId(usedOrderIds)}`,
+    creationDate: getOrderCreationDate(),
+    id: `${getUniqueId(usedOrderIds)}`,
     dishList,
     state: 'pending',
   };

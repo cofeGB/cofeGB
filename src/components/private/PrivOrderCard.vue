@@ -1,12 +1,12 @@
 <template>
-  <v-card outlined shaped>
+  <v-card outlined shaped class="d-flex flex-column align-content-start justify-start">
     <v-card-title>
-      {{ order.creationDateUTC }}
+      {{ order.creationDate.toLocaleTimeString('ru-RU') }}
+      {{ order.creationDate.toLocaleDateString('ru-RU') }}
+      <br />
+      №{{ order.id }} <br />
     </v-card-title>
-    <v-card-subtitle>
-      {{ order.id }}
-    </v-card-subtitle>
-    Детали заказа<br />
+    <v-treeview dense :items="dishes" class="flex-grow-1"></v-treeview>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn v-if="order.state === 'pending'" text outlined @click="onClickCook"> В работу </v-btn>
@@ -30,6 +30,21 @@ export default {
     },
     onClickClose() {
       this.$store.dispatch('SET_ORDER_STATE', { order: this.order, orderState: 'closed' });
+    },
+    dishToTreeviewItem(dish, id) {
+      return {
+        id,
+        name: dish.title,
+      };
+    },
+  },
+  computed: {
+    dishes() {
+      const items = [];
+      for (let i = 0; i < this.order.dishList.length; i++) {
+        items.push(this.dishToTreeviewItem(this.order.dishList[i], i + 1));
+      }
+      return items;
     },
   },
 };

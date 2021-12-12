@@ -28,15 +28,21 @@ export default {
   },
   computed: {
     orders() {
+      let orders = [];
       switch (this.orderType) {
         case 'cooking':
-          return this.$store.getters.COOKING_ORDERS;
+          orders = Array.from(this.$store.getters.COOKING_ORDERS);
+          break;
         case 'closed':
-          return this.$store.getters.CLOSED_ORDERS;
+          orders = Array.from(this.$store.getters.CLOSED_ORDERS);
+          break;
         case 'pending':
         default:
-          return this.$store.getters.PENDING_ORDERS;
+          orders = Array.from(this.$store.getters.PENDING_ORDERS);
+          break;
       }
+      orders.sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
+      return orders;
     },
   },
 };
