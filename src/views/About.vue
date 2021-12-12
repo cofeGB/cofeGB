@@ -67,8 +67,7 @@
       <!-- </v-row> -->
     </v-container>
 
-    <AddReview v-model="dialog1"/>
-    <!-- <v-dialog v-model="dialog1" max-width="500px">
+    <v-dialog v-model="dialog1" max-width="500px">
       <v-card class="d-flex flex-column pa-5">
         <v-card-actions d-flex justify="end" class="pa-0">
           <v-spacer></v-spacer>
@@ -107,7 +106,7 @@
           Не все поля заполнены
         </v-overlay>
       </v-card>
-    </v-dialog> -->
+    </v-dialog>
 
     <v-dialog v-model="dialog2" max-width="1000px">
       <v-card class="d-flex flex-column pa-5">
@@ -166,13 +165,9 @@
 <script>
 import store from '../store/index';
 import { mapActions, mapGetters } from 'vuex';
-import AddReview from './AddReview.vue';
 
 export default {
   name: 'About',
-  components: {
-    AddReview,
-  },
   data() {
     return {
       globalName: store.state.globalConst.brandName,
