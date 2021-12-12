@@ -67,6 +67,9 @@ export default new Vuex.Store({
 
     /** @type {PrivOrder[]} */
     closedOrders: [],
+
+    /** @type {boolean} */
+    privateMode: false,
   },
   getters: {
     MODAL: state => {
@@ -120,6 +123,9 @@ export default new Vuex.Store({
     CLOSED_ORDERS: state => {
       return state.closedOrders || [];
     },
+    PRIVATE_MODE: state => {
+      return !!state.privateMode;
+    },
   },
   mutations: {
     OPEN_CLOSE_MODAL(state) {
@@ -159,6 +165,9 @@ export default new Vuex.Store({
     },
     GET_TOTAL_SUM(state, total) {
       state.total.totalPrice = total;
+    },
+    SET_PRIVATE_MODE(state, payload) {
+      state.privateMode = !!payload.enable;
     },
   },
   actions: {
@@ -261,6 +270,9 @@ export default new Vuex.Store({
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
+    },
+    SET_PRIVATE_MODE: ({ commit }, payload) => {
+      commit('SET_PRIVATE_MODE', payload);
     },
   },
 });
