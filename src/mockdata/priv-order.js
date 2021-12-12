@@ -1,23 +1,5 @@
 'use strict';
-
-/**
- * @typedef {Object} Dish
- * @property {string} title
- * @property {string} id
- * @property {string} description
- */
-
-/**
- * @typedef {('pending'|'cooking'|'closed')} OrderStatus
- */
-
-/**
- * @typedef {Object} PrivOrder
- * @property {Date} creationDate
- * @property {string} id
- * @property {Dish[]} dishList
- * @property {OrderStatus} state
- */
+/// <reference path="../typedefs.js" />
 
 /**
  * @returns {string}
