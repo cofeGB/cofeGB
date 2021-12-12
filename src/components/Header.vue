@@ -8,8 +8,6 @@
     >
       Меню
     </v-btn>
-
-    <!-- <v-spacer></v-spacer> -->
     <v-img
       class="d-inline-block text-center bordered header--img"
       height="90"
@@ -17,7 +15,6 @@
       contain
       :src="require('../assets/img/logo.png')"
     ></v-img>
-    <!-- <v-spacer></v-spacer> -->
     <CofDeliveryHeader
       :tooltip-disabled="tooltipDisabled"
       @openOrder="openOrder"
@@ -67,20 +64,24 @@ export default {
 <style lang="scss" scoped>
 .header {
   background: rgba(48, 24, 13, 0.5) !important;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  // grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  &--btn {
-    color: #000 !important;
-    grid-column: 1 / 2;
-  }
-  &--img {
-    grid-column: 2 / 3;
-    justify-self: center;
-  }
-  &--cart {
-    grid-column: 3 / 4;
-    justify-self: end;
-  }
+  // &--btn {
+  //   color: #000 !important;
+  //   grid-column: 1 / 2;
+  // }
+  // &--img {
+  //   grid-column: 2 / 3;
+  //   justify-self: center;
+  // }
+  // &--cart {
+  //   grid-row: 1;
+  //   grid-column: 3 / 4;
+  //   justify-self: end;
+  // }
 }
 </style>

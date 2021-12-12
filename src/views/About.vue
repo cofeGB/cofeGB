@@ -4,7 +4,7 @@
     <h1 class="brandName">{{ globalName }}</h1>
     <div class="text-center text-h4 mx-auto">Кофе для Вашей бодрости, настроения и здоровья!</div>
     <div class="text-center text-h3 ma-7">Наша команда</div>
-    <v-carousel cycle show-arrows-on-hover hide-delimiters class="d-flex justify-center">
+    <v-carousel show-arrows-on-hover hide-delimiters class="d-flex justify-center" height="auto">
       <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
         <v-card class="d-flex flex-column justify-center align-center pa-3" width="500">
           <v-img
@@ -27,9 +27,10 @@
             color="green"
             empty-icon="$ratingFull"
             half-increments
-            hover
           ></v-rating>
           <div pa-0>Рейтинг ({{ item.rating }})</div>
+          <Reviews />
+          <v-btn depressed color="primary">Проголосовать</v-btn>
         </v-card>
       </v-carousel-item>
     </v-carousel>
@@ -39,6 +40,7 @@
 
 <script>
 import store from '../store/index';
+import Reviews from './Reviews.vue';
 
 export default {
   name: 'About',
@@ -46,7 +48,11 @@ export default {
     return {
       globalName: store.state.globalConst.brandName,
       items: store.state.employee,
+      reviewsVisible: true,
     };
+  },
+  components: {
+    Reviews,
   },
 };
 </script>
