@@ -1,29 +1,34 @@
 [
   {
+    "id": 1,
     "src": "img/employee/1.jpg",
     "post": "Директор",
     "name": "Иванов Иван",
     "rating": 4.4
   },
   {
+    "id": 2,
     "src": "img/employee/2.jpg",
     "post": "Администратор",
     "name": "Ольгина Ольга",
     "rating": 4.8
   },
   {
+    "id": 3,
     "src": "img/employee/3.jpg",
     "post": "Шеф-повар",
     "name": "Константинов Константин",
     "rating": 4
   },
   {
+    "id": 4,
     "src": "img/employee/4.jpg",
     "post": "Бариста",
     "name": "Петров Петр",
     "rating": 3.7
   },
   {
+    "id": 5,
     "src": "img/employee/5.jpg",
     "post": "Официант",
     "name": "Светина Светлана",

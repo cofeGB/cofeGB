@@ -140,6 +140,9 @@ export default new Vuex.Store({
     SET_EMPLOYEE(state, data) {
       state.employee = data;
     },
+    SET_EMPLOYEE_RATING(state, data) {
+      state.employee = data;
+    },
     SET_MENU(state, data) {
       state.section = data;
     },
