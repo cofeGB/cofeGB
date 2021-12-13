@@ -47,7 +47,7 @@
 
 <script>
 import store from '../store/index';
-import Reviews from './Reviews.vue';
+import Reviews from './AddReviews.vue';
 
 export default {
   name: 'About',

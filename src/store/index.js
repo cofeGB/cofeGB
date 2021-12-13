@@ -153,9 +153,6 @@ export default new Vuex.Store({
     SET_NAV_MENU(state, data) {
       state.foodNavMenu = data;
     },
-    SET_REVIEWS_LIST(state, data) {
-      state.reviewsList = data;
-    },
     DELETE_ALL_IN_ORDER(state) {
       state.quickOrder = [];
       state.total.totalPrice = 0;
@@ -303,7 +300,9 @@ export default new Vuex.Store({
       commit('SET_ORDER_STATE', { order, orderState });
     },
     ADD_REVIEW({ commit }, payload) {
-      return commit('SET_REVIEWS_LIST', this.state.reviewsList.concat(payload));
+      // await axios.put(`http://localhost:3000/api/employee-reviews`, { payload });
+      // dispatch('GET_EMPLOYEE_REVIEWS_LIST', payload.numberOrder);
+      return commit('SET_EMPLOYEE_REVIEWS_LIST', this.state.reviewsList.concat(payload));
     },
   },
 });
