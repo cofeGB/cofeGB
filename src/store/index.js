@@ -156,6 +156,9 @@ export default new Vuex.Store({
     SET_NAV_MENU(state, data) {
       state.foodNavMenu = data;
     },
+    SET_REVIEWS_LIST(state, data) {
+      state.reviewsList = data;
+    },
     DELETE_ALL_IN_ORDER(state) {
       state.quickOrder = [];
       state.total.totalPrice = 0;

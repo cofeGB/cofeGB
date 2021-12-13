@@ -210,6 +210,11 @@ export default {
       }
     },
   },
+  methods: {
+    changeReviewsVisible() {
+      this.reviewsVisible = !this.reviewsVisible;
+    },
+  },
 };
 </script>
 
