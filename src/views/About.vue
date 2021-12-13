@@ -22,15 +22,22 @@
             {{ item.name }}
           </v-card-subtitle>
           <v-rating
+            v-if="!reviewsVisible"
             v-model="item.rating"
             background-color="green lighten-3"
             color="green"
             empty-icon="$ratingFull"
             half-increments
           ></v-rating>
-          <div pa-0>Рейтинг ({{ item.rating }})</div>
-          <Reviews />
-          <v-btn depressed color="primary">Проголосовать</v-btn>
+          <div v-if="!reviewsVisible" pa-0>Рейтинг ({{ item.rating }})</div>
+          <Reviews
+            v-if="reviewsVisible"
+            @changeReviewsVisible="changeReviewsVisible"
+            :e_id="item.id"
+          />
+          <v-btn v-if="!reviewsVisible" @click="changeReviewsVisible" depressed color="primary">
+            Проголосовать
+          </v-btn>
         </v-card>
       </v-carousel-item>
     </v-carousel>
@@ -48,11 +55,16 @@ export default {
     return {
       globalName: store.state.globalConst.brandName,
       items: store.state.employee,
-      reviewsVisible: true,
+      reviewsVisible: false,
     };
   },
   components: {
     Reviews,
+  },
+  methods: {
+    changeReviewsVisible() {
+      this.reviewsVisible = !this.reviewsVisible;
+    },
   },
 };
 </script>
