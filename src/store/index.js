@@ -10,6 +10,7 @@ export default new Vuex.Store({
     globalName: 'СoffeeBonk',
     globalConst: {},
     employee: [],
+    reviewsList: [],
     modal: false,
     quickOrder: [],
     total: {
@@ -143,11 +144,17 @@ export default new Vuex.Store({
     SET_EMPLOYEE_RATING(state, data) {
       state.employee = data;
     },
+    SET_EMPLOYEE_REVIEWS_LIST(state, data) {
+      state.reviewsList = data;
+    },
     SET_MENU(state, data) {
       state.section = data;
     },
     SET_NAV_MENU(state, data) {
       state.foodNavMenu = data;
+    },
+    SET_REVIEWS_LIST(state, data) {
+      state.reviewsList = data;
     },
     DELETE_ALL_IN_ORDER(state) {
       state.quickOrder = [];
@@ -204,6 +211,10 @@ export default new Vuex.Store({
     async GET_EMPLOYEE({ commit }) {
       const { data: employee } = await axios.get(`http://localhost:3000/api/employee/`);
       commit('SET_EMPLOYEE', employee);
+    },
+    async GET_EMPLOYEE_REVIEWS_LIST({ commit }) {
+      const { data: reviewsList } = await axios.get(`http://localhost:3000/api/employee-reviews/`);
+      commit('SET_EMPLOYEE_REVIEWS_LIST', reviewsList);
     },
     async GET_GLOBAL_CONST({ commit }) {
       const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
@@ -290,6 +301,9 @@ export default new Vuex.Store({
     },
     SET_ORDER_STATE: ({ commit }, { order, orderState }) => {
       commit('SET_ORDER_STATE', { order, orderState });
+    },
+    ADD_REVIEW({ commit }, payload) {
+      return commit('SET_REVIEWS_LIST', this.state.reviewsList.concat(payload));
     },
   },
 });

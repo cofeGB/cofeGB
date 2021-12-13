@@ -38,10 +38,11 @@ export default {
   methods: {
     ...mapActions([
       'GET_GLOBAL_CONST',
+      'GET_EMPLOYEE',
+      'GET_EMPLOYEE_REVIEWS_LIST',
       'GET_NAV_MENU',
       'GET_LOYALTY',
       'GET_CATEGORIES',
-      'GET_EMPLOYEE',
     ]),
     closeAdvertisement() {
       this.advertisement = false;
@@ -52,10 +53,11 @@ export default {
   },
   created() {
     this.GET_GLOBAL_CONST();
+    this.GET_EMPLOYEE();
+    this.GET_EMPLOYEE_REVIEWS_LIST();
     this.GET_NAV_MENU();
     this.GET_LOYALTY();
     this.GET_CATEGORIES();
-    this.GET_EMPLOYEE();
   },
   computed: {
     publicMode() {
