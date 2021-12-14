@@ -212,8 +212,13 @@ export default {
   },
   methods: {
     ...mapActions(['ADD_REVIEW']),
-    changeShowReviewsVisible() {
+    changeShowReviewsVisible(id) {
+      console.log(this.reviews);
+      console.log(id);
+      this.employeeReviews = this.reviews.filter(emp => emp.employee_id === id);
+      console.log(this.employeeReviews);
       this.showReviewsVisible = !this.showReviewsVisible;
+      this.cycled = false;
     },
     addReview() {
       let { employee_id, name, rating, date, description } = this;
@@ -223,7 +228,7 @@ export default {
         this.dialog = false;
         this.addReviewsVisible = !this.addReviewsVisible;
       } else {
-        alert('Заполнены не все поля');
+        this.overlay = true;
       }
     },
   },
