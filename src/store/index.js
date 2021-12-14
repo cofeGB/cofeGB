@@ -73,6 +73,9 @@ export default new Vuex.Store({
     EMPLOYEE: state => {
       return state.employee;
     },
+    EMPLOYEE_REVIEWS: state => {
+      return state.reviewsList;
+    },
     TOTAL_SUM: state => {
       return state.total;
     },
@@ -258,7 +261,7 @@ export default new Vuex.Store({
     ADD_REVIEW({ commit }, payload) {
       // await axios.put(`http://localhost:3000/api/employee-reviews`, { payload });
       // dispatch('GET_EMPLOYEE_REVIEWS_LIST', payload.numberOrder);
-      return commit('SET_EMPLOYEE_REVIEWS_LIST', this.state.reviewsList.concat(payload));
+      commit('SET_EMPLOYEE_REVIEWS_LIST', this.state.reviewsList.concat(payload));
     },
   },
 });
