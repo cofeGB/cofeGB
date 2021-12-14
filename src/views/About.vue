@@ -211,8 +211,20 @@ export default {
     },
   },
   methods: {
-    changeReviewsVisible() {
-      this.reviewsVisible = !this.reviewsVisible;
+    ...mapActions(['ADD_REVIEW']),
+    changeShowReviewsVisible() {
+      this.showReviewsVisible = !this.showReviewsVisible;
+    },
+    addReview() {
+      let { employee_id, name, rating, date, description } = this;
+      if (name && description) {
+        const review = [{ employee_id, name, rating, date, description }];
+        this.ADD_REVIEW(review);
+        this.dialog = false;
+        this.addReviewsVisible = !this.addReviewsVisible;
+      } else {
+        alert('Заполнены не все поля');
+      }
     },
   },
 };
