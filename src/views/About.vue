@@ -211,22 +211,25 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['ADD_REVIEW']),
-    changeShowReviewsVisible(id) {
-      console.log(this.reviews);
-      console.log(id);
-      this.employeeReviews = this.reviews.filter(emp => emp.employee_id === id);
-      console.log(this.employeeReviews);
+    ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
+
+    changeShowReviewsVisible() {
+      console.log(this.employee_id);
+      this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
       this.showReviewsVisible = !this.showReviewsVisible;
       this.cycled = false;
     },
     addReview() {
-      let { employee_id, name, rating, date, description } = this;
-      if (name && description) {
-        const review = [{ employee_id, name, rating, date, description }];
+      let { employee_id, user_name, rating, date, description } = this;
+      console.log(user_name);
+      console.log(description);
+      if (user_name && description) {
+        const review = [{ employee_id, user_name, rating, date, description }];
         this.ADD_REVIEW(review);
-        this.dialog = false;
+        this.GET_EMPLOYEE_REVIEWS_LIST();
+        this.dialog1 = false;
         this.addReviewsVisible = !this.addReviewsVisible;
+        this.cycled = true;
       } else {
         this.overlay = true;
       }

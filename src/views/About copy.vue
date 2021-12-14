@@ -1,98 +1,244 @@
 <template>
-  <v-container class="d-flex flex-column white--text">
-    <!-- <v-row class="d-flex flex-column justify-space-between"> -->
-    <h1 class="brandName">{{ globalName }}</h1>
-    <div class="text-center text-h4 mx-auto">Кофе для Вашей бодрости, настроения и здоровья!</div>
-    <div class="text-center text-h3 ma-7">Наша команда</div>
-    <v-carousel show-arrows-on-hover hide-delimiters class="d-flex justify-center" height="auto">
-      <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
-        <v-card class="d-flex flex-column justify-center align-center pa-3" width="500">
-          <v-img
-            :src="require(`../assets/${item.src}`)"
-            position="center center"
-            height="320px"
-            width="320px"
-            alt="logo"
-            contain
-          ></v-img>
-          <v-card-title class="text-h5">
-            {{ item.post }}
-          </v-card-title>
-          <v-card-subtitle class="text-h4">
-            {{ item.name }}
-          </v-card-subtitle>
-          <v-rating
-            v-if="!addReviewsVisible"
-            v-model="item.rating"
-            background-color="green lighten-3"
-            color="green"
-            empty-icon="$ratingFull"
-            half-increments
-            readonly
-          ></v-rating>
-          <div v-if="!addReviewsVisible" pa-0>Рейтинг ({{ item.rating }})</div>
-          <AddReviews
-            v-if="addReviewsVisible"
-            @changeReviewsVisible="changeReviewsVisible"
-            :e_id="item.id"
-          />
-          <ShowReviews
-            v-if="showReviewsVisible"
-            @changeShowReviewsVisible="changeShowReviewsVisible"
-            :e_id="item.id"
-          />
-          <v-btn v-if="!addReviewsVisible" @click="changeReviewsVisible" depressed color="primary">
-            Проголосовать
-          </v-btn>
+  <div>
+    <v-row
+      justify="center"
+    >
+      <v-btn
+        color="primary"
+        class="ma-2"
+        dark
+        @click="dialog = true"
+      >
+        Open Dialog 1
+      </v-btn>
+      <v-btn
+        color="primary"
+        class="ma-2"
+        dark
+        @click="dialog2 = true"
+      >
+        Open Dialog 2
+      </v-btn>
+      <v-btn
+        color="primary"
+        class="ma-2"
+        dark
+        @click="dialog3 = true"
+      >
+        Open Dialog 3
+      </v-btn>
+      <v-menu
+        bottom
+        offset-y
+      >
+        <template v-slot:activator="{ on, attrs }">
           <v-btn
-            v-if="!showReviewsVisible"
-            @click="changeShowReviewsVisible"
-            depressed
+            class="ma-2"
+            v-bind="attrs"
+            v-on="on"
+          >
+            A Menu
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            @click="() => {}"
+          >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-dialog
+        v-model="dialog"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+        scrollable
+      >
+        <v-card tile>
+          <v-toolbar
+            flat
+            dark
             color="primary"
           >
-            Посмотреть отзывы
-          </v-btn>
+            <v-btn
+              icon
+              dark
+              @click="dialog = false"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Settings</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn
+                dark
+                text
+                @click="dialog = false"
+              >
+                Save
+              </v-btn>
+            </v-toolbar-items>
+            <v-menu
+              bottom
+              right
+              offset-y
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(item, i) in items"
+                  :key="i"
+                  @click="() => {}"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-toolbar>
+          <v-card-text>
+            <v-btn
+              color="primary"
+              dark
+              class="ma-2"
+              @click="dialog2 = !dialog2"
+            >
+              Open Dialog 2
+            </v-btn>
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="ma-2"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  Tool Tip Activator
+                </v-btn>
+              </template>
+              Tool Tip
+            </v-tooltip>
+            <v-list
+              three-line
+              subheader
+            >
+              <v-subheader>User Controls</v-subheader>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Content filtering</v-list-item-title>
+                  <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Password</v-list-item-title>
+                  <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+            <v-divider></v-divider>
+            <v-list
+              three-line
+              subheader
+            >
+              <v-subheader>General</v-subheader>
+              <v-list-item>
+                <v-list-item-action>
+                  <v-checkbox v-model="notifications"></v-checkbox>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Notifications</v-list-item-title>
+                  <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-action>
+                  <v-checkbox v-model="sound"></v-checkbox>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Sound</v-list-item-title>
+                  <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-action>
+                  <v-checkbox v-model="widgets"></v-checkbox>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Auto-add widgets</v-list-item-title>
+                  <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card-text>
+
+          <div style="flex: 1 1 auto;"></div>
         </v-card>
-      </v-carousel-item>
-    </v-carousel>
-    <!-- </v-row> -->
-  </v-container>
+      </v-dialog>
+
+      <v-dialog
+        v-model="dialog2"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            Dialog 2
+          </v-card-title>
+          <v-card-text>
+            <v-btn
+              color="primary"
+              dark
+              @click="dialog3 = !dialog3"
+            >
+              Open Dialog 3
+            </v-btn>
+            <v-select
+              :items="select"
+              label="A Select List"
+              item-value="text"
+            ></v-select>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog2 = false"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog
+        v-model="dialog3"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            <span>Dialog 3</span>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog3 = false"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+  </div>
 </template>
-
-<script>
-import store from '../store/index';
-import AddReviews from './AddReviews.vue';
-import ShowReviews from './ShowReviews.vue';
-
-export default {
-  name: 'About',
-  data() {
-    return {
-      globalName: store.state.globalConst.brandName,
-      items: store.state.employee,
-      addReviewsVisible: false,
-      showReviewsVisible: false,
-    };
-  },
-  components: {
-    AddReviews,
-    ShowReviews,
-  },
-  methods: {
-    changeReviewsVisible() {
-      this.addReviewsVisible = !this.addReviewsVisible;
-    },
-    changeShowReviewsVisible() {
-      this.showReviewsVisible = !this.showReviewsVisible;
-    },
-  },
-};
-</script>
-
-<style lang="scss" scoped>
-.v-image__image {
-  top: 5px;
-  // background-color: #ddd
-  border: 1px solid #ddd;
-}
-</style>
