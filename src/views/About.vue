@@ -67,7 +67,8 @@
       <!-- </v-row> -->
     </v-container>
 
-    <v-dialog v-model="dialog1" max-width="500px">
+    <AddReview v-model="dialog1"/>
+    <!-- <v-dialog v-model="dialog1" max-width="500px">
       <v-card class="d-flex flex-column pa-5">
         <v-card-actions d-flex justify="end" class="pa-0">
           <v-spacer></v-spacer>
@@ -106,7 +107,7 @@
           Не все поля заполнены
         </v-overlay>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
 
     <v-dialog v-model="dialog2" max-width="1000px">
       <v-card class="d-flex flex-column pa-5">
@@ -164,14 +165,18 @@
 
 <script>
 import store from '../store/index';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import AddReview from './AddReview.vue';
 
 export default {
   name: 'About',
+  components: {
+    AddReview,
+  },
   data() {
     return {
       globalName: store.state.globalConst.brandName,
-      reviews: store.state.reviewsList,
+      reviews: [],
       employeeReviews: [],
       items: store.state.employee,
       showReviewsVisible: false,
@@ -189,21 +194,19 @@ export default {
   },
   methods: {
     ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
+    ...mapGetters(['EMPLOYEE_REVIEWS']),
 
     changeShowReviewsVisible() {
-      console.log(this.employee_id);
+      this.reviews = this.EMPLOYEE_REVIEWS();
       this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
       this.showReviewsVisible = !this.showReviewsVisible;
       this.cycled = false;
     },
     addReview() {
       let { employee_id, user_name, rating, date, description } = this;
-      console.log(user_name);
-      console.log(description);
       if (user_name && description) {
         const review = [{ employee_id, user_name, rating, date, description }];
         this.ADD_REVIEW(review);
-        this.GET_EMPLOYEE_REVIEWS_LIST();
         this.dialog1 = false;
         this.addReviewsVisible = !this.addReviewsVisible;
         this.cycled = true;
@@ -215,10 +218,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.v-image__image {
-  top: 5px;
-  // background-color: #ddd
-  border: 1px solid #ddd;
-}
-</style>
+<style lang="scss" scoped></style>
