@@ -1,71 +1,77 @@
 <template>
-  <div>
-    <div v-if="menuItem" class="container">
-      <div class="dish__image">
-        <img :src="img" alt="photo" />
-        <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
-        <div class="dish__img-info">
-          <div class="dish__img-info_text">
-            <span class="dish__text">{{ menuItem.title }}</span>
-            <div class="dish__text-align">
-              <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
-              <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
+  <div class="container">
+    <div class="center">
+      <div v-if="menuItem" class="content center">
+        <div class="dish__image">
+          <img :src="img" alt="photo" />
+          <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
+          <div class="dish__img-info">
+            <div class="dish__img-info_text">
+              <span class="dish__text">{{ menuItem.title }}</span>
+              <div class="dish__text-align">
+                <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
+                <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="dish__main">
-        <div class="dish__main_composition">
-          <div class="dish__text-small">
-            <h4>Состав:</h4>
-            <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
-              {{ ingridient.title }},
-            </span>
-          </div>
-          <div class="dish__main_cpfc dish__text-small">
-            <div v-for="(i, index) of menuItem.calories" :key="index">
-              <span>{{ i.procents }}</span>
-              <br />
-              <span>{{ i.title }}</span>
+        <div class="dish__main">
+          <div class="dish__main_composition">
+            <div class="dish__text-small">
+              <h4>Состав:</h4>
+              <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
+                {{ ingridient.title }},
+              </span>
+            </div>
+            <div class="dish__main_cpfc dish__text-small">
+              <div v-for="(i, index) of menuItem.calories" :key="index">
+                <span>{{ i.procents }}</span>
+                <br />
+                <span>{{ i.title }}</span>
+              </div>
             </div>
           </div>
+          <div class="dish__main_description dish__text-small">
+            <h4>Описание:</h4>
+            <span>{{ menuItem.description }}</span>
+          </div>
         </div>
-        <div class="dish__main_description dish__text-small">
-          <h4>Описание:</h4>
-          <span>{{ menuItem.description }}</span>
+        <hr />
+        <div class="dish__constructor">
+          <p>Здесь конструктор?</p>
         </div>
-      </div>
-      <hr />
-      <div class="dish__constructor">
-        <p>Здесь конструктор?</p>
-      </div>
-      <button @click="onClick(1)" v-if="quantity === 0">
-        <div class="dish__btn cart__btn">
-          <span>В КОРЗИНУ</span>
-          <span>{{ menuItem.price }} &#x20bd;</span>
-        </div>
-      </button>
-      <div class="dish__btn cart__btn" v-else>
-        <button @click="onClick(-1)">
-          <i class="fas fa-minus"></i>
+        <button @click="onClick(1)" v-if="quantity === 0">
+          <div class="dish__btn cart__btn">
+            <span>В КОРЗИНУ</span>
+            <span>{{ menuItem.price }} &#x20bd;</span>
+          </div>
         </button>
-        <span>&times; {{ quantity }}</span>
-        <button @click="onClick(1)">
-          <i class="fas fa-plus"></i>
-        </button>
+        <div class="dish__btn cart__btn" v-else>
+          <button @click="onClick(-1)">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span>&times; {{ quantity }}</span>
+          <button @click="onClick(1)">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
       </div>
+      <div v-else>
+        <h3>К сожалению, такого блюда нет</h3>
+      </div>
+      <dishFooter />
     </div>
-    <div v-else>
-      <h3>К сожалению, такого блюда нет</h3>
-    </div>
-    <dishFooter />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import dishFooter from './dishFooter.vue';
 export default {
   name: 'dish',
+  components: {
+    dishFooter,
+  },
   props: {
     item: {
       type: Object,
@@ -115,15 +121,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .container {
   max-width: 1167px;
   background-color: white;
   margin: 0 auto;
+  @media (max-width: 667px) {
+    width: 100%;
+  }
+}
+.center {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.content {
+  margin-bottom: 64px;
   @media (max-width: 667px) {
-    width: 100%;
+    margin-bottom: 16px;
   }
 }
 .dish__text {
