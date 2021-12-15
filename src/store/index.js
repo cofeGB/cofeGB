@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { getRandomPrivOrderArray } from '../mockdata/priv-order';
 
 Vue.use(Vuex);
 
@@ -59,6 +60,17 @@ export default new Vuex.Store({
     navMenuVisible: false,
     section: [],
     categories: [],
+    /** @type {PrivOrder[]} */
+    pendingOrders: getRandomPrivOrderArray(10),
+
+    /** @type {PrivOrder[]} */
+    cookingOrders: [],
+
+    /** @type {PrivOrder[]} */
+    closedOrders: [],
+
+    /** @type {boolean} */
+    privateMode: false,
   },
   getters: {
     MODAL: state => {
@@ -106,6 +118,18 @@ export default new Vuex.Store({
     NAV_MENU_VISIBLE: state => {
       return state.navMenuVisible;
     },
+    PENDING_ORDERS: state => {
+      return state.pendingOrders || [];
+    },
+    COOKING_ORDERS: state => {
+      return state.cookingOrders || [];
+    },
+    CLOSED_ORDERS: state => {
+      return state.closedOrders || [];
+    },
+    PRIVATE_MODE: state => {
+      return !!state.privateMode;
+    },
   },
   mutations: {
     OPEN_CLOSE_MODAL(state) {
@@ -151,6 +175,20 @@ export default new Vuex.Store({
     },
     GET_TOTAL_SUM(state, total) {
       state.total.totalPrice = total;
+    },
+    SET_PRIVATE_MODE(state, payload) {
+      state.privateMode = !!payload.enable;
+    },
+    SET_ORDER_STATE(state, { order, orderState }) {
+      if (order.state === 'pending' && orderState === 'cooking') {
+        state.pendingOrders = state.pendingOrders.filter(orderItem => orderItem != order);
+        order.state = 'cooking';
+        state.cookingOrders.push(order);
+      } else if (order.state === 'cooking' && orderState === 'closed') {
+        state.cookingOrders = state.cookingOrders.filter(orderItem => orderItem != order);
+        order.state = 'closed';
+        state.closedOrders.push(order);
+      }
     },
   },
   actions: {
@@ -257,6 +295,12 @@ export default new Vuex.Store({
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
+    },
+    SET_PRIVATE_MODE: ({ commit }, payload) => {
+      commit('SET_PRIVATE_MODE', payload);
+    },
+    SET_ORDER_STATE: ({ commit }, { order, orderState }) => {
+      commit('SET_ORDER_STATE', { order, orderState });
     },
     ADD_REVIEW({ commit }, payload) {
       // await axios.put(`http://localhost:3000/api/employee-reviews`, { payload });

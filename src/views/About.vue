@@ -1,9 +1,10 @@
 <template>
   <v-row justify="center">
     <v-container class="d-flex flex-column white--text">
-      <!-- <v-row class="d-flex flex-column justify-space-between"> -->
       <h1 class="brandName">{{ globalName }}</h1>
-      <div class="text-center text-h4 mx-auto">Кофе для Вашей бодрости, настроения и здоровья!</div>
+      <div class="text-center text-h4 mx-auto mb-10">
+        Кофе для Вашей бодрости, настроения и здоровья!
+      </div>
       <v-card class="d-flex flex-column justify-center align-center">
         <div class="text-center text-h3 ma-7">Наша команда</div>
         <v-carousel
@@ -64,11 +65,9 @@
           </v-carousel-item>
         </v-carousel>
       </v-card>
-      <!-- </v-row> -->
     </v-container>
 
-    <AddReview v-model="dialog1"/>
-    <!-- <v-dialog v-model="dialog1" max-width="500px">
+    <v-dialog v-model="dialog1" max-width="500px">
       <v-card class="d-flex flex-column pa-5">
         <v-card-actions d-flex justify="end" class="pa-0">
           <v-spacer></v-spacer>
@@ -89,7 +88,7 @@
             <span>Закрыть форму</span>
           </v-tooltip>
         </v-card-actions>
-        <h3>Поставьте оценку {{ employee_id }}</h3>
+        <h3>Поставьте оценку</h3>
         <v-text-field v-model="user_name" label="Введите свое имя"></v-text-field>
         <h5>Выберите необходимое количество звезд</h5>
         <v-rating
@@ -107,7 +106,7 @@
           Не все поля заполнены
         </v-overlay>
       </v-card>
-    </v-dialog> -->
+    </v-dialog>
 
     <v-dialog v-model="dialog2" max-width="1000px">
       <v-card class="d-flex flex-column pa-5">
@@ -131,7 +130,7 @@
           </v-tooltip>
         </v-card-actions>
 
-        <h4>Всего отзывов: ({{ employeeReviews.length }})</h4>
+        <h4>Всего отзывов: {{ employeeReviews.length }}</h4>
         <v-carousel
           cycle
           show-arrows-on-hover
@@ -166,7 +165,6 @@
 <script>
 import store from '../store/index';
 import { mapActions, mapGetters } from 'vuex';
-import AddReview from './AddReview.vue';
 
 export default {
   name: 'About',

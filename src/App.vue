@@ -1,14 +1,14 @@
 <template>
   <v-app app>
-    <Header />
-    <CofBaner v-if="advertisement" @closeAdvertisement="closeAdvertisement" />
+    <Header v-if="publicMode" />
+    <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" />
     <v-main>
       <router-view />
     </v-main>
-    <CofDelivery />
-    <CofNavMenu />
-    <CofBasket />
-    <Footeer />
+    <CofDelivery v-if="publicMode" />
+    <CofNavMenu v-if="publicMode" />
+    <CofBasket v-if="publicMode" />
+    <Footeer v-if="publicMode" />
   </v-app>
 </template>
 
@@ -47,6 +47,9 @@ export default {
     closeAdvertisement() {
       this.advertisement = false;
     },
+    isPrivateRoute(routePath) {
+      return routePath.split('/').findIndex(parhPart => parhPart == 'private') != -1;
+    },
   },
   created() {
     this.GET_GLOBAL_CONST();
@@ -55,6 +58,11 @@ export default {
     this.GET_NAV_MENU();
     this.GET_LOYALTY();
     this.GET_CATEGORIES();
+  },
+  computed: {
+    publicMode() {
+      return !this.$store.getters.PRIVATE_MODE;
+    },
   },
 };
 </script>
