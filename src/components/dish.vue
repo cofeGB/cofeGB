@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div v-if="menuItem" class="container">
+    <div v-if="menuItem">
       <div class="dish__image">
         <img :src="img" alt="photo" />
-        <button @click="$router.go(-1)" class="dish__btn close__btn">&times;</button>
+        <button class="dish__btn close__btn">&times;</button>
         <div class="dish__img-info">
           <div class="dish__img-info_text">
             <span class="dish__text">{{ menuItem.title }}</span>
@@ -14,49 +14,46 @@
           </div>
         </div>
       </div>
-      <div class="dish__main">
-        <div class="dish__main_composition">
-          <div>
-            <h4>Состав</h4>
-            <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
-              {{ ingridient.title }},
-            </span>
-          </div>
-          <div class="dish__main_cpfc">
-            <div v-for="(i, index) of menuItem.calories" :key="index">
-              <span>{{ i.procents }}</span>
-              <br />
-              <span>{{ i.title }}</span>
-            </div>
-          </div>
+    </div>
+    <div class="dish__main">
+      <div class="dish__main_composition">
+        <div>
+          <h4>Состав</h4>
+          <span v-for="ingridient of menuItem.composition" :item="item" :key="ingridient.title">
+            {{ ingridient.title }},
+          </span>
         </div>
-        <div class="dish__main_description">
-          <h4>Описание:</h4>
-          <span>{{ menuItem.description }}</span>
+        <div class="dish__main_cpfc">
+          <div v-for="(i, index) of menuItem.calories" :key="index">
+            <span>{{ i.procents }}</span>
+            <br />
+            <span>{{ i.title }}</span>
+          </div>
         </div>
       </div>
-      <hr />
-      <div class="dish__constructor">
-        <p>Здесь конструктор?</p>
-      </div>
-      <button @click="onClick(1)" v-if="quantity === 0">
-        <div class="dish__btn cart__btn">
-          <span>В КОРЗИНУ</span>
-          <span>{{ menuItem.price }} &#x20bd;</span>
-        </div>
-      </button>
-      <div class="dish__btn cart__btn" v-else>
-        <button @click="onClick(-1)">
-          <i class="fas fa-minus"></i>
-        </button>
-        <span>&times; {{ quantity }}</span>
-        <button @click="onClick(1)">
-          <i class="fas fa-plus"></i>
-        </button>
+      <div class="dish__main_description">
+        <h4>Описание:</h4>
+        <span>{{ menuItem.description }}</span>
       </div>
     </div>
-    <div v-else>
-      <h3>К сожалению, такого блюда нет</h3>
+    <hr />
+    <div class="dish__constructor">
+      <p>Здесь конструктор?</p>
+    </div>
+    <button @click="onClick(1)" v-if="quantity === 0">
+      <div class="dish__btn cart__btn">
+        <span>В КОРЗИНУ</span>
+        <span>{{ menuItem.price }} &#x20bd;</span>
+      </div>
+    </button>
+    <div class="dish__btn cart__btn" v-else>
+      <button @click="onClick(-1)">
+        <i class="fas fa-minus"></i>
+      </button>
+      <span>&times; {{ quantity }}</span>
+      <button @click="onClick(1)">
+        <i class="fas fa-plus"></i>
+      </button>
     </div>
   </div>
 </template>
