@@ -168,9 +168,6 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'About',
-  components: {
-    AddReview,
-  },
   data() {
     return {
       globalName: store.state.globalConst.brandName,
