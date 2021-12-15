@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Закуски",
+    "route": "/menu",
+    "icon": "starters",
+    "query": "starters",
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Сендвичи",
+    "route": "/menu",
+    "icon": "sandwich",
+    "query": "sandwich",
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Салаты",
+    "route": "/menu",
+    "icon": "salad",
+    "query": "salad",
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Десерты",
+    "route": "/menu",
+    "icon": "desserts",
+    "query": "desserts",
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "О нас",
+    "route": "/about",
+    "icon": "about",
+    "query": null,
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Меню",
+    "route": "/menu",
+    "icon": "menu",
+    "query": null,
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Конструктор",
+    "route": "/constructor",
+    "icon": "constructor",
+    "query": null,
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Доставка и оплата",
+    "route": "/delivary",
+    "icon": "delivary",
+    "query": null,
+    "warn": false,
+    "warnMsg": ""
+  },
+  {
+    "title": "Акции",
+    "route": "/stock",
+    "icon": "stock",
+    "query": null,
+    "warn": false,
+    "warnMsg": ""
+  }
+]

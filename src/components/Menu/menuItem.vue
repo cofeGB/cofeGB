@@ -1,8 +1,9 @@
 <template>
   <div class="menuItem">
     <div class="menuItem__desc">
-      <router-link :to="{ path: `/menu/${item.guid}`, component: 'dish' }">
-        <!--  параметры? -->
+      <router-link
+        :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+      >
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
           <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
@@ -11,25 +12,9 @@
         </div>
       </router-link>
       <div class="menuItem__cpfc">
-        <div>
-          <span>{{ item.calories }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">ккал</span>
-        </div>
-        <div>
-          <span>{{ item.proteins.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">белки</span>
-        </div>
-        <div>
-          <span>{{ item.fat.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">жиры</span>
-        </div>
-        <div>
-          <span>{{ item.carbohydrates.in }}</span>
-          <br />
-          <span class="menuItem__cpfc-body">углеводы</span>
+        <div v-for="(i, index) of item.calories" :key="index">
+          <p>{{ i.procents }}</p>
+          <p class="menuItem__cpfc-body">{{ i.title }}</p>
         </div>
       </div>
       <div class="menuItem__price">
@@ -42,8 +27,9 @@
         </button>
       </div>
     </div>
-    <router-link :to="{ path: `/menu/${item.id}`, component: 'Dish' }">
-      <!--  параметры? -->
+    <router-link
+      :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+    >
       <div class="menuItem__img">
         <div class="contaier">
           <div class="triangle"></div>
@@ -69,18 +55,36 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      numberOrder: '',
+    };
+  },
   computed: {
     ...mapGetters(['QUICK_ORDER']),
     quantity() {
-      let find = this.QUICK_ORDER.find(el => el.title === this.item.title);
+      let find = this.QUICK_ORDER.find(el => el.guid === this.item.guid);
       return find ? find.quantity : 0;
     },
   },
   methods: {
-    ...mapActions(['ADD_DISH']),
+    ...mapActions(['ADD_DISH', 'GET_ORDER_LIST']),
     onClick(inc) {
-      this.$store.dispatch('ADD_DISH', { dish: this.item, inc });
+      if (!localStorage.numberOrder) {
+        const today = new Date();
+        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+        this.numberOrder = localStorage.numberOrder;
+      }
+      this.item.quantity = this.quantity;
+      this.$store.dispatch('ADD_DISH', { dish: this.item, inc, numberOrder: this.numberOrder });
     },
+  },
+  mounted() {
+    if (localStorage.numberOrder) {
+      this.numberOrder = localStorage.numberOrder;
+      this.GET_ORDER_LIST(this.numberOrder);
+    }
   },
 };
 </script>
@@ -91,6 +95,7 @@ export default {
   height: 400px
   max-width: 260px
   background-color: white
+  justify-self: center
   &__desc
     padding: 20px
     color: #564742
@@ -149,7 +154,7 @@ export default {
   width: 0
   height: 0
   border-top: 40px solid white
-  border-right: 260px solid transparent
+  border-right: 240px solid transparent
 .btn-plus
   color: #25DCD1
 .contaier
@@ -157,4 +162,12 @@ export default {
   width: 100%
 img
   width: 100%
+
+@media (max-width: 580px)
+  .menuItem
+    height: 350px
+    max-width: 220px
+  .triangle
+    border-top: 35px solid white
+    border-right: 200px solid transparent
 </style>

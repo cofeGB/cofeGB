@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{ FOOD_CONSTRUCTOR }}
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -14,6 +12,5 @@ export default {
   computed: {
     ...mapGetters(['FOOD_CONSTRUCTOR']),
   },
-  components: {},
 };
 </script>

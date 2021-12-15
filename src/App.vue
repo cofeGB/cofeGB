@@ -1,12 +1,14 @@
 <template>
   <v-app app>
-    <Header />
+    <Header v-if="publicMode" />
+    <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" />
     <v-main>
       <router-view />
     </v-main>
-    <CofDelivery />
-    <CofNavMenu />
-    <Footeer />
+    <CofDelivery v-if="publicMode" />
+    <CofNavMenu v-if="publicMode" />
+    <CofBasket v-if="publicMode" />
+    <Footeer v-if="publicMode" />
   </v-app>
 </template>
 
@@ -14,6 +16,9 @@
 import Header from '@/components/Header.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
+import CofBasket from '@/components/CofBasket/CofBasket.vue';
+import CofBaner from '@/components/Baners/CofBaner.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -21,7 +26,41 @@ export default {
     Header,
     Footeer,
     CofDelivery,
+    CofBasket,
+    CofBaner,
     CofNavMenu: () => import('./components/CofNavMenu.vue'),
+  },
+  data() {
+    return {
+      advertisement: true,
+    };
+  },
+  methods: {
+    ...mapActions([
+      'GET_GLOBAL_CONST',
+      'GET_NAV_MENU',
+      'GET_LOYALTY',
+      'GET_CATEGORIES',
+      'GET_EMPLOYEE',
+    ]),
+    closeAdvertisement() {
+      this.advertisement = false;
+    },
+    isPrivateRoute(routePath) {
+      return routePath.split('/').findIndex(parhPart => parhPart == 'private') != -1;
+    },
+  },
+  created() {
+    this.GET_GLOBAL_CONST();
+    this.GET_NAV_MENU();
+    this.GET_LOYALTY();
+    this.GET_CATEGORIES();
+    this.GET_EMPLOYEE();
+  },
+  computed: {
+    publicMode() {
+      return !this.$store.getters.PRIVATE_MODE;
+    },
   },
 };
 </script>
@@ -59,5 +98,25 @@ export default {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('assets/img/backgroundImage.png');
   background-attachment: fixed;
+}
+
+.brandName {
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 85px;
+  color: white;
+  text-align: center;
+  @media (max-width: 450px) {
+    font-size: 54px;
+  }
+}
+
+.container {
+  padding-top: 0;
+}
+
+.w100 {
+  width: 100%;
 }
 </style>

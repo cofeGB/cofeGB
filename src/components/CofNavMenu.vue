@@ -38,37 +38,32 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- <v-list-item-group v-model="group"> -->
-          <v-list-item
+          <router-link
+            class="menu__item_link"
             v-for="item in foodNavMenu"
-            :key="item.id"
-            @click="foodMenuClick(item.id)"
-            :class="{ menu__item_active: foodNavMenuSelected == item.id }"
+            :key="item.path"
+            :to="{ path: item.path }"
           >
-            <v-list-item-title
-              ><b class="menu__item_text">{{ item.title }}</b>
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-        <!-- <v-spacer></v-spacer> -->
-        <v-list nav dense class="mt-auto">
-          <!-- </v-list-item-group> -->
-          <v-list-item-group>
-            <v-list-item disabled>
+            <v-list-item :class="{ menu__item_active: $route.path == item.path }">
               <v-list-item-title
-                ><b class="menu__item_text">Доставка и оплата</b></v-list-item-title
-              >
+                ><b class="menu__item_text">{{ item.title }}</b>
+              </v-list-item-title>
             </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">Контакты</b></v-list-item-title>
+          </router-link>
+        </v-list>
+        <v-list nav dense class="mt-auto">
+          <router-link
+            class="menu__item_link"
+            v-for="(item, index) in infoNavMenu"
+            :key="index"
+            :to="{ path: item.path }"
+          >
+            <v-list-item :class="{ menu__item_active: $route.path == item.path }">
+              <v-list-item-title
+                ><b class="menu__item_text">{{ item.title }}</b>
+              </v-list-item-title>
             </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">Акции</b></v-list-item-title>
-            </v-list-item>
-            <v-list-item disabled>
-              <v-list-item-title><b class="menu__item_text">О нас</b></v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
+          </router-link>
         </v-list>
       </div>
     </v-navigation-drawer>
@@ -77,34 +72,45 @@
 
 <script>
 /**
- * Навигационное меню состоит из двух частей: продуктовой и собственно
- * навигационной.
- * Наполнение продуктового меню происходит из геттера FOOD_NAV_MENU стора.
- * При клике по пункту продуктового меню в сторе вызывается экшен
- * SET_FOOD_NAV_MENU_SELECTION, устанавливающий в сторе значение
- * foodNavMenuSelection.
- * foodNavMenuSelection доступно чтением геттера FOOD_NAV_MENU_SELECTION.
- * Показ меню производится экшеном стора SHOW_NAV_MENU с аргументом типа Boolean.
- * Состояние отображения меню в state.navMenuVisible стора.
- * Временно меню зафиксировано и не прячется.
+ * Меню использует роуты.
+ * Для еды '/menu-by-category/:id'.
+ * Для других страниц из INFO_NAV_MENU[n].route.
  */
 import store from '../store/index';
+
+const INFO_NAV_MENU = [
+  {
+    title: 'Доставка и оплата',
+    path: '/delivery',
+  },
+  {
+    title: 'Контакты',
+    path: '/contacts',
+  },
+  {
+    title: 'Акции',
+    path: '/promo',
+  },
+  {
+    title: 'О нас',
+    path: '/about',
+  },
+];
 
 export default {
   name: 'CofNavMenu',
   data: () => ({
     show: store.state.navMenuVisible,
     group: null,
+    infoNavMenu: INFO_NAV_MENU,
   }),
-  methods: {
-    foodMenuClick(id) {
-      store.dispatch('SET_FOOD_NAV_MENU_SELECTION', { id });
-      // console.log(id);
-    },
-  },
+  methods: {},
   computed: {
     foodNavMenu() {
-      return store.getters.FOOD_NAV_MENU;
+      return store.getters.FOOD_NAV_MENU.map(item => ({
+        title: item.title,
+        path: `/menu/${item.query}`,
+      }));
     },
     navMenuVisible() {
       return store.getters.NAV_MENU_VISIBLE;
@@ -128,19 +134,27 @@ export default {
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';
     },
-    foodNavMenuSelected() {
-      return store.getters.FOOD_NAV_MENU_SELECTION;
-    },
   },
   watch: {
     group() {
       this.show = false;
     },
     navMenuVisible(val) {
-      this.show = val;
+      // console.log('S2C');
+      if (this.show != val) {
+        this.show = val;
+      }
     },
     permanent(val) {
       store.dispatch('SHOW_NAV_MENU', val);
+    },
+    show(val) {
+      // console.log('C2S');
+      if (!val) {
+        if (store.getters.NAV_MENU_VISIBLE) {
+          store.dispatch('SHOW_NAV_MENU', false);
+        }
+      }
     },
   },
 };
@@ -174,6 +188,9 @@ export default {
     line-height: 64px;
     color: #ffffff;
   }
+  &__item_link {
+    text-decoration: none;
+  }
   &__item_text {
     font-family: 'Open Sans';
     font-style: normal;
@@ -181,6 +198,7 @@ export default {
     font-size: 24px;
     line-height: 33px;
     color: #ffffff;
+
     &:hover {
       color: rgba(37, 220, 209, 1);
     }
