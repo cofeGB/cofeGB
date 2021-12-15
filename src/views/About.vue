@@ -210,28 +210,6 @@ export default {
       }
     },
   },
-  methods: {
-    ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
-
-    changeShowReviewsVisible() {
-      this.reviews = this.EMPLOYEE_REVIEWS();
-      this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
-      this.showReviewsVisible = !this.showReviewsVisible;
-      this.cycled = false;
-    },
-    addReview() {
-      let { employee_id, user_name, rating, date, description } = this;
-      if (user_name && description) {
-        const review = [{ employee_id, user_name, rating, date, description }];
-        this.ADD_REVIEW(review);
-        this.dialog1 = false;
-        this.addReviewsVisible = !this.addReviewsVisible;
-        this.cycled = true;
-      } else {
-        this.overlay = true;
-      }
-    },
-  },
 };
 </script>
 
