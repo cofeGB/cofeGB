@@ -9,7 +9,7 @@
  */
 
 /**
- * @typedef {string} UserId - уникальный идентификатор пользователя
+ * @typedef {string} UserGuid - уникальный идентификатор пользователя
  */
 
 /**
@@ -31,7 +31,7 @@
  */
 
 /**
- * @typedef {string} IngredientId - уникальный идентификатор ингредиента
+ * @typedef {string} IngredientGuid - уникальный идентификатор ингредиента
  */
 
 /**
@@ -41,7 +41,7 @@
 /**
  * @typedef {Object} Ingredient - публичное представление ингредиента
  * @property {IngredientCategory} category - категория ингредиента
- * @property {IngredientId} id - идентификатор ингредиента
+ * @property {IngredientGuid} guGuid - идентификатор ингредиента (Global Unchanged Guidentifier)
  * @property {string} title - наименование ингредиента
  * @property {string} description - подробное описание ингредиента
  * @property {?number} weight - вес одной порции в граммах
@@ -61,14 +61,14 @@
  */
 
 /**
- * @typedef {string} DishId - уникальный идентификатор блюда
+ * @typedef {string} DishGuid - уникальный идентификатор блюда
  */
 
 /**
  * @typedef {Object} Dish - блюдо
  * @property {DishCategory} category - категория блюда
- * @property {DishId} dishId - идентификатор блюда
- * @property {?UserId} creatorId - автор блюда
+ * @property {DishGuid} dishGuid - идентификатор блюда
+ * @property {?UserGuid} creatorGuGuid - автор блюда
  * @property {string} title - наименование блюда
  * @property {string} description - подробное описание блюда
  * @property {?number} weight - вес одной порции в граммах
@@ -87,7 +87,7 @@
  */
 
 /**
- * @typedef {string} OrderId - уникальный идентификатор заказа
+ * @typedef {string} OrderGuid - уникальный идентификатор заказа
  */
 
 /**
@@ -95,10 +95,10 @@
  * @property {string} creationDate - дата оформления заказа, формат UTC 'Mon, 13 Dec 2021 19:25:53 GMT'
  * @property {string} processingStartDate - дата начала работы с заказом, формат UTC 'Mon, 13 Dec 2021 19:25:53 GMT'
  * @property {string} processingEndDate - дата окончания работы с заказом, формат UTC 'Mon, 13 Dec 2021 19:25:53 GMT'
- * @property {OrderId} orderId - уникальный идентификатор заказа
- * @property {UserId} userId - уникальный идентификатор заказа
+ * @property {OrderGuid} orderGuid - уникальный идентификатор заказа
+ * @property {UserGuid} userGuid - уникальный идентификатор заказа
  * @property {Dish[]} dishes - блюда в заказе
- * @property {OrderStatus} state - статус заказа
+ * @property {OrderStatus} status - статус заказа
  */
 
 /**
@@ -115,4 +115,22 @@
 
 /**
  * @typedef {NavMenuItem[]} NavMenuItemList - элемент навигационного меню приложения
+ */
+
+/**
+ * @typedef {Object} Product - Продукт (для приготовления или хронения на складе) универсальные данные их можно юзать и для подсчета параметров и для показа остатка и для показа в описание блюд
+ * @property {string} title - название пункта навигационного меню, как его видит пользователь
+ * @property {string} productGuid - Guid продукта
+ * @property {?string} supplier - Поставщик продукта
+ * @property {?string} storageTime - Время хранения продукта
+ * @property {?string} bestBeforeDate - Срок годности продукта
+ * @property {?string} warnings - предупреждения о свойствах продукта (для аллергиков, диабетиков?)
+ * @property {?number} weight - Вес продукта
+ * @property {?number} weightPack - Вес продукта в упаковке
+ * @property {?number} price - Цена продукта
+ * @property {?number} pricePack - Цена продукта в упаковке
+ * @property {?number} quantity - Количество продукта
+ * @property {?number} quantityPack - Количество упаковок продукта
+ * @property {FoodNutrients} foodNutrients - КБЖУ продукта
+ * @property {Nutrient} nutrient - Питательное вещество продукта
  */
