@@ -117,6 +117,7 @@ export default new Vuex.Store({
     },
     STATUS: state => {
       return state.result;
+    },
     PENDING_ORDERS: state => {
       return state.pendingOrders || [];
     },
@@ -171,6 +172,7 @@ export default new Vuex.Store({
     },
     SET_STATUS(state, data) {
       state.result = data;
+    },
     SET_PRIVATE_MODE(state, payload) {
       state.privateMode = !!payload.enable;
     },
@@ -184,7 +186,7 @@ export default new Vuex.Store({
         order.state = 'closed';
         state.closedOrders.push(order);
       }
-    },
+  },
   },
   actions: {
     async POST_ORDER({ commit }, payload) {
