@@ -6,12 +6,13 @@ const actions = {
   add: order.add,
   change: order.change,
   del: order.del,
+  clear: order.clear,
 };
 
 function reWriteFile(req, res, action, file) {
   fs.readFile(file, 'utf-8', (err, data) => {
     if (err) {
-      console.log(err);
+      console.log(err, 'read file', file, 'in handler');
       res.status(404);
     } else {
       const order = JSON.parse(data);
@@ -30,7 +31,8 @@ function reWriteFile(req, res, action, file) {
 function createFile(req, res, action, file) {
   fs.readFile(path.resolve('server/db/orderPattern.json'), 'utf-8', (err, data) => {
     if (err) {
-      console.log(err);
+      console.log(req.params, file);
+      console.log(err, 'read file orderPattern');
     } else {
       fs.writeFile(file, data, (err) => {
         if (err) {

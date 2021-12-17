@@ -59,6 +59,7 @@ export default new Vuex.Store({
     navMenuVisible: false,
     section: [],
     categories: [],
+    result: {},
     /** @type {PrivOrder[]} */
     pendingOrders: getRandomPrivOrderArray(10),
 
@@ -114,6 +115,8 @@ export default new Vuex.Store({
     NAV_MENU_VISIBLE: state => {
       return state.navMenuVisible;
     },
+    STATUS: state => {
+      return state.result;
     PENDING_ORDERS: state => {
       return state.pendingOrders || [];
     },
@@ -166,6 +169,8 @@ export default new Vuex.Store({
     GET_TOTAL_SUM(state, total) {
       state.total.totalPrice = total;
     },
+    SET_STATUS(state, data) {
+      state.result = data;
     SET_PRIVATE_MODE(state, payload) {
       state.privateMode = !!payload.enable;
     },
@@ -182,6 +187,21 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    async POST_ORDER({ commit }, payload) {
+      // payload.numberOrder взять из localStore
+      await axios
+        .post(`http://localhost:3000/api/order/newOrder/${payload.numberOrder}`, {
+          user: payload.user,
+        })
+        .then(() => {
+          commit('SET_STATUS', { status: 1, text: 'Заказ успешно создан!' });
+          localStorage.removeItem('numberOrder');
+          localStorage.removeItem('guid');
+        })
+        .catch(() => {
+          commit('SET_STATUS', { status: 0, text: 'Что-то пошло не так :(' });
+        });
+    },
     async GET_MENU({ commit }, category) {
       const { data: section } = await axios.get(`http://localhost:3000/api/menu/${category}`);
       commit('SET_MENU', section);
@@ -219,8 +239,9 @@ export default new Vuex.Store({
       });
       commit('GET_TOTAL_SUM', total);
     },
-    DELETE_ALL_IN_ORDER_ACTION({ commit }) {
-      commit('DELETE_ALL_IN_ORDER');
+    async DELETE_ALL_IN_ORDER_ACTION({ dispatch }, payload) {
+      await axios.delete(`http://localhost:3000/api/order/clear/${payload.numberOrder}`);
+      dispatch('GET_ORDER_LIST', payload.numberOrder);
     },
     ADD_LOYALTY({ commit, state }, payload) {
       const exist = state.quickOrder.loyalty.find(el => el.guid === payload);
@@ -233,11 +254,9 @@ export default new Vuex.Store({
       const { data: order } = await axios.get(`http://localhost:3000/api/order/${numberOrder}`);
       commit('SET_QUICK_ORDER', order.list);
       commit('GET_TOTAL_SUM', order.total);
-      // commit('SET_AMOUNT', cartList.amount);
     },
 
     async ADD_DISH({ dispatch }, payload) {
-      // console.log(payload.dish.quantity);
       if (!payload.dish.quantity) {
         await axios.post(
           `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
