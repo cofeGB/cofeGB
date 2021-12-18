@@ -2,5 +2,25 @@
   "brandName": "СoffeeBonk",
   "address": "г. Москва, Красная площадь, 1",
   "phone": "+7-999-888-77-66",
-  "mail": "info@bodrit.ru"
+  "mail": "info@bodrit.ru",
+	"workTimeFrom": 8,
+	"workTimeTo": 22,
+	"INFO_NAV_MENU": [
+		{
+			"title": "Доставка и оплата",
+			"path": "/delivery"
+		},
+		{
+			"title": "Контакты",
+			"path": "/contacts"
+		},
+		{
+			"title": "Акции",
+			"path": "/promo"
+		},
+		{
+			"title": "О нас",
+			"path": "/about"
+		}
+	]
 }

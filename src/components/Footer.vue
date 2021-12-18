@@ -1,16 +1,214 @@
 <template>
-  <div class="footer"></div>
+  <div class="footer" color="rgba(86, 71, 66, 0.8)">
+    <Links class="footer__top d-flex justify-center" />
+    <v-row class="footer__main white--text mb-4" width="80vw">
+      <v-col class="footer__main_block">
+        <div class="footer__main_header">Меню</div>
+        <v-list color="rgb(0, 0, 0, 0.01)">
+          <v-list-item
+            v-for="item in foodNavMenu"
+            v-bind:key="item.path"
+            :to="{ path: item.path }"
+            class="footer__main_link1"
+          >
+            <v-list-item-title class="footer__main_link" v-text="item.title"></v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-col>
+      <v-col class="footer__main_block">
+        <div class="footer__main_header">Контакты</div>
+        <v-card-text>
+          <a class="my-4 footer__main_hashtag" phone>{{ globalConst.phone }}</a>
+          <div>{{ globalConst.address }}</div>
+        </v-card-text>
+        <div>
+          <span>
+            Режим работы: {{ globalConst.workTimeFrom }} - {{ globalConst.workTimeTo }} Ежедневно
+          </span>
+          <div class="footer__main_order">
+            <div class="footer__main_ind" :class="{ active: isActive }"></div>
+            <span v-if="isActive">Сейчас работаем</span>
+            <span v-else>Сейчас закрыто</span>
+          </div>
+        </div>
+      </v-col>
+      <v-col class="footer__main_block">
+        <div class="footer__main_header">Мы в соцсетях</div>
+        <div class="mb-4">
+          <span>
+            <b>
+              Ищите хештег <i class="footer__main_hashtag"> {{ globalConst.hashtag }}</i>
+            </b>
+          </span>
+        </div>
+        <div class="footer__main_social d-flex justify-center">
+          <div>
+            <i class="fa fa-instagram fa-2x"></i>
+          </div>
+          <div>
+            <i class="fa fa-facebook-square fa-2x"></i>
+          </div>
+          <div>
+            <i class="fa fa-vk fa-2x"></i>
+          </div>
+          <div>
+            <i class="fa fa-twitter-square fa-2x"></i>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="footer__bottom text-center white--text">
+      <v-col>
+        {{ new Date().getFullYear() }}
+        <v-icon class="mx-5 mb-5 white--text">mdi-copyright</v-icon>
+        {{ globalConst.brandName }}
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import store from '@/store/index';
+import Links from '../views/Links.vue';
 export default {
-  name: 'footeer',
+  name: 'Footer',
+  components: {
+    Links,
+  },
+  data() {
+    return {
+      globalConst: store.state.globalConst,
+    };
+  },
+  computed: {
+    isActive() {
+      let now = new Date();
+      let hour = now.getHours();
+      if (
+        store.state.globalConst.workTimeFrom <= hour &&
+        hour <= store.state.globalConst.workTimeTo
+      ) {
+        return true;
+      }
+      return false;
+    },
+    foodNavMenu() {
+      return store.getters.FOOD_NAV_MENU.map(item => ({
+        title: item.title,
+        path: `/menu/${item.query}`,
+      }));
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .footer {
-  height: 50px;
-  background: #000;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__top {
+    width: 100%;
+    padding: 4px !important;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(86, 71, 66, 0.8);
+    @media (max-width: 667px) {
+      flex-direction: column;
+    }
+  }
+  &__bottom {
+    margin-top: 0;
+    width: 100%;
+    background-color: rgba(86, 71, 66, 0.8);
+    padding: 2px 16px;
+  }
+  &__main {
+    margin: 0;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 667px) {
+      flex-direction: column;
+    }
+    &_block {
+      text-align: center;
+      min-width: 250px;
+      @media (max-width: 667px) {
+        margin-top: 16px;
+        text-align: center;
+      }
+    }
+    &_order {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media (max-width: 667px) {
+        margin-top: 16px;
+      }
+    }
+    &_ind {
+      width: 12px;
+      height: 12px;
+      background-color: #eb6952;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    &_ul {
+      padding: 0;
+      // list-style-type: none;
+    }
+    &_link {
+      min-height: 20px !important;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    &_link:hover {
+      text-decoration: none;
+      color: #289991;
+    }
+    &_link1 {
+      min-height: 30px !important;
+    }
+    &_header {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      // text-decoration: underline;
+      margin-bottom: 16px;
+      // color: #2d817c;
+      @media (max-width: 667px) {
+        display: none;
+      }
+    }
+    &_social {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    &_social > div {
+      margin-right: 16px;
+    }
+    &_social > div.hover {
+      color: #52ebe0;
+    }
+    &_hashtag {
+      color: #ffffff;
+    }
+    &_hashtag:hover {
+      color: #52ebe0;
+    }
+  }
+  .fa:hover {
+    color: #52ebe0;
+  }
+  .active {
+    background-color: #52ebe0;
+  }
+}
+
+.v-icon.v-icon {
+  display: inline;
 }
 </style>

@@ -59,19 +59,19 @@
       <div v-else>
         <h3>К сожалению, такого блюда нет</h3>
       </div>
-      <dishFooter />
+      <!-- <dishFooter /> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import dishFooter from './dishFooter.vue';
+// import dishFooter from './dishFooter.vue';
 export default {
   name: 'dish',
-  components: {
-    dishFooter,
-  },
+  // components: {
+  //   dishFooter,
+  // },
   props: {
     item: {
       type: Object,
@@ -127,21 +127,27 @@ export default {
   box-sizing: border-box;
 }
 .container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 1167px;
-  background-color: white;
-  margin: 0 auto;
+  margin: auto auto;
   @media (max-width: 667px) {
     width: 100%;
   }
 }
 .center {
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .content {
+  padding: 15px;
+  border-radius: 15px;
   margin-bottom: 64px;
+  background-color: white;
   @media (max-width: 667px) {
     margin-bottom: 16px;
   }

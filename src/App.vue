@@ -8,13 +8,13 @@
     <CofDelivery v-if="publicMode" />
     <CofNavMenu v-if="publicMode" />
     <CofBasket v-if="publicMode" />
-    <Footeer v-if="publicMode" />
+    <Footer v-if="publicMode" />
   </v-app>
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
-import Footeer from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
 import CofBasket from '@/components/CofBasket/CofBasket.vue';
 import CofBaner from '@/components/Baners/CofBaner.vue';
@@ -24,7 +24,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    Footeer,
+    Footer,
     CofDelivery,
     CofBasket,
     CofBaner,
@@ -38,10 +38,11 @@ export default {
   methods: {
     ...mapActions([
       'GET_GLOBAL_CONST',
+      'GET_EMPLOYEE',
+      'GET_EMPLOYEE_REVIEWS_LIST',
       'GET_NAV_MENU',
       'GET_LOYALTY',
       'GET_CATEGORIES',
-      'GET_EMPLOYEE',
     ]),
     closeAdvertisement() {
       this.advertisement = false;
@@ -52,10 +53,11 @@ export default {
   },
   created() {
     this.GET_GLOBAL_CONST();
+    this.GET_EMPLOYEE();
+    this.GET_EMPLOYEE_REVIEWS_LIST();
     this.GET_NAV_MENU();
     this.GET_LOYALTY();
     this.GET_CATEGORIES();
-    this.GET_EMPLOYEE();
   },
   computed: {
     publicMode() {

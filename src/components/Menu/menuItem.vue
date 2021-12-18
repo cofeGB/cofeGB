@@ -104,6 +104,7 @@ export default {
   max-width: 260px
   background-color: white
   justify-self: center
+  border-radius: 15px
   &__desc
     padding: 20px
     color: #564742
@@ -170,6 +171,7 @@ export default {
   width: 100%
 img
   width: 100%
+  border-radius: 0 0 15px 15px
 
 @media (max-width: 580px)
   .menuItem

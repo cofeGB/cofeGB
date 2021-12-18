@@ -1,0 +1,16 @@
+{
+    "list": [],
+    "user": {
+        "phone": "",
+        "addres": {},
+        "name": "",
+        "createAcount": false
+    },
+    "total": 0,
+    "timeTo": "",
+    "timeConfirmation": "",
+    "userMessage": "",
+    "paymentMethod": "",
+    "backCall": true,
+    "status": "pending"
+}
