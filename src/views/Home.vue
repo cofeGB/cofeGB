@@ -4,10 +4,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import CofHomeBaner from '@/components/Baners/CofHomeBaner.vue';
 export default {
   name: 'Home',
-  components: { CofHomeBaner },
   data: () => ({
     showNavMenu: false,
   }),
