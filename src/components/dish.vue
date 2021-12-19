@@ -1,17 +1,15 @@
 <template>
-  <div class="container">
-    <div class="center">
-      <div v-if="menuItem" class="content center">
-        <div class="dish__image">
-          <img :src="img" alt="photo" />
-          <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
-          <div class="dish__img-info">
-            <div class="dish__img-info_text">
-              <span class="dish__text">{{ menuItem.title }}</span>
-              <div class="dish__text-align">
-                <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
-                <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
-              </div>
+  <div>
+    <div v-if="menuItem" class="container px-0 mt-3">
+      <div class="dish__image">
+        <img :src="img" alt="photo" />
+        <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
+        <div class="dish__img-info">
+          <div class="dish__img-info_text">
+            <span class="dish__text">{{ menuItem.title }}</span>
+            <div class="dish__text-align">
+              <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
+              <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
             </div>
           </div>
         </div>
@@ -78,6 +76,9 @@
         <h3>К сожалению, такого блюда нет</h3>
       </div>
       <dishFooter />
+    </div>
+    <div v-else>
+      <h3>К сожалению, такого блюда нет</h3>
     </div>
   </div>
 </template>

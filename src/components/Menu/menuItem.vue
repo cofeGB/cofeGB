@@ -1,5 +1,5 @@
 <template>
-  <div class="menuItem">
+  <div class="menuItem my-3">
     <div class="menuItem__desc">
       <router-link
         :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
@@ -20,7 +20,7 @@
       </div>
       <div class="menuItem__price">
         {{ item.price }} &#x20bd;
-        <button @click="onClick(1)">
+        <button @click="onClick(1)" class="mr-3">
           <i class="fas fa-plus-circle btn-plus"></i>
         </button>
         <button v-if="quantity > 0" @click="onClick(-1)">
@@ -30,12 +30,12 @@
     </div>
     <router-link
       :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+      class="menuItem__link"
     >
       <div class="menuItem__img">
         <div class="contaier">
-          <div class="triangle"></div>
-          <img :src="img" alt="photo" />
-          <p v-if="quantity > 0" class="menuItem__quantity">x {{ quantity }}</p>
+          <img :src="img" alt="photo" class="img" />
+          <span v-if="quantity > 0" class="menuItem__quantity">x {{ quantity }}</span>
         </div>
       </div>
     </router-link>
@@ -105,11 +105,12 @@ export default {
   position: relative
   height: 400px
   max-width: 260px
-  background-color: white
+  background-color: rgba(20, 15, 12, 0.9)
   justify-self: center
   &__desc
     padding: 20px
-    color: #564742
+    color: #fff
+
   &__title
     color: darken(#25dcd1, 20%)
     font-family: Playfair Display
@@ -127,7 +128,7 @@ export default {
     display: grid
     grid-template-columns: repeat(4, 1fr)
     margin: 22px 0
-    color: #87817F
+    color: #fff
     font-family: Open Sans
     font-weight: 600
     font-size: 12px
@@ -139,19 +140,25 @@ export default {
     font-weight: 600
     font-size: 24px
     line-height: 34px
+  &__link
+    position: relative
   &__img
-    position: absolute
-    bottom: -7px
+    clip-path: polygon(0 28%, 100% 0%, 100% 100%, 0% 100%)
+    overflow: hidden
     width: 100%
-    padding: 0
+    .img
+      transition: all 0.3s
+    &:hover
+      .img
+        transform: scale(1.2)
   &__quantity
-    border: 3px solid #FFFFFF
+    border: 3px solid rgba(20, 15, 12, 0.6)
     box-sizing: border-box
     border-radius: 25px
     position: absolute
-    color: white
-    bottom: -15px
-    right: -15px
+    color: rgba(20, 15, 12, 0.8)
+    bottom: 10px
+    right: 2px
     background: #25DCD1
     height: 42px
     min-width: 70px
@@ -161,13 +168,6 @@ export default {
     font-weight: 600
     font-size: 24px
     line-height: 34px
-.triangle
-  position: absolute
-  top: -3px
-  width: 0
-  height: 0
-  border-top: 40px solid white
-  border-right: 240px solid transparent
 .btn-plus
   color: #25DCD1
 .contaier
@@ -180,7 +180,6 @@ img
   .menuItem
     height: 350px
     max-width: 220px
-  .triangle
-    border-top: 35px solid white
-    border-right: 200px solid transparent
+  .img
+    height: 150px
 </style>
