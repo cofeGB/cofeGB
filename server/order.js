@@ -1,5 +1,5 @@
 const add = (order, req) => {
-  order.guid =req.body.guid;
+  order.guid = req.body.guid;
   const dish = req.body.dish;
   order.total += dish.price;
   dish.quantity = req.body.quantity;
