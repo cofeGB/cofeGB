@@ -155,9 +155,6 @@ export default {
     clearBasket() {
       this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
     },
-    clearBasket() {
-      this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
-    },
     onClick(el, inc) {
       this.ADD_DISH({ dish: el, inc, numberOrder: this.numberOrder });
     },
