@@ -134,6 +134,22 @@ export default {
   width: 100%;
 }
 
+.brandName {
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 85px;
+  color: white;
+  text-align: center;
+  @media (max-width: 450px) {
+    font-size: 54px;
+  }
+}
+
+.container {
+  padding-top: 0;
+}
+
 .w100 {
   width: 100%;
 }
