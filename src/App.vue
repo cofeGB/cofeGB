@@ -1,7 +1,6 @@
 <template>
-  <v-app app>
+  <v-app app :style="style">
     <Header v-if="publicMode" />
-    <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" />
     <v-main>
       <router-view />
     </v-main>
@@ -17,7 +16,6 @@ import Header from '@/components/Header.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
 import CofBasket from '@/components/CofBasket/CofBasket.vue';
-import CofBaner from '@/components/Baners/CofBaner.vue';
 import { mapActions } from 'vuex';
 
 export default {
@@ -27,11 +25,11 @@ export default {
     Footeer,
     CofDelivery,
     CofBasket,
-    CofBaner,
     CofNavMenu: () => import('./components/CofNavMenu.vue'),
   },
   data() {
     return {
+      img: require('@/assets/img/84.webp'),
       advertisement: true,
     };
   },
@@ -58,8 +56,23 @@ export default {
     this.GET_EMPLOYEE();
   },
   computed: {
+    style() {
+      return `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${this.img});
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-attachment: fixed;`;
+    },
     publicMode() {
       return !this.$store.getters.PRIVATE_MODE;
+    },
+  },
+  watch: {
+    $route(v) {
+      if (v.params.id) {
+        this.img = require('@/assets/img/26.jpg');
+      } else {
+        this.img = require('@/assets/img/84.webp');
+      }
     },
   },
 };
@@ -95,10 +108,9 @@ export default {
   color: #25dcd1;
 }
 #app {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img/84.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
 }
 
 .brandName {

@@ -1,6 +1,16 @@
 <template>
   <div>
-    <v-navigation-drawer class="menu" v-model="show" app left :permanent="permanent" width="360">
+    <v-navigation-drawer
+      app
+      dark
+      left
+      floating
+      clipped
+      temporary
+      class="menu"
+      v-model="show"
+      width="360"
+    >
       <div class="menu__logo">
         <svg
           width="40"
@@ -77,6 +87,7 @@
  * Для других страниц из INFO_NAV_MENU[n].route.
  */
 import store from '../store/index';
+import { eventBus } from '@/main';
 
 const INFO_NAV_MENU = [
   {
@@ -100,10 +111,18 @@ const INFO_NAV_MENU = [
 export default {
   name: 'CofNavMenu',
   data: () => ({
-    show: store.state.navMenuVisible,
+    show: false,
     group: null,
     infoNavMenu: INFO_NAV_MENU,
   }),
+  created() {
+    eventBus.$on('openNavMenu', () => {
+      this.show = !this.show;
+    });
+  },
+  beforeDestroy() {
+    eventBus.$off('openNavMenu');
+  },
   methods: {},
   computed: {
     foodNavMenu() {
@@ -112,49 +131,8 @@ export default {
         path: `/menu/${item.query}`,
       }));
     },
-    navMenuVisible() {
-      return store.getters.NAV_MENU_VISIBLE;
-    },
-    permanent() {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'xs':
-          return false;
-        case 'sm':
-          return false;
-        case 'md':
-          return false;
-        case 'lg':
-          return true;
-        case 'xl':
-          return true;
-        default:
-          return true;
-      }
-    },
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';
-    },
-  },
-  watch: {
-    group() {
-      this.show = false;
-    },
-    navMenuVisible(val) {
-      // console.log('S2C');
-      if (this.show != val) {
-        this.show = val;
-      }
-    },
-    permanent(val) {
-      store.dispatch('SHOW_NAV_MENU', val);
-    },
-    show(val) {
-      // console.log('C2S');
-      if (!val) {
-        if (store.getters.NAV_MENU_VISIBLE) {
-          store.dispatch('SHOW_NAV_MENU', false);
-        }
-      }
     },
   },
 };
@@ -167,7 +145,7 @@ export default {
 .menu {
   padding-left: 80px;
   padding-top: 25px;
-  background: rgba(20, 15, 12, 0.74);
+  background: rgba(5, 4, 3, 0.863);
   &__container {
     height: 100%;
   }

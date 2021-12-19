@@ -1,11 +1,6 @@
 <template>
   <v-app-bar app class="header">
-    <v-btn
-      text
-      @click="$store.dispatch('SHOW_NAV_MENU', !$store.state.navMenuVisible)"
-      color="primary"
-      class="header--btn"
-    >
+    <v-btn text @click="openNavMenu" color="primary" class="header--btn">
       <svg
         width="30"
         height="30"
@@ -62,7 +57,6 @@ export default {
   },
   data() {
     return {
-      vis: null,
       tooltipDisabled: null,
     };
   },
@@ -75,10 +69,6 @@ export default {
   },
   methods: {
     handleResize() {
-      this.vis = true;
-      if (window.innerWidth > 1265) {
-        this.vis = false;
-      }
       if (window.innerWidth < 1010) {
         this.tooltipDisabled = true;
       }
@@ -86,13 +76,16 @@ export default {
     openOrder() {
       eventBus.$emit('openOrder');
     },
+    openNavMenu() {
+      eventBus.$emit('openNavMenu');
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
-  background: rgba(20, 15, 12, 0.74) !important;
+  background: rgba(5, 4, 3, 0.863) !important;
   &--btn {
     color: #000 !important;
   }

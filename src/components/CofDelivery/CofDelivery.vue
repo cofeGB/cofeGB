@@ -3,10 +3,10 @@
     app
     dark
     right
-    class="order"
     floating
     clipped
     temporary
+    class="order"
     v-model="drawer"
     :width="mini ? 300 : 350"
     :class="{ mini: mini }"
@@ -74,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 .order {
   height: 100%;
-  background: rgba(20, 15, 12, 0.74) !important;
+  background: rgba(5, 4, 3, 0.863) !important;
   padding-top: 10px;
   .mini & {
     background: rgba(48, 24, 13, 0.9);
