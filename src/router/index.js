@@ -73,7 +73,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isPrivateRoute = to.path.search(/private/) === -1 ? false : true;
+  const isPrivateRoute = to.name === 'PrivateOrderDesk' || to.name === 'Wharehouse';
   store.dispatch('SET_PRIVATE_MODE', { enable: isPrivateRoute });
   next();
 });
