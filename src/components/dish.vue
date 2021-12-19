@@ -59,9 +59,12 @@
           <h4>Описание</h4>
           <p>{{ menuItem.description }}</p>
         </div>
-        <div class="dish__main_description">
-          <h4>Описание:</h4>
-          <span>{{ menuItem.description }}</span>
+        <div class="dish__main_cpfc">
+          <div v-for="(i, index) of menuItem.calories" :key="index">
+            <span>{{ i.procents }}</span>
+            <br />
+            <span>{{ i.title }}</span>
+          </div>
         </div>
       </div>
       <div v-else>
