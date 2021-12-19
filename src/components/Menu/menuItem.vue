@@ -3,6 +3,7 @@
     <div class="menuItem__desc">
       <router-link
         :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
+        class="decoration-none"
       >
         <p class="menuItem__title">{{ item.title }}</p>
         <div class="menuItem__composition">
@@ -98,6 +99,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.decoration-none
+  text-decoration: none
 .menuItem
   position: relative
   height: 400px
@@ -107,12 +110,14 @@ export default {
   &__desc
     padding: 20px
     color: #564742
-
   &__title
+    color: darken(#25dcd1, 20%)
     font-family: Playfair Display
     font-weight: 900
-    font-size: 16px
+    font-size: 20px
+    letter-spacing: 1px
   &__composition
+    text-decoration: none !important
     padding-top: 6px
     font-family: Open Sans
     font-weight: 300
