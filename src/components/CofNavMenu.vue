@@ -167,7 +167,7 @@ export default {
 .menu {
   padding-left: 80px;
   padding-top: 25px;
-  background: rgba(48, 24, 13, 0.5);
+  background: rgba(20, 15, 12, 0.74);
   &__container {
     height: 100%;
   }
