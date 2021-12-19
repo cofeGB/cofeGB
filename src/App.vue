@@ -25,12 +25,12 @@ export default {
     Footeer,
     CofDelivery,
     CofBasket,
-    CofBaner,
-    CofNavMenu: () => import('./components/CofNavMenu.vue'),
+    CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
     return {
       advertisement: true,
+      img: require('@/assets/img/84.webp'),
     };
   },
   methods: {
@@ -40,6 +40,7 @@ export default {
       'GET_LOYALTY',
       'GET_CATEGORIES',
       'GET_EMPLOYEE',
+      'GET_MENU',
     ]),
     closeAdvertisement() {
       this.advertisement = false;
