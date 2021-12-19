@@ -1,16 +1,11 @@
 <template>
-  <div class="menuItem my-3">
+  <div class="menuItem">
     <div class="menuItem__desc">
       <router-link
         :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
         class="decoration-none"
       >
         <p class="menuItem__title">{{ item.title }}</p>
-        <div class="menuItem__composition">
-          <span v-for="ingridient of item.composition" :item="item" :key="ingridient.title">
-            {{ ingridient.title }},
-          </span>
-        </div>
       </router-link>
       <div class="menuItem__cpfc">
         <div v-for="(i, index) of item.calories" :key="index">
@@ -28,17 +23,20 @@
         </button>
       </div>
     </div>
-    <router-link
-      :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
-      class="menuItem__link"
-    >
-      <div class="menuItem__img">
-        <div class="contaier">
-          <img :src="img" alt="photo" class="img" />
-          <span v-if="quantity > 0" class="menuItem__quantity">x {{ quantity }}</span>
-        </div>
+    <div class="menuItem__link">
+      <div
+        class="menuItem__img"
+        @click="
+          $router.replace({
+            path: `/menu/${item.category}/${item.guid}`,
+            component: 'dish',
+          })
+        "
+      >
+        <img :src="img" alt="photo" class="img" transition="fade-transition" />
       </div>
-    </router-link>
+      <span v-if="quantity > 0" class="menuItem__quantity">x {{ quantity }}</span>
+    </div>
   </div>
 </template>
 
@@ -102,28 +100,20 @@ export default {
 .decoration-none
   text-decoration: none
 .menuItem
-  position: relative
-  height: 400px
-  max-width: 260px
+  width: 280px
   background-color: #fff
   justify-self: center
   &__desc
     padding: 20px
+    max-height: 200px
     color: rgba(20, 15, 12, 0.9)
-
   &__title
     color: darken(#25dcd1, 20%)
     font-family: Playfair Display
     font-weight: 900
     font-size: 20px
     letter-spacing: 1px
-  &__composition
-    text-decoration: none !important
-    padding-top: 6px
-    font-family: Open Sans
-    font-weight: 300
-    font-size: 12px
-    line-height: 16px
+    text-overflow: ellipsis
   &__cpfc
     display: grid
     grid-template-columns: repeat(4, 1fr)
@@ -141,12 +131,22 @@ export default {
     font-size: 24px
     line-height: 34px
   &__link
-    position: relative
-  &__img
     clip-path: polygon(0 28%, 100% 0%, 100% 100%, 0% 100%)
+    position: relative
+    display: block
     overflow: hidden
     width: 100%
+    height: 300px
+  &__img
+    margin-top: auto
+    overflow: hidden
+    width: 100%
+    height: 100%
+    cursor: pointer
     .img
+      width: 100%
+      height: 100%
+      object-fit: cover !important
       transition: all 0.3s
     &:hover
       .img
@@ -175,11 +175,5 @@ export default {
   width: 100%
 img
   width: 100%
-
-@media (max-width: 580px)
-  .menuItem
-    height: 350px
-    max-width: 220px
-  .img
-    height: 150px
+  height: 100%
 </style>

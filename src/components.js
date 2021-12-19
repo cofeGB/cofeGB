@@ -1,9 +1,9 @@
-import tooltip from '@/components/components/Tooltip.vue';
-import Title from '@/components/components/Title.vue';
-import Card from '@/components/components/Card.vue';
-import Menu from '@/components/components/Menu.vue';
-import Slider from '@/components/components/Slider.vue';
-import Modal from '@/components/components/Modal.vue';
+import tooltip from '@/components/GobalComponents/Tooltip.vue';
+import Title from '@/components/GobalComponents/Title.vue';
+import Card from '@/components/GobalComponents/Card.vue';
+import Menu from '@/components/GobalComponents/Menu.vue';
+import Slider from '@/components/GobalComponents/Slider.vue';
+import Modal from '@/components/GobalComponents/Modal.vue';
 export default function install(Vue) {
   Vue.component('tooltip', tooltip);
   Vue.component('Title', Title);

@@ -27,18 +27,6 @@
             <template #content>
               <div class="d-flex order-list-menu pa-2" :class="{ mini: miniCOMPUTED }">
                 <v-btn
-                  v-if="el.quantity >= 3"
-                  class="btn mx-1"
-                  fab
-                  small
-                  color="error"
-                  @click="DELETE_ALL_IN_ORDER_ACTION"
-                >
-                  <tooltip content="Удалить все?" :disabled="disabled">
-                    <v-icon color="primary"> mdi-delete-alert-outline </v-icon>
-                  </tooltip>
-                </v-btn>
-                <v-btn
                   class="btn mx-1"
                   fab
                   small
@@ -60,7 +48,7 @@
                 </tooltip>
                 <tooltip content="Перейки к блюду" :disabled="disabled">
                   <v-btn
-                    v-if="$route.path !== `/menu/:${el.path}`"
+                    v-if="$route.path !== `/menu/${$route.params.category}/${el.guid}`"
                     class="btn mx-1"
                     icon
                     fab
@@ -128,6 +116,7 @@ export default {
     return {
       contentClick: false,
       stopRouter: false,
+      numberOrder: '',
       window: {
         width: 0,
       },
@@ -142,17 +131,34 @@ export default {
       return this.mini;
     },
   },
+  mounted() {
+    if (localStorage.numberOrder) {
+      this.numberOrder = localStorage.numberOrder;
+      this.GET_ORDER_LIST(this.numberOrder);
+    }
+    if (!localStorage.numberOrder) {
+      const today = new Date();
+      const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+      localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
+    }
+  },
   methods: {
-    ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION']),
+    ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION', 'GET_ORDER_LIST', 'GET_MENU']),
     goToElement(el) {
       this.contentClick = true;
-      this.$router.replace({ path: `/menu/:${el.path}`, query: el });
+      this.$router.replace({
+        path: `/menu/${el.category}/${el.guid}`,
+        component: 'dish',
+      });
+      this.$nextTick(() => {
+        this.GET_MENU(el.category);
+      });
     },
     clearBasket() {
       this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
     },
     onClick(el, inc) {
-      this.ADD_DISH({ dish: el, inc });
+      this.ADD_DISH({ dish: el, inc, numberOrder: this.numberOrder });
     },
   },
 };

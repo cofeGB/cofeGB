@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app class="header">
+  <v-app-bar app dark class="header">
     <v-btn text @click="openNavMenu" color="primary" class="header--btn">
       <svg
         width="30"
@@ -31,17 +31,12 @@
     </v-btn>
 
     <v-spacer></v-spacer>
-    <v-img
-      class="d-inline-block text-center header--img"
-      height="90"
-      width="100"
-      contain
-      :src="require('../assets/img/logo.png')"
-    ></v-img>
+    <img class="header--img" contain :src="require('../assets/img/logo.png')" />
     <v-spacer></v-spacer>
     <CofDeliveryHeader
       :tooltip-disabled="tooltipDisabled"
       @openOrder="openOrder"
+      :classes="'tooltip-width'"
       class="header--cart"
     />
   </v-app-bar>
@@ -86,8 +81,14 @@ export default {
 <style lang="scss" scoped>
 .header {
   background: rgba(5, 4, 3, 0.863) !important;
-  &--btn {
-    color: #000 !important;
+  &--img {
+    height: 70px;
+    .v-image {
+      position: static !important;
+    }
+  }
+  .tooltip-width {
+    width: 70px;
   }
 }
 </style>
