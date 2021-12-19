@@ -95,8 +95,9 @@ export default {
   color: #25dcd1;
 }
 #app {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('assets/img/backgroundImage.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img/84.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
 }
 

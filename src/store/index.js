@@ -228,7 +228,6 @@ export default new Vuex.Store({
       const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
       commit('SET_GLOBAL_CONST', globalConst);
     },
-
     OPEN_CLOSE_MODAL({ commit }) {
       commit('OPEN_CLOSE_MODAL');
     },
@@ -251,13 +250,11 @@ export default new Vuex.Store({
         commit('SET_LOYALTY', exist);
       }
     },
-
     async GET_ORDER_LIST({ commit }, numberOrder) {
       const { data: order } = await axios.get(`http://localhost:3000/api/order/${numberOrder}`);
       commit('SET_QUICK_ORDER', order.list);
       commit('GET_TOTAL_SUM', order.total);
     },
-
     async ADD_DISH({ dispatch }, payload) {
       if (!payload.dish.quantity) {
         await axios.post(

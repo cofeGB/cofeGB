@@ -74,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 .order {
   height: 100%;
-  background: rgba(48, 24, 13, 0.5) !important;
+  background: rgba(20, 15, 12, 0.74) !important;
   padding-top: 10px;
   .mini & {
     background: rgba(48, 24, 13, 0.9);

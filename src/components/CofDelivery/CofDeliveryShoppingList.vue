@@ -213,7 +213,7 @@ export default {
 
 <style lang="scss" scoped>
 .order {
-  background: rgba(48, 24, 13, 0.5) !important;
+  background: rgba(20, 15, 12, 0.74) !important;
   &-menu {
     max-height: 150px !important;
     overflow-x: auto;

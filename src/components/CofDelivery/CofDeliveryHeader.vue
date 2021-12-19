@@ -3,7 +3,7 @@
     :content="QUICK_ORDER.length ? 'У вас есть заказ' : 'Корзина пуста'"
     :disabled="disabled"
   >
-    <v-btn icon dark outlined @click="$emit('openOrder')">
+    <v-btn icon dark color="primary" outlined @click="$emit('openOrder')">
       <v-badge :content="orderList" :value="orderList" color="primary" overlap>
         <v-icon fab> mdi-cart-outline </v-icon>
       </v-badge>
