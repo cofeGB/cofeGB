@@ -1,5 +1,5 @@
 <template>
-  <div class="menuItem my-3">
+  <div class="menuItem">
     <div class="menuItem__desc">
       <router-link
         :to="{ path: `/menu/${this.$route.params.category}/${item.guid}`, component: 'dish' }"
