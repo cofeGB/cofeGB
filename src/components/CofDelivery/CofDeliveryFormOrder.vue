@@ -144,6 +144,8 @@
 </template>
 
 <script>
+import { eventBus } from '@/main';
+
 export default {
   props: {
     tooltipDisabled: {
@@ -194,6 +196,7 @@ export default {
   methods: {
     openBasket() {
       this.$store.dispatch('OPEN_CLOSE_MODAL');
+      eventBus.$emit('openOrder');
     },
     buyOrder() {
       this.$refs.form.validate();

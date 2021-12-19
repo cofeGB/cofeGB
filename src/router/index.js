@@ -5,7 +5,7 @@ import Delivery from '../views/Delivery.vue';
 import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
-import dish from '../components/dish.vue';
+import dish from '../components/Dish/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import store from '../store/index';
 

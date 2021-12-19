@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="menuItem" class="container px-0 mt-3">
-      <div class="dish__image">
+    <div class="container px-0 mt-3">
+      <div v-if="menuItem" class="dish__image">
         <img :src="img" alt="photo" />
         <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
         <div class="dish__img-info">
@@ -77,9 +77,6 @@
       </div>
       <dishFooter />
     </div>
-    <div v-else>
-      <h3>К сожалению, такого блюда нет</h3>
-    </div>
   </div>
 </template>
 
@@ -99,7 +96,7 @@ export default {
   },
   data() {
     return {
-      img: require('../assets/img/26.jpg'),
+      img: require('@/assets/img/26.jpg'),
       nameSection: 'sandwich',
       numberOrder: '',
     };
