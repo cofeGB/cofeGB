@@ -29,6 +29,7 @@ export default {
   },
   data() {
     return {
+      img: require('@/assets/img/84.webp'),
       advertisement: true,
       img: require('@/assets/img/84.webp'),
     };
