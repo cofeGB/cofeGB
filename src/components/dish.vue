@@ -66,6 +66,10 @@
             <span>{{ i.title }}</span>
           </div>
         </div>
+        <div class="dish__main_description">
+          <h4>Описание</h4>
+          <p>{{ ITEM.description }}</p>
+        </div>
       </div>
       <div v-else>
         <h3>К сожалению, такого блюда нет</h3>
