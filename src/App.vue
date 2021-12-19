@@ -25,11 +25,11 @@ export default {
     Footeer,
     CofDelivery,
     CofBasket,
-    CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
+    CofBaner,
+    CofNavMenu: () => import('./components/CofNavMenu.vue'),
   },
   data() {
     return {
-      img: require('@/assets/img/84.webp'),
       advertisement: true,
       img: require('@/assets/img/84.webp'),
     };
