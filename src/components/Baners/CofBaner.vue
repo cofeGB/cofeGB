@@ -1,11 +1,11 @@
 <template>
   <div class="advertisement mt-16">
-    <Slider :items="items" />
-    <tooltip right content="Закрыть рекламы">
+    <tooltip left content="Закрыть рекламы">
       <v-btn class="advertisement-close" icon color="primary" @click="$emit('closeAdvertisement')"
         ><v-icon>mdi-close-octagon-outline</v-icon></v-btn
       >
     </tooltip>
+    <Slider :items="items" />
   </div>
 </template>
 
@@ -54,8 +54,9 @@ export default {
   position: relative;
   &-close {
     position: absolute;
-    top: 0;
     right: 0;
+    top: 0;
+    z-index: 2;
     @media (max-width: 450px) {
       visibility: visible;
     }
