@@ -1,6 +1,5 @@
 <template>
   <div class="menu">
-    <!-- <h1 class="brandName">СoffeeBonk</h1> -->
     <h1 class="brandName">{{ globalName }}</h1>
     <div class="hr"></div>
     <h3 v-if="category" class="menuTitle">{{ category.title }}</h3>
@@ -13,7 +12,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import menuList from '../components/Menu/menuList.vue';
+import menuList from '../components/CofMenu/menuList.vue';
 import store from '../store/index';
 
 export default {

@@ -9,7 +9,7 @@
         class="ma-2"
         :item="item"
         :key="item.guid"
-        :img="imgUrl"
+        :img="item.img"
       ></menu-item>
     </div>
   </div>
@@ -24,9 +24,7 @@ export default {
     menuItem,
   },
   data() {
-    return {
-      imgUrl: require('../../assets/img/image2.jpg'),
-    };
+    return {};
   },
 };
 </script>

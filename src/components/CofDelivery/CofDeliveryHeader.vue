@@ -2,6 +2,7 @@
   <tooltip
     :content="QUICK_ORDER.length ? 'У вас есть заказ' : 'Корзина пуста'"
     :disabled="disabled"
+    :class="classes"
   >
     <v-btn icon dark color="primary" outlined @click="$emit('openOrder')">
       <v-badge :content="orderList" :value="orderList" color="primary" overlap>
@@ -19,6 +20,10 @@ export default {
     tooltipDisabled: {
       type: Boolean,
       default: false,
+    },
+    classes: {
+      type: String,
+      default: '',
     },
   },
   computed: {

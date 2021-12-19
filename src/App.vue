@@ -16,7 +16,7 @@ import Header from '@/components/Header.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
 import CofBasket from '@/components/CofBasket/CofBasket.vue';
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -56,11 +56,12 @@ export default {
     this.GET_EMPLOYEE();
   },
   computed: {
+    ...mapGetters(['MENU']),
     style() {
-      return `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${this.img});
-              background-repeat: no-repeat;
-              background-size: cover;
-              background-attachment: fixed;`;
+      return `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${this.img});`;
+    },
+    menuItem() {
+      return this.MENU.find(el => el.guid == this.$route.params.id);
     },
     publicMode() {
       return !this.$store.getters.PRIVATE_MODE;
@@ -69,7 +70,7 @@ export default {
   watch: {
     $route(v) {
       if (v.params.id) {
-        this.img = require('@/assets/img/26.jpg');
+        this.img = this.menuItem.img;
       } else {
         this.img = require('@/assets/img/84.webp');
       }

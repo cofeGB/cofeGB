@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-form ref="form" v-model="valid" lazy-validation>
+  <v-container class="px-2 h-100">
+    <v-form ref="form" v-model="valid" class="h-100" lazy-validation>
       <v-text-field
         v-model="user.userPhone"
         class="my-2"
@@ -25,7 +25,7 @@
       ></v-text-field>
 
       <tooltip
-        right
+        left
         :disabled="disabled"
         content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
       >
@@ -44,7 +44,7 @@
             v-model="user.address.strit"
             class="my-2"
             loading="false"
-            label="Введите ваш адрес"
+            label="Адрес доставки"
             hide-details="auto"
             clearable
             outlined
@@ -52,7 +52,7 @@
             :rules="[v => !!v || 'Доставка не осуществляется без адреса!']"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-col cols="12" lg="4" sm12 class="pt-0 pr-1">
           <v-text-field
             v-model="user.address.ofice"
             loading="false"
@@ -63,7 +63,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-col cols="12" lg="4" sm12 class="pt-0 px-1">
           <v-text-field
             v-model="user.address.home"
             loading="false"
@@ -74,7 +74,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0">
+        <v-col cols="12" lg="4" sm12 class="pt-0 pl-1">
           <v-text-field
             v-model="user.address.flore"
             loading="false"
