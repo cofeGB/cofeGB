@@ -25,8 +25,7 @@ export default {
     Footeer,
     CofDelivery,
     CofBasket,
-    CofBaner,
-    CofNavMenu: () => import('./components/CofNavMenu.vue'),
+    CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
     return {
