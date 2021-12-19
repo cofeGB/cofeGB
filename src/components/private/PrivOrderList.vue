@@ -1,12 +1,15 @@
 <template>
   <v-card
-    class="d-flex flex-row align-content-start justify-start flex-wrap"
+    class="d-flex flex-row align-content-start justify-left flex-wrap fill-height"
     color="grey lighten-2"
     flat
     tile
+    @drop="dragDrop"
+    @dragenter.prevent
+    @dragover.prevent
   >
     <PrivOrderCard
-      class="flex-grow-1 ma-8px"
+      class="flex-grow-1 ma-4"
       v-for="order in orders"
       :key="order.id"
       :order="order"
@@ -24,6 +27,14 @@ export default {
     orderType: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    dragDrop(evt) {
+      console.log('dragDrop', evt);
+      // evt.dataTransfer.dropEffect = 'move';
+      // evt.dataTransfer.effectAllowed = 'move';
+      // evt.dataTransfer.setData('orderId', order.id);
     },
   },
   computed: {
