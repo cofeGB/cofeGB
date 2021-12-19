@@ -146,12 +146,10 @@ export default {
     ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION', 'GET_ORDER_LIST', 'GET_MENU']),
     goToElement(el) {
       this.contentClick = true;
+      this.GET_MENU(el.category);
       this.$router.replace({
         path: `/menu/${el.category}/${el.guid}`,
         component: 'dish',
-      });
-      this.$nextTick(() => {
-        this.GET_MENU(el.category);
       });
     },
     clearBasket() {
