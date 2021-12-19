@@ -186,7 +186,7 @@ export default new Vuex.Store({
         order.state = 'closed';
         state.closedOrders.push(order);
       }
-  },
+    },
   },
   actions: {
     async POST_ORDER({ commit }, payload) {
