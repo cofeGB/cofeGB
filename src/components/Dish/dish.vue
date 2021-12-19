@@ -78,7 +78,7 @@ export default {
   },
   data() {
     return {
-      img: require('../assets/img/26.jpg'),
+      img: require('@/assets/img/26.jpg'),
       nameSection: 'sandwich',
       numberOrder: '',
     };
