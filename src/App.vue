@@ -32,7 +32,7 @@ export default {
     CofDelivery,
     CofBasket,
     PrivateHeader,
-    CofNavMenu: () => import('./components/CofNavMenu.vue'),
+    CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
     return {
