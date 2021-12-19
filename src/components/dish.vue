@@ -35,6 +35,10 @@
         <h4>Описание:</h4>
         <span>{{ menuItem.description }}</span>
       </div>
+      <div v-else>
+        <h3>К сожалению, такого блюда нет</h3>
+      </div>
+      <dishFooter />
     </div>
     <hr />
     <div class="dish__constructor">
@@ -60,8 +64,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import dishFooter from './dishFooter.vue';
 export default {
   name: 'dish',
+  components: {
+    dishFooter,
+  },
   props: {
     item: {
       type: Object,
@@ -109,10 +117,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .container {
   max-width: 1167px;
   background-color: white;
   margin: 0 auto;
+  @media (max-width: 667px) {
+    width: 100%;
+  }
+}
+.center {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
