@@ -2,14 +2,16 @@
   <div>
     <div class="container px-0 mt-3">
       <div v-if="menuItem" class="dish__image">
-        <img :src="img" alt="photo" />
-        <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
-        <div class="dish__img-info">
-          <div class="dish__img-info_text">
-            <span class="dish__text">{{ menuItem.title }}</span>
-            <div class="dish__text-align">
-              <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
-              <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
+        <div class="dish__image">
+          <img :src="img" alt="photo" />
+          <button @click="$router.go(-1)" class="dish__btn dish__btn_close">&times;</button>
+          <div class="dish__img-info">
+            <div class="dish__img-info_text">
+              <span class="dish__text">{{ menuItem.title }}</span>
+              <div class="dish__text-align">
+                <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
+                <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
+              </div>
             </div>
           </div>
         </div>
@@ -38,8 +40,8 @@
         <div class="dish__constructor">
           <p>Здесь конструктор?</p>
         </div>
-        <button @click="onClick(1)" v-if="quantity === 0">
-          <div class="dish__btn cart__btn">
+        <button @click="onClick(1)" v-if="quantity === 0" class="dish__btn cart__btn">
+          <div>
             <span>В КОРЗИНУ</span>
             <span>{{ menuItem.price }} &#x20bd;</span>
           </div>
@@ -257,11 +259,12 @@ hr {
 }
 .dish__main {
   display: flex;
-  justify-content: center;
-  width: 80%;
+  justify-content: space-between;
+  padding: 0 16px;
+  width: 100%;
   &_composition {
     padding-right: 16px;
-    width: 50%;
+    flex: 1 1 45%;
     @media (max-width: 667px) {
       padding: 8px;
       width: 100%;
@@ -269,7 +272,7 @@ hr {
   }
   &_description {
     padding-left: 16px;
-    width: 50%;
+    flex: 1 1 45%;
     @media (max-width: 667px) {
       padding: 8px;
       width: 100%;
@@ -290,6 +293,7 @@ hr {
 }
 .dish__constructor {
   margin: 32px 0;
+  text-align: center;
 }
 .cart__btn {
   width: 270px;
@@ -299,6 +303,7 @@ hr {
   justify-content: space-around;
   align-items: center;
   font-weight: 500;
+  margin: 0 auto;
   @media (max-width: 667px) {
     width: 150px;
     height: 40px;
