@@ -41,24 +41,6 @@
           <h4>Описание:</h4>
           <span>{{ menuItem.description }}</span>
         </div>
-        <div class="dish__main_cpfc">
-          <div v-for="(i, index) of menuItem.calories" :key="index">
-            <span>{{ i.procents }}</span>
-            <br />
-            <span>{{ i.title }}</span>
-          </div>
-        </div>
-        <div class="dish__main_cpfc">
-          <div v-for="(i, index) of menuItem.calories" :key="index">
-            <span>{{ i.procents }}</span>
-            <br />
-            <span>{{ i.title }}</span>
-          </div>
-        </div>
-        <div class="dish__main_description">
-          <h4>Описание</h4>
-          <p>{{ menuItem.description }}</p>
-        </div>
       </div>
       <hr />
       <div class="dish__constructor">
@@ -210,10 +192,11 @@ hr {
 .dish__img-info {
   position: absolute;
   width: 100%;
-  bottom: 20px;
+  bottom: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.774), transparent);
   @media (max-width: 667px) {
     position: static;
     padding: 8px;
@@ -228,6 +211,7 @@ hr {
   color: white;
   font-weight: 400;
   font-size: 33px;
+  margin-bottom: 20px;
   @media (max-width: 667px) {
     font-size: 22px;
     color: black;
