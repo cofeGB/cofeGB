@@ -214,6 +214,7 @@ hr {
 }
 .dish__constructor {
   margin: 32px 0;
+  text-align: center;
 }
 .cart__btn {
   width: 270px;
