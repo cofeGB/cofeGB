@@ -32,7 +32,7 @@
 
     <v-spacer></v-spacer>
     <v-img
-      class="d-inline-block text-center bordered header--img"
+      class="d-inline-block text-center header--img"
       height="90"
       width="100"
       contain

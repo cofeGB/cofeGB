@@ -105,11 +105,11 @@ export default {
   position: relative
   height: 400px
   max-width: 260px
-  background-color: rgba(20, 15, 12, 0.9)
+  background-color: #fff
   justify-self: center
   &__desc
     padding: 20px
-    color: #fff
+    color: rgba(20, 15, 12, 0.9)
 
   &__title
     color: darken(#25dcd1, 20%)
@@ -128,7 +128,7 @@ export default {
     display: grid
     grid-template-columns: repeat(4, 1fr)
     margin: 22px 0
-    color: #fff
+    color: rgba(20, 15, 12, 0.9)
     font-family: Open Sans
     font-weight: 600
     font-size: 12px

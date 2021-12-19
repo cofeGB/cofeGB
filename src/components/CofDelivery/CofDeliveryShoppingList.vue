@@ -99,59 +99,6 @@
           >Очистить корзину</v-btn
         >
       </div>
-      <!-- <Menu
-        :offsetX="true"
-        :left="true"
-        :maxW="'300px'"
-        :origin="'right top'"
-        :transition="'fab-transition'"
-        :activator-class="'w100'"
-        :contentClass="miniCOMPUTED ? 'mini' : ''"
-        @input="clearBasket(idx)"
-      >
-        <template #activator>
-          <tooltip content="Подробнее про общий счет" :disabled="disabled">
-            <div class="d-flex order-list total pt-2 w-100">
-              <span class="ellipsis"> Всего к оплате </span>
-              <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
-            </div>
-          </tooltip>
-        </template>
-        <template #content>
-          <div class="stockMenu pa-2" :class="miniCOMPUTED ? 'mini' : ''">
-            <span v-if="!TOTAL_SUM.loyalty.length" class="body-1">Нет доступных акций</span>
-            <div v-else class="loyalty" v-for="(loyal, idx) in TOTAL_SUM.loyalty" :key="idx">
-              <span class="title primary-text">{{ loyal.title }}</span>
-              <v-list color="transparent" class="stockMenu-list">
-                <v-list-item
-                  v-for="(stock, idx) in loyal.items"
-                  :key="idx"
-                  class="stockMenu-list-item"
-                  :to="stock.path"
-                >
-                  <tooltip
-                    :disabled="disabled"
-                    :content="`Перейти на страницу ${loyal.title.toLowerCase()}`"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title class="stockMenu-list-item-title">
-                        {{ stock.title }}
-                      </v-list-item-title>
-                      <v-list-item-subtitle class="stockMenu-list-item-subtitle">
-                        Скидка по Акции: <span class="primary-text">{{ stock.sale }} % </span>
-                      </v-list-item-subtitle>
-                      <v-list-item-subtitle class="stockMenu-list-item-subtitle">
-                        Вы сэкономили :
-                        <span class="primary-text">{{ stock.saving }} &#x20bd;.</span>
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </tooltip>
-                </v-list-item>
-              </v-list>
-            </div>
-          </div>
-        </template>
-      </Menu> -->
     </template>
   </Card>
 </template>
@@ -224,16 +171,18 @@ export default {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      background: rgba(75, 67, 63, 0.9);
+      background: rgba(20, 15, 12, 0.8);
       color: #fff;
       .mini & {
-        background: rgba(48, 24, 13, 0.9);
+        background: rgba(20, 15, 12, 0.8);
       }
     }
   }
 }
 .mini {
-  background: rgba(48, 24, 13, 0.9) !important;
+  background: rgba(20, 15, 12, 0.9) !important;
+  border: 1px solid white !important;
+  border-radius: 10px;
 }
 
 .card {
@@ -254,15 +203,15 @@ export default {
 
 .btn {
   font-size: 30px;
-  color: rgba(48, 24, 13, 0.9) !important;
+  color: rgba(20, 15, 12, 0.8) !important;
 }
 .stockMenu {
   background: rgba(75, 67, 63, 0.9);
   .mini & {
-    background: rgba(48, 24, 13, 0.9);
+    background: rgba(20, 15, 12, 0.8);
     &-list-item {
       &:hover {
-        background: rgba(51, 18, 3, 0.9);
+        background: rgba(20, 15, 12, 0.8);
       }
     }
   }
