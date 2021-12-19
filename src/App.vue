@@ -133,4 +133,8 @@ export default {
 .w100 {
   width: 100%;
 }
+
+.w100 {
+  width: 100%;
+}
 </style>
