@@ -56,7 +56,7 @@
           </button>
         </div>
         <div class="dish__main_cpfc">
-          <div v-for="(i, index) of item.calories" :key="index">
+          <div v-for="(i, index) of menuItem.calories" :key="index">
             <span>{{ i.procents }}</span>
             <br />
             <span>{{ i.title }}</span>
