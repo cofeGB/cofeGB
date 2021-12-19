@@ -1,10 +1,8 @@
 <template>
   <v-app app :style="style">
     <Header v-if="publicMode" />
-    <<<<<<< HEAD =======
     <PrivateHeader v-else />
     <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" />
-    >>>>>>> ea7214d (create view wharehouse)
     <v-main>
       <router-view />
     </v-main>
@@ -31,7 +29,7 @@ export default {
     CofDelivery,
     CofBasket,
     PrivateHeader,
-    CofNavMenu: () => import('./components/CofNavMenu.vue'),
+    CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
     return {

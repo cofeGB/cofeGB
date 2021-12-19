@@ -106,6 +106,10 @@ const INFO_NAV_MENU = [
     title: 'О нас',
     path: '/about',
   },
+  {
+    title: 'Склад',
+    path: '/private/wharehouse',
+  },
 ];
 
 export default {
