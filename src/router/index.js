@@ -7,6 +7,7 @@ import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
 import dish from '../components/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
+import Wharehouse from '../views/Wharehouse.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -48,6 +49,11 @@ const routes = [
     component: () => import('../views/PrivOrderDesk.vue'),
   },
   {
+    path: '/private/wharehouse',
+    name: 'Wharehouse',
+    component: Wharehouse,
+  },
+  {
     path: '*',
     name: 'PageNotFound',
     component: PageNotFound,
@@ -61,7 +67,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isPrivateRoute = to.name === 'PrivateOrderDesk';
+  const isPrivateRoute = to.name === 'PrivateOrderDesk' || to.name === 'Wharehouse';
   store.dispatch('SET_PRIVATE_MODE', { enable: isPrivateRoute });
   next();
 });

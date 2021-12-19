@@ -71,8 +71,65 @@ export default new Vuex.Store({
 
     /** @type {boolean} */
     privateMode: false,
+    products: [
+      {
+        title: 'Кофе',
+        guid: 'xcgbhj',
+        weight: 0,
+        weightPack: 0,
+        quantity: 22,
+        packQuantity: 2,
+        quantityInPack: 10,
+        protein: 0,
+        fats: 0,
+        carbohydrates: 0,
+        calories: 0,
+        price: 0,
+        priceByKg: 0,
+        pricePack: 500,
+        dataRelice: '17-11-2021',
+        dataLive: '12 месяцев',
+        dateBuy: '1-12-2021',
+        dateCreate: '17-11-2022',
+        category: 'drink',
+        provider: 'ООО "поставщик"',
+        warnMsg: 'содержит кофеин',
+        warnIcon: '',
+        composition: 'кофе',
+        warn: true,
+      },
+      {
+        title: 'Чай',
+        guid: 'xhcnvj45',
+        weight: 0,
+        weightPack: 0,
+        quantity: 22,
+        packQuantity: 2,
+        quantityInPack: 10,
+        protein: 0,
+        fats: 0,
+        carbohydrates: 0,
+        calories: 0,
+        price: 0,
+        priceByKg: 0,
+        pricePack: 500,
+        dataRelice: '17-11-2021',
+        dataLive: '12 месяцев',
+        dateBuy: '1-12-2021',
+        dateCreate: '17-11-2022',
+        category: 'drink',
+        provider: 'ООО "поставщик"',
+        warnMsg: '',
+        warnIcon: '',
+        composition: 'чай',
+        warn: false,
+      },
+    ],
   },
   getters: {
+    PRODUCTS: state => {
+      return state.products;
+    },
     MODAL: state => {
       return state.modal;
     },
@@ -132,6 +189,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    SET_PRODUCTS_LIST(state, data) {
+      state.products = data;
+    },
     OPEN_CLOSE_MODAL(state) {
       state.modal = !state.modal;
     },

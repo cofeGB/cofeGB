@@ -65,6 +65,7 @@
             </v-list-item>
           </router-link>
         </v-list>
+        <router-link to="/private/wharehouse">Склад</router-link>
       </div>
     </v-navigation-drawer>
   </div>
