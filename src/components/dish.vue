@@ -55,9 +55,12 @@
             <i class="fas fa-plus"></i>
           </button>
         </div>
-        <div class="dish__main_description">
-          <h4>Описание</h4>
-          <p>{{ menuItem.description }}</p>
+        <div class="dish__main_cpfc">
+          <div v-for="(i, index) of item.calories" :key="index">
+            <span>{{ i.procents }}</span>
+            <br />
+            <span>{{ i.title }}</span>
+          </div>
         </div>
         <div class="dish__main_cpfc">
           <div v-for="(i, index) of menuItem.calories" :key="index">
