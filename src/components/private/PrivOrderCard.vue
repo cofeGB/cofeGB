@@ -1,5 +1,13 @@
 <template>
-  <v-card outlined class="d-flex flex-column align-content-start justify-start">
+  <v-card
+    outlined
+    class="d-flex flex-column align-content-start justify-start"
+    min-width="228px"
+    max-width="228px"
+    style="border: 1px solid black"
+    draggable
+    @dragstart="startDrag($event, order)"
+  >
     <v-card-actions class="pa-0">
       <v-card-title class="pa-2"> Заказ №{{ order.id }} </v-card-title>
       <v-spacer></v-spacer>
@@ -69,6 +77,12 @@ export default {
         id,
         name: dish.title,
       };
+    },
+    startDrag(evt, order) {
+      console.log('startDrag');
+      evt.dataTransfer.dropEffect = 'move';
+      evt.dataTransfer.effectAllowed = 'move';
+      evt.dataTransfer.setData('orderId', order.id);
     },
   },
   computed: {
