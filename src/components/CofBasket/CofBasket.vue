@@ -21,14 +21,15 @@
 
 <script>
 export default {
+  name: 'cofBasket',
   methods: {
     close() {
-      this.$store.dispatch('OPEN_CLOSE_MODAL');
+      this.$store.dispatch('OPEN_CLOSE_MODAL', this.name);
     },
   },
   computed: {
     basket() {
-      return this.$store.state.modal;
+      return this.$store.state.modalCard === 'cofBasket';
     },
   },
 };

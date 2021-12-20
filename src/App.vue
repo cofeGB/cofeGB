@@ -43,6 +43,7 @@ export default {
       'GET_LOYALTY',
       'GET_CATEGORIES',
       'GET_EMPLOYEE',
+      'GET_EMPLOYEE_REVIEWS_LIST',
       'GET_MENU',
     ]),
     closeAdvertisement() {
@@ -58,6 +59,7 @@ export default {
     this.GET_LOYALTY();
     this.GET_CATEGORIES();
     this.GET_EMPLOYEE();
+    this.GET_EMPLOYEE_REVIEWS_LIST();
   },
   computed: {
     ...mapGetters(['MENU']),
