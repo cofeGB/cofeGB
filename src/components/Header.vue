@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark class="header">
+  <v-app-bar app class="header">
     <v-btn text @click="openNavMenu" color="primary" class="header--btn">
       <svg
         width="30"
@@ -29,14 +29,16 @@
       </svg>
       <span class="ml-2"> Меню </span>
     </v-btn>
-
-    <v-spacer></v-spacer>
-    <img class="header--img" contain :src="require('../assets/img/logo.png')" />
-    <v-spacer></v-spacer>
+    <v-img
+      class="d-inline-block bordered header--img"
+      height="90"
+      width="100"
+      contain
+      :src="require('../assets/img/logo.png')"
+    ></v-img>
     <CofDeliveryHeader
       :tooltip-disabled="tooltipDisabled"
       @openOrder="openOrder"
-      :classes="'tooltip-width'"
       class="header--cart"
     />
   </v-app-bar>
@@ -80,15 +82,18 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  background: rgba(5, 4, 3, 0.863) !important;
+  background: rgba(48, 24, 13, 0.5) !important;
+  padding: 0 20px;
+  margin-bottom: 20px;
   &--img {
-    height: 70px;
-    .v-image {
-      position: static !important;
-    }
+    margin-left: -70px;
   }
-  .tooltip-width {
-    width: 70px;
-  }
+}
+.header div {
+  display: grid;
+  // justify-content: space-around;
+  grid-template-columns: repeat (3, 1fr);
+  align-items: center;
+  width: 100%;
 }
 </style>

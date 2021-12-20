@@ -147,6 +147,7 @@
 import { eventBus } from '@/main';
 
 export default {
+  name: 'colDeliveryFormOrder',
   props: {
     tooltipDisabled: {
       type: Boolean,
@@ -194,7 +195,7 @@ export default {
   },
   methods: {
     openBasket() {
-      this.$store.dispatch('OPEN_CLOSE_MODAL');
+      this.$store.dispatch('OPEN_CLOSE_MODAL', this.name);
       eventBus.$emit('openOrder');
     },
     buyOrder() {

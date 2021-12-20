@@ -89,35 +89,35 @@
 import store from '../../store/index';
 import { eventBus } from '@/main';
 
-const INFO_NAV_MENU = [
-  {
-    title: 'Доставка и оплата',
-    path: '/delivery',
-  },
-  {
-    title: 'Контакты',
-    path: '/contacts',
-  },
-  {
-    title: 'Акции',
-    path: '/promo',
-  },
-  {
-    title: 'О нас',
-    path: '/about',
-  },
-  {
-    title: 'Склад',
-    path: '/private/wharehouse',
-  },
-];
+// const INFO_NAV_MENU = [
+//   {
+//     title: 'Доставка и оплата',
+//     path: '/delivery',
+//   },
+//   {
+//     title: 'Контакты',
+//     path: '/contacts',
+//   },
+//   {
+//     title: 'Акции',
+//     path: '/promo',
+//   },
+//   {
+//     title: 'О нас',
+//     path: '/about',
+//   },
+//   {
+//     title: 'Склад',
+//     path: '/private/wharehouse',
+//   },
+// ];
 
 export default {
   name: 'CofNavMenu',
   data: () => ({
     show: false,
     group: null,
-    infoNavMenu: INFO_NAV_MENU,
+    infoNavMenu: store.state.globalConst.INFO_NAV_MENU,
   }),
   created() {
     eventBus.$on('openNavMenu', () => {
