@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { BACKEND_BASE_URL } from '../config';
 import { getRandomPrivOrderArray } from '../mockdata/priv-order';
 
 Vue.use(Vuex);
@@ -269,8 +270,11 @@ export default new Vuex.Store({
       commit('SET_MENU', section);
     },
     async GET_NAV_MENU({ commit }) {
-      const { data: menu } = await axios.get(`http://localhost:3000/api/navMenu/`);
-      commit('SET_NAV_MENU', menu);
+      const { data: navMenu } = await axios.get(`${BACKEND_BASE_URL}/api/navMenu`);
+      // const data = JSON.parse(
+      //   '[{"title":"Закуски","path":"/menu/starters","itemOrder":0},{"title":"Сендвичи","path":"/menu/sandwich","itemOrder":1},{"title":"Салаты","path":"/menu/salad","itemOrder":2},{"title":"Десерты","path":"/menu/desserts","itemOrder":3},{"title":"Кофе","path":"/menu/coffee","itemOrder":4},{"title":"Чай","path":"/menu/tea","itemOrder":5}]'
+      // );
+      commit('SET_NAV_MENU', navMenu);
     },
     async GET_LOYALTY({ commit }) {
       const { data: loyalty } = await axios.get(`http://localhost:3000/api/loyalty/`);
