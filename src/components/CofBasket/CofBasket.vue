@@ -1,5 +1,5 @@
 <template>
-  <Modal :activator="basket" @close="close">
+  <Modal :activator="basket" @close="CLOSE_MODAL()">
     <template #content>
       <v-flex class="classes">
         <v-toolbar dark color="secondery">
@@ -8,7 +8,7 @@
             <span>{{ TOTAL_SUM.totalPrice }} &#x20bd;</span>
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon dark @click="close">
+          <v-btn icon dark @click="CLOSE_MODAL()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
@@ -135,11 +135,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['QUICK_ORDER', 'TOTAL_SUM']),
+    ...mapGetters(['QUICK_ORDER', 'TOTAL_SUM', 'MODAL_NAME']),
     selectedElement: {
       get() {
-        console.log('this.selectedEl', this.selectedEl);
-
         return this.selectedEl;
       },
       set(v) {
@@ -150,26 +148,29 @@ export default {
       return this.tooltipDisabled;
     },
     basket() {
-      return this.$store.state.modalCard === 'cofBasket';
+      return this.MODAL_NAME === 'basket';
     },
   },
   methods: {
-    ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION', 'GET_ORDER_LIST', 'GET_MENU']),
+    ...mapActions([
+      'ADD_DISH',
+      'DELETE_ALL_IN_ORDER_ACTION',
+      'GET_ORDER_LIST',
+      'GET_MENU',
+      'CLOSE_MODAL',
+    ]),
     firstSelectedElements() {
       if (this.QUICK_ORDER.length > 0) {
         this.selectedElement = this.QUICK_ORDER[0];
       }
     },
-    close() {
-      this.$store.dispatch('OPEN_CLOSE_MODAL');
-    },
     closeAndGo() {
       this.$router.replace({ path: '/menu/starters' });
-      this.$store.dispatch('OPEN_CLOSE_MODAL');
+      this.CLOSE_MODAL();
     },
     goToElement(el) {
       this.GET_MENU(el.category);
-      this.close();
+      this.CLOSE_MODAL();
       this.$router.replace({
         path: `/menu/${el.category}/${el.guid}`,
         component: 'dish',
@@ -200,7 +201,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/css/variables.scss';
 .classes {
-  background: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(86, 71, 66, 0.95) !important;
   min-height: 100% !important;
   .list {
     background: none;

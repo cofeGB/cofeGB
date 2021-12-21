@@ -40,7 +40,6 @@ export default {
     ...mapActions(['OPEN_MODAL']),
     // ...mapGetters(['MODAL_NAME']),
     showmodal() {
-      console.log(this.modalName);
       this.OPEN_MODAL(this.modalName);
     },
   },
