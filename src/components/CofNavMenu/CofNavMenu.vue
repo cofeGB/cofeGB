@@ -107,8 +107,12 @@ const INFO_NAV_MENU = [
     path: '/about',
   },
   {
-    title: 'Склад',
+    title: '*Склад',
     path: '/private/wharehouse',
+  },
+  {
+    title: '*Кухня',
+    path: '/private/order-desk',
   },
 ];
 
