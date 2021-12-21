@@ -109,7 +109,7 @@
     </v-dialog>
 
     <v-dialog v-model="dialog2" max-width="1000px">
-      <v-card class="d-flex flex-column pa-5">
+      <v-card class="d-flex flex-column pa-5" min-height="600px">
         <v-card-actions d-flex justify="end" class="pa-0">
           <v-spacer></v-spacer>
           <v-tooltip top>
@@ -129,7 +129,7 @@
             <span>Закрыть форму</span>
           </v-tooltip>
         </v-card-actions>
-
+        <h1>{{ employeer.name }}</h1>
         <h4>Всего отзывов: {{ employeeReviews.length }}</h4>
         <v-carousel
           cycle
@@ -139,10 +139,16 @@
           height="auto"
         >
           <v-carousel-item v-for="(item, i) in employeeReviews" :key="i" height="auto">
-            <v-card class="d-flex flex-column justify-center align-center pa-3" width="500">
-              <div black--text>Дата ({{ item.date }})</div>
-              <div black--text>Посетитель ({{ item.user_name }})</div>
-              <div class="d-flex align-center">
+            <v-card class="d-flex flex-column justify-center align-center pa-3 mt-3" width="500">
+              <div>
+                Посетитель (<b>{{ item.user_name }}</b
+                >)
+              </div>
+              <div>
+                Дата (<b>{{ item.date }}</b
+                >)
+              </div>
+              <div class="d-flex align-center my-5">
                 <v-rating
                   v-model="item.rating"
                   background-color="green lighten-3"
@@ -150,10 +156,10 @@
                   empty-icon="$ratingFull"
                   half-increments
                 ></v-rating>
-                <div black--text>({{ item.rating }})</div>
+                <div>({{ item.rating }})</div>
               </div>
 
-              <div black--text>{{ item.description }}</div>
+              <div class="description">{{ item.description }}</div>
             </v-card>
           </v-carousel-item>
         </v-carousel>
@@ -178,6 +184,7 @@ export default {
       dialog1: false,
       dialog2: false,
       employee_id: 0,
+      employeer: {},
       user_name: '',
       rating: 5,
       date: new Date().toLocaleDateString(),
@@ -194,6 +201,8 @@ export default {
     changeShowReviewsVisible() {
       this.reviews = this.EMPLOYEE_REVIEWS();
       this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
+      let employeerMap = this.items.filter(emp => emp.id === this.employee_id);
+      this.employeer = employeerMap[0];
       this.showReviewsVisible = !this.showReviewsVisible;
       this.cycled = false;
     },
@@ -221,5 +230,11 @@ export default {
   top: 5px;
   // background-color: #ddd
   border: 1px solid #ddd;
+}
+.description {
+  padding: 10px;
+  width: 500px;
+  min-height: 200px;
+  border: 1px solid rgb(163, 231, 197);
 }
 </style>

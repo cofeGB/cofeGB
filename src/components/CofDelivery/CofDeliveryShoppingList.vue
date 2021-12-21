@@ -1,79 +1,70 @@
 <template>
   <Card class="mx-2 card">
     <template #content>
-      <div class="pa-2 order-menu">
-        <div v-if="!QUICK_ORDER.length">В списке пусто</div>
-        <div
-          v-else
-          v-for="(el, idx) in QUICK_ORDER"
-          :key="idx"
-          class="d-flex align-center order-list"
-        >
-          <Menu
-            :offsetX="true"
-            :left="true"
-            :contentClick="contentClick"
-            :maxW="'300px'"
-            :origin="'right top'"
-            :transition="'fab-transition'"
-            :contentClass="miniCOMPUTED ? 'mini' : ''"
-            @input="clearBasket(idx)"
+      <div class="card-menu">
+        <div v-if="!QUICK_ORDER.length" class="pa-2">В списке пусто</div>
+        <v-list-item-group v-model="select" class="order">
+          <v-list-item
+            v-for="(el, idx) in QUICK_ORDER"
+            :key="idx"
+            :value="el"
+            class="order-item my-1 px-2"
           >
-            <template #activator>
-              <tooltip :content="el.title" :disabled="disabled">
+            <v-list-item-title class="d-flex justify-space-between mr-5">
+              <Title size="16px" class="d-inline-block text-truncate" style="max-width: 150px">
                 {{ el.title }}
-              </tooltip>
-            </template>
-            <template #content>
-              <div class="d-flex order-list-menu pa-2" :class="{ mini: miniCOMPUTED }">
-                <v-btn
-                  class="btn mx-1"
-                  fab
-                  small
-                  :color="el.quantity === 1 ? 'error' : 'primary'"
-                  @click="onClick(el, -1)"
-                >
-                  <tooltip v-if="el.quantity === 1" content="Удалить ?" :disabled="disabled">
-                    <v-icon color="primary"> mdi-delete-alert-outline </v-icon>
-                  </tooltip>
-                  <tooltip v-else content="Минус одна позиция" :disabled="disabled">
-                    <span>-</span>
-                  </tooltip>
-                </v-btn>
-                {{ el.quantity }}
-                <tooltip content="Плюс одна позиция" :disabled="disabled">
-                  <v-btn class="btn mx-1" fab small color="primary" @click="onClick(el, 1)"
-                    >+</v-btn
-                  >
-                </tooltip>
-                <tooltip content="Перейки к блюду" :disabled="disabled">
-                  <v-btn
-                    v-if="$route.path !== `/menu/${$route.params.category}/${el.guid}`"
-                    class="btn mx-1"
-                    icon
-                    fab
-                    small
-                    color="primary"
-                    @click="goToElement(el)"
-                  >
-                    <v-icon>mdi-badge-account-alert-outline</v-icon>
-                  </v-btn>
-                </tooltip>
-              </div>
-            </template>
-          </Menu>
-          <span class="price"> {{ el.quantity }} x {{ el.price }} &#x20bd; </span>
-        </div>
+              </Title>
+              <Title
+                size="16px"
+                class="d-inline-block text-truncate price"
+                style="max-width: 150px"
+              >
+                {{ el.quantity }} x {{ el.price }} &#x20bd;
+              </Title>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
       </div>
     </template>
     <template #actions>
       <div class="w100">
+        <v-flex v-if="select" class="action">
+          <v-btn
+            class="btn mx-1"
+            :color="selected.quantity === 1 ? 'error' : 'primary'"
+            @click="onClick(selected, -1)"
+          >
+            <tooltip v-if="selected.quantity === 1" content="Удалить ?" :disabled="disabled">
+              <v-icon color="primary"> mdi-food-off </v-icon>
+            </tooltip>
+            <tooltip v-else content="Минус одна позиция" :disabled="disabled">
+              <v-icon color="black">mdi-minus</v-icon>
+            </tooltip>
+          </v-btn>
+
+          <v-btn
+            v-if="$route.path !== `/menu/${$route.params.category}/${select.guid}`"
+            class="btn mx-1"
+            color="secondery"
+            @click="goToElement(selected)"
+          >
+            <tooltip content="Перейки к блюду" :disabled="disabled">
+              <v-icon big>mdi-silverware</v-icon>
+            </tooltip>
+          </v-btn>
+
+          <v-btn class="btn mx-1" color="primary" @click="onClick(selected, 1)">
+            <tooltip content="Плюс одна позиция" :disabled="disabled">
+              <v-icon color="black">mdi-plus</v-icon>
+            </tooltip>
+          </v-btn>
+        </v-flex>
         <tooltip
           content="Окончательный счет с учетом акций и скидок"
           :disabled="disabled"
           :activatorClass="'w100'"
         >
-          <div class="d-flex order-list total pt-2">
+          <div class="d-flex total pt-2">
             <span class="ellipsis"> Всего к оплате </span>
             <span class="price"> {{ TOTAL_SUM.totalPrice }} &#x20bd; </span>
           </div>
@@ -114,6 +105,7 @@ export default {
   },
   data() {
     return {
+      select: null,
       contentClick: false,
       stopRouter: false,
       numberOrder: '',
@@ -130,8 +122,11 @@ export default {
     miniCOMPUTED() {
       return this.mini;
     },
+    selected() {
+      return this.QUICK_ORDER.find(el => el.guid === this.select.guid);
+    },
   },
-  mounted() {
+  created() {
     if (localStorage.numberOrder) {
       this.numberOrder = localStorage.numberOrder;
       this.GET_ORDER_LIST(this.numberOrder);
@@ -156,6 +151,9 @@ export default {
       this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
     },
     onClick(el, inc) {
+      if (el.quantity === 1 && inc === -1) {
+        this.select = null;
+      }
       this.ADD_DISH({ dish: el, inc, numberOrder: this.numberOrder });
     },
   },
@@ -163,25 +161,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/variables.scss';
+
 .order {
-  background: rgba(5, 4, 3, 0.863) !important;
-  &-menu {
-    max-height: 150px !important;
-    overflow-x: auto;
-  }
-  &-list {
-    min-width: 100% !important;
-    &-menu {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      background: rgba(20, 15, 12, 0.8);
-      color: #fff;
-      .mini & {
-        background: rgba(20, 15, 12, 0.8);
-      }
-    }
-  }
+  max-height: 160px !important;
+  overflow-y: auto !important;
+}
+.action {
+  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 .mini {
   background: rgba(20, 15, 12, 0.9) !important;
@@ -191,6 +181,10 @@ export default {
 
 .card {
   border: 1px solid white !important;
+  &-menu {
+    max-height: 300px !important;
+    overflow-y: auto !important;
+  }
 }
 
 .price {
@@ -199,37 +193,9 @@ export default {
   text-align: right;
   margin-left: auto;
   min-width: fit-content;
-  color: #25dcd1;
+  color: $primary;
 }
 .total {
   border-top: 1px solid white;
-}
-
-.btn {
-  font-size: 30px;
-  color: rgba(20, 15, 12, 0.8) !important;
-}
-.stockMenu {
-  background: rgba(75, 67, 63, 0.9);
-  .mini & {
-    background: rgba(20, 15, 12, 0.8);
-    &-list-item {
-      &:hover {
-        background: rgba(20, 15, 12, 0.8);
-      }
-    }
-  }
-  color: #fff;
-  &-list {
-    &-item {
-      &:hover {
-        background: rgba(65, 54, 49, 0.9);
-      }
-      &-title,
-      &-subtitle {
-        color: #fff !important;
-      }
-    }
-  }
 }
 </style>

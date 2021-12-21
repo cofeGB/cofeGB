@@ -15,7 +15,7 @@
 
       <v-text-field
         v-model="user.userName"
-        class="my-2"
+        class="mt-2"
         loading="false"
         label="Ваше имя"
         hide-details="auto"
@@ -34,15 +34,15 @@
           hide-details="auto"
           color="primary"
           label="Не звонить для проверки заказа"
-          class="ma-0"
+          class="my-1"
         ></v-checkbox>
       </tooltip>
 
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" class="py-0 mt-2">
           <v-text-field
             v-model="user.address.strit"
-            class="my-2"
+            class="py-1"
             loading="false"
             label="Адрес доставки"
             hide-details="auto"
@@ -52,7 +52,7 @@
             :rules="[v => !!v || 'Доставка не осуществляется без адреса!']"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 pr-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.ofice"
             loading="false"
@@ -63,7 +63,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 px-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.home"
             loading="false"
@@ -74,7 +74,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 pl-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.flore"
             loading="false"
@@ -106,45 +106,45 @@
         hide-details="auto"
         label="Text"
         no-resize
-        rows="5"
         outlined
         clearable
         dense
         :value="user.massage"
       ></v-textarea>
 
-      <tooltip
-        right
-        :disabled="disabled"
-        content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
+      <v-checkbox
+        v-model="user.agree"
+        required
+        :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
+        hide-details="auto"
+        color="primary"
+        class="ma-0"
       >
-        <v-checkbox
-          v-model="user.agree"
-          required
-          :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
-          hide-details="auto"
-          color="primary"
-          class="ma-0"
-        >
-          <template v-slot:label>
+        <template v-slot:label>
+          <tooltip
+            right
+            :disabled="disabled"
+            content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
+          >
             <div>
               Соглашаюсь с
               <a target="_blank" href="https://vuetifyjs.com" @click.stop>
                 Политикой обработки персональных данных и условиями доставки.
               </a>
             </div>
-          </template>
-        </v-checkbox>
-      </tooltip>
+          </tooltip>
+        </template>
+      </v-checkbox>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
-      <v-btn color="primary" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
+      <v-btn color="secondery" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
     </v-form>
   </v-container>
 </template>
 
 <script>
 import { eventBus } from '@/main';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'colDeliveryFormOrder',
@@ -194,8 +194,10 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['OPEN_MODAL']),
     openBasket() {
-      this.$store.dispatch('OPEN_CLOSE_MODAL', this.name);
+      // this.$store.dispatch('OPEN_CLOSE_MODAL', this.name);
+      this.OPEN_MODAL('basket');
       eventBus.$emit('openOrder');
     },
     buyOrder() {
@@ -215,7 +217,7 @@ export default {
     background: rgba(172, 166, 166, 0.363);
     width: 100%;
     height: 50px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 </style>

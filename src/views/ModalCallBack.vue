@@ -2,53 +2,48 @@
   <v-dialog
     v-model="call_back"
     fullscreen
-    hide-overlay
     transition="dialog-bottom-transition"
-    @close="showmodal"
+    @close="closemodal"
     class="dialog"
+    background="#fff"
   >
-    <v-form ref="call" lazy-validation class="form__main">
-      <h1>Обратный звонок</h1>
-
+    <v-form v-model="isValid" ref="call" lazy-validation class="form__main">
+      <div class="form__top">
+        <h1 class="form__title">Обратный звонок</h1>
+        <v-tooltip top class="form__btn">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon @click="closemodal" v-bind="attrs" v-on="on">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </template>
+          <span>Закрыть форму</span>
+        </v-tooltip>
+      </div>
       <v-text-field
-        v-model="userPhone"
+        v-model="phone"
+        type="text"
         class="my-2"
         loading="false"
         label="Ваш номер телефона"
-        hide-details="auto"
         clearable
         outlined
         dense
         return-masked-value
-        mask="+7(ddd)ddd-dd-dd"
-        :rules="rules"
+        :placeholder="mask"
+        :rules="phonerule"
       ></v-text-field>
 
       <v-text-field
-        v-model="userName"
+        v-model="clientname"
         class="my-2"
         loading="false"
         label="Ваше имя"
-        hide-details="auto"
         clearable
         outlined
         dense
+        :rules="namerule"
       ></v-text-field>
-      <v-btn @click="showmodal">Close</v-btn>
-
-      <!-- <tooltip
-        right
-        :disabled="disabled"
-        content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
-      >
-        <v-checkbox
-          v-model="user.backCall"
-          hide-details="auto"
-          color="primary"
-          label="Не звонить для проверки заказа"
-          class="ma-0"
-        ></v-checkbox>
-      </tooltip> -->
+      <v-btn @click="send_callback">Отправить</v-btn>
     </v-form>
   </v-dialog>
 </template>
@@ -60,43 +55,73 @@ export default {
   props: ['showModal'],
   data() {
     return {
-      userPhone: '',
-      userName: '',
-      rules: [
-        value => !!value || 'Необходио заполнить.',
-        value => (value && value.length === 11) || 'Необходио заполнить.',
+      phone: '',
+      clientname: '',
+      datetime_order: new Date().toLocaleString(),
+      mask: '+7(000)000-00-00',
+      phonerule: [
+        value => (value && /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(value)) || 'Необходио заполнить.',
       ],
+      namerule: [value => !!value || 'Необходио заполнить.'],
+      isValid: false,
     };
   },
   methods: {
-    ...mapActions(['CLOSE_MODAL']),
-    ...mapGetters(['MODAL_NAME']),
-    showmodal() {
+    ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK']),
+    closemodal() {
       this.CLOSE_MODAL();
+    },
+    send_callback() {
+      if (!this.isValid || !(this.phone && this.clientname)) {
+        alert('Некорректный ввод данных');
+        return false;
+      }
+      let { datetime_order, clientname, phone, user = '', datetime_callback = '' } = this;
+      const callback = [{ datetime_order, clientname, phone, user, datetime_callback }];
+      this.SEND_CALLBACK(callback);
+      this.closemodal();
+    },
+    checkform() {
+      return this.phone && this.clientname;
     },
   },
   computed: {
+    ...mapGetters(['MODAL_NAME']),
     call_back() {
-      return this.MODAL_NAME() === 'callBack';
+      return this.MODAL_NAME === 'callBack';
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-v-dialog {
+template {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.v-dialog {
   display: flex !important;
   justify-content: center;
   align-items: center;
   // position: relative;
-  background: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(86, 71, 66, 0.8) !important;
   backdrop-filter: blur(100px);
+}
+.form__top {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.form__title {
+  display: inline-block;
 }
 .form__main {
   background: rgb(255, 255, 255) !important;
   // height: 100vh !important;
   padding: 30px;
-  margin: auto auto;
+  margin: 10vh auto;
   align-self: center;
   max-width: 800px;
   backdrop-filter: blur(100px);
