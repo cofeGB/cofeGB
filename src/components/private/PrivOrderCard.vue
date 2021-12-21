@@ -66,11 +66,11 @@ export default {
     };
   },
   methods: {
-    onClickCook() {
-      this.$store.dispatch('SET_ORDER_STATE', { order: this.order, orderState: 'cooking' });
-    },
+    // onClickCook() {
+    //   this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'cooking' });
+    // },
     onClickClose() {
-      this.$store.dispatch('SET_ORDER_STATE', { order: this.order, orderState: 'closed' });
+      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
     },
     dishToTreeviewItem(dish, id) {
       return {
@@ -79,10 +79,13 @@ export default {
       };
     },
     startDrag(evt, order) {
-      console.log('startDrag');
+      // console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
-      evt.dataTransfer.setData('orderId', order.id);
+      evt.dataTransfer.setData(
+        'application/json',
+        JSON.stringify({ objType: 'orderId', payload: order.id })
+      );
     },
   },
   computed: {
