@@ -1,12 +1,13 @@
 <template>
   <v-app-bar app class="header">
-    <v-btn text @click="openNavMenu" color="primary" class="header--btn">
+    <v-btn text @click="openNavMenu" color="primary" class="header__btn">
       <svg
         width="30"
         height="30"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        class="header__menubtn"
       >
         <path
           d="M12 9.966C11.4696 9.966 10.9609 10.1767 10.5858 10.5518C10.2107 10.9269 10 11.4356 10 11.966C10 12.4964 10.2107 13.0051 10.5858 13.3802C10.9609 13.7553 11.4696 13.966 12 13.966H28C28.5304 13.966 29.0391 13.7553 29.4142 13.3802C29.7893 13.0051 30 12.4964 30 11.966C30 11.4356 29.7893 10.9269 29.4142 10.5518C29.0391 10.1767 28.5304 9.966 28 9.966H12Z"
@@ -27,10 +28,10 @@
           fill="#25DCD1"
         />
       </svg>
-      <span class="ml-2"> Меню </span>
+      <span class="ml-2 header__caption"> Меню </span>
     </v-btn>
     <v-img
-      class="d-inline-block bordered header--img"
+      class="d-inline-block bordered header__img"
       height="90"
       width="100"
       contain
@@ -39,7 +40,7 @@
     <CofDeliveryHeader
       :tooltip-disabled="tooltipDisabled"
       @openOrder="openOrder"
-      class="header--cart"
+      class="header__cart"
     />
   </v-app-bar>
 </template>
@@ -85,15 +86,19 @@ export default {
   background: rgba(48, 24, 13, 0.5) !important;
   padding: 0 20px;
   margin-bottom: 20px;
-  &--img {
-    margin-left: -70px;
-  }
 }
+.header__img {
+  margin-left: -70px;
+}
+
 .header div {
   display: grid;
   // justify-content: space-around;
   grid-template-columns: repeat (3, 1fr);
   align-items: center;
   width: 100%;
+}
+.primary--text {
+  color: #fff !important;
 }
 </style>
