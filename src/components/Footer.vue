@@ -141,7 +141,7 @@ export default {
   }
   &__main {
     margin: 0 !important;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     @media (max-width: 667px) {

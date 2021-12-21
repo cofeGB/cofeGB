@@ -144,6 +144,7 @@
 
 <script>
 import { eventBus } from '@/main';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'colDeliveryFormOrder',
@@ -193,8 +194,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['OPEN_MODAL']),
     openBasket() {
-      this.$store.dispatch('OPEN_CLOSE_MODAL', this.name);
+      this.OPEN_MODAL('basket');
       eventBus.$emit('openOrder');
     },
     buyOrder() {
