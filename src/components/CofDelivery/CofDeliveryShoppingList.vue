@@ -28,7 +28,7 @@
     </template>
     <template #actions>
       <div class="w100">
-        <v-list-item v-if="select" class="action">
+        <v-flex v-if="select" class="action">
           <v-btn
             class="btn mx-1"
             :color="selected.quantity === 1 ? 'error' : 'primary'"
@@ -38,27 +38,27 @@
               <v-icon color="primary"> mdi-food-off </v-icon>
             </tooltip>
             <tooltip v-else content="Минус одна позиция" :disabled="disabled">
-              <v-icon>mdi-minus</v-icon>
+              <v-icon color="black">mdi-minus</v-icon>
             </tooltip>
           </v-btn>
 
           <v-btn
             v-if="$route.path !== `/menu/${$route.params.category}/${select.guid}`"
             class="btn mx-1"
-            color="green"
+            color="secondery"
             @click="goToElement(selected)"
           >
             <tooltip content="Перейки к блюду" :disabled="disabled">
-              <v-icon big>mdi-food</v-icon>
+              <v-icon big>mdi-silverware</v-icon>
             </tooltip>
           </v-btn>
 
           <v-btn class="btn mx-1" color="primary" @click="onClick(selected, 1)">
             <tooltip content="Плюс одна позиция" :disabled="disabled">
-              <v-icon>mdi-plus</v-icon>
+              <v-icon color="black">mdi-plus</v-icon>
             </tooltip>
           </v-btn>
-        </v-list-item>
+        </v-flex>
         <tooltip
           content="Окончательный счет с учетом акций и скидок"
           :disabled="disabled"
@@ -161,6 +161,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/variables.scss';
+
 .order {
   max-height: 160px !important;
   overflow-y: auto !important;
@@ -169,6 +171,7 @@ export default {
   width: 100% !important;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 .mini {
   background: rgba(20, 15, 12, 0.9) !important;
@@ -190,7 +193,7 @@ export default {
   text-align: right;
   margin-left: auto;
   min-width: fit-content;
-  color: #25dcd1;
+  color: $primary;
 }
 .total {
   border-top: 1px solid white;
