@@ -85,7 +85,7 @@
                 </v-list-item>
               </v-list>
             </v-col>
-            <v-col cols="12" md="6" lg="4" class="selected">
+            <v-col v-if="QUICK_ORDER.length" cols="12" md="6" lg="4" class="selected">
               <tooltip
                 content="Перейки к блюду"
                 :disabled="disabled"
