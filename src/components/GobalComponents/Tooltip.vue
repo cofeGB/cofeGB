@@ -7,14 +7,14 @@
     :content-class="contentClass"
     :disabled="disabled"
     v-bind="$attrs"
-    class="d-none d-md-flex"
+    :class="classes"
   >
     <template v-slot:activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on" :class="activatorClass">
         <slot></slot>
       </span>
     </template>
-    <span class="text-body-1">{{ content }}</span>
+    <span class="text-body-1" :style="`color: ${textColor}`">{{ content }}</span>
   </v-tooltip>
 </template>
 
@@ -43,6 +43,10 @@ export default {
       type: String,
       default: '',
     },
+    textColor: {
+      type: String,
+      default: '',
+    },
     contentClass: {
       type: String,
       default: 'tooltip',
@@ -59,9 +63,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .tooltip {
-  background: #25dcd1;
-  color: rgba(48, 24, 13, 0.9);
+  background: #25dcd1 !important;
+  color: rgba(48, 24, 13, 0.9) !important;
+  opacity: 1 !important;
 }
 </style>

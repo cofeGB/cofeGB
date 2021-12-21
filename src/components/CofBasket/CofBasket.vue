@@ -3,18 +3,18 @@
     <template #content>
       <v-flex class="classes">
         <v-toolbar dark color="secondery">
-          <v-toolbar-title class="mr-2"
-            >И того к оплате: {{ TOTAL_SUM.totalPrice }}</v-toolbar-title
-          >
+          <v-toolbar-title class="mr-2">
+            <span>К оплате: </span>
+            <span>{{ TOTAL_SUM.totalPrice }} &#x20bd;</span>
+          </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="mr-2">Корзина</v-toolbar-title>
           <v-btn icon dark @click="close">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
-        <v-flex class="pa-3">
+        <v-flex class="pa-3 content">
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" md="6" lg="4">
               <v-list class="list" dark>
                 <v-list-item-group v-model="selectedElement" mandatory>
                   <v-list-item
@@ -27,9 +27,7 @@
                       <span>
                         {{ el.title }}
                       </span>
-                      <span>
-                        {{ el.quantity }}
-                      </span>
+                      <span> {{ el.quantity }} х {{ el.price }} </span>
                     </v-list-item-title>
                     <v-list-item-action class="ma-0 list-item-action">
                       <div class="d-flex">
@@ -44,29 +42,35 @@
                             v-if="el.quantity === 1"
                             content="Удалить ?"
                             :disabled="disabled"
+                            color="secondery"
+                            text-color="#fff"
                           >
                             <v-icon color="primary"> mdi-food-off </v-icon>
                           </tooltip>
-                          <tooltip v-else content="Минус одна позиция" :disabled="disabled">
+                          <tooltip
+                            v-else
+                            content="Минус одна позиция"
+                            :disabled="disabled"
+                            color="secondery"
+                            text-color="#fff"
+                          >
                             <v-icon>mdi-minus</v-icon>
                           </tooltip>
                         </v-btn>
-                        <v-btn class="btn mx-1" fab x-small color="primary" @click="onClick(el, 1)">
-                          <tooltip content="Плюс одна позиция" :disabled="disabled">
-                            <v-icon>mdi-plus</v-icon>
-                          </tooltip>
-                        </v-btn>
                         <v-btn
-                          v-if="$route.path !== `/menu/${$route.params.category}/${el.guid}`"
                           class="btn mx-1"
-                          icon
                           fab
                           x-small
-                          color="primary"
-                          @click="goToElement(el)"
+                          color="secondery"
+                          @click="onClick(el, 1)"
                         >
-                          <tooltip content="Перейки к блюду" :disabled="disabled">
-                            <v-icon>mdi-food</v-icon>
+                          <tooltip
+                            content="Плюс одна позиция"
+                            :disabled="disabled"
+                            color="secondery"
+                            text-color="#fff"
+                          >
+                            <v-icon>mdi-plus</v-icon>
                           </tooltip>
                         </v-btn>
                       </div>
@@ -81,12 +85,38 @@
                 </v-list-item>
               </v-list>
             </v-col>
-            <v-col cols="6">
-              <v-card>
-                <template #content>
-                  {{ selectedElement.title }}
-                </template>
-              </v-card>
+            <v-col cols="12" md="6" lg="4" class="selected">
+              <tooltip
+                content="Перейки к блюду"
+                :disabled="disabled"
+                color="secondery"
+                text-color="#fff"
+              >
+                <v-img
+                  class="selected-img"
+                  :src="selectedElement.img"
+                  @click="goToElement(selectedElement)"
+                />
+              </tooltip>
+              <v-list class="selected-list">
+                <v-list-item class="selected-description">
+                  <v-list-item-title class="pb-2">
+                    <span class="selected-description-title">
+                      {{ selectedElement.title }}
+                    </span>
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="selected-description-subtitle py-2">
+                    <span v-for="(calories, idx) in selectedElement.calories" :key="idx">
+                      {{ calories.title }} : {{ calories.value }}
+                    </span>
+                  </v-list-item-subtitle>
+                  <v-list-item-content>
+                    <span class="selected-description-description">{{
+                      selectedElement.description
+                    }}</span>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
             </v-col>
           </v-row>
         </v-flex>
@@ -108,6 +138,8 @@ export default {
     ...mapGetters(['QUICK_ORDER', 'TOTAL_SUM']),
     selectedElement: {
       get() {
+        console.log('this.selectedEl', this.selectedEl);
+
         return this.selectedEl;
       },
       set(v) {
@@ -166,9 +198,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/variables.scss';
 .classes {
   background: rgba(0, 0, 0, 0.9) !important;
-  height: 100vh !important;
+  min-height: 100% !important;
   .list {
     background: none;
     border: 1px solid white;
@@ -179,6 +212,51 @@ export default {
         min-width: fit-content;
         align-items: center;
       }
+    }
+  }
+}
+.selected {
+  &-list {
+    border-top: 4px solid $secondery;
+  }
+  &-img {
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    &:hover {
+      filter: brightness(0.8);
+    }
+    @media (min-width: 300px) {
+      height: 100px;
+    }
+    @media (min-width: 760px) {
+      height: 200px;
+    }
+    @media (min-width: 1000px) {
+      height: 300px;
+    }
+  }
+  &-description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    &-subtitle {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      width: 100%;
+      color: $secondery !important;
+      justify-content: space-between;
+      border-top: 2px solid $secondery;
+      border-bottom: 2px solid $secondery;
+    }
+    &-description {
+      font-weight: 16px;
     }
   }
 }

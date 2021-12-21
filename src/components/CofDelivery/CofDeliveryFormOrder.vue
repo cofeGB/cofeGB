@@ -34,7 +34,7 @@
           hide-details="auto"
           color="primary"
           label="Не звонить для проверки заказа"
-          class="ma-0"
+          class="my-1"
         ></v-checkbox>
       </tooltip>
 
@@ -112,29 +112,29 @@
         :value="user.massage"
       ></v-textarea>
 
-      <tooltip
-        right
-        :disabled="disabled"
-        content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
+      <v-checkbox
+        v-model="user.agree"
+        required
+        :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
+        hide-details="auto"
+        color="primary"
+        class="ma-0"
       >
-        <v-checkbox
-          v-model="user.agree"
-          required
-          :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
-          hide-details="auto"
-          color="primary"
-          class="ma-0"
-        >
-          <template v-slot:label>
+        <template v-slot:label>
+          <tooltip
+            right
+            :disabled="disabled"
+            content="Если вы уверены в своем заказе и указанном адресе, вы можете отказаться от обратного звонка нашего оператора."
+          >
             <div>
               Соглашаюсь с
               <a target="_blank" href="https://vuetifyjs.com" @click.stop>
                 Политикой обработки персональных данных и условиями доставки.
               </a>
             </div>
-          </template>
-        </v-checkbox>
-      </tooltip>
+          </tooltip>
+        </template>
+      </v-checkbox>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
       <v-btn color="secondery" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
