@@ -237,15 +237,21 @@ export default new Vuex.Store({
     SET_PRIVATE_MODE(state, payload) {
       state.privateMode = !!payload.enable;
     },
-    SET_ORDER_STATE(state, { order, orderState }) {
-      if (order.state === 'pending' && orderState === 'cooking') {
+    SET_ORDER_STATE(state, { orderId, orderState }) {
+      let order = state.pendingOrders.find(item => item.id == orderId);
+      if (order && order.state === 'pending' && orderState === 'cooking') {
         state.pendingOrders = state.pendingOrders.filter(orderItem => orderItem != order);
         order.state = 'cooking';
         state.cookingOrders.push(order);
-      } else if (order.state === 'cooking' && orderState === 'closed') {
+        return;
+      }
+
+      order = state.cookingOrders.find(item => item.id == orderId);
+      if (order && order.state === 'cooking' && orderState === 'closed') {
         state.cookingOrders = state.cookingOrders.filter(orderItem => orderItem != order);
         order.state = 'closed';
         state.closedOrders.push(order);
+        return;
       }
     },
   },
@@ -367,8 +373,9 @@ export default new Vuex.Store({
     SET_PRIVATE_MODE: ({ commit }, payload) => {
       commit('SET_PRIVATE_MODE', payload);
     },
-    SET_ORDER_STATE: ({ commit }, { order, orderState }) => {
-      commit('SET_ORDER_STATE', { order, orderState });
+    SET_ORDER_STATE: ({ commit }, { orderId, orderState }) => {
+      // console.log({ orderId, orderState });
+      commit('SET_ORDER_STATE', { orderId, orderState });
     },
   },
 });
