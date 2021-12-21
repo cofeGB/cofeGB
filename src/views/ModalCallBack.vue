@@ -68,7 +68,6 @@ export default {
   },
   methods: {
     ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK']),
-    ...mapGetters(['MODAL_NAME']),
     closemodal() {
       this.CLOSE_MODAL();
     },
@@ -83,14 +82,13 @@ export default {
       this.closemodal();
     },
     checkform() {
-      console.log(this.phone);
-      console.log(this.clientname);
       return this.phone && this.clientname;
     },
   },
   computed: {
+    ...mapGetters(['MODAL_NAME']),
     call_back() {
-      return this.MODAL_NAME() === 'callBack';
+      return this.MODAL_NAME === 'callBack';
     },
   },
 };
@@ -107,7 +105,7 @@ template {
   justify-content: center;
   align-items: center;
   // position: relative;
-  background: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(86, 71, 66, 0.8) !important;
   backdrop-filter: blur(100px);
 }
 .form__top {

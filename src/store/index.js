@@ -200,10 +200,6 @@ export default new Vuex.Store({
     SET_PRODUCTS_LIST(state, data) {
       state.products = data;
     },
-    OPEN_CLOSE_MODAL(state, data) {
-      state.modal = !state.modal;
-      state.modalName = data;
-    },
     SET_OPEN_MODAL(state, data) {
       state.modal = true;
       state.modalName = data;
@@ -317,9 +313,6 @@ export default new Vuex.Store({
     async GET_GLOBAL_CONST({ commit }) {
       const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
       commit('SET_GLOBAL_CONST', globalConst);
-    },
-    OPEN_CLOSE_MODAL({ commit, state }) {
-      commit('OPEN_CLOSE_MODAL', state);
     },
     async GET_CALLBACKS({ commit }) {
       const { data: callbacks } = await axios.get(`http://localhost:3000/api/callbacks/`);
