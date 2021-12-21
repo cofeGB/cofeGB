@@ -2,14 +2,23 @@
   <v-dialog
     v-model="call_back"
     fullscreen
-    hide-overlay
     transition="dialog-bottom-transition"
-    @close="showmodal"
+    @close="closemodal"
     class="dialog"
+    background="#fff"
   >
     <v-form v-model="isValid" ref="call" lazy-validation class="form__main">
-      <h1>Обратный звонок</h1>
-
+      <div class="form__top">
+        <h1 class="form__title">Обратный звонок</h1>
+        <v-tooltip top class="form__btn">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon @click="closemodal" v-bind="attrs" v-on="on">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </template>
+          <span>Закрыть форму</span>
+        </v-tooltip>
+      </div>
       <v-text-field
         v-model="phone"
         type="text"
@@ -35,7 +44,6 @@
         :rules="namerule"
       ></v-text-field>
       <v-btn @click="send_callback">Отправить</v-btn>
-      <v-btn @click="showmodal">Close</v-btn>
     </v-form>
   </v-dialog>
 </template>
@@ -61,7 +69,7 @@ export default {
   methods: {
     ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK']),
     ...mapGetters(['MODAL_NAME']),
-    showmodal() {
+    closemodal() {
       this.CLOSE_MODAL();
     },
     send_callback() {
@@ -72,7 +80,7 @@ export default {
       let { datetime_order, clientname, phone, user = '', datetime_callback = '' } = this;
       const callback = [{ datetime_order, clientname, phone, user, datetime_callback }];
       this.SEND_CALLBACK(callback);
-      this.showmodal();
+      this.closemodal();
     },
     checkform() {
       console.log(this.phone);
@@ -94,13 +102,22 @@ template {
   justify-content: center;
   align-items: center;
 }
-v-dialog {
+.v-dialog {
   display: flex !important;
   justify-content: center;
   align-items: center;
   // position: relative;
   background: rgba(0, 0, 0, 0.9) !important;
   backdrop-filter: blur(100px);
+}
+.form__top {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.form__title {
+  display: inline-block;
 }
 .form__main {
   background: rgb(255, 255, 255) !important;

@@ -1,7 +1,7 @@
 <template>
   <div class="callback__container">
     <div class="wrap">
-      <tooltip right :disabled="true" content="Хотите, чтобы мы Вам перезвонили? Нажимайте сюда!">
+      <tooltip top content="Хотите, чтобы мы Вам перезвонили? Нажимайте сюда!">
         <v-btn class="btn-phone-btn" icon @click="showmodal">
           <div class="btn-phone-wrap">
             <v-img
