@@ -45,6 +45,7 @@ export default {
       'GET_EMPLOYEE',
       'GET_EMPLOYEE_REVIEWS_LIST',
       'GET_MENU',
+      'GET_CALLBACKS',
     ]),
     closeAdvertisement() {
       this.advertisement = false;
@@ -60,6 +61,7 @@ export default {
     this.GET_CATEGORIES();
     this.GET_EMPLOYEE();
     this.GET_EMPLOYEE_REVIEWS_LIST();
+    this.GET_CALLBACKS();
   },
   computed: {
     ...mapGetters(['MENU']),

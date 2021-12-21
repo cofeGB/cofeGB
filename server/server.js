@@ -36,6 +36,15 @@ app.get('/api/categories', (req, res) => {
     }
   });
 });
+app.get('/api/callbacks', (req, res) => {
+  fs.readFile(path.resolve('server/db/callbacks.json'), 'utf-8', (err, data) => {
+    if (err) {
+      res.send(JSON.stringify({ result: 0, text: err }));
+    } else {
+      res.send(data);
+    }
+  });
+});
 app.get('/api/employee', (req, res) => {
   fs.readFile(path.resolve('server/db/employee.json'), 'utf-8', (err, data) => {
     if (err) {
