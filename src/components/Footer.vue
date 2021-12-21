@@ -1,6 +1,8 @@
 <template>
   <div class="footer" color="rgba(86, 71, 66, 0.8)">
-    <Links class="footer__top d-flex justify-center" />
+    <div class="footer__top d-flex justify-center">
+      <Links class="footer__top d-flex justify-center" />
+    </div>
     <v-row class="footer__main white--text mb-4" width="80vw">
       <v-col class="footer__main_block">
         <div class="footer__main_header">Меню</div>
@@ -119,6 +121,8 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: rgba(86, 71, 66, 0.6);
+  max-height: 40vh;
+  overflow: scroll;
   &__top {
     width: 100%;
     padding: 4px !important;
@@ -146,7 +150,6 @@ export default {
     &_block {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       text-align: center;
       min-width: 250px;
