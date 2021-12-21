@@ -15,7 +15,7 @@
 
       <v-text-field
         v-model="user.userName"
-        class="my-2"
+        class="mt-2"
         loading="false"
         label="Ваше имя"
         hide-details="auto"
@@ -39,10 +39,10 @@
       </tooltip>
 
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" class="py-0 mt-2">
           <v-text-field
             v-model="user.address.strit"
-            class="my-2"
+            class="py-1"
             loading="false"
             label="Адрес доставки"
             hide-details="auto"
@@ -52,7 +52,7 @@
             :rules="[v => !!v || 'Доставка не осуществляется без адреса!']"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 pr-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.ofice"
             loading="false"
@@ -63,7 +63,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 px-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.home"
             loading="false"
@@ -74,7 +74,7 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" lg="4" sm12 class="pt-0 pl-1">
+        <v-col cols="12" lg="4" sm12 class="py-1">
           <v-text-field
             v-model="user.address.flore"
             loading="false"
@@ -106,7 +106,6 @@
         hide-details="auto"
         label="Text"
         no-resize
-        rows="5"
         outlined
         clearable
         dense
@@ -138,7 +137,7 @@
       </tooltip>
 
       <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
-      <v-btn color="primary" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
+      <v-btn color="secondery" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -215,7 +214,7 @@ export default {
     background: rgba(172, 166, 166, 0.363);
     width: 100%;
     height: 50px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 </style>
