@@ -1,0 +1,34 @@
+[
+  {
+    "guid":1,
+    "datetime_order": "20211221 10:40",
+    "clientname": "Виктор",
+    "phone": "+7(915)355-55-33",
+    "user": "Борис",
+    "datetime_callback": "20211221 10:43"
+  },
+  {
+    "guid":2,
+    "datetime_order": "20211221 10:40",
+    "clientname": "Виктор",
+    "phone": "+7(915)355-55-33",
+    "user": "Борис",
+    "datetime_callback": "20211221 10:43"
+  },
+  {
+    "guid":3,
+    "datetime_order": "20211221 10:40",
+    "clientname": "Виктор",
+    "phone": "+7(915)355-55-33",
+    "user": "",
+    "datetime_callback": ""
+  },
+  {
+    "guid":4,
+    "datetime_order": "20211221 10:40",
+    "clientname": "Виктор",
+    "phone": "+7(915)355-55-33",
+    "user": "",
+    "datetime_callback": ""
+  }
+]

@@ -12,6 +12,7 @@ export default new Vuex.Store({
     reviewsList: [],
     modal: false,
     modalName: '',
+    callbacks: [],
     quickOrder: [],
     total: {
       totalPrice: 0,
@@ -269,6 +270,9 @@ export default new Vuex.Store({
         state.closedOrders.push(order);
       }
     },
+    SET_CALLBACKS(state, data) {
+      state.callbacks = data;
+    },
   },
   actions: {
     async POST_ORDER({ commit }, payload) {
@@ -316,6 +320,10 @@ export default new Vuex.Store({
     },
     OPEN_CLOSE_MODAL({ commit, state }) {
       commit('OPEN_CLOSE_MODAL', state);
+    },
+    async GET_CALLBACKS({ commit }) {
+      const { data: callbacks } = await axios.get(`http://localhost:3000/api/callbacks/`);
+      commit('SET_CALLBACKS', callbacks);
     },
 
     GET_TOTAL_SUM({ commit, state }) {
@@ -401,6 +409,9 @@ export default new Vuex.Store({
     },
     CLOSE_MODAL({ commit }) {
       commit('SET_CLOSE_MODAL');
+    },
+    SEND_CALLBACK({ commit }, payload) {
+      commit('SET_CALLBACKS', this.state.callbacks.concat(payload));
     },
   },
 });
