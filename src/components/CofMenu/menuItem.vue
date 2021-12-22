@@ -15,10 +15,10 @@
       </div>
       <div class="menuItem__price">
         {{ item.price }} &#x20bd;
-        <button @click="onClick(1)" class="mr-3">
+        <button @click="addQuantity(1)" class="mr-3">
           <i class="fas fa-plus-circle btn-plus"></i>
         </button>
-        <button v-if="quantity > 0" @click="onClick(-1)">
+        <button v-if="quantity > 0" @click="addQuantity(-1)">
           <i class="fas fa-minus-circle btn-plus"></i>
         </button>
       </div>
@@ -41,10 +41,12 @@
 </template>
 
 <script>
-const md5 = require('md5');
 import { mapActions, mapGetters } from 'vuex';
+import OrderMixin from '@/mixins/OrderMixin';
+
 export default {
   name: 'menuItem',
+  mixins: [OrderMixin],
   props: {
     item: {
       type: Object,
@@ -69,22 +71,10 @@ export default {
   },
   methods: {
     ...mapActions(['ADD_DISH', 'GET_ORDER_LIST']),
-    onClick(inc) {
-      if (!localStorage.numberOrder) {
-        const guid = md5(Math.floor(Math.random() * 1000)).substr(0, 6);
-        const today = new Date();
-        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-        localStorage.numberOrder = `${date}-${guid}`;
-        localStorage.guid = guid;
-        this.numberOrder = localStorage.numberOrder;
-      }
+    addQuantity(inc) {
       this.item.quantity = this.quantity;
-      this.$store.dispatch('ADD_DISH', {
-        dish: this.item,
-        inc,
-        numberOrder: localStorage.numberOrder,
-        guid: localStorage.guid,
-      });
+      this.addOrderQuantity(this.item, inc);
+      this.startOrder();
     },
   },
   mounted() {

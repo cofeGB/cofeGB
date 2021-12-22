@@ -16,7 +16,7 @@
             <span class="dish__text">{{ menuItem.title }}</span>
             <div class="dish__text-align">
               <span class="dish__text dish__text-mrg">{{ menuItem.price }} &#x20bd;</span>
-              <button @click="onClick(1)" class="dish__btn dish__btn_add">+</button>
+              <button @click="addQuantity(1)" class="dish__btn dish__btn_add">+</button>
             </div>
           </div>
         </div>
@@ -46,18 +46,18 @@
       <div class="dish__constructor">
         <p>Здесь конструктор?</p>
       </div>
-      <button @click="onClick(1)" v-if="quantity === 0" class="dish__btn cart__btn">
+      <button @click="addQuantity(1)" v-if="quantity === 0" class="dish__btn cart__btn">
         <div>
           <span>В КОРЗИНУ</span>
           <span>{{ menuItem.price }} &#x20bd;</span>
         </div>
       </button>
       <div class="dish__btn cart__btn" v-else>
-        <button @click="onClick(-1)">
+        <button @click="addQuantity(-1)">
           <i class="fas fa-minus"></i>
         </button>
         <span>&times; {{ quantity }}</span>
-        <button @click="onClick(1)">
+        <button @click="addQuantity(1)">
           <i class="fas fa-plus"></i>
         </button>
       </div>
@@ -65,18 +65,16 @@
     <div v-else>
       <h3>К сожалению, такого блюда нет</h3>
     </div>
-    <!-- <dishFooter /> -->
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-// import dishFooter from './dishFooter.vue';
+import OrderMixin from '@/mixins/OrderMixin';
+
 export default {
   name: 'dish',
-  // components: {
-  //   dishFooter,
-  // },
+  mixins: [OrderMixin],
   props: {
     item: {
       type: Object,
@@ -91,33 +89,28 @@ export default {
   },
   methods: {
     ...mapActions(['ADD_DISH', 'GET_MENU', 'GET_ORDER_LIST']),
-    onClick(inc) {
-      if (!localStorage.numberOrder) {
-        const today = new Date();
-        const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-        localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
-      }
+    addQuantity(inc) {
       this.menuItem.quantity = this.quantity;
-      this.$store.dispatch('ADD_DISH', { dish: this.menuItem, inc, numberOrder: this.numberOrder });
-      this.GET_ORDER_LIST(this.numberOrder);
+      this.addOrderQuantity(this.menuItem, inc);
+      this.startOrder();
+    },
+    updateQuantity(el) {
+      this.menuItem.quantity = el ? el.quantity : 0;
     },
   },
   computed: {
     ...mapGetters(['MENU', 'QUICK_ORDER']),
     menuItem() {
-      return this.MENU.find(el => el.guid == this.$route.params.id);
+      return this.MENU.find(el => el.guid === this.$route.params.id);
     },
     quantity() {
       let find = this.QUICK_ORDER.find(el => el.guid === this.menuItem.guid);
       return find ? find.quantity : 0;
     },
   },
-  mounted() {
-    if (localStorage.numberOrder) {
-      this.numberOrder = localStorage.numberOrder;
-      this.GET_ORDER_LIST(this.numberOrder);
-    }
+  created() {
     this.GET_MENU(this.$route.params.category);
+    this.startOrder();
   },
 };
 </script>

@@ -32,7 +32,7 @@
           <v-btn
             class="btn mx-1"
             :color="selected.quantity === 1 ? 'error' : 'primary'"
-            @click="onClick(selected, -1)"
+            @click="addOrderQuantity(selected, -1)"
           >
             <tooltip v-if="selected.quantity === 1" content="Удалить ?" :disabled="disabled">
               <v-icon color="primary"> mdi-food-off </v-icon>
@@ -53,7 +53,7 @@
             </tooltip>
           </v-btn>
 
-          <v-btn class="btn mx-1" color="primary" @click="onClick(selected, 1)">
+          <v-btn class="btn mx-1" color="primary" @click="addOrderQuantity(selected, 1)">
             <tooltip content="Плюс одна позиция" :disabled="disabled">
               <v-icon color="black">mdi-plus</v-icon>
             </tooltip>
@@ -84,7 +84,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import OrderMixin from '@/mixins/OrderMixin';
+
 export default {
+  mixins: [OrderMixin],
   props: {
     basket: {
       type: Object,
@@ -127,15 +130,7 @@ export default {
     },
   },
   created() {
-    if (localStorage.numberOrder) {
-      this.numberOrder = localStorage.numberOrder;
-      this.GET_ORDER_LIST(this.numberOrder);
-    }
-    if (!localStorage.numberOrder) {
-      const today = new Date();
-      const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-      localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
-    }
+    this.startOrder();
   },
   methods: {
     ...mapActions(['ADD_DISH', 'DELETE_ALL_IN_ORDER_ACTION', 'GET_ORDER_LIST', 'GET_MENU']),
@@ -149,12 +144,6 @@ export default {
     },
     clearBasket() {
       this.DELETE_ALL_IN_ORDER_ACTION({ numberOrder: localStorage.numberOrder });
-    },
-    onClick(el, inc) {
-      if (el.quantity === 1 && inc === -1) {
-        this.select = null;
-      }
-      this.ADD_DISH({ dish: el, inc, numberOrder: this.numberOrder });
     },
   },
 };
