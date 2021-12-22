@@ -328,6 +328,10 @@ export default new Vuex.Store({
       const { data: callbacks } = await axios.get(`http://localhost:3000/api/callbacks/`);
       commit('SET_CALLBACKS', callbacks);
     },
+    async GET_CALLBACKS({ commit }) {
+      const { data: callbacks } = await axios.get(`http://localhost:3000/api/callbacks/`);
+      commit('SET_CALLBACKS', callbacks);
+    },
 
     GET_TOTAL_SUM({ commit, state }) {
       const basket = state.quickOrder;
