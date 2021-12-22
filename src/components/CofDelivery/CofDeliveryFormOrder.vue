@@ -10,6 +10,7 @@
         clearable
         outlined
         dense
+        dark
         :rules="rules"
       ></v-text-field>
 
@@ -22,6 +23,7 @@
         clearable
         outlined
         dense
+        dark
       ></v-text-field>
 
       <tooltip
@@ -35,6 +37,7 @@
           color="primary"
           label="Не звонить для проверки заказа"
           class="my-1"
+          dark
         ></v-checkbox>
       </tooltip>
 
@@ -49,6 +52,7 @@
             clearable
             outlined
             dense
+            dark
             :rules="[v => !!v || 'Доставка не осуществляется без адреса!']"
           ></v-text-field>
         </v-col>
@@ -61,6 +65,7 @@
             clearable
             outlined
             dense
+            dark
           ></v-text-field>
         </v-col>
         <v-col cols="12" lg="4" sm12 class="py-1">
@@ -72,6 +77,7 @@
             clearable
             outlined
             dense
+            dark
           ></v-text-field>
         </v-col>
         <v-col cols="12" lg="4" sm12 class="py-1">
@@ -83,16 +89,18 @@
             clearable
             outlined
             dense
+            dark
           ></v-text-field>
         </v-col>
       </v-row>
 
-      <v-subheader class="body-1 pl-0">Оплата:</v-subheader>
+      <v-subheader dark class="body-1 pl-0">Оплата:</v-subheader>
 
       <v-radio-group v-model="user.payment" row class="ma-0 pa-0">
         <v-radio
           hide-details="auto"
           color="primary"
+          dark
           v-for="n in payment"
           :key="n.value"
           :label="n.title"
@@ -109,12 +117,14 @@
         outlined
         clearable
         dense
+        dark
         :value="user.massage"
       ></v-textarea>
 
       <v-checkbox
         v-model="user.agree"
         required
+        dark
         :rules="[v => !!v || 'Доставка не осуществляется без согласия!']"
         hide-details="auto"
         color="primary"
@@ -136,8 +146,21 @@
         </template>
       </v-checkbox>
 
-      <v-btn text outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
-      <v-btn color="secondery" class="title btn-buy" @click="openBasket"> Открыть корзину </v-btn>
+      <v-btn text dark outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
+      <v-btn
+        v-if="hideBtn !== 'basket'"
+        color="secondery"
+        class="title btn-buy"
+        @click="openBasket"
+        dark
+      >
+        Открыть корзину
+      </v-btn>
+
+      <v-btn text outlined class="mt-2 btn-buy">
+        <span class="title">Вход или Регистрация</span>
+        <v-icon class="ml-2">mdi-account-arrow-left-outline</v-icon>
+      </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -152,6 +175,10 @@ export default {
     tooltipDisabled: {
       type: Boolean,
       default: false,
+    },
+    hideBtn: {
+      type: String,
+      default: '',
     },
   },
   data() {
