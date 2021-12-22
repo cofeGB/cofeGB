@@ -14,8 +14,8 @@
 
 /**
  * @typedef {Object} Nutrient - питательное вещество
- * @property {number} percentage - относительное содержание к весу в %
- * @property {number} value - абсолютный вес в одной порции в граммах
+ * @property {?number} percentage - относительное содержание к весу в %
+ * @property {?number} value - абсолютный вес в одной порции в граммах
  */
 
 /**
