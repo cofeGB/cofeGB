@@ -3,20 +3,29 @@
     <template #content>
       <v-flex class="classes">
         <v-toolbar dark color="secondery">
-          <v-toolbar-title class="mr-2">
-            <span>К оплате: </span>
-            <span>{{ TOTAL_SUM.totalPrice }} &#x20bd;</span>
-          </v-toolbar-title>
+          <v-btn text outlined @click="CLOSE_MODAL()">
+            <span>Войти или зарегестрироваться</span>
+            <v-icon class="ml-2">mdi-account-arrow-left-outline</v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn icon dark @click="CLOSE_MODAL()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
+        <v-system-bar window color="primary">
+          <v-icon>mdi-food-fork-drink</v-icon>
+          <span>Статус заказа:</span>
+          <span class="ml-2" style="color: red">Вы еще не оформили заказ</span>
+          <v-spacer></v-spacer>
+          <v-icon>mdi-clock-alert-outline</v-icon>
+          <span>Предварительная оценка времени:</span>
+          <span class="ml-2" style="color: red">1 ч.</span>
+        </v-system-bar>
         <v-flex class="pa-3 content">
           <v-row>
             <v-col cols="12" md="6" lg="4">
               <v-list class="list" dark>
-                <v-list-item-group v-model="selectedElement" mandatory>
+                <v-list-item-group class="list-order" v-model="selectedElement" mandatory>
                   <v-list-item
                     v-for="(el, idx) in QUICK_ORDER"
                     :key="idx"
@@ -77,6 +86,11 @@
                     </v-list-item-action>
                   </v-list-item>
                 </v-list-item-group>
+                <v-divider v-if="QUICK_ORDER.length" />
+                <v-subheader v-if="QUICK_ORDER.length" class="ml-2 d-flex justify-space-between">
+                  <span class="title">К оплате: </span>
+                  <span class="title">{{ TOTAL_SUM.totalPrice }} &#x20bd;</span>
+                </v-subheader>
                 <v-list-item v-if="!QUICK_ORDER.length">
                   <v-list-item-title class="mr-5"> Вы еще ничего не закозали </v-list-item-title>
                   <v-list-item-action class="ma-0 list-item-action">
@@ -116,6 +130,16 @@
                     }}</span>
                   </v-list-item-content>
                 </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col cols="12" md="6" lg="4">
+              <v-list class="list" dark>
+                <v-list-item-group class="list-order">
+                  <v-list-item class="list-item my-2 py-1">
+                    <span> История заказов доступна после авторизации. </span>
+                    <span> Перейти к авторизации? </span>
+                  </v-list-item>
+                </v-list-item-group>
               </v-list>
             </v-col>
           </v-row>
@@ -206,7 +230,9 @@ export default {
   .list {
     background: none;
     border: 1px solid white;
-    max-height: 300px;
+    &-order {
+      max-height: 300px;
+    }
     &-item {
       min-height: fit-content;
       &-action {
