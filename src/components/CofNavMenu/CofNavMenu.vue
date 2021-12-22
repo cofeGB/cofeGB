@@ -89,32 +89,32 @@
 import store from '../../store/index';
 import { eventBus } from '@/main';
 
-const INFO_NAV_MENU = [
-  {
-    title: 'Доставка и оплата',
-    path: '/delivery',
-  },
-  {
-    title: 'Контакты',
-    path: '/contacts',
-  },
-  {
-    title: 'Акции',
-    path: '/promo',
-  },
-  {
-    title: 'О нас',
-    path: '/about',
-  },
-  {
-    title: '*Склад',
-    path: '/private/wharehouse',
-  },
-  {
-    title: '*Кухня',
-    path: '/private/order-desk',
-  },
-];
+// const INFO_NAV_MENU = [
+//   {
+//     title: 'Доставка и оплата',
+//     path: '/delivery',
+//   },
+//   {
+//     title: 'Контакты',
+//     path: '/contacts',
+//   },
+//   {
+//     title: 'Акции',
+//     path: '/promo',
+//   },
+//   {
+//     title: 'О нас',
+//     path: '/about',
+//   },
+//   {
+//     title: '*Склад',
+//     path: '/private/wharehouse',
+//   },
+//   {
+//     title: '*Кухня',
+//     path: '/private/order-desk',
+//   },
+// ];
 
 export default {
   name: 'CofNavMenu',
