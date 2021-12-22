@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="brandName">{{ globalName }}</h1>
+    <h1 class="brandName">{{ GLOBAL_CONST.brandName }}</h1>
   </div>
 </template>
 
@@ -12,10 +12,7 @@ export default {
     showNavMenu: false,
   }),
   computed: {
-    ...mapGetters(['FOOD_CONSTRUCTOR']),
-    globalName() {
-      return this.$store.state.globalConst.brandName;
-    },
+    ...mapGetters(['FOOD_CONSTRUCTOR', 'GLOBAL_CONST']),
   },
 };
 </script>

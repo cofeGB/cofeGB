@@ -84,7 +84,6 @@ export default {
   border-radius: 50px
   animation: phone-rotate 1s infinite alternate linear
   color: #fff
-  z-index: 10
   position: absolute
   top: 14px
   left: 14px
