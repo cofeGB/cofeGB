@@ -1,5 +1,5 @@
 <template>
-  <v-system-bar window color="primary">
+  <v-system-bar window color="primary" class="status">
     <v-icon>mdi-food-fork-drink</v-icon>
     <span>Статус заказа:</span>
     <span v-if="order.length" class="ml-2" style="color: red"> Вы еще не оформили заказ </span>
@@ -21,4 +21,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.status {
+  @media (max-width: 760px) {
+    display: none;
+  }
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <v-toolbar dark color="secondery">
     <v-btn text outlined @click="CLOSE_MODAL()">
-      <span>Войти или зарегестрироваться</span>
+      <span class="log">Войти или зарегестрироваться</span>
       <v-icon class="ml-2">mdi-account-arrow-left-outline</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
@@ -21,4 +21,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.log {
+  @media (max-width: 760px) {
+    display: none;
+  }
+}
+</style>

@@ -148,7 +148,7 @@
 
       <v-btn text dark outlined class="title btn-buy" @click="buyOrder">Заказать</v-btn>
       <v-btn
-        v-if="hideBtn !== 'basket'"
+        v-if="!hideBtn.find(el => el === 'basket')"
         color="secondery"
         class="title btn-buy"
         @click="openBasket"
@@ -157,8 +157,8 @@
         Открыть корзину
       </v-btn>
 
-      <v-btn text outlined class="mt-2 btn-buy">
-        <span class="title">Вход или Регистрация</span>
+      <v-btn v-if="!hideBtn.find(el => el === 'log')" text outlined class="mt-2 btn-buy">
+        <span class="text-body-1">Вход или Регистрация</span>
         <v-icon class="ml-2">mdi-account-arrow-left-outline</v-icon>
       </v-btn>
     </v-form>
@@ -177,8 +177,8 @@ export default {
       default: false,
     },
     hideBtn: {
-      type: String,
-      default: '',
+      type: Array,
+      default: () => [],
     },
   },
   data() {
