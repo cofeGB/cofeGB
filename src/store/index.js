@@ -299,9 +299,6 @@ export default new Vuex.Store({
     },
     async GET_NAV_MENU({ commit }) {
       const { data: navMenu } = await axios.get(`${BACKEND_BASE_URL}/api/navMenu`);
-      // const data = JSON.parse(
-      //   '[{"title":"Закуски","path":"/menu/starters","itemOrder":0},{"title":"Сендвичи","path":"/menu/sandwich","itemOrder":1},{"title":"Салаты","path":"/menu/salad","itemOrder":2},{"title":"Десерты","path":"/menu/desserts","itemOrder":3},{"title":"Кофе","path":"/menu/coffee","itemOrder":4},{"title":"Чай","path":"/menu/tea","itemOrder":5}]'
-      // );
       commit('SET_NAV_MENU', navMenu);
     },
     async GET_LOYALTY({ commit }) {
@@ -402,7 +399,6 @@ export default new Vuex.Store({
       commit('SET_PRIVATE_MODE', payload);
     },
     SET_ORDER_STATE: ({ commit }, { orderId, orderState }) => {
-      // console.log({ orderId, orderState });
       commit('SET_ORDER_STATE', { orderId, orderState });
     },
     ADD_REVIEW({ commit }, payload) {
