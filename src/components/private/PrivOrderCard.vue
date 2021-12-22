@@ -89,7 +89,10 @@ export default {
       console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
-      evt.dataTransfer.setData('orderId', order.id);
+      evt.dataTransfer.setData(
+        'application/json',
+        JSON.stringify({ objType: 'orderId', payload: order.id })
+      );
     },
   },
   computed: {
