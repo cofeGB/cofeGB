@@ -8,8 +8,8 @@
         <div class="footer__main_header">Меню</div>
         <v-list color="rgb(0, 0, 0, 0.01)">
           <v-list-item
-            v-for="item in foodNavMenu"
-            v-bind:key="item.path"
+            v-for="(item, idx) in foodNavMenu"
+            :key="idx"
             :to="{ path: item.path }"
             class="footer__main_link1"
           >
@@ -105,10 +105,7 @@ export default {
       return false;
     },
     foodNavMenu() {
-      return store.getters.FOOD_NAV_MENU.map(item => ({
-        title: item.title,
-        path: `/menu/${item.query}`,
-      }));
+      return store.getters.FOOD_NAV_MENU;
     },
   },
 };
