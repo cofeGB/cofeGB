@@ -101,4 +101,11 @@ export default {
 .primary--text {
   color: #fff !important;
 }
+.header div {
+  display: grid;
+  // justify-content: space-around;
+  grid-template-columns: repeat (3, 1fr);
+  align-items: center;
+  width: 100%;
+}
 </style>
