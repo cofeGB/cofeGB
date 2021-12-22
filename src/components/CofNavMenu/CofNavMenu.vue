@@ -121,7 +121,7 @@ export default {
   data: () => ({
     show: false,
     group: null,
-    infoNavMenu: INFO_NAV_MENU,
+    infoNavMenu: store.state.globalConst.INFO_NAV_MENU,
   }),
   created() {
     eventBus.$on('openNavMenu', () => {

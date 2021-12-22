@@ -1,5 +1,5 @@
 <template>
-  <div class="container px-0 mt-3">
+  <div class="container px-0 pb-2 mt-3">
     <div v-if="menuItem" class="dish__image">
       <div class="dish__image">
         <img :src="menuItem.img" alt="photo" />
@@ -65,18 +65,18 @@
     <div v-else>
       <h3>К сожалению, такого блюда нет</h3>
     </div>
-    <dishFooter />
+    <!-- <dishFooter /> -->
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import dishFooter from './dishFooter.vue';
+// import dishFooter from './dishFooter.vue';
 export default {
   name: 'dish',
-  components: {
-    dishFooter,
-  },
+  // components: {
+  //   dishFooter,
+  // },
   props: {
     item: {
       type: Object,

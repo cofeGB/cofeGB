@@ -8,10 +8,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    globalName: 'СoffeeBonk',
     globalConst: {},
     employee: [],
+    reviewsList: [],
     modal: false,
+    modalName: '',
     quickOrder: [],
     total: {
       totalPrice: 0,
@@ -134,6 +135,9 @@ export default new Vuex.Store({
     MODAL: state => {
       return state.modal;
     },
+    MODAL_NAME: state => {
+      return state.modalName;
+    },
     CATEGORIES: state => {
       return state.categories;
     },
@@ -142,6 +146,9 @@ export default new Vuex.Store({
     },
     EMPLOYEE: state => {
       return state.employee;
+    },
+    EMPLOYEE_REVIEWS: state => {
+      return state.reviewsList;
     },
     TOTAL_SUM: state => {
       return state.total;
@@ -193,8 +200,17 @@ export default new Vuex.Store({
     SET_PRODUCTS_LIST(state, data) {
       state.products = data;
     },
-    OPEN_CLOSE_MODAL(state) {
+    OPEN_CLOSE_MODAL(state, data) {
       state.modal = !state.modal;
+      state.modalName = data;
+    },
+    SET_OPEN_MODAL(state, data) {
+      state.modal = true;
+      state.modalName = data;
+    },
+    SET_CLOSE_MODAL(state) {
+      state.modal = false;
+      state.modalName = '';
     },
     SET_CATEGORIES(state, data) {
       state.categories = data;
@@ -204,6 +220,12 @@ export default new Vuex.Store({
     },
     SET_EMPLOYEE(state, data) {
       state.employee = data;
+    },
+    SET_EMPLOYEE_RATING(state, data) {
+      state.employee = data;
+    },
+    SET_EMPLOYEE_REVIEWS_LIST(state, data) {
+      state.reviewsList = data;
     },
     SET_MENU(state, data) {
       state.section = data;
@@ -294,13 +316,18 @@ export default new Vuex.Store({
       const { data: employee } = await axios.get(`http://localhost:3000/api/employee/`);
       commit('SET_EMPLOYEE', employee);
     },
+    async GET_EMPLOYEE_REVIEWS_LIST({ commit }) {
+      const { data: reviewsList } = await axios.get(`http://localhost:3000/api/employee-reviews/`);
+      commit('SET_EMPLOYEE_REVIEWS_LIST', reviewsList);
+    },
     async GET_GLOBAL_CONST({ commit }) {
       const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
       commit('SET_GLOBAL_CONST', globalConst);
     },
-    OPEN_CLOSE_MODAL({ commit }) {
-      commit('OPEN_CLOSE_MODAL');
+    OPEN_CLOSE_MODAL({ commit, state }) {
+      commit('OPEN_CLOSE_MODAL', state);
     },
+
     GET_TOTAL_SUM({ commit, state }) {
       const basket = state.quickOrder;
       let total = 0;
@@ -376,6 +403,15 @@ export default new Vuex.Store({
     SET_ORDER_STATE: ({ commit }, { orderId, orderState }) => {
       // console.log({ orderId, orderState });
       commit('SET_ORDER_STATE', { orderId, orderState });
+    },
+    ADD_REVIEW({ commit }, payload) {
+      commit('SET_EMPLOYEE_REVIEWS_LIST', this.state.reviewsList.concat(payload));
+    },
+    OPEN_MODAL({ commit }, payload) {
+      commit('SET_OPEN_MODAL', payload);
+    },
+    CLOSE_MODAL({ commit }) {
+      commit('SET_CLOSE_MODAL');
     },
   },
 });
