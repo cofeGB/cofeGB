@@ -156,11 +156,6 @@
       >
         Открыть корзину
       </v-btn>
-
-      <v-btn v-if="!hideBtn.find(el => el === 'log')" text outlined class="mt-2 btn-buy">
-        <span class="text-body-1">Вход или Регистрация</span>
-        <v-icon class="ml-2">mdi-account-arrow-left-outline</v-icon>
-      </v-btn>
     </v-form>
   </v-container>
 </template>

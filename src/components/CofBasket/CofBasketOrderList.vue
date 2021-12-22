@@ -20,7 +20,7 @@
               fab
               x-small
               :color="el.quantity === 1 ? 'error' : 'primary'"
-              @click="onClick(el, -1)"
+              @click="addOrderQuantity(el, -1)"
             >
               <tooltip
                 v-if="el.quantity === 1"
@@ -41,7 +41,7 @@
                 <v-icon>mdi-minus</v-icon>
               </tooltip>
             </v-btn>
-            <v-btn class="btn mx-1" fab x-small color="secondery" @click="onClick(el, 1)">
+            <v-btn class="btn mx-1" fab x-small color="secondery" @click="addOrderQuantity(el, 1)">
               <tooltip
                 content="Плюс одна позиция"
                 :disabled="disabled"
@@ -71,7 +71,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import OrderMixin from '@/mixins/OrderMixin';
+
 export default {
+  mixins: [OrderMixin],
   props: {
     tooltipDisabled: {
       type: Boolean,
@@ -81,6 +84,7 @@ export default {
   data() {
     return {
       selectedEl: {},
+      counter: 0,
     };
   },
   computed: {
@@ -98,11 +102,8 @@ export default {
     ...mapActions(['ADD_DISH', 'GET_ORDER_LIST', 'GET_MENU']),
     firstSelectedElements() {
       if (this.QUICK_ORDER.length > 0) {
-        this.selectedEl = this.QUICK_ORDER[0];
+        this.selectedEl = this.QUICK_ORDER[this.counter];
       }
-    },
-    onClick(el, inc) {
-      this.ADD_DISH({ dish: el, inc, numberOrder: this.numberOrder });
     },
     closeAndGo() {
       this.$router.replace({ path: '/menu/starters' });
@@ -111,15 +112,7 @@ export default {
   },
   created() {
     this.firstSelectedElements();
-    if (localStorage.numberOrder) {
-      this.numberOrder = localStorage.numberOrder;
-      this.GET_ORDER_LIST(this.numberOrder);
-    }
-    if (!localStorage.numberOrder) {
-      const today = new Date();
-      const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-      localStorage.numberOrder = `${date}-${Math.floor(Math.random() * 100)}`;
-    }
+    this.startOrder();
   },
 };
 </script>
