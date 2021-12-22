@@ -80,12 +80,16 @@ export default {
     },
     startDrag(evt, order) {
       // console.log('startDrag');
+      // evt.dataTransfer.dropEffect = 'move';
+      // evt.dataTransfer.effectAllowed = 'move';
+      // evt.dataTransfer.setData(
+      //   'application/json',
+      //   JSON.stringify({ objType: 'orderId', payload: order.id })
+      // );
+      console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
-      evt.dataTransfer.setData(
-        'application/json',
-        JSON.stringify({ objType: 'orderId', payload: order.id })
-      );
+      evt.dataTransfer.setData('orderId', order.id);
     },
   },
   computed: {
