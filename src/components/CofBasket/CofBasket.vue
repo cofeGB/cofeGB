@@ -11,7 +11,10 @@
                 :tooltip-disabled="tooltipDisabled"
                 @selectElement="selectElement"
               />
-              <CofDeliveryFormOrder :hide-btn="'basket'" :tooltip-disabled="tooltipDisabled" />
+              <CofDeliveryFormOrder
+                :hide-btn="['basket', 'log']"
+                :tooltip-disabled="tooltipDisabled"
+              />
             </v-col>
             <v-col v-if="QUICK_ORDER.length" cols="12" md="6" lg="4" class="selected">
               <CofBasketDiscription
