@@ -1,9 +1,8 @@
 <template>
-  <Modal :activator="basket" @close="CLOSE_MODAL()">
+  <Modal :activator="basket">
     <template #content>
       <v-flex class="classes">
-        <CofBasketHeader />
-        <CofBasketStatusBar :order="QUICK_ORDER" />
+        <CofBasketHeader :order="QUICK_ORDER" />
         <v-flex class="pa-3 content">
           <v-row>
             <v-col cols="12" md="6" lg="4">
@@ -37,7 +36,6 @@ import { mapGetters } from 'vuex';
 import CofDeliveryFormOrder from '@/components/CofDelivery/CofDeliveryFormOrder.vue';
 import CofBasketOrderList from './CofBasketOrderList.vue';
 import CofBasketDiscription from './CofBasketDiscription.vue';
-import CofBasketStatusBar from './CofBasketStatusBar.vue';
 import CofBasketPastOrdersList from './CofBasketPastOrdersList.vue';
 import CofBasketHeader from './CofBasketHeader.vue';
 
@@ -46,7 +44,6 @@ export default {
     CofDeliveryFormOrder,
     CofBasketOrderList,
     CofBasketDiscription,
-    CofBasketStatusBar,
     CofBasketPastOrdersList,
     CofBasketHeader,
   },
