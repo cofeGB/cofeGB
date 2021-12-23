@@ -25,7 +25,6 @@
 
 <script>
 import ModalCallBack from './ModalCallBack.vue';
-import CallBackAccept from './ModalCallBack.vue';
 import { mapActions } from 'vuex';
 
 export default {
@@ -37,13 +36,12 @@ export default {
   },
   components: {
     ModalCallBack,
-    CallBackAccept,
   },
   methods: {
     ...mapActions(['OPEN_MODAL']),
     // ...mapGetters(['MODAL_NAME']),
     showmodal() {
-      if (this.OPEN_MODAL(this.modalName)) this.OPEN_MODAL('callBackAccept');
+      this.OPEN_MODAL(this.modalName);
     },
   },
 };

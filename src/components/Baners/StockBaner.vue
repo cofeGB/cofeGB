@@ -2,7 +2,7 @@
   <div id="app" height="25vh" width="100%">
     <v-carousel
       :cycle="true"
-      height="60vh"
+      height="57vh"
       :show-arrows="false"
       hide-delimiters
       interval="3000"
@@ -12,7 +12,7 @@
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
-        height="60vh"
+        height="57vh"
         width="45vw"
         show-arrows="false"
         reverse="true"
@@ -24,7 +24,7 @@
           <v-img
             :src="require(`../../assets/${item.src}`)"
             position="center center"
-            max-height="50vh"
+            max-height="45vh"
             max-width="40vw"
             alt="logo"
             contain
