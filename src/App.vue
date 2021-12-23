@@ -7,6 +7,7 @@
     </v-main>
     <CofDelivery v-if="publicMode" />
     <CofNavMenu v-if="publicMode" />
+    <PrivateNavMenu v-else />
     <CofBasket v-if="publicMode" />
     <Footeer v-if="publicMode" />
   </v-app>
@@ -15,6 +16,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import PrivateHeader from '@/components/privHeader.vue';
+import PrivateNavMenu from '@/components/privCofNavMenu.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
 import CofBasket from '@/components/CofBasket/CofBasket.vue';
@@ -28,6 +30,7 @@ export default {
     CofDelivery,
     CofBasket,
     PrivateHeader,
+    PrivateNavMenu,
     CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
