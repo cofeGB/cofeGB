@@ -1,0 +1,91 @@
+{
+    "list": [
+        {
+            "category": "starters",
+            "img": "https://raw.githubusercontent.com/pashkoveval/img/main/112.png",
+            "guid": "232asd1",
+            "title": "Асорти Брускет",
+            "quantity": 2,
+            "price": 100,
+            "weight": 100,
+            "calories": [
+                {
+                    "title": "Ккал",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Белки",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Жиры",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Углеводы",
+                    "procents": 0,
+                    "value": 0
+                }
+            ],
+            "composition": [
+                "guid"
+            ],
+            "description": "Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках Чупадедос содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%."
+        },
+        {
+            "category": "starters",
+            "img": "https://raw.githubusercontent.com/pashkoveval/img/main/26.png",
+            "guid": "132ad",
+            "title": "Драники с лососем",
+            "quantity": 1,
+            "price": 100,
+            "weight": 100,
+            "calories": [
+                {
+                    "title": "Ккал",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Белки",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Жиры",
+                    "procents": 0,
+                    "value": 0
+                },
+                {
+                    "title": "Углеводы",
+                    "procents": 0,
+                    "value": 0
+                }
+            ],
+            "composition": [
+                "guid"
+            ],
+            "description": "Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках Чупадедос содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%."
+        }
+    ],
+    "user": {
+        "phone": null,
+        "address": {
+            "strit": "",
+            "home": "",
+            "ofice": "",
+            "flore": ""
+        },
+        "name": ""
+    },
+    "total": 300,
+    "timeTo": "2021-12-23T16:32:21.525Z",
+    "timeConfirmation": "",
+    "userMessage": "",
+    "paymentMethod": "online",
+    "backCall": true,
+    "status": "pending"
+}
