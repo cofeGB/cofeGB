@@ -44,13 +44,14 @@
         :rules="namerule"
       ></v-text-field>
       <v-btn @click="send_callback">Отправить</v-btn>
+      <CallBackAccept />
     </v-form>
   </v-dialog>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-
+import CallBackAccept from './CallBackAccept.vue';
 export default {
   props: ['showModal'],
   data() {
@@ -66,6 +67,9 @@ export default {
       isValid: false,
     };
   },
+  components: {
+    CallBackAccept,
+  },
   methods: {
     ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK']),
     closemodal() {
@@ -80,9 +84,13 @@ export default {
       const callback = [{ datetime_order, clientname, phone, user, datetime_callback }];
       this.SEND_CALLBACK(callback);
       this.closemodal();
+      // this.showmodal();
     },
     checkform() {
       return this.phone && this.clientname;
+    },
+    showmodal() {
+      this.OPEN_MODAL('callBackAccept');
     },
   },
   computed: {

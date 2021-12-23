@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="call_back"
+    v-model="call_back_accept"
     fullscreen
     transition="dialog-bottom-transition"
     @close="closemodal"
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     ...mapGetters(['MODAL_NAME']),
-    call_back() {
+    call_back_accept() {
       return this.MODAL_NAME === 'callBackAccept';
     },
   },
