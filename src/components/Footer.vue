@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import store from '@/store/index';
 import Links from '../views/Links.vue';
 import CallBack from '../views/CallBack.vue';
@@ -83,7 +84,6 @@ export default {
   },
   data() {
     return {
-      globalConst: store.state.globalConst,
       showModal: false,
     };
   },
@@ -93,6 +93,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(['GLOBAL_CONST']),
     isActive() {
       let now = new Date();
       let hour = now.getHours();
@@ -109,6 +110,9 @@ export default {
         title: item.title,
         path: `/menu/${item.query}`,
       }));
+    },
+    globalConst() {
+      return store.getters.GLOBAL_CONST;
     },
   },
 };
@@ -169,7 +173,7 @@ export default {
     &_ind {
       width: 12px;
       height: 12px;
-      background-color: #eb6952;
+      background-color: #3b1fc4;
       border-radius: 50%;
       margin-right: 8px;
     }

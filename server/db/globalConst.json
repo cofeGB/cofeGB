@@ -27,5 +27,121 @@
 			"title": "Склад",
 			"path": "/private/wharehouse"
 		}
+	],
+	"DRINKS": [
+		{
+			"src": "img/Drinks/314287531.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/14978928755948080b1a38d9.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/70061565.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/111617010.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/375753280.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/Drinks_Juice.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/GTY_orange_juice.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Drinks/koktejl.jpg",
+			"to": "/menu/desserts",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		}
+	],
+	"STOCKS": [
+		{
+			"src": "img/Stocks/41.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Stocks/696kh696.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Stocks/1161.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Stocks/Aktsiya.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Stocks/CtmMfEeW8AAxCZA.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		},
+		{
+			"src": "img/Stocks/h1464.jpg",
+			"to": "/menu/starters",
+			"target": "_blank",
+			"text": "Рекламный текст",
+			"style": "red",
+			"class": "red"
+		}
 	]
 }
