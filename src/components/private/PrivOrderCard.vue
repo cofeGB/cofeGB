@@ -11,9 +11,24 @@
     <v-card-actions class="pa-0">
       <v-card-title class="pa-2"> Заказ №{{ order.id }} </v-card-title>
       <v-spacer></v-spacer>
-      <v-btn icon
-        ><v-icon>{{ mdiDotsVerticalCircleOutline }}</v-icon></v-btn
-      >
+
+      <v-menu v-model="showContextMenu" absolute offset-y style="max-width: 600px">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on"
+            ><v-icon>{{ mdiDotsVerticalCircleOutline }}</v-icon></v-btn
+          >
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in contextMenuItems"
+            :key="index"
+            v-on="item.action ? { click: item.action } : {}"
+          >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-actions>
     <v-divider></v-divider>
     <v-data-table
@@ -41,6 +56,7 @@
 </template>
 
 <script>
+/// <reference path="../../typedefs.js" />
 import { mdiDotsVerticalCircleOutline } from '@mdi/js';
 
 export default {
@@ -63,12 +79,15 @@ export default {
         { text: 'Кол-во', align: 'end', value: 'quantity' },
       ],
       mdiDotsVerticalCircleOutline: mdiDotsVerticalCircleOutline,
+      showContextMenu: false,
+      contextMenuItems: [
+        { title: 'Заказал Иванов С.П.', action: undefined }, //TODO show order creator
+        { title: 'Отказ гостя', action: () => this.cancelByGuest() },
+        { title: 'Ошибка официанта', action: () => this.cancelByEmployee() },
+      ],
     };
   },
   methods: {
-    // onClickCook() {
-    //   this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'cooking' });
-    // },
     onClickClose() {
       this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
     },
@@ -86,6 +105,18 @@ export default {
         'application/json',
         JSON.stringify({ objType: 'orderId', payload: order.id })
       );
+    },
+    cancelByGuest() {
+      this.$store.dispatch('CANCEL_ORDER', {
+        orderGuid: this.order.orderGuid,
+        reason: 'canceledByGuest',
+      });
+    },
+    cancelByEmployee() {
+      this.$store.dispatch('CANCEL_ORDER', {
+        orderGuid: this.order.orderGuid,
+        reason: 'canceledByEmployee',
+      });
     },
   },
   computed: {
