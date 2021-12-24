@@ -227,6 +227,7 @@ export default {
         user: this.user,
         numberOrder: localStorage.numberOrder,
       });
+      this.OPEN_MODAL('orderCreated');
     },
   },
 };
@@ -239,6 +240,16 @@ export default {
     width: 100%;
     height: 50px;
     margin-top: 10px;
+  }
+}
+.ok_btn {
+  background-color: #25dcd1;
+  border: 1px solid #23c9be;
+  width: 100px;
+  height: 40px;
+  transition: background-color, 0.5s;
+  &:hover {
+    background-color: #1bc2b7;
   }
 }
 </style>
