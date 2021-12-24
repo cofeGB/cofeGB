@@ -170,20 +170,17 @@
 
 <script>
 import store from '../store/index';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'About',
   data() {
     return {
-      globalConst: store.state.globalConst,
-      reviews: [],
-      employeeReviews: [],
-      items: store.state.employee,
+      // items: store.getters.EMPLOYEE,
       showReviewsVisible: false,
       dialog1: false,
       dialog2: false,
-      employee_id: 0,
+      employee_id: 1,
       employeer: {},
       user_name: '',
       rating: 5,
@@ -195,12 +192,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
-    ...mapGetters(['EMPLOYEE_REVIEWS']),
+    // ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
+    ...mapActions(['ADD_REVIEW']),
+    // ...mapGetters(['EMPLOYEE_REVIEWS']),
 
     changeShowReviewsVisible() {
-      this.reviews = this.EMPLOYEE_REVIEWS();
-      this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
+      // this.reviews = this.EMPLOYEE_REVIEWS();
+      // this.employeeReviews = this.reviews.filter(emp => emp.employee_id === this.employee_id);
       let employeerMap = this.items.filter(emp => emp.id === this.employee_id);
       this.employeer = employeerMap[0];
       this.showReviewsVisible = !this.showReviewsVisible;
@@ -217,6 +215,20 @@ export default {
       } else {
         this.overlay = true;
       }
+    },
+  },
+  computed: {
+    // reviews() {
+    //   return store.getters.EMPLOYEE_REVIEWS;
+    // },
+    employeeReviews() {
+      return store.getters.EMPLOYEE_REVIEWS.filter(emp => emp.employee_id === this.employee_id);
+    },
+    globalConst() {
+      return store.getters.GLOBAL_CONST;
+    },
+    items() {
+      return store.getters.EMPLOYEE;
     },
   },
 };

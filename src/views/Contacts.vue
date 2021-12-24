@@ -15,7 +15,7 @@
         <div class="footer__contacts-right">
           <div class="phone1">
             <a href="tel:+7-999-888-77-66">
-              <i class="fas fa-mobile-alt marbig pa-4"></i>+7-999-888-77-66
+              <i class="fas fa-mobile-alt marbig pa-4"></i>{{ globalConst.phone }}
             </a>
           </div>
         </div>
@@ -39,7 +39,9 @@
       >
         Режим работы:
       </v-card-text>
-      <div class="text-center">Ежедневно с 08-00 до 23-00</div>
+      <div class="text-center">
+        Ежедневно с {{ globalConst.workTimeFrom }} до {{ globalConst.workTimeTo }}
+      </div>
       <div class="text-center">Без выходных и праздников</div>
     </v-card>
   </v-container>
@@ -48,12 +50,19 @@
 <script>
 import store from '../store/index';
 
+// import { mapGetters } from 'vuex';
+
 export default {
-  name: 'About',
+  name: 'contacts',
   data() {
-    return {
-      globalConst: store.state.globalConst,
-    };
+    // return {
+    //   globalConst: store.state.globalConst,
+    // };
+  },
+  computed: {
+    globalConst() {
+      return store.getters.GLOBAL_CONST;
+    },
   },
 };
 </script>
