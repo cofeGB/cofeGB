@@ -5,6 +5,7 @@
     <v-main>
       <router-view />
     </v-main>
+    <Popup />
     <CofDelivery v-if="publicMode" />
     <CofNavMenu v-if="publicMode" />
     <PrivateNavMenu v-else />
@@ -20,6 +21,7 @@ import PrivateNavMenu from '@/components/privCofNavMenu.vue';
 import Footeer from '@/components/Footer.vue';
 import CofDelivery from '@/components/CofDelivery/CofDelivery.vue';
 import CofBasket from '@/components/CofBasket/CofBasket.vue';
+import Popup from '@/components/Modal/Popup.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -31,6 +33,7 @@ export default {
     CofBasket,
     PrivateHeader,
     PrivateNavMenu,
+    Popup,
     CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
