@@ -26,6 +26,10 @@
 		{
 			"title": "Склад",
 			"path": "/private/wharehouse"
+		},
+		{
+			"title": "Стоп-лист",
+			"path": "/private/stoplist"
 		}
 	]
 }
