@@ -31,10 +31,14 @@ export default {
   },
   methods: {
     dragDrop(evt) {
-      console.log('dragDrop', evt);
-      // evt.dataTransfer.dropEffect = 'move';
-      // evt.dataTransfer.effectAllowed = 'move';
-      // evt.dataTransfer.setData('orderId', order.id);
+      if (!evt) {
+        return;
+      }
+      const dragData = JSON.parse(evt.dataTransfer.getData('application/json') || '');
+      if (dragData.objType != 'orderId') {
+        return;
+      }
+      this.$store.dispatch('SET_ORDER_STATE', { orderId: dragData.payload, orderState: 'cooking' });
     },
   },
   computed: {
