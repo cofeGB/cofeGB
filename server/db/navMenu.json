@@ -1,34 +1,8 @@
 [
-  {
-    "title": "Закуски",
-    "route": "/menu",
-    "icon": "starters",
-    "query": "starters",
-    "warn": false,
-    "warnMsg": ""
-  },
-  {
-    "title": "Сендвичи",
-    "route": "/menu",
-    "icon": "sandwich",
-    "query": "sandwich",
-    "warn": false,
-    "warnMsg": ""
-  },
-  {
-    "title": "Салаты",
-    "route": "/menu",
-    "icon": "salad",
-    "query": "salad",
-    "warn": false,
-    "warnMsg": ""
-  },
-  {
-    "title": "Десерты",
-    "route": "/menu",
-    "icon": "desserts",
-    "query": "desserts",
-    "warn": false,
-    "warnMsg": ""
-  }
+  { "title": "Закуски", "path": "/menu/starters", "itemOrder": 0 },
+  { "title": "Сендвичи", "path": "/menu/sandwich", "itemOrder": 1 },
+  { "title": "Салаты", "path": "/menu/salad", "itemOrder": 2 },
+  { "title": "Десерты", "path": "/menu/desserts", "itemOrder": 3 },
+  { "title": "Кофе", "path": "/menu/coffee", "itemOrder": 4 },
+  { "title": "Чай", "path": "/menu/tea", "itemOrder": 5 }
 ]

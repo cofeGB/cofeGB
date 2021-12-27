@@ -1,7 +1,10 @@
+/// <reference path="../typedefs.js" />
 import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { BACKEND_BASE_URL } from '../config';
 import { getRandomPrivOrderArray } from '../mockdata/priv-order';
+import { privateStore } from './pivateStore';
 
 Vue.use(Vuex);
 
@@ -255,15 +258,21 @@ export default new Vuex.Store({
     SET_PRIVATE_MODE(state, payload) {
       state.privateMode = !!payload.enable;
     },
-    SET_ORDER_STATE(state, { order, orderState }) {
-      if (order.state === 'pending' && orderState === 'cooking') {
+    SET_ORDER_STATE(state, { orderId, orderState }) {
+      let order = state.pendingOrders.find(item => item.id == orderId);
+      if (order && order.state === 'pending' && orderState === 'cooking') {
         state.pendingOrders = state.pendingOrders.filter(orderItem => orderItem != order);
         order.state = 'cooking';
         state.cookingOrders.push(order);
-      } else if (order.state === 'cooking' && orderState === 'closed') {
+        return;
+      }
+
+      order = state.cookingOrders.find(item => item.id == orderId);
+      if (order && order.state === 'cooking' && orderState === 'closed') {
         state.cookingOrders = state.cookingOrders.filter(orderItem => orderItem != order);
         order.state = 'closed';
         state.closedOrders.push(order);
+        return;
       }
     },
     SET_CALLBACKS(state, data) {
@@ -291,8 +300,11 @@ export default new Vuex.Store({
       commit('SET_MENU', section);
     },
     async GET_NAV_MENU({ commit }) {
-      const { data: menu } = await axios.get(`http://localhost:3000/api/navMenu/`);
-      commit('SET_NAV_MENU', menu);
+      const { data: navMenu } = await axios.get(`${BACKEND_BASE_URL}/api/navMenu`);
+      // const data = JSON.parse(
+      //   '[{"title":"Закуски","path":"/menu/starters","itemOrder":0},{"title":"Сендвичи","path":"/menu/sandwich","itemOrder":1},{"title":"Салаты","path":"/menu/salad","itemOrder":2},{"title":"Десерты","path":"/menu/desserts","itemOrder":3},{"title":"Кофе","path":"/menu/coffee","itemOrder":4},{"title":"Чай","path":"/menu/tea","itemOrder":5}]'
+      // );
+      commit('SET_NAV_MENU', navMenu);
     },
     async GET_LOYALTY({ commit }) {
       const { data: loyalty } = await axios.get(`http://localhost:3000/api/loyalty/`);
@@ -391,8 +403,9 @@ export default new Vuex.Store({
     SET_PRIVATE_MODE: ({ commit }, payload) => {
       commit('SET_PRIVATE_MODE', payload);
     },
-    SET_ORDER_STATE: ({ commit }, { order, orderState }) => {
-      commit('SET_ORDER_STATE', { order, orderState });
+    SET_ORDER_STATE: ({ commit }, { orderId, orderState }) => {
+      // console.log({ orderId, orderState });
+      commit('SET_ORDER_STATE', { orderId, orderState });
     },
     ADD_REVIEW({ commit }, payload) {
       commit('SET_EMPLOYEE_REVIEWS_LIST', this.state.reviewsList.concat(payload));
@@ -406,5 +419,8 @@ export default new Vuex.Store({
     SEND_CALLBACK({ commit }, payload) {
       commit('SET_CALLBACKS', this.state.callbacks.concat(payload));
     },
+  },
+  modules: {
+    priv: privateStore,
   },
 });

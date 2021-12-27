@@ -10,9 +10,9 @@
   >
     <PrivOrderCard
       class="flex-grow-1 ma-4"
-      v-for="order in orders"
-      :key="order.id"
-      :order="order"
+      v-for="privOrder in privOrders"
+      :key="privOrder.id"
+      :privOrder="privOrder"
     />
   </v-card>
 </template>
@@ -31,29 +31,30 @@ export default {
   },
   methods: {
     dragDrop(evt) {
-      console.log('dragDrop', evt);
-      // evt.dataTransfer.dropEffect = 'move';
-      // evt.dataTransfer.effectAllowed = 'move';
-      // evt.dataTransfer.setData('orderId', order.id);
+      if (!evt) {
+        return;
+      }
+      const dragData = JSON.parse(evt.dataTransfer.getData('application/json') || '');
+      if (dragData.objType != 'orderId') {
+        return;
+      }
+      this.$store.dispatch('SET_ORDER_STATE', { orderId: dragData.payload, orderState: 'cooking' });
     },
   },
   computed: {
-    orders() {
-      let orders = [];
+    privOrders() {
+      let privOrders = [];
       switch (this.orderType) {
         case 'cooking':
-          orders = Array.from(this.$store.getters.COOKING_ORDERS);
-          break;
-        case 'closed':
-          orders = Array.from(this.$store.getters.CLOSED_ORDERS);
+          privOrders = Array.from(this.$store.getters['priv/COOKING_ORDERS']);
           break;
         case 'pending':
         default:
-          orders = Array.from(this.$store.getters.PENDING_ORDERS);
+          privOrders = Array.from(this.$store.getters['priv/PENDING_ORDERS']);
           break;
       }
-      orders.sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
-      return orders;
+      privOrders.sort((a, b) => a.order.timeTo.getTime() - b.order.timeTo.getTime());
+      return privOrders;
     },
   },
 };
