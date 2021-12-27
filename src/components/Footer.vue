@@ -6,10 +6,10 @@
     <v-row class="footer__main white--text mb-4" width="80vw">
       <v-col class="footer__main_block">
         <div class="footer__main_header">Меню</div>
-        <v-list color="rgb(0, 0, 0, 0.01)">
+        <v-list class="footer__main_links" color="rgb(0, 0, 0, 0.01)">
           <v-list-item
             v-for="item in foodNavMenu"
-            v-bind:key="item.path"
+            :key="item.path"
             :to="{ path: item.path }"
             class="footer__main_link1"
           >
@@ -19,10 +19,8 @@
       </v-col>
       <v-col class="footer__main_block">
         <div class="footer__main_header">Контакты</div>
-        <v-card-text>
-          <a class="my-4 footer__main_hashtag" phone>{{ globalConst.phone }}</a>
-          <div>{{ globalConst.address }}</div>
-        </v-card-text>
+        <a class="footer__main_hashtag" phone>{{ globalConst.phone }}</a>
+        <div>{{ globalConst.address }}</div>
         <div>
           <span>
             Режим работы: {{ globalConst.workTimeFrom }} - {{ globalConst.workTimeTo }} Ежедневно
@@ -57,7 +55,6 @@
             <i class="fab fa-twitter-square fa-2x"></i>
           </a>
         </div>
-        <CallBack />
       </v-col>
     </v-row>
     <v-row class="footer__bottom text-center white--text">
@@ -74,13 +71,13 @@
 import { mapGetters } from 'vuex';
 import store from '@/store/index';
 import Links from '../views/Links.vue';
-import CallBack from '../views/CallBack.vue';
+// import CallBack from '../views/CallBack.vue';
 
 export default {
   name: 'Footer',
   components: {
     Links,
-    CallBack,
+    // CallBack,
   },
   data() {
     return {
@@ -106,7 +103,11 @@ export default {
       return false;
     },
     foodNavMenu() {
-      return [...this.$store.getters.FOOD_NAV_MENU].sort((a, b) => a.itemOrder - b.itemOrder);
+      // return store.getters.FOOD_NAV_MENU.map(item => ({
+      //   title: item.title,
+      //   path: `/menu/${item.query}`,
+      // }));
+      return store.getters.FOOD_NAV_MENU.sort((a, b) => a.itemOrder - b.itemOrder);
     },
     globalConst() {
       return store.getters.GLOBAL_CONST;
@@ -122,7 +123,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: rgba(86, 71, 66, 0.6);
-  max-height: 40vh;
+  max-height: 300px;
   overflow: scroll;
   &__top {
     width: 100%;
@@ -190,6 +191,11 @@ export default {
     &_link1 {
       min-height: 30px !important;
     }
+    &_links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     &_header {
       text-align: center;
       font-size: 20px;

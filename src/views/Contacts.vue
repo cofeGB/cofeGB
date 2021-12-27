@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex flex-column align-center">
-    <h1 class="brandName">{{ globalConst.brandName }}</h1>
+    <!-- <h1 class="brandName">{{ globalConst.brandName }}</h1> -->
 
     <v-card class="d-flex flex-column justify-space-between pa-4 mt-5" width="960" height="auto">
       <div class="footer__contacts">
@@ -48,17 +48,12 @@
 </template>
 
 <script>
-import store from '../store/index';
+import store from '@/store/index';
 
 // import { mapGetters } from 'vuex';
 
 export default {
   name: 'contacts',
-  data() {
-    // return {
-    //   globalConst: store.state.globalConst,
-    // };
-  },
   computed: {
     globalConst() {
       return store.getters.GLOBAL_CONST;

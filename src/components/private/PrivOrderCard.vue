@@ -90,16 +90,25 @@ export default {
     };
   },
   methods: {
+    // onClickCook() {
+    //   this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'cooking' });
+    // },
     onClickClose() {
-      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.privOrder.id, orderState: 'closed' });
+      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
     },
-    startDrag(evt, privOrder) {
+    dishToTreeviewItem(dish, id) {
+      return {
+        id,
+        name: dish.title,
+      };
+    },
+    startDrag(evt, order) {
       // console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
       evt.dataTransfer.setData(
         'application/json',
-        JSON.stringify({ objType: 'orderId', payload: privOrder.id })
+        JSON.stringify({ objType: 'orderId', payload: order.id })
       );
     },
     cancelByGuest() {

@@ -3,8 +3,9 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Delivery from '../views/Delivery.vue';
 import Menu from '../views/Menu.vue';
-import About from '../views/About.vue';
-import Contacts from '../views/Contacts.vue';
+import About from '@/views/About.vue';
+import Contacts from '@/views/Contacts.vue';
+import Stocks from '@/views/Stocks.vue';
 import dish from '../components/CofDish/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Wharehouse from '../views/Wharehouse.vue';
@@ -28,6 +29,11 @@ const routes = [
     path: '/contacts',
     name: 'Contacts',
     component: Contacts,
+  },
+  {
+    path: '/stocks',
+    name: 'Stocks',
+    component: Stocks,
   },
   {
     path: '/delivery',

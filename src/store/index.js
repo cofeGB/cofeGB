@@ -412,6 +412,7 @@ export default new Vuex.Store({
     },
     OPEN_MODAL({ commit }, payload) {
       commit('SET_OPEN_MODAL', payload);
+      return payload;
     },
     CLOSE_MODAL({ commit }) {
       commit('SET_CLOSE_MODAL');

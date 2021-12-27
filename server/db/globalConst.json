@@ -8,6 +8,10 @@
 	"workTimeTo": 22,
 	"INFO_NAV_MENU": [
 		{
+			"title": "Главная",
+			"path": "/"
+		},
+		{
 			"title": "Доставка и оплата",
 			"path": "/delivery"
 		},
@@ -17,7 +21,7 @@
 		},
 		{
 			"title": "Акции",
-			"path": "/promo"
+			"path": "/stocks"
 		},
 		{
 			"title": "О нас",

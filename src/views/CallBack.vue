@@ -19,7 +19,7 @@
       </tooltip>
     </div>
     <ModalCallBack />
-    <CallBackAccept />
+    <!-- <CallBackAccept /> -->
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
 
 .callback__container
   max-width: 150px
-  margin-top: 30px
+  // margin-top: 30px
 
 .wrap
   display: flex
@@ -83,7 +83,7 @@ export default {
   animation: phone-rotate 1s infinite alternate linear
   color: #fff
   position: absolute
-  top: 14px
+  top: 19px
   left: 14px
   &::hover
     cursor: pointer
@@ -96,12 +96,17 @@ export default {
     width: 60px
     border: 8px solid #fff
     position: absolute
+    top: 5px
+    left: 0px
     opacity: 0.8
     border-radius: 60px
     animation: btn-phone-circle1 1.4s infinite alternate linear
   &-circle2
     height: 60px
     width: 60px
+    position: relative
+    z-index: 1000
+    top: 5px
     border: 1px solid #fff
     border-radius: 60px
     animation: btn-phone-circle2 1.4s infinite alternate linear
