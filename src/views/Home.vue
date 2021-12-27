@@ -1,13 +1,27 @@
 <template>
   <div>
     <h1 class="brandName">{{ GLOBAL_CONST.brandName }}</h1>
+    <div class="baners">
+      <div class="slider_stock">
+        <StockBaner />
+      </div>
+      <div class="slider_stock">
+        <DrinkBaner />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import StockBaner from '@/components/Baners/StockBaner.vue';
+import DrinkBaner from '@/components/Baners/DrinkBaner.vue';
 export default {
   name: 'Home',
+  components: {
+    StockBaner,
+    DrinkBaner,
+  },
   data: () => ({
     showNavMenu: false,
   }),
@@ -16,3 +30,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.baners {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  height: 60vh;
+}
+.slider_stock {
+  width: 45vw;
+}
+</style>
