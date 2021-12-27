@@ -30,5 +30,8 @@ export default {
   components: {
     PrivOrderList: () => import('../components/private/PrivOrderList.vue'),
   },
+  created() {
+    this.$store.dispatch('priv/GET_PRIV_ORDERS', { orderStatusList: ['pending', 'cooking'] });
+  },
 };
 </script>

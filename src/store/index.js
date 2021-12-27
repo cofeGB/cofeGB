@@ -1,8 +1,10 @@
+/// <reference path="../typedefs.js" />
 import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { BACKEND_BASE_URL } from '../config';
 import { getRandomPrivOrderArray } from '../mockdata/priv-order';
+import { privateStore } from './pivateStore';
 
 Vue.use(Vuex);
 
@@ -417,5 +419,8 @@ export default new Vuex.Store({
     SEND_CALLBACK({ commit }, payload) {
       commit('SET_CALLBACKS', this.state.callbacks.concat(payload));
     },
+  },
+  modules: {
+    priv: privateStore,
   },
 });

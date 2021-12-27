@@ -108,6 +108,12 @@
  */
 
 /**
+ * @typedef {Object} UpdateOrderStatus - запрос на смену статуса заказа
+ * @property {OrderGuid} orderGuid -  идентификатор существующего заказа
+ * @property {OrderStatus} newStatus - новый статус заказа
+ */
+
+/**
  * @typedef {Object} NavMenuItem - элемент навигационного меню приложения
  * @property {string} title - название пункта навигационного меню, как его видит пользователь
  * @property {string} path - полный путь роутера '/menu/sandwiches'|'/menu/salads'...

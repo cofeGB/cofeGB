@@ -6,10 +6,10 @@
     max-width="228px"
     style="border: 1px solid black"
     draggable
-    @dragstart="startDrag($event, order)"
+    @dragstart="startDrag($event, privOrder)"
   >
     <v-card-actions class="pa-0">
-      <v-card-title class="pa-2"> Заказ №{{ order.id }} </v-card-title>
+      <v-card-title class="pa-2"> Заказ №{{ privOrder.order.guid }} </v-card-title>
       <v-spacer></v-spacer>
 
       <v-menu v-model="showContextMenu" absolute offset-y style="max-width: 600px">
@@ -32,7 +32,7 @@
     </v-card-actions>
     <v-divider></v-divider>
     <v-data-table
-      :items="order.dishList"
+      :items="privOrder.order.list"
       :headers="headers"
       :items-per-page="-1"
       class="elevation-1"
@@ -40,15 +40,17 @@
     ></v-data-table>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <!-- <v-btn v-if="order.state === 'pending'" text outlined @click="onClickCook"> В работу </v-btn> -->
-      <v-btn v-if="order.state === 'cooking'" text outlined @click="onClickClose"> Закрыть </v-btn>
+      <!-- <v-btn v-if="privOrder.state === 'pending'" text outlined @click="onClickCook"> В работу </v-btn> -->
+      <v-btn v-if="privOrder.state === 'cooking'" text outlined @click="onClickClose">
+        Закрыть
+      </v-btn>
     </v-card-actions>
     <div class="d-flex flex-column justify-end flex-grow-1">
       <v-divider></v-divider>
       <div class="d-flex">
         <v-card-text align="left" class="pa-2"> Время заказа </v-card-text>
         <v-card-text align="right" class="pa-2">
-          {{ order.creationDate.toLocaleTimeString('ru-RU') }}
+          {{ privOrder.order.timeTo.toLocaleTimeString('ru-RU') }}
         </v-card-text>
       </div>
     </div>
@@ -62,7 +64,7 @@ import { mdiDotsVerticalCircleOutline } from '@mdi/js';
 export default {
   name: 'PrivOrderCard',
   props: {
-    order: {
+    privOrder: {
       type: Object,
       required: true,
     },
@@ -81,7 +83,7 @@ export default {
       mdiDotsVerticalCircleOutline: mdiDotsVerticalCircleOutline,
       showContextMenu: false,
       contextMenuItems: [
-        { title: 'Заказал Иванов С.П.', action: undefined }, //TODO show order creator
+        { title: 'Заказал Иванов С.П.', action: undefined }, //TODO show privOrder creator
         { title: 'Отказ гостя', action: () => this.cancelByGuest() },
         { title: 'Ошибка официанта', action: () => this.cancelByEmployee() },
       ],
@@ -89,43 +91,28 @@ export default {
   },
   methods: {
     onClickClose() {
-      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
+      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.privOrder.id, orderState: 'closed' });
     },
-    dishToTreeviewItem(dish, id) {
-      return {
-        id,
-        name: dish.title,
-      };
-    },
-    startDrag(evt, order) {
+    startDrag(evt, privOrder) {
       // console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
       evt.dataTransfer.setData(
         'application/json',
-        JSON.stringify({ objType: 'orderId', payload: order.id })
+        JSON.stringify({ objType: 'orderId', payload: privOrder.id })
       );
     },
     cancelByGuest() {
       this.$store.dispatch('CANCEL_ORDER', {
-        orderGuid: this.order.orderGuid,
+        orderGuid: this.privOrder.orderGuid,
         reason: 'canceledByGuest',
       });
     },
     cancelByEmployee() {
       this.$store.dispatch('CANCEL_ORDER', {
-        orderGuid: this.order.orderGuid,
+        orderGuid: this.privOrder.orderGuid,
         reason: 'canceledByEmployee',
       });
-    },
-  },
-  computed: {
-    dishes() {
-      const items = [];
-      for (let i = 0; i < this.order.dishList.length; i++) {
-        items.push(this.dishToTreeviewItem(this.order.dishList[i], i + 1));
-      }
-      return items;
     },
   },
 };

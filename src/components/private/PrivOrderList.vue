@@ -10,9 +10,9 @@
   >
     <PrivOrderCard
       class="flex-grow-1 ma-4"
-      v-for="order in orders"
-      :key="order.id"
-      :order="order"
+      v-for="privOrder in privOrders"
+      :key="privOrder.id"
+      :privOrder="privOrder"
     />
   </v-card>
 </template>
@@ -42,22 +42,19 @@ export default {
     },
   },
   computed: {
-    orders() {
-      let orders = [];
+    privOrders() {
+      let privOrders = [];
       switch (this.orderType) {
         case 'cooking':
-          orders = Array.from(this.$store.getters.COOKING_ORDERS);
-          break;
-        case 'closed':
-          orders = Array.from(this.$store.getters.CLOSED_ORDERS);
+          privOrders = Array.from(this.$store.getters['priv/COOKING_ORDERS']);
           break;
         case 'pending':
         default:
-          orders = Array.from(this.$store.getters.PENDING_ORDERS);
+          privOrders = Array.from(this.$store.getters['priv/PENDING_ORDERS']);
           break;
       }
-      orders.sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
-      return orders;
+      privOrders.sort((a, b) => a.order.timeTo.getTime() - b.order.timeTo.getTime());
+      return privOrders;
     },
   },
 };
