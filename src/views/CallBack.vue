@@ -30,18 +30,15 @@ import { mapActions } from 'vuex';
 export default {
   name: 'callBack',
   data() {
-    return {
-      modalName: 'callBack',
-    };
+    return {};
   },
   components: {
     ModalCallBack,
   },
   methods: {
     ...mapActions(['OPEN_MODAL']),
-    // ...mapGetters(['MODAL_NAME']),
     showmodal() {
-      this.OPEN_MODAL(this.modalName);
+      this.OPEN_MODAL('modalCallBack');
     },
   },
 };

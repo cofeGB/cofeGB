@@ -7,7 +7,7 @@
     class="dialog"
     background="#fff"
   >
-    <v-form v-model="isValid" ref="call" lazy-validation class="form__main">
+    <v-form v-model="valid" ref="call" lazy-validation class="form__main">
       <div class="form__top">
         <h1 class="form__title">Ваша заявка принята. Ожидайте звонка</h1>
         <h1 class="form__title">Вам перезвонт в тчение 3 минут!</h1>
@@ -21,9 +21,11 @@
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  props: ['showModal'],
+  name: 'callBackAccept',
+  // props: ['showModal'],
   data() {
     return {
+      valid: true,
       phone: '',
       clientname: '',
     };
