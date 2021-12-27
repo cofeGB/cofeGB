@@ -2,7 +2,7 @@
   <Modal :activator="call_back">
     <template #content>
       <v-flex class="classes">
-        <v-form v-model="valid" ref="form" lazy-validation class="form__main">
+        <v-form ref="form" v-model="valid" lazy-validation class="form__main h-100">
           <div class="form__top">
             <h1 class="form__title">Обратный звонок</h1>
             <v-tooltip top class="form__btn">
@@ -50,7 +50,8 @@
 import { mapActions, mapGetters } from 'vuex';
 import CallBackAccept from './CallBackAccept.vue';
 export default {
-  props: ['showModal'],
+  name: 'modalCallBack',
+  // props: ['showModal'],
   data() {
     return {
       valid: true,
@@ -59,6 +60,7 @@ export default {
       datetime_order: new Date().toLocaleString(),
       mask: '+7(000)000-00-00',
       phonerule: [
+        value => !!value || 'Необходио заполнить.',
         value =>
           (value &&
             (/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(value) ||
@@ -68,7 +70,7 @@ export default {
           'Необходио заполнить.',
       ],
       namerule: [value => !!value || 'Необходио заполнить.'],
-      agreRules: value => !!value,
+      // agreRules: value => !!value,
     };
   },
   components: {
@@ -88,20 +90,22 @@ export default {
       let { datetime_order, clientname, phone, user = '', datetime_callback = '' } = this;
       const callback = [{ datetime_order, clientname, phone, user, datetime_callback }];
       this.SEND_CALLBACK(callback);
-      this.closemodal();
+      // this.closemodal();
       this.showmodal('callBackAccept');
     },
     checkform() {
       return this.phone && this.clientname;
     },
-    showmodal() {
-      this.OPEN_MODAL('callBackAccept');
+    showmodal(modal_name) {
+      this.closemodal();
+      console.log(modal_name);
+      this.OPEN_MODAL(modal_name);
     },
   },
   computed: {
     ...mapGetters(['MODAL_NAME']),
     call_back() {
-      return this.MODAL_NAME === 'callBack';
+      return this.MODAL_NAME === 'modalCallBack';
     },
   },
 };
