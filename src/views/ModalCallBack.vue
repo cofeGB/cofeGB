@@ -77,7 +77,7 @@ export default {
     CallBackAccept,
   },
   methods: {
-    ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK']),
+    ...mapActions(['CLOSE_MODAL', 'SEND_CALLBACK', 'OPEN_MODAL']),
     closemodal() {
       this.CLOSE_MODAL();
     },

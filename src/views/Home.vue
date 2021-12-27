@@ -37,8 +37,13 @@ export default {
   justify-content: space-around;
   align-items: start;
   height: 60vh;
+  flex-wrap: wrap;
+  @media (max-width: 1200px) {
+    height: 500px;
+  }
 }
 .slider_stock {
   width: 45vw;
+  min-width: 600px;
 }
 </style>

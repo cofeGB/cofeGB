@@ -2,7 +2,7 @@
   <v-app app :style="style">
     <Header v-if="publicMode" />
     <PrivateHeader v-else />
-    <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" />
+    <!-- <CofBaner v-if="advertisement && publicMode" @closeAdvertisement="closeAdvertisement" /> -->
     <v-main>
       <router-view />
     </v-main>
@@ -32,6 +32,7 @@ export default {
     CofDelivery,
     CofBasket,
     PrivateHeader,
+    Popup,
     CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
   },
   data() {
