@@ -8,6 +8,7 @@ import Contacts from '../views/Contacts.vue';
 import dish from '../components/CofDish/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Wharehouse from '../views/Wharehouse.vue';
+import Stoplist from '../views/Stoplist.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -52,6 +53,11 @@ const routes = [
     path: '/private/wharehouse',
     name: 'Wharehouse',
     component: Wharehouse,
+  },
+  {
+    path: '/private/stoplist',
+    name: 'Stoplist',
+    component: Stoplist,
   },
   {
     path: '*',
