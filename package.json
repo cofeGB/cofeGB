@@ -6,11 +6,13 @@
     "serve": "vue-cli-service serve",
     "backend": "node server/server.js",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.2",
     "md5": "^2.3.0",
     "path": "^0.12.7",
     "vue": "^2.6.11",

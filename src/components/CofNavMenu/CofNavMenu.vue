@@ -86,7 +86,6 @@
  * Для еды '/menu-by-category/:id'.
  * Для других страниц из INFO_NAV_MENU[n].route.
  */
-import store from '../../store/index';
 import { eventBus } from '@/main';
 
 // const INFO_NAV_MENU = [
@@ -117,7 +116,6 @@ export default {
   data: () => ({
     show: false,
     group: null,
-    infoNavMenu: store.state.globalConst.INFO_NAV_MENU,
   }),
   created() {
     eventBus.$on('openNavMenu', () => {
@@ -134,6 +132,9 @@ export default {
     },
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';
+    },
+    infoNavMenu() {
+      return this.$store.getters.GLOBAL_CONST.INFO_NAV_MENU || [];
     },
   },
 };

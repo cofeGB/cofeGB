@@ -283,7 +283,7 @@ export default new Vuex.Store({
     async POST_ORDER({ commit }, payload) {
       // payload.numberOrder взять из localStore
       await axios
-        .post(`http://localhost:3000/api/order/newOrder/${payload.numberOrder}`, {
+        .post(`${BACKEND_BASE_URL}/api/order/newOrder/${payload.numberOrder}`, {
           user: payload.user,
         })
         .then(() => {
@@ -296,7 +296,7 @@ export default new Vuex.Store({
         });
     },
     async GET_MENU({ commit }, category) {
-      const { data: section } = await axios.get(`http://localhost:3000/api/menu/${category}`);
+      const { data: section } = await axios.get(`${BACKEND_BASE_URL}/api/menu/${category}`);
       commit('SET_MENU', section);
     },
     async GET_NAV_MENU({ commit }) {
@@ -307,27 +307,27 @@ export default new Vuex.Store({
       commit('SET_NAV_MENU', navMenu);
     },
     async GET_LOYALTY({ commit }) {
-      const { data: loyalty } = await axios.get(`http://localhost:3000/api/loyalty/`);
+      const { data: loyalty } = await axios.get(`${BACKEND_BASE_URL}/api/loyalty/`);
       commit('INIT_LOYALTY', loyalty);
     },
     async GET_CATEGORIES({ commit }) {
-      const { data: categories } = await axios.get(`http://localhost:3000/api/categories/`);
+      const { data: categories } = await axios.get(`${BACKEND_BASE_URL}/api/categories/`);
       commit('SET_CATEGORIES', categories);
     },
     async GET_EMPLOYEE({ commit }) {
-      const { data: employee } = await axios.get(`http://localhost:3000/api/employee/`);
+      const { data: employee } = await axios.get(`${BACKEND_BASE_URL}/api/employee/`);
       commit('SET_EMPLOYEE', employee);
     },
     async GET_EMPLOYEE_REVIEWS_LIST({ commit }) {
-      const { data: reviewsList } = await axios.get(`http://localhost:3000/api/employee-reviews/`);
+      const { data: reviewsList } = await axios.get(`${BACKEND_BASE_URL}/api/employee-reviews/`);
       commit('SET_EMPLOYEE_REVIEWS_LIST', reviewsList);
     },
     async GET_GLOBAL_CONST({ commit }) {
-      const { data: globalConst } = await axios.get(`http://localhost:3000/api/globalConst/`);
+      const { data: globalConst } = await axios.get(`${BACKEND_BASE_URL}/api/globalConst/`);
       commit('SET_GLOBAL_CONST', globalConst);
     },
     async GET_CALLBACKS({ commit }) {
-      const { data: callbacks } = await axios.get(`http://localhost:3000/api/callbacks/`);
+      const { data: callbacks } = await axios.get(`${BACKEND_BASE_URL}/api/callbacks/`);
       commit('SET_CALLBACKS', callbacks);
     },
 
@@ -341,7 +341,7 @@ export default new Vuex.Store({
       commit('GET_TOTAL_SUM', total);
     },
     async DELETE_ALL_IN_ORDER_ACTION({ dispatch }, payload) {
-      await axios.delete(`http://localhost:3000/api/order/clear/${payload.numberOrder}`);
+      await axios.delete(`${BACKEND_BASE_URL}/api/order/clear/${payload.numberOrder}`);
       dispatch('GET_ORDER_LIST', payload.numberOrder);
     },
     ADD_LOYALTY({ commit, state }, payload) {
@@ -351,14 +351,14 @@ export default new Vuex.Store({
       }
     },
     async GET_ORDER_LIST({ commit }, numberOrder) {
-      const { data: order } = await axios.get(`http://localhost:3000/api/order/${numberOrder}`);
+      const { data: order } = await axios.get(`${BACKEND_BASE_URL}/api/order/${numberOrder}`);
       commit('SET_QUICK_ORDER', order.list);
       commit('GET_TOTAL_SUM', order.total);
     },
     async ADD_DISH({ dispatch }, payload) {
       if (!payload.dish.quantity) {
         await axios.post(
-          `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+          `${BACKEND_BASE_URL}/api/order/${payload.numberOrder}/${payload.dish.guid}`,
           {
             dish: payload.dish,
             quantity: 1,
@@ -369,7 +369,7 @@ export default new Vuex.Store({
 
       if (payload.dish.quantity > 1) {
         await axios.put(
-          `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+          `${BACKEND_BASE_URL}/api/order/${payload.numberOrder}/${payload.dish.guid}`,
           {
             dish: payload.dish,
             inc: payload.inc,
@@ -380,14 +380,14 @@ export default new Vuex.Store({
       if (payload.dish.quantity == 1) {
         if (payload.inc < 0) {
           await axios.delete(
-            `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+            `${BACKEND_BASE_URL}/api/order/${payload.numberOrder}/${payload.dish.guid}`,
             payload.dish
           );
           dispatch('GET_ORDER_LIST', payload.numberOrder);
         }
         if (payload.inc > 0) {
           await axios.put(
-            `http://localhost:3000/api/order/${payload.numberOrder}/${payload.dish.guid}`,
+            `${BACKEND_BASE_URL}/api/order/${payload.numberOrder}/${payload.dish.guid}`,
             {
               dish: payload.dish,
               inc: payload.inc,
