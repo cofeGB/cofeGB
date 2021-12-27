@@ -105,10 +105,7 @@ export default {
       return false;
     },
     foodNavMenu() {
-      return store.getters.FOOD_NAV_MENU.map(item => ({
-        title: item.title,
-        path: `/menu/${item.query}`,
-      }));
+      return [...this.$store.getters.FOOD_NAV_MENU].sort((a, b) => a.itemOrder - b.itemOrder);
     },
   },
 };

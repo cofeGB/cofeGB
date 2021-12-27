@@ -130,7 +130,7 @@ export default {
   methods: {},
   computed: {
     foodNavMenu() {
-      return store.getters.FOOD_NAV_MENU.sort((a, b) => a.itemOrder - b.itemOrder);
+      return [...this.$store.getters.FOOD_NAV_MENU].sort((a, b) => a.itemOrder - b.itemOrder);
     },
     theme() {
       return this.$vuetify.theme.dark ? 'dark' : 'light';

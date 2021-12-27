@@ -30,6 +30,10 @@
 		{
 			"title": "Стоп-лист",
 			"path": "/private/stoplist"
-		}
+		},
+		{
+			"title": "Панель заказов",
+			"path": "/private/order-desk"
+		}		
 	]
 }
