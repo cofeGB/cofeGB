@@ -1,12 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const order = require('./order');
+import path from 'path';
+import fs from 'fs';
+import { add, change, del, clear } from './order.js';
 
 const actions = {
-  add: order.add,
-  change: order.change,
-  del: order.del,
-  clear: order.clear,
+  add: add,
+  change: change,
+  del: del,
+  clear: clear,
 };
 
 function reWriteFile(req, res, action, file) {
@@ -17,41 +17,39 @@ function reWriteFile(req, res, action, file) {
     } else {
       const order = JSON.parse(data);
       const newOrder = actions[action](order, req);
-      fs.writeFile(file, newOrder, (err) => {
+      fs.writeFile(file, newOrder, err => {
         if (err) {
           res.send('{"result": 0}');
         } else {
           res.send('{"result": 1}');
         }
-      })
+      });
     }
   });
 }
 
 function createFile(req, res, action, file) {
-  fs.readFile(path.resolve('server/db/orderPattern.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/orderPattern.json'), 'utf-8', (err, data) => {
     if (err) {
       console.log(req.params, file);
       console.log(err, 'read file orderPattern');
     } else {
-      fs.writeFile(file, data, (err) => {
+      fs.writeFile(file, data, err => {
         if (err) {
           console.log(err);
         } else {
-          console.log('successfully file created')
+          console.log('successfully file created');
           reWriteFile(req, res, action, file);
         }
       });
     }
-  })
+  });
 }
 
-const handler = (req, res, action, file) => {
+export const handler = (req, res, action, file) => {
   if (fs.existsSync(file)) {
     reWriteFile(req, res, action, file);
   } else {
     createFile(req, res, action, file);
   }
 };
-
-module.exports = handler;

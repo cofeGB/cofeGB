@@ -1,11 +1,10 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+// import { server } from 'http';
 
-const { server } = require('http');
-
-const ordersRouter = require('./ordersRouter');
-const privOrdersRouter = require('./privOrdersRouter');
+import { router as ordersRouter } from './ordersRouter.js';
+import { router as privOrdersRouter } from './privOrdersRouter.js';
 
 const app = express();
 
@@ -21,7 +20,7 @@ app.use('/api/order', ordersRouter);
 app.use('/api/priv-order', privOrdersRouter);
 
 app.get('/api/menu/:category', (req, res) => {
-  fs.readFile(path.resolve('server/db/menu.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/menu.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -30,7 +29,7 @@ app.get('/api/menu/:category', (req, res) => {
   });
 });
 app.get('/api/categories', (req, res) => {
-  fs.readFile(path.resolve('server/db/categories.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/categories.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -39,7 +38,7 @@ app.get('/api/categories', (req, res) => {
   });
 });
 app.get('/api/callbacks', (req, res) => {
-  fs.readFile(path.resolve('server/db/callbacks.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/callbacks.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -48,7 +47,7 @@ app.get('/api/callbacks', (req, res) => {
   });
 });
 app.get('/api/employee', (req, res) => {
-  fs.readFile(path.resolve('server/db/employee.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/employee.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -57,7 +56,7 @@ app.get('/api/employee', (req, res) => {
   });
 });
 app.get('/api/employee-reviews', (req, res) => {
-  fs.readFile(path.resolve('server/db/employee-reviews.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/employee-reviews.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -66,7 +65,7 @@ app.get('/api/employee-reviews', (req, res) => {
   });
 });
 app.get('/api/globalConst', (req, res) => {
-  fs.readFile(path.resolve('server/db/globalConst.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/globalConst.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -76,7 +75,7 @@ app.get('/api/globalConst', (req, res) => {
 });
 
 // app.get('/api/menu', (req, res) => {
-//   fs.readFile(path.resolve('server/db/menu.json'), 'utf-8', (err, data) => {
+//   fs.readFile(path.resolve('db/menu.json'), 'utf-8', (err, data) => {
 //     if (err) {
 //       res.send(JSON.stringify({ result: 0, text: err }));
 //     } else {
@@ -86,7 +85,7 @@ app.get('/api/globalConst', (req, res) => {
 // });
 
 app.get('/api/navMenu', (req, res) => {
-  fs.readFile(path.resolve('server/db/navMenu.json'), 'utf-8', (err, data) => {
+  fs.readFile(path.resolve('db/navMenu.json'), 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {
@@ -96,7 +95,7 @@ app.get('/api/navMenu', (req, res) => {
 });
 
 app.get('/api/loyalty', (req, res) => {
-  fs.readFile('./server/db/loyalty.json', 'utf-8', (err, data) => {
+  fs.readFile('.//db/loyalty.json', 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
       // res.sendStatus(404, JSON.stringify({result: 0, text: err}));
