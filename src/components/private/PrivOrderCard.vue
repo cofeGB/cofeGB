@@ -96,19 +96,13 @@ export default {
     onClickClose() {
       this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
     },
-    dishToTreeviewItem(dish, id) {
-      return {
-        id,
-        name: dish.title,
-      };
-    },
-    startDrag(evt, order) {
+    startDrag(evt, privOrder) {
       // console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
       evt.dataTransfer.setData(
         'application/json',
-        JSON.stringify({ objType: 'orderId', payload: order.id })
+        JSON.stringify({ objType: 'orderId', payload: privOrder.order.guid })
       );
     },
     cancelByGuest() {

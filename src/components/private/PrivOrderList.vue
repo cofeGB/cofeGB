@@ -18,6 +18,7 @@
 </template>
 
 <script>
+/// <reference path="../typedefs.js" />
 export default {
   name: 'PrivOrderList',
   components: {
@@ -38,7 +39,12 @@ export default {
       if (dragData.objType != 'orderId') {
         return;
       }
-      this.$store.dispatch('SET_ORDER_STATE', { orderId: dragData.payload, orderState: 'cooking' });
+      /** @type {UpdateOrderStatus} */
+      const updateOrderStatus = {
+        orderGuid: dragData.payload,
+        newStatus: this.orderType,
+      };
+      this.$store.dispatch('priv/SET_ORDER_STATUS', updateOrderStatus);
     },
   },
   computed: {
