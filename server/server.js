@@ -5,8 +5,10 @@ import fs from 'fs';
 
 import { router as ordersRouter } from './ordersRouter.js';
 import { router as privOrdersRouter } from './privOrdersRouter.js';
+import { loadOrders } from './order.js';
 
 const app = express();
+loadOrders('db/orders.json');
 
 app.use(express.json());
 app.use('/', express.static('../public'));

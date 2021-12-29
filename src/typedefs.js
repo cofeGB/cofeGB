@@ -83,7 +83,7 @@
  */
 
 /**
- * @typedef {('pending'|'cooking'|'ready'|'cancelled'|'paused'|'closed')} OrderStatus - статус заказа
+ * @typedef {('draft'|'pending'|'cooking'|'ready'|'cancelled'|'paused'|'closed')} OrderStatus - статус заказа
  */
 
 /**
