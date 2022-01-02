@@ -52,16 +52,47 @@ export const createOrder = privOrder => {
 
 /**
  * Get existing private order by number
- * @param {string} orderNumber - order number to return
+ * @param {string} orderNumber - order number to search
  * @return {PrivOrder}
  * */
 export const getOrderByNumber = orderNumber => {
   return privateOrders.find(item => item.order.orderNumber === orderNumber);
 };
 
+/**
+ * Get existing private order by orger guid
+ * @param {string} orderGuid
+ * @return {PrivOrder}
+ * */
+export const getOrderByGuid = orderGuid => {
+  return privateOrders.find(item => item.order.guid === orderGuid);
+};
+
+/**
+ * Get existing private orders by status
+ * @param {OrderStatus || OrderStatus[]} orderStatus - order status to search
+ * @return {PrivOrder[]}
+ * */
+export const getOrdersByStatus = orderStatus => {
+  if (Array.isArray(orderStatus)) {
+    return privateOrders.filter(item => orderStatus.some(status => item.order.status === status));
+  }
+  return privateOrders.filter(item => item.order.status === orderStatus);
+};
+
+/**
+ * Set existing private orders status
+ * @param {PrivOrder} privOrder
+ * @param {OrderStatus} orderStatus
+ * */
+export const setOrderStatus = (privOrder, orderStatus) => {
+  privOrder.order.status = orderStatus;
+  commitOrdersChange();
+};
+
 export const add = (privOrder, req) => {
   privOrder.order.orderNumber = req.params.number;
-  privOrder.order.guid = req.body.guid;
+  // privOrder.order.guid = req.body.guid;
   const dish = req.body.dish;
   privOrder.order.total += dish.price;
   dish.quantity = req.body.quantity;

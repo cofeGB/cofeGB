@@ -30,7 +30,9 @@ export const privateStore = {
   actions: {
     GET_PRIV_ORDERS({ commit }, { orderStatusList }) {
       axios
-        .get(`${BACKEND_BASE_URL}/api/priv-order/get-priv-orders`, { orderStatusList })
+        .get(
+          `${BACKEND_BASE_URL}/api/priv-order/get-priv-orders/?status=${orderStatusList.join(',')}`
+        )
         .then(({ data: privOrders }) => {
           commit('SET_PRIV_ORDERS', privOrders);
         })
@@ -43,6 +45,7 @@ export const privateStore = {
       /** @type {UpdateOrderStatus} */
       payload
     ) {
+      console.log(payload);
       axios
         .put(`${BACKEND_BASE_URL}/api/priv-order/set-status`, payload)
         .then(() => {

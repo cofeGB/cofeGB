@@ -9,7 +9,7 @@
     @dragstart="startDrag($event, privOrder)"
   >
     <v-card-actions class="pa-0">
-      <v-card-title class="pa-2"> Заказ №{{ privOrder.order.guid }} </v-card-title>
+      <v-card-title class="pa-2"> Заказ №{{ privOrder.order.orderNumber }} </v-card-title>
       <v-spacer></v-spacer>
 
       <v-menu v-model="showContextMenu" absolute offset-y style="max-width: 600px">

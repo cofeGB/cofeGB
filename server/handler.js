@@ -13,13 +13,19 @@ function reWriteFile(req, res, action, privOrder) {
   res.send('{"result": 1}');
 }
 
+function newGuid() {
+  return `${Math.random() * (1 << 32)}${Math.random() * (1 << 32)}${Math.random() * (1 << 32)}${
+    Math.random() * (1 << 32)
+  }`;
+}
+
 export const handler = (req, res, action, privOrder) => {
   let _privOrder = privOrder;
   if (!_privOrder) {
     _privOrder = {
       order: {
         list: [],
-        guid: '',
+        guid: newGuid(),
         user: {
           phone: '',
           addres: {},
@@ -35,7 +41,7 @@ export const handler = (req, res, action, privOrder) => {
         status: 'draft',
       },
     };
+    createOrder(_privOrder);
   }
-  createOrder(_privOrder);
   reWriteFile(req, res, action, _privOrder);
 };
