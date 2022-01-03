@@ -9,7 +9,7 @@
     @dragstart="startDrag($event, privOrder)"
   >
     <v-card-actions class="pa-0">
-      <v-card-title class="pa-2"> Заказ №{{ privOrder.order.guid }} </v-card-title>
+      <v-card-title class="pa-2"> Заказ №{{ privOrder.order.orderNumber }} </v-card-title>
       <v-spacer></v-spacer>
 
       <v-menu v-model="showContextMenu" absolute offset-y style="max-width: 600px">
@@ -96,19 +96,13 @@ export default {
     onClickClose() {
       this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
     },
-    dishToTreeviewItem(dish, id) {
-      return {
-        id,
-        name: dish.title,
-      };
-    },
-    startDrag(evt, order) {
+    startDrag(evt, privOrder) {
       // console.log('startDrag');
       evt.dataTransfer.dropEffect = 'move';
       evt.dataTransfer.effectAllowed = 'move';
       evt.dataTransfer.setData(
         'application/json',
-        JSON.stringify({ objType: 'orderId', payload: order.id })
+        JSON.stringify({ objType: 'orderId', payload: privOrder.order.guid })
       );
     },
     cancelByGuest() {

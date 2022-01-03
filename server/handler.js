@@ -1,57 +1,47 @@
-const fs = require('fs');
-const path = require('path');
-const order = require('./order');
+import { add, change, del, clear, commitOrdersChange, createOrder } from './order.js';
 
 const actions = {
-  add: order.add,
-  change: order.change,
-  del: order.del,
-  clear: order.clear,
+  add,
+  change,
+  del,
+  clear,
 };
 
-function reWriteFile(req, res, action, file) {
-  fs.readFile(file, 'utf-8', (err, data) => {
-    if (err) {
-      console.log(err, 'read file', file, 'in handler');
-      res.status(404);
-    } else {
-      const order = JSON.parse(data);
-      const newOrder = actions[action](order, req);
-      fs.writeFile(file, newOrder, (err) => {
-        if (err) {
-          res.send('{"result": 0}');
-        } else {
-          res.send('{"result": 1}');
-        }
-      })
-    }
-  });
+function reWriteFile(req, res, action, privOrder) {
+  actions[action](privOrder, req);
+  commitOrdersChange();
+  res.send('{"result": 1}');
 }
 
-function createFile(req, res, action, file) {
-  fs.readFile(path.resolve('server/db/orderPattern.json'), 'utf-8', (err, data) => {
-    if (err) {
-      console.log(req.params, file);
-      console.log(err, 'read file orderPattern');
-    } else {
-      fs.writeFile(file, data, (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('successfully file created')
-          reWriteFile(req, res, action, file);
-        }
-      });
-    }
-  })
+function newGuid() {
+  return `${Math.random() * (1 << 32)}${Math.random() * (1 << 32)}${Math.random() * (1 << 32)}${
+    Math.random() * (1 << 32)
+  }`;
 }
 
-const handler = (req, res, action, file) => {
-  if (fs.existsSync(file)) {
-    reWriteFile(req, res, action, file);
-  } else {
-    createFile(req, res, action, file);
+export const handler = (req, res, action, privOrder) => {
+  let _privOrder = privOrder;
+  if (!_privOrder) {
+    _privOrder = {
+      order: {
+        list: [],
+        guid: newGuid(),
+        user: {
+          phone: '',
+          addres: {},
+          name: '',
+          createAcount: false,
+        },
+        total: 0,
+        timeTo: '',
+        timeConfirmation: '',
+        userMessage: '',
+        paymentMethod: '',
+        backCall: true,
+        status: 'draft',
+      },
+    };
+    createOrder(_privOrder);
   }
+  reWriteFile(req, res, action, _privOrder);
 };
-
-module.exports = handler;

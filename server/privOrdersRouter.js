@@ -1,34 +1,29 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+/// <reference path="../src/typedefs.js" />
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import { getOrderByGuid, getOrdersByStatus, setOrderStatus } from './order.js';
 
-const router = express.Router();
+export const router = express.Router();
 
 // вернуть массив PrivOrder с требуемыми значениями свойств
 router.get('/get-priv-orders', (req, res) => {
-  const dirName = path.resolve(`server/db`);
-  const orderFiles = fs.readdirSync(dirName).filter(file => /.*Order\.json$/.test(file));
-
-  const orders = [];
-  orderFiles.forEach(filename => {
-    const order = JSON.parse(
-      fs.readFileSync(path.resolve(`server/db/${filename}`), { encoding: 'utf-8' })
-    );
-
-    if (order) {
-      if (order.status === undefined) {
-        order.status = 'pending';
-      }
-      if (order.guid === undefined) {
-        order.guid = filename.substring(
-          filename.indexOf('-') + 1,
-          filename.lastIndexOf('Order.json')
-        );
-      }
-      orders.push({ order });
-    }
-  });
-  res.send(JSON.stringify(orders));
+  const statusListString = req.query.status + '';
+  const statusList = statusListString.split(',');
+  res.send(getOrdersByStatus(statusList));
 });
 
-module.exports = router;
+// вернуть массив PrivOrder с требуемыми значениями свойств
+router.put('/set-status', (req, res) => {
+  /** @type {UpdateOrderStatus} */
+  const updateOrderStatus = req.body;
+  if (!updateOrderStatus || !updateOrderStatus.orderGuid || !updateOrderStatus.newStatus) {
+    res.status(400).send('Bad request');
+    return;
+  }
+
+  /** @type {PrivOrder} */
+  const privOrder = getOrderByGuid(updateOrderStatus.orderGuid);
+  setOrderStatus(privOrder, updateOrderStatus.newStatus);
+  res.status(200).send('OK');
+});

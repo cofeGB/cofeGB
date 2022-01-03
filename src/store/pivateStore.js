@@ -12,10 +12,12 @@ export const privateStore = {
   mutations: {
     SET_ORDER_STATUS(state, /** @type {UpdateOrderStatus} */ payload) {
       /** @type {PrivOrder} */
-      const privOrder = state.privOrders.find(
-        privOrder => privOrder.order.orderGuid === payload.orderGuid
-      );
-      privOrder.order.status = payload.newStatus;
+      const privOrder = state.privOrders.find(privOrder => {
+        return privOrder.order.guid === payload.orderGuid;
+      });
+      if (privOrder) {
+        privOrder.order.status = payload.newStatus;
+      }
     },
     SET_PRIV_ORDERS(state, /** @type {PrivOrder[]} */ privOrders) {
       state.privOrders = (privOrders || []).map(privOrder => {
@@ -28,7 +30,9 @@ export const privateStore = {
   actions: {
     GET_PRIV_ORDERS({ commit }, { orderStatusList }) {
       axios
-        .get(`${BACKEND_BASE_URL}/api/priv-order/get-priv-orders`, { orderStatusList })
+        .get(
+          `${BACKEND_BASE_URL}/api/priv-order/get-priv-orders/?status=${orderStatusList.join(',')}`
+        )
         .then(({ data: privOrders }) => {
           commit('SET_PRIV_ORDERS', privOrders);
         })
@@ -41,8 +45,9 @@ export const privateStore = {
       /** @type {UpdateOrderStatus} */
       payload
     ) {
+      console.log(payload);
       axios
-        .put('http://localhost:3000/api/priv-order/set-status', payload)
+        .put(`${BACKEND_BASE_URL}/api/priv-order/set-status`, payload)
         .then(() => {
           commit('SET_ORDER_STATUS', payload);
         })

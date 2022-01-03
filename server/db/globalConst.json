@@ -3,149 +3,158 @@
   "address": "г. Москва, Красная площадь, 1",
   "phone": "+7-999-888-77-66",
   "mail": "info@bodrit.ru",
-	"hashtag": "#COFFEEBONK",
-	"workTimeFrom": 8,
-	"workTimeTo": 22,
-	"INFO_NAV_MENU": [
-		{
-			"title": "Главная",
-			"path": "/"
-		},
-		{
-			"title": "Доставка и оплата",
-			"path": "/delivery"
-		},
-		{
-			"title": "Контакты",
-			"path": "/contacts"
-		},
-		{
-			"title": "Акции",
-			"path": "/stocks"
-		},
-		{
-			"title": "О нас",
-			"path": "/about"
-		},
-		{
-			"title": "Склад",
-			"path": "/private/wharehouse"
-		}
-	],
-	"DRINKS": [
-		{
-			"src": "img/Drinks/314287531.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/14978928755948080b1a38d9.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/70061565.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/111617010.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/375753280.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/Drinks_Juice.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/GTY_orange_juice.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Drinks/koktejl.jpg",
-			"to": "/menu/desserts",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		}
-	],
-	"STOCKS": [
-		{
-			"src": "img/Stocks/41.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Stocks/696kh696.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Stocks/1161.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Stocks/Aktsiya.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Stocks/CtmMfEeW8AAxCZA.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		},
-		{
-			"src": "img/Stocks/h1464.jpg",
-			"to": "/menu/starters",
-			"target": "_blank",
-			"text": "Рекламный текст",
-			"style": "red",
-			"class": "red"
-		}
-	]
+  "hashtag": "#COFFEEBONK",
+  "workTimeFrom": 8,
+  "workTimeTo": 22,
+  "INFO_NAV_MENU": [
+    {
+      "title": "Главная",
+      "path": "/"
+    },
+    {
+      "title": "Доставка и оплата",
+      "path": "/delivery"
+    },
+    {
+      "title": "Контакты",
+      "path": "/contacts"
+    },
+    {
+      "title": "Акции",
+      "path": "/stocks"
+    },
+    {
+      "title": "О нас",
+      "path": "/about"
+    },
+    {
+      "title": "Склад",
+      "path": "/private/wharehouse"
+    },
+
+    {
+      "title": "Стоп-лист",
+      "path": "/private/stoplist"
+    },
+    {
+      "title": "Панель заказов",
+      "path": "/private/order-desk"
+    }
+  ],
+  "DRINKS": [
+    {
+      "src": "img/Drinks/314287531.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/14978928755948080b1a38d9.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/70061565.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/111617010.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/375753280.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/Drinks_Juice.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/GTY_orange_juice.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Drinks/koktejl.jpg",
+      "to": "/menu/desserts",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    }
+  ],
+  "STOCKS": [
+    {
+      "src": "img/Stocks/41.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Stocks/696kh696.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Stocks/1161.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Stocks/Aktsiya.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Stocks/CtmMfEeW8AAxCZA.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    },
+    {
+      "src": "img/Stocks/h1464.jpg",
+      "to": "/menu/starters",
+      "target": "_blank",
+      "text": "Рекламный текст",
+      "style": "red",
+      "class": "red"
+    }
+  ]
 }
