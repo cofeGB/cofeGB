@@ -60,6 +60,21 @@ export const getOrderByNumber = orderNumber => {
 };
 
 /**
+ * Get existing private order by phone number
+ * @param {string} phoneNumber - order number to search
+ * @return {OrderStatus}
+ * */
+export const getOrderByPhoneNumber = phoneNumber => {
+  let order = privateOrders.find(item => item.order.user.phone === phoneNumber);
+  let status = 'Не найдено';
+  if (order) {
+    status = order.order.status;
+    return status;
+  }
+  return status;
+};
+
+/**
  * Get existing private order by orger guid
  * @param {string} orderGuid
  * @return {PrivOrder}
