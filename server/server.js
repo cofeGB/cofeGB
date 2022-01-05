@@ -48,6 +48,20 @@ app.get('/api/callbacks', (req, res) => {
     }
   });
 });
+app.get('/api/orders/:phone', (req, res) => {
+  fs.readFile(path.resolve('db/orders.json'), 'utf-8', (err, data) => {
+    if (err) {
+      res.send(JSON.stringify({ result: 0, text: err }));
+    } else {
+      let order = JSON.parse(data).find(el => el.order.user.phone === req.params.phone);
+      if (order) {
+        res.send(order.order.status);
+      } else {
+        res.send(data);
+      }
+    }
+  });
+});
 app.get('/api/employee', (req, res) => {
   fs.readFile(path.resolve('db/employee.json'), 'utf-8', (err, data) => {
     if (err) {

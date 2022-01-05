@@ -10,6 +10,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    orderStatus: '',
     globalConst: {},
     employee: [],
     reviewsList: [],
@@ -198,6 +199,9 @@ export default new Vuex.Store({
     PRIVATE_MODE: state => {
       return !!state.privateMode;
     },
+    ORDER_STATUS: state => {
+      return state.orderStatus;
+    },
   },
   mutations: {
     SET_PRODUCTS_LIST(state, data) {
@@ -277,6 +281,21 @@ export default new Vuex.Store({
     },
     SET_CALLBACKS(state, data) {
       state.callbacks = data;
+    },
+    SET_ORDER_BY_PHONE_STATUS(state, data) {
+      switch (data) {
+        case 'pending':
+          state.orderStatus = 'В ожидании';
+          break;
+        case 'cooking':
+          state.orderStatus = 'Готовится';
+          break;
+        case 'closed':
+          state.orderStatus = 'Заказ выдан';
+          break;
+        default:
+          state.orderStatus = 'Не найдено';
+      }
     },
   },
   actions: {
@@ -396,6 +415,10 @@ export default new Vuex.Store({
           dispatch('GET_ORDER_LIST', payload.numberOrder);
         }
       }
+    },
+    async GET_ORDER_BY_PHONE({ commit }, userPhone) {
+      const { data: status } = await axios.get(`${BACKEND_BASE_URL}/api/orders/${userPhone}`);
+      commit('SET_ORDER_BY_PHONE_STATUS', status);
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
