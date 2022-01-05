@@ -34,6 +34,7 @@ export default {
     PrivateHeader,
     Popup,
     CofNavMenu: () => import('./components/CofNavMenu/CofNavMenu.vue'),
+    PrivateNavMenu: () => import('./components/privCofNavMenu.vue'),
   },
   data() {
     return {
