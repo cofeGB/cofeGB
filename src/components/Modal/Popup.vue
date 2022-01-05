@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Modal :activator="orderCreated" @close="close">
+    <Modal :activator="orderCreated">
       <template #content>
-        <div class="overlay">
+        <div class="overlay" @click.self="CLOSE_MODAL()">
           <div class="wrapper">
             <div class="popup__content">
               <h3>Ваш заказ оформлен!</h3>
@@ -18,8 +18,8 @@
               </div>
             </div>
             <div class="popup__footer">
-              <button @click="close" class="ok_btn">Ok</button>
-              <button @click="close" class="ok_btn">Добавить в меню</button>
+              <button @click="CLOSE_MODAL()" class="ok_btn">Ok</button>
+              <button @click="CLOSE_MODAL()" class="ok_btn">Добавить в меню</button>
             </div>
           </div>
         </div>
@@ -35,9 +35,6 @@ export default {
   name: 'Popup',
   methods: {
     ...mapActions(['CLOSE_MODAL']),
-    close() {
-      return this.CLOSE_MODAL();
-    },
   },
   computed: {
     ...mapGetters(['QUICK_ORDER', 'MODAL_NAME', 'TOTAL_SUM']),

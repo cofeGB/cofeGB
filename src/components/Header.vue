@@ -42,11 +42,15 @@
       @openOrder="openOrder"
       class="header__cart"
     />
+    <tooltip :content="'Статус заказа'" :disabled="disabled">
+      <v-btn icon dark color="primary" outlined @click="openOrderStatus" class="ml-4"> info </v-btn>
+    </tooltip>
   </v-app-bar>
 </template>
 
 <script>
 import { eventBus } from '@/main';
+import { mapActions } from 'vuex';
 import CofDeliveryHeader from './CofDelivery/CofDeliveryHeader';
 export default {
   name: 'Header',
@@ -66,6 +70,7 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    ...mapActions(['OPEN_MODAL']),
     handleResize() {
       if (window.innerWidth < 1010) {
         this.tooltipDisabled = true;
@@ -76,6 +81,14 @@ export default {
     },
     openNavMenu() {
       eventBus.$emit('openNavMenu');
+    },
+    openOrderStatus() {
+      this.OPEN_MODAL('orderStatus');
+    },
+  },
+  computed: {
+    disabled() {
+      return this.tooltipDisabled;
     },
   },
 };
