@@ -28,17 +28,8 @@
       "path": "/about"
     },
     {
-      "title": "Склад",
-      "path": "/private/wharehouse"
-    },
-
-    {
-      "title": "Стоп-лист",
-      "path": "/private/stoplist"
-    },
-    {
-      "title": "Панель заказов",
-      "path": "/private/order-desk"
+      "title": "Для сотрудников",
+      "path": "/private"
     }
   ],
   "DRINKS": [

@@ -41,8 +41,8 @@ const NAV_MENU = [
     icon: 'fas fa-door-open icon',
   },
   {
-    title: 'Заказ',
-    path: '/private/#',
+    title: 'Панель заказов',
+    path: '/private/order-desk',
   },
   {
     title: 'Касса',
@@ -63,7 +63,7 @@ const NAV_MENU = [
 ];
 
 export default {
-  name: 'CofNavMenu',
+  name: 'PrivateCofNavMenu',
   data: () => ({
     show: false,
     navMenu: NAV_MENU,

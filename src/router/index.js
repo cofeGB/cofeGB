@@ -51,6 +51,10 @@ const routes = [
     component: dish,
   },
   {
+    path: '/private',
+    redirect: '/private/order-desk',
+  },
+  {
     path: '/private/order-desk',
     name: 'PrivateOrderDesk',
     component: () => import('../views/PrivOrderDesk.vue'),
