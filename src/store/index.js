@@ -293,7 +293,7 @@ export default new Vuex.Store({
         case 'ready':
           state.orderStatus = 'Готов';
           break;
-        case 'cancelled':
+        case 'canceled':
           state.orderStatus = 'Отменен';
           break;
         case 'paused':

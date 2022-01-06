@@ -45,7 +45,6 @@ export const privateStore = {
       /** @type {UpdateOrderStatus} */
       payload
     ) {
-      console.log(payload);
       axios
         .put(`${BACKEND_BASE_URL}/api/priv-order/set-status`, payload)
         .then(() => {
