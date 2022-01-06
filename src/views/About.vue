@@ -6,64 +6,83 @@
         Кофе для Вашей бодрости, настроения и здоровья!
       </div>
       <v-card class="main d-flex flex-column justify-center align-center" width="800">
-        <div class="text-center text-h3 ma-7">Наша команда</div>
-        <v-carousel
-          :cycle="cycled"
-          show-arrows-on-hover
-          hide-delimiters
-          class="d-flex justify-center"
-          height="auto"
-        >
-          <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
-            <v-card class="d-flex flex-column justify-center align-center pa-3">
-              <v-img
-                :src="require(`../assets/${item.src}`)"
-                position="center center"
-                height="320px"
-                width="320px"
-                alt="logo"
-                contain
-              ></v-img>
-              <v-card-title class="text-h5">
-                {{ item.post }}
-              </v-card-title>
-              <v-card-subtitle class="text-h4 mt-3">
-                {{ item.name }}
-              </v-card-subtitle>
-              <v-rating
-                v-model="item.rating"
-                background-color="green lighten-3"
-                color="green"
-                empty-icon="$ratingFull"
-                half-increments
-                readonly
-              ></v-rating>
-              <div pa-0>Рейтинг ({{ item.rating }})</div>
-              <v-card-actions>
-                <v-btn
-                  color="primary"
-                  @click="
-                    employee_id = item.id;
-                    cycled = false;
-                    dialog1 = true;
-                  "
-                >
-                  Оставить отзыв
-                </v-btn>
-                <v-btn
-                  @click="
-                    employee_id = item.id;
-                    changeShowReviewsVisible();
-                    dialog2 = true;
-                  "
-                  color="primary"
-                >
-                  Посмотреть отзывы
-                </v-btn>
-              </v-card-actions>
+        <div class="text-center text-h3 ma-7">О нас</div>
+        <v-tabs v-model="tab" background-color="transparent" grow>
+          <v-tab href="#CoffeeShop">О кофейне</v-tab>
+          <v-tab href="#Team">О команде</v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="tab">
+          <v-tab-item :value="'CoffeeShop'">
+            <v-card flat>
+              <v-card-text>
+                В наше кофейне вы можете насладиться лучшими сортами кофе и чая. Изысканные блюда
+                поднимут настроение и удовлетворят ваши гастрономические потребности.
+              </v-card-text>
+              <div class="text-center text-h4 ma-7">Добро пожаловать!</div>
+              <!-- <h3 text-center>Добро пожаловать!</h3> -->
             </v-card>
-          </v-carousel-item>
-        </v-carousel>
+          </v-tab-item>
+          <v-tab-item :value="'Team'">
+            <v-carousel
+              :cycle="cycled"
+              show-arrows-on-hover
+              hide-delimiters
+              class="d-flex justify-center"
+              height="auto"
+            >
+              <v-carousel-item v-for="(item, i) in items" :key="i" height="auto">
+                <v-card class="d-flex flex-column justify-center align-center pa-3">
+                  <v-img
+                    :src="require(`../assets/${item.src}`)"
+                    position="center center"
+                    height="320px"
+                    width="320px"
+                    alt="logo"
+                    contain
+                  ></v-img>
+                  <v-card-title class="text-h5">
+                    {{ item.post }}
+                  </v-card-title>
+                  <v-card-subtitle class="text-h4 mt-3">
+                    {{ item.name }}
+                  </v-card-subtitle>
+                  <v-rating
+                    v-model="item.rating"
+                    background-color="green lighten-3"
+                    color="green"
+                    empty-icon="$ratingFull"
+                    half-increments
+                    readonly
+                  ></v-rating>
+                  <div pa-0>Рейтинг ({{ item.rating }})</div>
+                  <v-card-actions>
+                    <v-btn
+                      color="primary"
+                      @click="
+                        employee_id = item.id;
+                        cycled = false;
+                        dialog1 = true;
+                      "
+                    >
+                      Оставить отзыв
+                    </v-btn>
+                    <v-btn
+                      @click="
+                        employee_id = item.id;
+                        changeShowReviewsVisible();
+                        dialog2 = true;
+                      "
+                      color="primary"
+                    >
+                      Посмотреть отзывы
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-carousel-item>
+            </v-carousel>
+          </v-tab-item>
+        </v-tabs-items>
       </v-card>
     </v-container>
 
@@ -170,13 +189,14 @@
 
 <script>
 import store from '@/store/index';
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'About',
   data() {
     return {
       // items: store.getters.EMPLOYEE,
+      tab: null,
       showReviewsVisible: false,
       dialog1: false,
       dialog2: false,
@@ -194,6 +214,7 @@ export default {
   methods: {
     // ...mapActions(['ADD_REVIEW', 'GET_EMPLOYEE_REVIEWS_LIST']),
     ...mapActions(['ADD_REVIEW']),
+    ...mapMutations(['SET_EMPLOYEE']),
     // ...mapGetters(['EMPLOYEE_REVIEWS']),
 
     changeShowReviewsVisible() {
@@ -209,12 +230,21 @@ export default {
       if (user_name && description) {
         const review = [{ employee_id, user_name, rating, date, description }];
         this.ADD_REVIEW(review);
+        this.calcRating();
         this.dialog1 = false;
         this.addReviewsVisible = !this.addReviewsVisible;
         this.cycled = true;
       } else {
         this.overlay = true;
       }
+    },
+    calcRating() {
+      let summ = 0;
+      this.employeeReviews.forEach(element => {
+        summ += element.rating;
+      });
+      this.items[this.employee_id - 1].rating = (summ / this.employeeReviews.length).toFixed(1);
+      this.SET_EMPLOYEE(this.items);
     },
   },
   computed: {
