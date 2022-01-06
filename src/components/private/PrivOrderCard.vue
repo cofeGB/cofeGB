@@ -40,8 +40,7 @@
     ></v-data-table>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <!-- <v-btn v-if="privOrder.state === 'pending'" text outlined @click="onClickCook"> В работу </v-btn> -->
-      <v-btn v-if="privOrder.state === 'cooking'" text outlined @click="onClickClose">
+      <v-btn v-if="privOrder.order.status === 'cooking'" text outlined @click="onClickClose">
         Закрыть
       </v-btn>
     </v-card-actions>
@@ -83,18 +82,38 @@ export default {
       mdiDotsVerticalCircleOutline: mdiDotsVerticalCircleOutline,
       showContextMenu: false,
       contextMenuItems: [
-        { title: 'Заказал Иванов С.П.', action: undefined }, //TODO show privOrder creator
-        { title: 'Отказ гостя', action: () => this.cancelByGuest() },
-        { title: 'Ошибка официанта', action: () => this.cancelByEmployee() },
+        { title: 'Интернет-заказ', action: undefined }, //TODO show order creator
+        {
+          title: 'Отказ гостя',
+          action: () =>
+            this.setOrderStatus({
+              orderGuid: this.privOrder.order.guid,
+              newStatus: 'canceled',
+              initiatorCategory: 'client',
+              initiator: null, //TODO
+            }),
+        },
+        {
+          title: 'Ошибка официанта',
+          action: () =>
+            this.setOrderStatus({
+              orderGuid: this.privOrder.order.guid,
+              newStatus: 'canceled',
+              initiatorCategory: 'employee',
+              initiator: null, //TODO
+            }),
+        },
       ],
     };
   },
   methods: {
-    // onClickCook() {
-    //   this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'cooking' });
-    // },
     onClickClose() {
-      this.$store.dispatch('SET_ORDER_STATE', { orderId: this.order.id, orderState: 'closed' });
+      this.$store.dispatch('priv/SET_ORDER_STATUS', {
+        orderGuid: this.privOrder.order.guid,
+        newStatus: 'closed',
+        initiatorCategory: 'employee',
+        initiator: null, //TODO
+      });
     },
     startDrag(evt, privOrder) {
       // console.log('startDrag');
@@ -105,17 +124,12 @@ export default {
         JSON.stringify({ objType: 'orderId', payload: privOrder.order.guid })
       );
     },
-    cancelByGuest() {
-      this.$store.dispatch('CANCEL_ORDER', {
-        orderGuid: this.privOrder.orderGuid,
-        reason: 'canceledByGuest',
-      });
-    },
-    cancelByEmployee() {
-      this.$store.dispatch('CANCEL_ORDER', {
-        orderGuid: this.privOrder.orderGuid,
-        reason: 'canceledByEmployee',
-      });
+    /**
+     * Dispatch SET_ORDER_STATUS action
+     * @param {UpdateOrderStatus} updateOrderStatus
+     */
+    setOrderStatus(updateOrderStatus) {
+      this.$store.dispatch('priv/SET_ORDER_STATUS', updateOrderStatus);
     },
   },
 };

@@ -83,7 +83,7 @@
  */
 
 /**
- * @typedef {('draft'|'pending'|'cooking'|'ready'|'cancelled'|'paused'|'closed')} OrderStatus - статус заказа
+ * @typedef {('draft'|'pending'|'cooking'|'ready'|'canceled'|'paused'|'closed')} OrderStatus - статус заказа
  */
 
 /**
@@ -108,9 +108,23 @@
  */
 
 /**
+ * @typedef {('system'|'client'|'employee')} ActionInitiatorCategory
+ */
+
+/**
+ * @typedef {string} ClientGuid - покупатель
+ */
+
+/**
+ * @typedef {string} EmployeeGuid - сотрудник
+ */
+
+/**
  * @typedef {Object} UpdateOrderStatus - запрос на смену статуса заказа
  * @property {OrderGuid} orderGuid -  идентификатор существующего заказа
  * @property {OrderStatus} newStatus - новый статус заказа
+ * @property {ActionInitiatorCategory} initiatorCategory
+ * @property {(ClientGuid|EmployeeGuid|null)} initiator
  */
 
 /**
