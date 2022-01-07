@@ -112,7 +112,7 @@
 
       <v-textarea
         hide-details="auto"
-        label="Text"
+        label="Коментарий к заказу"
         no-resize
         outlined
         clearable
@@ -120,6 +120,46 @@
         dark
         :value="user.massage"
       ></v-textarea>
+
+      <v-checkbox v-model="lateOrder.status" dark hide-details="auto" color="primary" class="ma-0">
+        <template v-slot:label>
+          <tooltip
+            right
+            :disabled="disabled"
+            content="Заказ Начнет готовиться к назначеному времени а доставка будет в выброное время."
+          >
+            <div>Отложеный зыказ</div>
+          </tooltip>
+        </template>
+      </v-checkbox>
+
+      <v-dialog
+        v-if="lateOrder.status"
+        ref="dialog"
+        v-model="timepicker"
+        :return-value.sync="lateOrder.time"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="lateOrder.time"
+            label="Выберите время доставки"
+            prepend-icon="mdi-clock-time-four-outline"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+            clearable
+            required
+            :rules="[v => !!v || 'Выберите время доставки']"
+          ></v-text-field>
+        </template>
+        <v-time-picker format="24hr" v-if="timepicker" v-model="lateOrder.time" full-width>
+          <v-spacer></v-spacer>
+          <v-btn text color="primary" @click="timepicker = false"> Cancel </v-btn>
+          <v-btn text color="primary" @click="$refs.dialog.save(lateOrder.time)"> OK </v-btn>
+        </v-time-picker>
+      </v-dialog>
 
       <v-checkbox
         v-model="user.agree"
@@ -179,6 +219,7 @@ export default {
   data() {
     return {
       valid: true,
+      timepicker: false,
       user: {
         userPhone: null,
         userName: '',
@@ -192,6 +233,10 @@ export default {
         message: '',
         payment: 'online',
         agree: false,
+      },
+      lateOrder: {
+        status: false,
+        time: null,
       },
       payment: [
         {
@@ -223,11 +268,13 @@ export default {
     },
     buyOrder() {
       this.$refs.form.validate();
-      this.$store.dispatch('POST_ORDER', {
-        user: this.user,
-        numberOrder: localStorage.numberOrder,
-      });
-      this.OPEN_MODAL('orderCreated');
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch('POST_ORDER', {
+          user: this.user,
+          numberOrder: localStorage.numberOrder,
+        });
+        this.OPEN_MODAL('orderCreated');
+      }
     },
   },
 };
