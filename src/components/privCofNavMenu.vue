@@ -60,6 +60,10 @@ const NAV_MENU = [
     title: 'Стоп-лист',
     path: '/private/stopList',
   },
+  {
+    title: '+ Добавить ингридиент',
+    path: '/private/newIngridient',
+  },
 ];
 
 export default {
