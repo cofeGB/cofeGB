@@ -45,7 +45,7 @@
  * @property {string} title - наименование ингредиента
  * @property {string} description - подробное описание ингредиента
  * @property {?number} weight - вес одной порции в граммах
- * @property {?number} volume - объем одной порции в граммах
+ * @property {?number} volume - объем одной порции в миллилитрах
  * @property {number} price - цена одной порции в рублях
  * @property {number} quantity - количество порций ингредиента, в штуках относительно weight или volume
  * @property {FoodNutrients} nutrients - пищевая ценность одной порции ингредиента

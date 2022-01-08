@@ -10,6 +10,7 @@ import dish from '../components/CofDish/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Wharehouse from '../views/Wharehouse.vue';
 import Stoplist from '../views/Stoplist.vue';
+import AddingIngridient from '../views/AddingIngridient.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -68,6 +69,11 @@ const routes = [
     path: '/private/stoplist',
     name: 'Stoplist',
     component: Stoplist,
+  },
+  {
+    path: '/private/newIngridient',
+    name: 'NewIngridient',
+    component: AddingIngridient,
   },
   {
     path: '*',
