@@ -493,5 +493,104 @@
     ],
     "composition": [],
     "description": "Для любителей мясных вариантов — монреальский сэндвич с копченым мясом. Перед таким пикантным вкусом практически невозможно устоять."
+  },
+  {
+    "category": "salad",
+    "img": "/img/cesar.jpg",
+    "guid": "fygfalscsvkfsobhnsovfj",
+    "title": "Цезарь с креветками",
+    "quantity": null,
+    "price": 199,
+    "weight": 150,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 312
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Салат романо с обжаренными на гриле креветками, c розовыми томатами, гренками, сыром пармезан и соусом Цезарь."
+  },
+  {
+    "category": "salad",
+    "img": "/img/greek.jpg",
+    "guid": "lyjhnuyolisgfjadspfkcpaskvfdov",
+    "title": "Греческий",
+    "quantity": null,
+    "price": 189,
+    "weight": 150,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 333
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Салат из помидоров, огурцов, репчатого лука, сладкого перца, сыра фета, маслин, с добавлением оливкового масла и сока лимона."
+  },
+  {
+    "category": "salad",
+    "img": "/img/koul_slou.jpg",
+    "guid": "",
+    "title": "Коул слоу",
+    "quantity": null,
+    "price": 155,
+    "weight": 150,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 299
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Салат из моркови, краснокочанной капусты, зеленого лука с добавлением майонеза и зернистой горчицы."
   }
 ]
