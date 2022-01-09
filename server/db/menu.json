@@ -262,5 +262,104 @@
     ],
     "composition": [],
     "description": "Один из самых популярных в мире кофейных напитков. Его название происходит от сокращения итальянского caffe latte (кофе с молоком). В составе латте только два компонента – молоко и эспрессо."
+  },
+  {
+    "category": "tea",
+    "img": "/img/black-tea.jpg",
+    "guid": "dhsjvgfajgfofhudghasughfoadshf",
+    "title": "Черный чай Английский Завтрак",
+    "quantity": null,
+    "price": 57,
+    "weight": 200,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Крепкий и насыщенный чай для завтрака, наполненным пряным ароматом."
+  },
+  {
+    "category": "tea",
+    "img": "/img/green-tea-mint.jpg",
+    "guid": "reyghfdegfakdshfvlsdvgfbkdash",
+    "title": "Зеленый чай с мятой",
+    "quantity": null,
+    "price": 65,
+    "weight": 200,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Классический рецепт мятного чая, идеальный для вечернего чаепития."
+  },
+  {
+    "category": "tea",
+    "img": "/img/green-tea-jasmine.jpg",
+    "guid": "gshwoifjpofkjasigfhdsuhasi",
+    "title": "Жасминовый зеленый чай",
+    "quantity": null,
+    "price": 71,
+    "weight": 200,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Зеленый чай с жасмином является великолепным напитком из сухих листьев чайного растения с добавлением цветов жасмина. Именно благодаря соцветиям жасмина данный чай выделяется ярким ароматом и приятным вкусом."
   }
 ]
