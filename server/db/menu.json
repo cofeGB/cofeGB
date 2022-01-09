@@ -460,5 +460,38 @@
     ],
     "composition": [],
     "description": "Знаменитый французский десерт из заварного крема с карамельной корочкой."
+  },
+  {
+    "category": "sandwich",
+    "img": "/img/jpg_1000_40f6c158-4c60-4ef0-8ee6-f056653ce1f8.jpg",
+    "guid": "ghfdsbgfakhsfggidhgoujfpsokd",
+    "title": "Монреальский сэндвич с копченым мясом",
+    "quantity": null,
+    "price": 100,
+    "weight": 100,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 0
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 0
+      }
+    ],
+    "composition": [],
+    "description": "Для любителей мясных вариантов — монреальский сэндвич с копченым мясом. Перед таким пикантным вкусом практически невозможно устоять."
   }
 ]
