@@ -5,28 +5,28 @@
     "guid": "5946",
     "title": "Скрембл",
     "quantity": null,
-    "price": 100,
-    "weight": 100,
+    "price": 186,
+    "weight": 220,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 263
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 18
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 18
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 7
       }
     ],
     "composition": ["guid"],
@@ -38,28 +38,28 @@
     "guid": "232asd1",
     "title": "Асорти Брускет",
     "quantity": null,
-    "price": 100,
-    "weight": 100,
+    "price": 187,
+    "weight": 200,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 512
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 30
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 24
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 40
       }
     ],
     "composition": ["guid"],
@@ -71,28 +71,28 @@
     "guid": "132ad",
     "title": "Драники с лососем",
     "quantity": null,
-    "price": 100,
-    "weight": 100,
+    "price": 215,
+    "weight": 300,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 575
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 31
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 33
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 38
       }
     ],
     "composition": ["guid"],
@@ -104,31 +104,31 @@
     "guid": "1352",
     "title": "Стандарт",
     "quantity": null,
-    "price": 100,
-    "weight": 100,
+    "price": 113,
+    "weight": 110,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 314
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 11
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 16
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 29
       }
     ],
-    "composition": ["guid"],
+    "composition": [],
     "description": "Калорийность на 20 гр. — 29 кКал. Жиры — 3.1 г. Белки — 0.2 г. Углеводы — 0.7 г. В 50 г. В оливках Чупадедос содержатся 0.22% суточной нормы белка, жиров — 4.63% и углеводов — 0.35%."
   },
   {
@@ -137,28 +137,28 @@
     "guid": "1351",
     "title": "Шпинатныве вафли с лососем",
     "quantity": null,
-    "price": 100,
+    "price": 154,
     "weight": 100,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 473
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 4
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 19
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 71
       }
     ],
     "composition": ["guid"],
@@ -467,28 +467,28 @@
     "guid": "ghfdsbgfakhsfggidhgoujfpsokd",
     "title": "Монреальский сэндвич с копченым мясом",
     "quantity": null,
-    "price": 100,
-    "weight": 100,
+    "price": 209,
+    "weight": 150,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 0
+        "value": 178
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 5
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 7
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 22
       }
     ],
     "composition": [],
@@ -511,17 +511,17 @@
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 13
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 25
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 10
       }
     ],
     "composition": [],
@@ -534,27 +534,27 @@
     "title": "Греческий",
     "quantity": null,
     "price": 189,
-    "weight": 150,
+    "weight": 190,
     "calories": [
       {
         "title": "Ккал",
         "procents": 0,
-        "value": 333
+        "value": 157
       },
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 4
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 14
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 4
       }
     ],
     "composition": [],
@@ -567,7 +567,7 @@
     "title": "Коул слоу",
     "quantity": null,
     "price": 155,
-    "weight": 150,
+    "weight": 128,
     "calories": [
       {
         "title": "Ккал",
@@ -577,17 +577,17 @@
       {
         "title": "Белки",
         "procents": 0,
-        "value": 0
+        "value": 2
       },
       {
         "title": "Жиры",
         "procents": 0,
-        "value": 0
+        "value": 6
       },
       {
         "title": "Углеводы",
         "procents": 0,
-        "value": 0
+        "value": 10
       }
     ],
     "composition": [],

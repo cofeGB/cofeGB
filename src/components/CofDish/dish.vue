@@ -31,7 +31,7 @@
           </div>
           <div class="dish__main_cpfc dish__text-small">
             <div v-for="(i, index) of menuItem.calories" :key="index">
-              <span>{{ i.procents }}</span>
+              <span>{{ i.value }}</span>
               <br />
               <span>{{ i.title }}</span>
             </div>
