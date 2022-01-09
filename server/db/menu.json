@@ -361,5 +361,104 @@
     ],
     "composition": [],
     "description": "Зеленый чай с жасмином является великолепным напитком из сухих листьев чайного растения с добавлением цветов жасмина. Именно благодаря соцветиям жасмина данный чай выделяется ярким ароматом и приятным вкусом."
+  },
+  {
+    "category": "desserts",
+    "img": "/img/tiramisutort.jpg",
+    "guid": "akrfjbvgwksfjsdhnavfhdajouvdhl",
+    "title": "Тирамису",
+    "quantity": null,
+    "price": 155,
+    "weight": 174,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 492
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 10
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 36
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 48
+      }
+    ],
+    "composition": [],
+    "description": "Этот воздушный и очень вкусный десерт способен заставить забыть обо всем, что происходит вокруг вас, поскольку тонкие грани его вкуса вызывают неподдельный восторг."
+  },
+  {
+    "category": "desserts",
+    "img": "/img/holodnyi-vishnevyi-chizkeik1.jpg",
+    "guid": "oighsoidjgfpojfhobdfisjudpovgj",
+    "title": "Вишневый чизкейк",
+    "quantity": null,
+    "price": 154,
+    "weight": 79,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 257
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 4
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 18
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 20
+      }
+    ],
+    "composition": [],
+    "description": "Очень нежный и вкусный чизкейк."
+  },
+  {
+    "category": "desserts",
+    "img": "/img/creme-brulee.jpg",
+    "guid": "",
+    "title": "Крем-брюле",
+    "quantity": null,
+    "price": 190,
+    "weight": 100,
+    "calories": [
+      {
+        "title": "Ккал",
+        "procents": 0,
+        "value": 206
+      },
+      {
+        "title": "Белки",
+        "procents": 0,
+        "value": 2
+      },
+      {
+        "title": "Жиры",
+        "procents": 0,
+        "value": 13
+      },
+      {
+        "title": "Углеводы",
+        "procents": 0,
+        "value": 19
+      }
+    ],
+    "composition": [],
+    "description": "Знаменитый французский десерт из заварного крема с карамельной корочкой."
   }
 ]
