@@ -166,7 +166,7 @@
   },
   {
     "category": "coffee",
-    "img": "/img/Kofe-jespresso-650x366.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/Kofe-jespresso-650x366.jpg",
     "guid": "rfghweiaubfasxkmvclmblkzaidvj",
     "title": "Эспрессо",
     "quantity": null,
@@ -199,7 +199,7 @@
   },
   {
     "category": "coffee",
-    "img": "/img/kapuccino.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/kapuccino.jpg",
     "guid": "aorgbhpafksfcdapbhjosd",
     "title": "Капучино",
     "quantity": null,
@@ -232,7 +232,7 @@
   },
   {
     "category": "coffee",
-    "img": "/img/latte-300x300.png",
+    "img": "https://alexey314.github.io/cofeGB/img/latte-300x300.png",
     "guid": "sortidpfsmvdfolrehfbguvhfkd",
     "title": "Латте",
     "quantity": null,
@@ -265,7 +265,7 @@
   },
   {
     "category": "tea",
-    "img": "/img/black-tea.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/black-tea.jpg",
     "guid": "dhsjvgfajgfofhudghasughfoadshf",
     "title": "Черный чай Английский Завтрак",
     "quantity": null,
@@ -298,7 +298,7 @@
   },
   {
     "category": "tea",
-    "img": "/img/green-tea-mint.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/green-tea-mint.jpg",
     "guid": "reyghfdegfakdshfvlsdvgfbkdash",
     "title": "Зеленый чай с мятой",
     "quantity": null,
@@ -331,7 +331,7 @@
   },
   {
     "category": "tea",
-    "img": "/img/green-tea-jasmine.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/green-tea-jasmine.jpg",
     "guid": "gshwoifjpofkjasigfhdsuhasi",
     "title": "Жасминовый зеленый чай",
     "quantity": null,
@@ -364,7 +364,7 @@
   },
   {
     "category": "desserts",
-    "img": "/img/tiramisutort.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/tiramisutort.jpg",
     "guid": "akrfjbvgwksfjsdhnavfhdajouvdhl",
     "title": "Тирамису",
     "quantity": null,
@@ -397,7 +397,7 @@
   },
   {
     "category": "desserts",
-    "img": "/img/holodnyi-vishnevyi-chizkeik1.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/holodnyi-vishnevyi-chizkeik1.jpg",
     "guid": "oighsoidjgfpojfhobdfisjudpovgj",
     "title": "Вишневый чизкейк",
     "quantity": null,
@@ -430,7 +430,7 @@
   },
   {
     "category": "desserts",
-    "img": "/img/creme-brulee.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/creme-brulee.jpg",
     "guid": "",
     "title": "Крем-брюле",
     "quantity": null,
@@ -463,7 +463,7 @@
   },
   {
     "category": "sandwich",
-    "img": "/img/jpg_1000_40f6c158-4c60-4ef0-8ee6-f056653ce1f8.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/jpg_1000_40f6c158-4c60-4ef0-8ee6-f056653ce1f8.jpg",
     "guid": "ghfdsbgfakhsfggidhgoujfpsokd",
     "title": "Монреальский сэндвич с копченым мясом",
     "quantity": null,
@@ -496,7 +496,7 @@
   },
   {
     "category": "salad",
-    "img": "/img/cesar.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/cesar.jpg",
     "guid": "fygfalscsvkfsobhnsovfj",
     "title": "Цезарь с креветками",
     "quantity": null,
@@ -529,7 +529,7 @@
   },
   {
     "category": "salad",
-    "img": "/img/greek.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/greek.jpg",
     "guid": "lyjhnuyolisgfjadspfkcpaskvfdov",
     "title": "Греческий",
     "quantity": null,
@@ -562,7 +562,7 @@
   },
   {
     "category": "salad",
-    "img": "/img/koul_slou.jpg",
+    "img": "https://alexey314.github.io/cofeGB/img/koul_slou.jpg",
     "guid": "",
     "title": "Коул слоу",
     "quantity": null,
