@@ -10,6 +10,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    userOrders: [],
     orderStatus: '',
     globalConst: {},
     employee: [],
@@ -202,6 +203,9 @@ export default new Vuex.Store({
     ORDER_STATUS: state => {
       return state.orderStatus;
     },
+    USER_ORDERS: state => {
+      return state.userOrders;
+    },
   },
   mutations: {
     SET_PRODUCTS_LIST(state, data) {
@@ -282,29 +286,8 @@ export default new Vuex.Store({
     SET_CALLBACKS(state, data) {
       state.callbacks = data;
     },
-    SET_ORDER_BY_PHONE_STATUS(state, data) {
-      switch (data) {
-        case 'pending':
-          state.orderStatus = 'В ожидании';
-          break;
-        case 'cooking':
-          state.orderStatus = 'Готовится';
-          break;
-        case 'ready':
-          state.orderStatus = 'Готов';
-          break;
-        case 'canceled':
-          state.orderStatus = 'Отменен';
-          break;
-        case 'paused':
-          state.orderStatus = 'Приостановлен';
-          break;
-        case 'closed':
-          state.orderStatus = 'Заказ выдан';
-          break;
-        default:
-          state.orderStatus = 'Не найдено';
-      }
+    SET_USER_ORDERS_BY_PHONE_STATUS(state, data) {
+      state.userOrders = data;
     },
   },
   actions: {
@@ -425,9 +408,9 @@ export default new Vuex.Store({
         }
       }
     },
-    async GET_ORDER_BY_PHONE({ commit }, userPhone) {
-      const { data: status } = await axios.get(`${BACKEND_BASE_URL}/api/orders/${userPhone}`);
-      commit('SET_ORDER_BY_PHONE_STATUS', status);
+    async GET_ORDERS_BY_PHONE({ commit }, userPhone) {
+      const { data: orders } = await axios.get(`${BACKEND_BASE_URL}/api/orders/${userPhone}`);
+      commit('SET_USER_ORDERS_BY_PHONE_STATUS', orders);
     },
     SHOW_NAV_MENU: ({ commit }, payload) => {
       commit('SHOW_NAV_MENU', payload);
@@ -448,6 +431,9 @@ export default new Vuex.Store({
     },
     CLOSE_MODAL({ commit }) {
       commit('SET_CLOSE_MODAL');
+    },
+    CLEAN_USER_ORDERS({ commit }) {
+      commit('SET_USER_ORDERS_BY_PHONE_STATUS', '');
     },
     SEND_CALLBACK({ commit }, payload) {
       commit('SET_CALLBACKS', this.state.callbacks.concat(payload));
