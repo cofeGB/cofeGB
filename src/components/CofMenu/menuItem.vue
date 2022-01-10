@@ -9,7 +9,7 @@
       </router-link>
       <div class="menuItem__cpfc">
         <div v-for="(i, index) of item.calories" :key="index">
-          <p>{{ i.procents }}</p>
+          <p>{{ i.value }}</p>
           <p class="menuItem__cpfc-body">{{ i.title }}</p>
         </div>
       </div>
