@@ -1,7 +1,7 @@
 <template>
   <Modal :activator="orderStatus">
     <template #content>
-      <div class="overlay" @click.self="CLOSE_MODAL()">
+      <div class="overlay" @click.self="close()">
         <div class="wrapper">
           <div class="popup__content">
             <h3 class="mb-4">Узнать статус заказа</h3>
@@ -24,9 +24,21 @@
               <button @click="findOrder" class="ok_btn">Найти</button>
             </div>
           </div>
-          <div class="mt-4 status">{{ ORDER_STATUS() }}</div>
+          <div class="mt-4 status" v-for="{ order, index } in getList" :key="index">
+            <h3>Заказ № {{ order.orderNumber }}</h3>
+            <div>На сумму {{ order.total }} &#x20bd;</div>
+            <div>
+              Оформлен {{ new Date(order.timeTo).getDate() }} /
+              {{ new Date(order.timeTo).getMonth() + 1 }} /
+              {{ new Date(order.timeTo).getFullYear() }}
+              в
+              {{ new Date(order.timeTo).getHours() }} : {{ new Date(order.timeTo).getMinutes() }}
+            </div>
+            <h3>{{ status(order.status) }}</h3>
+          </div>
+          <div v-if="notFound">Ничего не найдено</div>
           <div class="popup__footer mt-4">
-            <button @click="CLOSE_MODAL()" class="ok_btn">Ok</button>
+            <button @click="close()" class="ok_btn">Ok</button>
           </div>
         </div>
       </div>
@@ -42,31 +54,58 @@ export default {
       valid: true,
       userPhone: null,
       rules: [
-        value => !!value || 'Необходио заполнить.',
-        value => (value && value.length === 11) || 'Необходио заполнить.',
+        value => !!value || 'Необходимо заполнить.',
+        value => (value && value.length === 11) || 'Необходимо заполнить.',
       ],
     };
   },
   computed: {
-    ...mapActions(['GET_ORDER_BY_PHONE']),
-    ...mapGetters(['MODAL_NAME']),
+    ...mapGetters(['MODAL_NAME', 'USER_ORDERS']),
     disabled() {
       return this.tooltipDisabled;
     },
     orderStatus() {
       return this.MODAL_NAME === 'orderStatus';
     },
-  },
-  methods: {
-    ...mapActions(['CLOSE_MODAL']),
-    ...mapGetters(['ORDER_STATUS']),
-    findOrder() {
-      console.log('in findOrder modal window');
-      this.$store.dispatch('GET_ORDER_BY_PHONE', this.userPhone);
+    getList() {
+      return this.USER_ORDERS;
+    },
+    notFound() {
+      let list = this.USER_ORDERS;
+      if (!list || list.length !== 0) {
+        return false;
+      }
+      return true;
     },
   },
-  close() {
-    this.CLOSE_MODAL();
+  methods: {
+    ...mapActions(['CLOSE_MODAL', 'CLEAN_USER_ORDERS', 'GET_ORDER_BY_PHONE']),
+    findOrder() {
+      this.$store.dispatch('GET_ORDERS_BY_PHONE', this.userPhone);
+    },
+    status(str) {
+      switch (str) {
+        case 'pending':
+          return 'В ожидании';
+        case 'cooking':
+          return 'Готовится';
+        case 'ready':
+          return 'Готов';
+        case 'canceled':
+          return 'Отменен';
+        case 'paused':
+          return 'Приостановлен';
+        case 'closed':
+          return 'Заказ выдан';
+        default:
+          return 'Не найдено';
+      }
+    },
+    close() {
+      this.userPhone = '';
+      this.CLOSE_MODAL();
+      this.CLEAN_USER_ORDERS();
+    },
   },
 };
 </script>

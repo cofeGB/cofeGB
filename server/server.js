@@ -5,7 +5,7 @@ import fs from 'fs';
 
 import { router as ordersRouter } from './ordersRouter.js';
 import { router as privOrdersRouter } from './privOrdersRouter.js';
-import { loadOrders, getOrderByPhoneNumber } from './order.js';
+import { loadOrders, getOrdersByPhoneNumber } from './order.js';
 
 const app = express();
 loadOrders('db/orders.json');
@@ -49,7 +49,7 @@ app.get('/api/callbacks', (req, res) => {
   });
 });
 app.get('/api/orders/:phone', (req, res) => {
-  res.send(getOrderByPhoneNumber(req.params.phone));
+  res.send(getOrdersByPhoneNumber(req.params.phone));
 });
 app.get('/api/employee', (req, res) => {
   fs.readFile(path.resolve('db/employee.json'), 'utf-8', (err, data) => {
