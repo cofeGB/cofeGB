@@ -60,6 +60,14 @@ const NAV_MENU = [
     title: 'Стоп-лист',
     path: '/private/stopList',
   },
+  {
+    title: '+ Добавить продукт',
+    path: '/private/newProduct',
+  },
+  {
+    title: '+ Добавить новое блюдо',
+    path: '/private/newDish',
+  },
 ];
 
 export default {
