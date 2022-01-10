@@ -61,8 +61,12 @@ const NAV_MENU = [
     path: '/private/stopList',
   },
   {
-    title: '+ Добавить ингридиент',
-    path: '/private/newIngridient',
+    title: '+ Добавить продукт',
+    path: '/private/newProduct',
+  },
+  {
+    title: '+ Добавить новое блюдо',
+    path: '/private/newDish',
   },
 ];
 

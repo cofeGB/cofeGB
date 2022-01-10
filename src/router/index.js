@@ -10,7 +10,8 @@ import dish from '../components/CofDish/dish.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Wharehouse from '../views/Wharehouse.vue';
 import Stoplist from '../views/Stoplist.vue';
-import AddingIngridient from '../views/AddingIngridient.vue';
+import AddingProduct from '../views/AddingProduct.vue';
+import AddingDish from '../views/AddingDish.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -71,9 +72,14 @@ const routes = [
     component: Stoplist,
   },
   {
-    path: '/private/newIngridient',
-    name: 'NewIngridient',
-    component: AddingIngridient,
+    path: '/private/newProduct',
+    name: 'NewProduct',
+    component: AddingProduct,
+  },
+  {
+    path: '/private/newDish',
+    name: 'NewDish',
+    component: AddingDish,
   },
   {
     path: '*',

@@ -43,18 +43,10 @@
  * @property {IngredientCategory} category - категория ингредиента
  * @property {IngredientGuid} guGuid - идентификатор ингредиента (Global Unchanged Guidentifier)
  * @property {string} title - наименование ингредиента
- * @property {string} description - подробное описание ингредиента
- * @property {?number} weight - вес одной порции в граммах
- * @property {?number} volume - объем одной порции в миллилитрах
- * @property {number} price - цена одной порции в рублях
- * @property {number} quantity - количество порций ингредиента, в штуках относительно weight или volume
- * @property {FoodNutrients} nutrients - пищевая ценность одной порции ингредиента
- * @property {string[]} imgUrls - ссылки на изображения
- * @property {string} brand - производитель ингредиента
- * @property {string} origin - страна происхождения ингредиента
- * @property {Availability} availability - наличие ингредиента
- * @property {string} warnings - предупреждения о свойствах продукта (для аллергиков, диабетиков?)
- */
+ * @property {?number} quntity - количество в одной порцие
+ * @property {?number} units - единицы измерения
+ * @property {?number} description - описание
+ * /
 
 /**
  * @typedef {string} DishCategory - категрия блюда: 'закуски'|'сэндвичи'|'салаты'|'напитки'...
@@ -140,18 +132,24 @@
 
 /**
  * @typedef {Object} Product - Продукт (для приготовления или хронения на складе) универсальные данные их можно юзать и для подсчета параметров и для показа остатка и для показа в описание блюд
+ * @property {IngredientCategory} category - категория ингредиента
  * @property {string} title - название пункта навигационного меню, как его видит пользователь
  * @property {string} productGuid - Guid продукта
- * @property {?string} supplier - Поставщик продукта
+ * @property {string} ingridientGuid - Guid ингридиента
  * @property {?string} storageTime - Время хранения продукта
  * @property {?string} bestBeforeDate - Срок годности продукта
  * @property {?string} warnings - предупреждения о свойствах продукта (для аллергиков, диабетиков?)
  * @property {?number} weight - Вес продукта
+ * @property {?number} volume - Объем продукта
  * @property {?number} weightPack - Вес продукта в упаковке
- * @property {?number} price - Цена продукта
- * @property {?number} pricePack - Цена продукта в упаковке
- * @property {?number} quantity - Количество продукта
- * @property {?number} quantityPack - Количество упаковок продукта
+ * @property {?number} price - Цена за упаковку (не за коробку с упаковками!) на приходе
+ * @property {?number} markupPrice - Цена за упаковку в рознице
+ * @property {?number} quantity - Количество упаковок продукта
+ * @property {?number} quantityItemInPack - Количество упаковок в коробке (бутылок в спайке)
+ * @property {?number} quantityPack - Количество коробок продукта
  * @property {FoodNutrients} foodNutrients - КБЖУ продукта
- * @property {Nutrient} nutrient - Питательное вещество продукта
+ * @property {string} brand - производитель ингредиента
+ * @property {string} origin - страна происхождения ингредиента
+ * @property {?string} supplier - Поставщик продукта
+ * @property {string[]} imgUrls - ссылки на изображения
  */
