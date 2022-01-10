@@ -263,7 +263,25 @@
         dense
         class="mt-10"
       ></v-select>
-
+      <v-row class="mt-10 mx-1 mb-2">
+        <v-btn raised @click="onPickFile">Добавить фото</v-btn>
+        <input
+          type="file"
+          style="display: none"
+          ref="fileInput"
+          accept="image/*"
+          @input="OnFilePicked"
+        />
+      </v-row>
+      <div
+        v-show="Boolean(dish.imgUrls.length)"
+        class="ImgFile"
+        v-for="(item, index) in dish.imgUrls"
+        :key="index"
+      >
+        {{ item.filename }}
+        <button :value="item.id" @click="deleteImg">X</button>
+      </div>
       <v-textarea
         :value="dish.description"
         class="mt-2"
@@ -276,7 +294,7 @@
         dark
       ></v-textarea>
 
-      <v-btn text dark outlined @click="onClick" class="btn-buy">Сохранить</v-btn>
+      <v-btn text dark outlined @click="saveDish" class="btn-buy">Сохранить</v-btn>
     </v-form>
   </v-container>
 </template>
@@ -309,6 +327,7 @@ export default {
   name: 'AddingDish',
   data() {
     return {
+      imgUrl: '',
       UNITS: ['гр', 'мл'],
       valid: true,
       isGramm: true,
@@ -355,7 +374,28 @@ export default {
   },
   methods: {
     // ...mapActions(['GET_CATEGORIES', 'GET_INGRIDIENTS', ADD_DISH]),
-    onClick() {
+    onPickFile() {
+      this.$refs.fileInput.click();
+    },
+    OnFilePicked(event) {
+      let imgUrl = '';
+      let filename = event.target.files[0].name;
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('file is not valid');
+      }
+      // const fileReader = new FileReader();
+      // fileReader.addEventListener('load', () => {
+      //   imgUrl = fileReader.result;
+      // });
+      // fileReader.readAsDataURL(event.target.files[0]);
+      this.dish.imgUrls.push({ id: this.dish.imgUrls.length, filename, imgUrl });
+      event.target.value = '';
+    },
+    deleteImg(event) {
+      event.preventDefault();
+      this.dish.imgUrls = this.dish.imgUrls.filter(el => el.id != +event.target.value);
+    },
+    saveDish() {
       this.$refs.form.validate();
       this.dish.category = CATEGORIES.find(el => el.title == this.dish.category);
       this.dish.availability = AVAILIBILITY.find(el => el.text == this.dish.availability).value;

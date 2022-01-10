@@ -58,15 +58,15 @@ const NAV_MENU = [
   },
   {
     title: 'Стоп-лист',
-    path: '/private/stopList',
+    path: '/private/stoplist',
   },
   {
     title: '+ Добавить продукт',
-    path: '/private/newProduct',
+    path: '/private/new-product',
   },
   {
     title: '+ Добавить новое блюдо',
-    path: '/private/newDish',
+    path: '/private/new-dish',
   },
 ];
 
