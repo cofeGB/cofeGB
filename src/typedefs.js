@@ -39,13 +39,17 @@
  */
 
 /**
+ * @typedef {string} Units - единицы измерения: 'грамм'|'килограмм'|'литр'|'миллилитр'
+ */
+
+/**
  * @typedef {Object} Ingredient - публичное представление ингредиента
  * @property {IngredientCategory} category - категория ингредиента
  * @property {IngredientGuid} guGuid - идентификатор ингредиента (Global Unchanged Guidentifier)
  * @property {string} title - наименование ингредиента
  * @property {?number} quntity - количество в одной порцие
- * @property {?number} units - единицы измерения
- * @property {?number} description - описание
+ * @property {Units} units - единицы измерения
+ * @property {string} description - описание
  * /
 
 /**

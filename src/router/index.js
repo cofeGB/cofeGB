@@ -72,12 +72,12 @@ const routes = [
     component: Stoplist,
   },
   {
-    path: '/private/newProduct',
+    path: '/private/new-product',
     name: 'NewProduct',
     component: AddingProduct,
   },
   {
-    path: '/private/newDish',
+    path: '/private/new-dish',
     name: 'NewDish',
     component: AddingDish,
   },
